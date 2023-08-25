@@ -1,0 +1,33 @@
+<?php
+
+include 'config.php' ;
+
+
+if(isset($_POST['save'])){
+
+  
+  $username=$_POST['username'];
+  $password = $_POST['password'];
+  $email=$_POST['email'];
+  $building = $_POST['building'];
+  $room = $_POST['room'];
+  
+  $sql = "INSERT INTO register (`username`,`password`,`email`, `building`,`room`,`isAllowed`) VALUES ('$username','$password' ,'$email', '$building','$room',0)";
+
+  if ($conn->query($sql) === TRUE) {
+
+    echo "<script> alert('You are successfully registered')</script> " ;
+    // echo "done" ;
+   
+    echo "<script> location.replace('../html/login.html')</script> ";
+ 
+    // header('location:login.html');
+  }else {
+    echo "<script> alert('You are not registered pls try again with right credentials ')</script>" ;
+    echo "<script> location.replace('../html/index.html')</script> ";
+  }
+}
+
+$conn->close();
+
+?>

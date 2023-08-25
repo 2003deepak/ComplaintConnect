@@ -1,0 +1,123 @@
+body{
+   
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
+    /* background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(bg.jpg);
+    background-position: center;
+    background-size: cover; */
+    display: flex;
+   
+    padding: 0px;
+    margin: 0px;
+}
+.Navigation{
+    color:black;
+    padding: 20px;
+    font-size: larger;
+    
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 0px;
+    transition: 0.4s ease-in-out;
+    
+}
+
+.Navigation:hover{
+    color: white;
+}
+.login{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    width: 400px;
+    background:white
+    
+
+}
+h1{
+    text-align: center;
+    margin-top: 10px;
+}
+p{
+    text-align: center;
+    padding: 02px;
+    font-size: 20px;
+    
+}
+.login input[type="text"]{
+    
+
+    width: 73.5%;
+    padding: 10px;
+    margin-bottom: 17px;
+    font-size: 17px;
+    border: none;
+    border: 2px solid gray;
+    border-radius: 6px;
+    outline: none;
+    margin-left: 35px;
+
+    /* padding-left: 10px;
+    margin-left: 75px;
+    font-size: 20px;
+    border: 2px solid black; */
+    
+}
+.login input[type="password"]{
+
+    width: 73.5%;
+    padding: 10px;
+    margin-bottom: 17px;
+    font-size: 17px;
+    border: none;
+    border: 2px solid gray;
+    border-radius: 6px;
+    outline: none;
+    margin-left: 35px;
+
+    
+    /* padding-left: 10px;
+    padding : 5px ;
+    margin-left: 75px;
+    font-size: 20px;
+    border: 2px solid black; */
+}
+img{
+    margin-left: 135px;
+}
+.login input[type="Submit"]{
+    
+    
+    /* margin-top: 10px;
+    margin-left: 40px;
+
+    width: 77%;
+    height: 40px;
+    background-color:#2691d9;
+    border-radius: 25px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700; */
+
+    width: 80%;
+    height: 40px;
+    margin-top: -1rem;
+    border: none;
+    background-color: #2691d9;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    margin-left: 2.2rem;
+    
+}
+#username{
+    text-align: center;
+    padding: 07px;
+    font-size: 22px;
+   
+}
+#password{
+    text-align: center;
+    padding: 07px;
+    font-size: 22px;
+}

@@ -1,0 +1,86 @@
+
+body{
+  /* background-image: url("images/final.jfif"); */
+  background: linear-gradient(120deg, #2980b9, #8e44ad);
+  background-size: cover;
+  /* font-family: 'DynaPuff', cursive; */
+  /* font-family: "Roboto", sans-serif; */
+}
+.Navigation{
+  color:black;
+  padding: 20px;
+  font-size: larger;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 0px;
+  transition: 0.4s ease-in-out;
+}
+.Navigation:hover{
+  color: white;
+}
+
+.Signup{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 65%;
+  left: 50%;
+  text-align: center;
+  background-color: white;
+  height: 40rem;
+  width: 30rem;
+  border-radius: 15px;
+  
+
+}
+/* #avatar{
+
+  margin-top: -0.51rem;
+} */
+
+.signupbtn{
+  width: 80%;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+  background-color: #2691d9;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+}
+
+.text{
+
+ 
+  width: 73.5%;
+  padding: 10px;
+  margin-bottom: 17px;
+  font-size: 17px;
+  border: none;
+  border: 2px solid gray;
+  border-radius: 6px;
+  outline: none;
+ 
+}
+.dropdown{
+  width: 78%;
+  padding: 10px;
+  border: none;
+  border: 2px solid gray;
+  border-radius: 6px;
+  margin-left: 0.01rem;
+  outline: none;
+  font-size: 1rem;
+
+}  
+.radio{
+
+  margin-left:5px;
+}
+
+
+h1{
+  padding: -0.9px;
+  font-weight: 900;
+}
+#learn{
+  font-size: 20px;
+}
