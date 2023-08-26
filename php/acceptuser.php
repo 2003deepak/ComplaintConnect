@@ -1,32 +1,42 @@
-<!-- Code to Make user login by allowing isAllowed to 1  -->
-<?php
 
+<?php
 
 
 include 'config.php' ;
 
 
-if(isset($_POST['save'])){
+  $id = $_GET["id"];
 
-  $sno = $_POST["sno"];
+  $sql = "Update register set isAllowed = 1 where sno = $id ";
 
-  echo $sno ;
-//   $sql = "Update register set isAllowed = 1 where sno = `$sno` ";
+  if ($conn->query($sql) === TRUE) {
 
-//   if ($conn->query($sql) === TRUE) {
-
-//     echo "<script> alert('user is accepted')</script> " ;
-//     // echo "done" ;
+    echo "<script> alert('user is accepted')</script> " ;
   
-//     echo "<script> location.replace('../php/edituser.php')</script> ";
+    // Sending Mail
 
-//     // header('location:login.html');
-//   }else {
-//     echo "<script> alert('User is not given permission , try again')</script>" ;
-//     // echo "<script> location.replace('../html/index.html')</script> ";
-//   }
-}
+    $to_email = "poojarryadav@gmail.com";
+    $subject = "Permission Granted";
+    $body = "We are glad to inform you that , you can now use your ComplaintConnect Website to lodge complain";
+    $headers = "From: deepakkumar74491234@gmail.com";
+
+    if (mail($to_email, $subject, $body, $headers)) {
+        echo "<script> alert('Email is sent')</script> " ;
+    } else {
+        echo "<script> alert('Email is not sent')</script> " ;
+    }
+    
+
+
+    // echo "<script> location.replace('../php/edituser.php')</script> ";
+
+    // header('location:login.html');
+  }else {
+    echo "<script> alert('User is not given permission , try again')</script>" ;
+    echo "<script> location.replace('../php/edituser.php')</script> ";
+  }
+
 
 $conn->close();
 
-?>
+  ?>

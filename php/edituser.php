@@ -71,11 +71,19 @@
   width: 117px;
 }
 
+.accept:hover{
+  background: none ; 
+}
+
 
   </style>
 
 </head>
 <body>
+
+
+
+
   <div class="container">
     <nav>
       <ul>
@@ -147,7 +155,7 @@
                       ?>
                         <tr class="active-row">
                           <td><?php echo $count++ ; ?></td>
-                          <td> &nbsp &nbsp<?php echo $row["username"] ?>   </td>
+                          <td> <?php echo $row["username"] ?>   </td>
                           <td> <?php echo $row["email"] ?> </td>
                           <td> <?php echo $row["building"] ?> </td>
                           <td> <?php echo $row["room"] ?> </td>
@@ -155,12 +163,14 @@
                           <?php 
                           if($row["isAllowed"] == 1){
                             ?>
-                            <td><button type="button" class="btn1" ><a class = "accept" href = "../php/deleteuser.php?id =<?php echo $row["sno"]; ?>">Delete User</a></button></td>
+                            <td> <button class="btn1"> <a class = "accept" href="../php/deleteuser.php?id=<?php echo $row['sno']; ?>"> Delete User</a>  </button> </td>
+                           
 
                           <?php
                           }else{
                             ?>
-                            <td><button type="button" class="btn2" name = "save" ><a class = "accept" href = "../php/acceptuser.php?id =<?php echo $row["sno"]; ?>">Accept User</a></button></td>
+                            <td> <button class="btn2"> <a class = "accept" href="../php/acceptuser.php?id=<?php echo $row['sno']; ?>"> Accept User </a>  </button> </td>
+                           
                             <?php
                           }
                           ?>
@@ -180,6 +190,8 @@
       </section>
     </section>
   </div>
+
+
 
 
   
