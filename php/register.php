@@ -11,8 +11,11 @@ if(isset($_POST['save'])){
   $email=$_POST['email'];
   $building = $_POST['building'];
   $room = $_POST['room'];
+
+  // Encryption of Password
+  $str_pass = password_hash($password,PASSWORD_BCRYPT);
   
-  $sql = "INSERT INTO register (`username`,`password`,`email`, `building`,`room`,`isAllowed`) VALUES ('$username','$password' ,'$email', '$building','$room',0)";
+  $sql = "INSERT INTO register (`username`,`password`,`email`, `building`,`room`,`isAllowed`) VALUES ('$username','$str_pass' ,'$email', '$building','$room',0)";
 
   if ($conn->query($sql) === TRUE) {
 

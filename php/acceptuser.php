@@ -22,8 +22,10 @@ include 'config.php' ;
 
     if (mail($to_email, $subject, $body, $headers)) {
         echo "<script> alert('Email is sent')</script> " ;
+        echo "<script> location.replace('../php/edituser.php')</script> ";
     } else {
         echo "<script> alert('Email is not sent')</script> " ;
+        echo "<script> location.replace('../php/edituser.php')</script> ";
     }
     
 
