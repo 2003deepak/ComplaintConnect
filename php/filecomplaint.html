@@ -6,6 +6,8 @@
 
     <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
      
      <style>
@@ -523,19 +525,19 @@ select{
     </div>
       <ul class="nav-links">
         <li>
-          <a href="#">
+          <a href="../php/adminpanel.php">
             <i class="fas fa-home"></i>
             <span class="links_name">Home</a></span>
           </a>
         </li>
         <li>
-          <a href="../php/edituser.php">
+          <a href="../php/filecomplaint.php">
             <i class="fas fa-user"></i>
-            <span class="links_name">Edit User</span>
+            <span class="links_name">File Complaint</span>
           </a>
         </li>
         <li>
-            <a href="tester1.jsp">
+            <a href="#">
                 <i class="fas fa-wallet"></i>
               <span class="links_name">Complaint Status</span>
             </a>
@@ -566,13 +568,38 @@ select{
       </ul>
   </div>
   <section class="home-section">
-    <nav>
-      <div class="sidebar-button">
-        <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Home</span>
-      </div>
-      
-    </nav>
+
+    <form action="registerBug.jsp" method="get">
+      <h1>Assign Bug<h1>
+
+          <br>
+  
+          <p class="dheading">Description:</p>
+          <textarea  placeholerder = "Explain the Bug" rows="7" cols="100" name ="bug"></textarea>
+  
+          <p class="dheading">Developer:</p>
+          <select name="developer">
+          
+
+           <p class="dheading">Severity:</p>
+
+          <select name="severity" id="severity">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="normal">Normal</option>
+              
+           </select>
+           
+           
+           <p class="dheading">Select Deadline Time:</p>
+           <input type="datetime-local" id="time" name="time">
+
+          <input type="submit" value="Register">
+          
+         
+          
+  </form>
+    
       
       
      

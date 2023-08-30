@@ -12,6 +12,7 @@ include 'config.php' ;
   if ($conn->query($sql) === TRUE) {
 
     echo "<script> alert('user is accepted')</script> " ;
+    echo "<script> location.replace('../php/edituser.php')</script> ";
     
      
 
