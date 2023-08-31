@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'config.php' ; 
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -603,28 +604,51 @@ select{
         <div class="form-group">
           <label for="exampleFormControlSelect1">Building Number</label>
           <br>
-          <select class="form-control" id="exampleFormControlSelect1" value="<?php echo $_SESSION['username']; ?>">
-            <option value = "210">210</option>
-            <option value = "110">110</option>
-            <option value = "179">179</option>
+
+          <?php 
+
+           
+            $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
+            $query = mysqli_query($conn, $username_search);
+            $username_count = mysqli_num_rows($query);
+            if($username_count){
+
+                $query1 = mysqli_fetch_assoc($query);
+                $building = $query1['building'];
+                $room = $query1['room'];
+
+          
+            }
+
+
+
+
+          ?>
+          
+          <select class="form-control" id="exampleFormControlSelect1" name="building" disabled>
+              <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
+              <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
+              <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
           </select>
+
+          
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect2">Room No</label>
           <br>
-          <select  class="form-control" id="exampleFormControlSelect2" readonly>
-            <option value = "1">1</option>
-            <option value = "2" >2</option>
-            <option value = "3">3</option>
-            <option value = "4">4</option>
-            <option value = "5">5</option>
+          <select  class="form-control" id="exampleFormControlSelect2" disabled>
+            <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
+            <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
+            <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
+            <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
+            <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
           </select>
         </div>
         <br>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
           <br>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select class="form-control" id="complaint_group">
             
             <option value = "Electricity">Electricity</option>
             <option value = "Water">Water </option>
@@ -634,8 +658,10 @@ select{
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Your Complaint Type</label>
           <br>
-          <select class="form-control" id="exampleFormControlSelect1">
-                <option value="14w Tube light U/s">14w Tube light U/s</option>
+          <select class="form-control" id="electricity_problem">
+
+
+                  <option value="14w Tube light U/s">14w Tube light U/s</option>
                   <option value="15 Amps switch socket U/s">15 Amps switch socket U/s</option>
                   <option value="28w Tube light U/s">28w Tube light U/s</option>
                   <option value="3 Pin Switch Socket U/s">3 Pin Switch Socket U/s</option>
@@ -666,7 +692,48 @@ select{
               
             
           </select>
+
+
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Your Complaint Type</label>
+          <br>
+          <select class="form-control" id="water_problem">
+
+
+            <option value="1">Low Water Pressure</option>
+            <option value="2">No Water Supply</option>
+            <option value="3">Water Discoloration</option>
+            <option value="4">Leaking Water Pipe</option>
+            <option value="5">Water Odor</option>
+            <option value="6">High Water Bill</option>
+            <option value="7">Water Contamination</option>
+            <option value="8">Broken Water Meter</option>
+            <option value="9">Water Main Break</option>
+            <option value="10">Water Quality Concerns</option>
+            <option value="11">Water Infrastructure Damage</option>
+            <option value="12">Water Shut-off Without Notice</option>
+            <option value="13">Water Conservation Issue</option>
+            <option value="14">Water Treatment Problem</option>
+            <option value="15">Water Billing Error</option>
+            <option value="16">Sewage Backup</option>
+            <option value="17">Water Pressure Fluctuations</option>
+            <option value="18">Water Meter Reading Issue</option>
+            <option value="19">Water Supply Interruption</option>
+            <option value="20">Water Leakage in Street</option>
+              
+            
+          </select>
         </div>
+
+        <script>
+          document.getElementById("complaint_group").addEventListener("change", function() {
+              var selectedCategory = this.value;
+              document.getElementById("electricty_problem").style.display = selectedCategory === "Water" ? "block" : "none";
+              document.getElementById("water_problem").style.display = selectedCategory === "Electricity" ? "block" : "none";
+          });
+        </script>
+
+
         <div class="form-group">
           <label for="exampleFormControlFile1">Example file input</label>
           <input type="file" class="form-control-file" id="exampleFormControlFile1">
