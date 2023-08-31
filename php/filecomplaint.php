@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -458,6 +460,10 @@ nav .profile-details i{
   }
 }
 
+/* h1{
+  margin-top: 7rem;
+  display: inline-block;
+} */
 .registerBox{
     
     height: 500px;
@@ -507,6 +513,13 @@ select{
     top: -30px;
 }
 
+.mainform{
+  height: 90vh;
+  margin-top: 7rem;
+  display: inline-block;
+ 
+}
+
 
 
 
@@ -525,7 +538,7 @@ select{
     </div>
       <ul class="nav-links">
         <li>
-          <a href="../php/adminpanel.php">
+          <a href="../php/dashboard.php">
             <i class="fas fa-home"></i>
             <span class="links_name">Home</a></span>
           </a>
@@ -569,36 +582,109 @@ select{
   </div>
   <section class="home-section">
 
-    <form action="registerBug.jsp" method="get">
-      <h1>Assign Bug<h1>
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Home</span>
+      </div>
 
+      
+      
+    </nav>   
+
+    <div class="mainform">
+
+      
+      <form>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Building Number</label>
           <br>
-  
-          <p class="dheading">Description:</p>
-          <textarea  placeholerder = "Explain the Bug" rows="7" cols="100" name ="bug"></textarea>
-  
-          <p class="dheading">Developer:</p>
-          <select name="developer">
-          
+          <select class="form-control" id="exampleFormControlSelect1" value="<?php echo $_SESSION['username']; ?>">
+            <option value = "210">210</option>
+            <option value = "110">110</option>
+            <option value = "179">179</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Room No</label>
+          <br>
+          <select  class="form-control" id="exampleFormControlSelect2" readonly>
+            <option value = "1">1</option>
+            <option value = "2" >2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
+          <br>
+          <select class="form-control" id="exampleFormControlSelect1">
+            
+            <option value = "Electricity">Electricity</option>
+            <option value = "Water">Water </option>
+          </select>
+        </div>
 
-           <p class="dheading">Severity:</p>
-
-          <select name="severity" id="severity">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="normal">Normal</option>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Your Complaint Type</label>
+          <br>
+          <select class="form-control" id="exampleFormControlSelect1">
+                <option value="14w Tube light U/s">14w Tube light U/s</option>
+                  <option value="15 Amps switch socket U/s">15 Amps switch socket U/s</option>
+                  <option value="28w Tube light U/s">28w Tube light U/s</option>
+                  <option value="3 Pin Switch Socket U/s">3 Pin Switch Socket U/s</option>
+                  <option value="A socket with 4 holes type u/s">A socket with 4 holes type u/s</option>
+                  <option value="5 watt LED light">5 watt LED light</option>
+                  <option value="A/C Stabilizer">A/C Stabilizer</option>
+                  <option value="A/C Not Working">A/C Not Working</option>
+                  <option value="A/C U/S">A/C U/S</option>
+                  <option value="Bulb point U/S">Bulb point U/S</option>
+                  <option value="Ceiling fan capacitor U/S">Ceiling fan capacitor U/S</option>
+                  <option value="Ceiling fan fallen to be refixed">Ceiling fan fallen to be refixed</option>
+                  <option value="Ceiling fan not working">Ceiling fan not working</option>
+                  <option value="Ceiling fan nut bolts to be checked & tightened">Ceiling fan nut bolts to be checked & tightened</option>
+                  <option value="Ceiling fan winding fault">Ceiling fan winding fault</option>
+                  <option value="Defective electric meter">Defective electric meter</option>
+                  <option value="Ceiling fan u/s to be replaced">Ceiling fan u/s to be replaced</option>
+                    <option value="Lift not working">Lift not working</option>
+                    <option value="Low voltage/single phase">Low voltage/single phase</option>
+                    <option value="low water">low water</option>
+                    <option value="MCB tripping off/sparking">MCB tripping off/sparking</option>
+                    <option value="Meter u/s">Meter u/s</option>
+                    <option value="New switch board">New switch board</option>
+                    <option value="No light in QTR">No light in QTR</option>
+                    <option value="No power supply">No power supply</option>
+                    <option value="OHT overflowing float valve u/s">OHT overflowing float valve u/s</option>
+                    <option value="Piano switch u/s">Piano switch u/s</option>
+                    <option value="Plumbing work reqd">Plumbing work reqd</option>
               
-           </select>
-           
-           
-           <p class="dheading">Select Deadline Time:</p>
-           <input type="datetime-local" id="time" name="time">
+            
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Example file input</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Example textarea</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        
+      </form>
 
-          <input type="submit" value="Register">
-          
-         
-          
-  </form>
+     
+      
+
+    </div>
+    
+  </section>
     
       
       
