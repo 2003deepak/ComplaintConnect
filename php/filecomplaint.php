@@ -91,7 +91,7 @@ include 'config.php' ;
 .home-section{
   position: relative;
   background: #f5f5f5;
-  min-height: 100vh;
+  min-height: 150vh;
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
@@ -596,10 +596,10 @@ select{
     <div class="mainform">
 
       
-      <form>
+      <form action = "../php/uploadComplaint.php" method = "post" enctype="multipart/form-data">
         <div class="form-group">
           <label>Username</label>
-          <input type="text" class="form-control" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
+          <input type="text" class="form-control" name = "username" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Building Number</label>
@@ -636,7 +636,7 @@ select{
         <div class="form-group">
           <label for="exampleFormControlSelect2">Room No</label>
           <br>
-          <select  class="form-control" id="exampleFormControlSelect2" disabled>
+          <select  class="form-control" name="room" disabled>
             <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
             <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
             <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
@@ -648,101 +648,37 @@ select{
         <div class="form-group">
           <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
           <br>
-          <select class="form-control" id="complaint_group">
+          <select class="form-control" name="complaint_group">
             
             <option value = "Electricity">Electricity</option>
             <option value = "Water">Water </option>
+            <option value = "Water">Property Damage </option>
+            <option value = "Water">Cleanliness </option>
+            <option value = "Water">Add more </option>
+            <option value = "Water">Others</option>
           </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Subject</label>
+            <input type="text" class="form-control" name="subject" aria-describedby="emailHelp" placeholder="Subject" maxlength="50">
+            <small  class="form-text text-muted">Upto 50 words allowed</small>
         </div>
 
         <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Your Complaint Type</label>
-          <br>
-          <select class="form-control" id="electricity_problem">
-
-
-                  <option value="14w Tube light U/s">14w Tube light U/s</option>
-                  <option value="15 Amps switch socket U/s">15 Amps switch socket U/s</option>
-                  <option value="28w Tube light U/s">28w Tube light U/s</option>
-                  <option value="3 Pin Switch Socket U/s">3 Pin Switch Socket U/s</option>
-                  <option value="A socket with 4 holes type u/s">A socket with 4 holes type u/s</option>
-                  <option value="5 watt LED light">5 watt LED light</option>
-                  <option value="A/C Stabilizer">A/C Stabilizer</option>
-                  <option value="A/C Not Working">A/C Not Working</option>
-                  <option value="A/C U/S">A/C U/S</option>
-                  <option value="Bulb point U/S">Bulb point U/S</option>
-                  <option value="Ceiling fan capacitor U/S">Ceiling fan capacitor U/S</option>
-                  <option value="Ceiling fan fallen to be refixed">Ceiling fan fallen to be refixed</option>
-                  <option value="Ceiling fan not working">Ceiling fan not working</option>
-                  <option value="Ceiling fan nut bolts to be checked & tightened">Ceiling fan nut bolts to be checked & tightened</option>
-                  <option value="Ceiling fan winding fault">Ceiling fan winding fault</option>
-                  <option value="Defective electric meter">Defective electric meter</option>
-                  <option value="Ceiling fan u/s to be replaced">Ceiling fan u/s to be replaced</option>
-                    <option value="Lift not working">Lift not working</option>
-                    <option value="Low voltage/single phase">Low voltage/single phase</option>
-                    <option value="low water">low water</option>
-                    <option value="MCB tripping off/sparking">MCB tripping off/sparking</option>
-                    <option value="Meter u/s">Meter u/s</option>
-                    <option value="New switch board">New switch board</option>
-                    <option value="No light in QTR">No light in QTR</option>
-                    <option value="No power supply">No power supply</option>
-                    <option value="OHT overflowing float valve u/s">OHT overflowing float valve u/s</option>
-                    <option value="Piano switch u/s">Piano switch u/s</option>
-                    <option value="Plumbing work reqd">Plumbing work reqd</option>
-              
-            
-          </select>
-
-
-          <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Your Complaint Type</label>
-          <br>
-          <select class="form-control" id="water_problem">
-
-
-            <option value="1">Low Water Pressure</option>
-            <option value="2">No Water Supply</option>
-            <option value="3">Water Discoloration</option>
-            <option value="4">Leaking Water Pipe</option>
-            <option value="5">Water Odor</option>
-            <option value="6">High Water Bill</option>
-            <option value="7">Water Contamination</option>
-            <option value="8">Broken Water Meter</option>
-            <option value="9">Water Main Break</option>
-            <option value="10">Water Quality Concerns</option>
-            <option value="11">Water Infrastructure Damage</option>
-            <option value="12">Water Shut-off Without Notice</option>
-            <option value="13">Water Conservation Issue</option>
-            <option value="14">Water Treatment Problem</option>
-            <option value="15">Water Billing Error</option>
-            <option value="16">Sewage Backup</option>
-            <option value="17">Water Pressure Fluctuations</option>
-            <option value="18">Water Meter Reading Issue</option>
-            <option value="19">Water Supply Interruption</option>
-            <option value="20">Water Leakage in Street</option>
-              
-            
-          </select>
+          <label for="comment">Description</label>
+          <textarea class="form-control" rows="10" cols="100" name = "desc"></textarea>
         </div>
-
-        <script>
-          document.getElementById("complaint_group").addEventListener("change", function() {
-              var selectedCategory = this.value;
-              document.getElementById("electricty_problem").style.display = selectedCategory === "Water" ? "block" : "none";
-              document.getElementById("water_problem").style.display = selectedCategory === "Electricity" ? "block" : "none";
-          });
-        </script>
-
 
         <div class="form-group">
           <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file">
         </div>
         <br>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+
+        <input type="submit" class="btn btn-primary" value="Submit" name = "save">
+        
         
       </form>
 
