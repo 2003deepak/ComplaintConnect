@@ -3,7 +3,7 @@
 include 'config.php' ;
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_POST['save'])){
 
     $username=$_POST['username'];
     $password = $_POST['password'];
@@ -31,10 +31,24 @@ if(isset($_POST['submit'])){
                 $row2 = mysqli_num_rows($query2);
 
                 if($row2 == 1){
+
+                    if(isset($_POST['rememberme'])){
+
+                        echo '<script>alert("You are succesfully Logined ")</script>' ;
+                        setcookie("usernamecookie",$username,time()+20); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
+                        setcookie("passwordcookie",$password,time()+20); // During Time of deployment , 20 should be replaced to 604800sec
+                        $_SESSION['username'] = $username ;
+                        echo "<script> location.replace('../php/dashboard.php')</script> ";
+
+
+                    }else{
+                        echo '<script>alert("You are succesfully Logined ")</script>' ;
+                        $_SESSION['username'] = $username ;
+                        echo "<script> location.replace('../php/dashboard.php')</script> ";
+
+                    }
            
-                    echo '<script>alert("You are succesfully Logined ")</script>' ;
-                    $_SESSION['username'] = $username ;
-                    echo "<script> location.replace('../php/dashboard.php')</script> ";
+                    
                 
                 
                 }else{
