@@ -1,5 +1,7 @@
 <?php
 
+
+
 session_start();
 
 include 'config.php' ;
@@ -45,18 +47,21 @@ if(isset($_POST['save'])){
 
 
   
-    $sql = "INSERT INTO complaint VALUES ('$username','$building','$room','$complaint_id','$complaint_type','$subject','$desc','$folder')";
+    $sql = "INSERT INTO complaints(username,building,room,complaint_id,complaint_type,subject,description,folder) VALUES ('$username','$building','$room','$complaint_id','$complaint_type','$subject','$desc','$folder')";
 
     if ($conn->query($sql) === TRUE) {
 
         echo "<script> alert('Complaint is filed successfully')</script> " ;
 
-        echo "<script> location.replace('dashboard.php') </script>" ;
+        echo "<script> location.replace('../php/dashboard.php')</script> ";
     
  
    
     }else {
         echo "<script> alert('Complaint is not filed')</script>" ;
+        // echo "<script> location.replace('../php/dashboard.php')</script> ";
+
+        echo $conn->error ;
     
     }
 }

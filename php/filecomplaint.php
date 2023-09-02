@@ -595,6 +595,9 @@ select{
 
     <div class="mainform">
 
+
+  
+
       
       <form action = "../php/uploadComplaint.php" method = "post" enctype="multipart/form-data">
         <div class="form-group">
@@ -606,6 +609,9 @@ select{
           <br>
 
           <?php 
+
+
+        
 
            
             $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
@@ -672,8 +678,8 @@ select{
         </div>
 
         <div class="form-group">
-          <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file">
+          <label for="exampleFormControlFile1">Attach Photo</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file" accept="image/*">
         </div>
         <br>
 

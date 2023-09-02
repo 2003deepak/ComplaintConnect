@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+include 'config.php' ; 
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -6,6 +9,8 @@
 
     <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
      
      <style>
@@ -86,7 +91,7 @@
 .home-section{
   position: relative;
   background: #f5f5f5;
-  min-height: 100vh;
+  min-height: 150vh;
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
@@ -456,6 +461,10 @@ nav .profile-details i{
   }
 }
 
+/* h1{
+  margin-top: 7rem;
+  display: inline-block;
+} */
 .registerBox{
     
     height: 500px;
@@ -505,6 +514,78 @@ select{
     top: -30px;
 }
 
+.mainform{
+  height: 90vh;
+  margin-top: 7rem;
+  display: inline-block;
+ 
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.btn1{
+    background: red;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+.btn2{
+    background: green;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+
+.accept{
+  color: white;
+  width: 117px;
+}
+
+.accept:hover{
+  background: none ; 
+}
+
 
 
 
@@ -523,7 +604,7 @@ select{
     </div>
       <ul class="nav-links">
         <li>
-          <a href="../php/adminpanel.php">
+          <a href="../php/dashboard.php">
             <i class="fas fa-home"></i>
             <span class="links_name">Home</a></span>
           </a>
@@ -566,13 +647,81 @@ select{
       </ul>
   </div>
   <section class="home-section">
+
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Home</span>
       </div>
+
       
-    </nav>
+      
+    </nav>   
+
+    <div class="mainform">
+
+    <table class="content-table">
+                <tr>
+                  <th>Complaint ID</th>
+                  <th>Complaint Group</th>
+                  <th>Subject</th>
+                  <th>Description</th>
+                  <th>Image</th>
+                  
+                </tr>
+                <?php
+
+                
+                include 'config.php' ;
+                $sql = "select * from complaints where username = '".$_SESSION['username']."' ";
+                $result = $conn->query($sql);
+                $count = 1 ; 
+                
+
+                
+                // Loop through the result set and generate table rows
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+
+                      ?>
+                        <tr class="active-row">
+                          <td> <?php echo $row["complaint_id"] ?>   </td>
+                          <td> <?php echo $row["complaint_type"] ?>  </td>
+                          <td> <?php echo $row["subject"] ?>  </td>
+                          <td> <?php echo $row["description"] ?>  </td>
+                          <td> <img src = '<?php echo $row["folder"] ; ?> ' height = "500px" width="500px" ></td>
+                          
+
+
+                          
+                          
+
+                          
+                          
+                        </tr>
+                        <?php
+                    }
+                }
+
+                $conn->close();
+                ?>
+            </table>
+
+
+    
+
+
+
+        
+      </form>
+
+     
+      
+
+    </div>
+    
+  </section>
+    
       
       
      
