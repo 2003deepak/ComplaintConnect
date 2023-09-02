@@ -34,7 +34,7 @@
             <input class="form-check-input" type="checkbox" name="rememberme" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault"> Remember for 7 days </label>
     
-            <a href="#" class="forgot">Forgot Password ?</a>
+            <a href="../html/forgot.html" class="forgot">Forgot Password ?</a>
     
             <input type = "submit" value="Login" name = "save" class="btn1">
             <div class="line1"></div>
