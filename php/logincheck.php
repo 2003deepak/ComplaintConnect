@@ -53,14 +53,13 @@ if(isset($_POST['save'])){
                 
                 }else{
                     echo '<script>alert("Permission Not granted by Admin")</script>' ;
-                    echo "<script> location.replace('../html/login.html')</script> ";
+                    echo "<script> location.replace('../php/login.php')</script> ";
             }
 
             
         }else{
             echo '<script>alert("Invalid username or password")</script>' ;
-            echo "<script> location.replace('../html/login.html')</script> ";
-
+            echo "<script> location.replace('../php/login.php')</script> ";
         }
 
 

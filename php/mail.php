@@ -1,11 +1,7 @@
 <?php
-setcookie("emailotp", "", time() - 3600, "/");
-$otp = rand(10000, 99999);
-setcookie("emailotp",$otp,time()+300);
-// Sending The OTP
-            include("../phpmailer_smtp/smtp/PHPMailerAutoload.php");
+include("../phpmailer_smtp/smtp/PHPMailerAutoload.php");
             
-            function smtp_mailer($to,$subject, $msg){
+            function smtp_mailer($to,$subject, $msg,$onSuccess,$onFail){
                 $mail = new PHPMailer(); 
                 $mail->IsSMTP(); 
                 $mail->SMTPAuth = true; 
@@ -27,13 +23,15 @@ setcookie("emailotp",$otp,time()+300);
                 'allow_self_signed'=>false
                 ));
                 if(!$mail->Send()){
-                echo '<script>alert("OTP not send , pls try again later")</script>' ;
+                echo '<script>alert("'.$onFail.'")</script>' ;
                 echo $mail->ErrorInfo ;
+                return false;
                 
                 
                 }else{
-                echo '<script>alert("OTP is sent succesfully")</script>' ;
-                echo "<script> location.replace('../html/forgot2.html')</script> ";
+                    echo '<script>alert("'.$onSuccess.'")</script>' ;
+                    return true ; 
+                
                 }
 
     
@@ -42,8 +40,6 @@ setcookie("emailotp",$otp,time()+300);
         
         
             }
-    
-            echo smtp_mailer('poojarryadav@gmail.com','Recover Password','Hi You have request for recovery of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only'); 
-            // Note in this , the mail will be sent to the user not to pooja , it is just a test , replace it to $mail of the use
+
 
 ?>

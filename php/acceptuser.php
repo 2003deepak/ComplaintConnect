@@ -24,50 +24,14 @@ include 'config.php' ;
 
     echo "<script> alert('user is accepted')</script> " ;
 
+    include("mail.php");
 
-    include("../phpmailer_smtp/smtp/PHPMailerAutoload.php");
-
-    
-
-    function smtp_mailer($to,$subject, $msg){
-      $mail = new PHPMailer(); 
-      $mail->IsSMTP(); 
-      $mail->SMTPAuth = true; 
-      $mail->SMTPSecure = 'tls'; 
-      $mail->Host = "smtp.gmail.com";
-      $mail->Port = 587; 
-      $mail->IsHTML(true);
-      $mail->CharSet = 'UTF-8';
-      //$mail->SMTPDebug = 2; 
-      $mail->Username = "deepakkumar74491234@gmail.com";
-      $mail->Password = "gguowhxemhtowryy"; // My app password for gmail
-      $mail->SetFrom("deepakkumar74491234@gmail.com");
-      $mail->Subject = $subject;
-      $mail->Body =$msg;
-      $mail->AddAddress($to);
-      $mail->SMTPOptions=array('ssl'=>array(
-        'verify_peer'=>false,
-        'verify_peer_name'=>false,
-        'allow_self_signed'=>false
-      ));
-      if(!$mail->Send()){
-        echo '<script>alert("User was not notified ")</script>' ;
-        echo $mail->ErrorInfo ;
-        
-        
-      }else{
-        echo '<script>alert("User was notified through EMAIL")</script>' ;
-        echo "<script> location.replace('../php/adminpanel.php')</script> ";
-      }
-
-      
-
-    
-   
+    if(smtp_mailer('poojarryadav@gmail.com','Access Granted','Hi Pooja this is an test emal to inform you that now you can use our complaint Connect Website',"User was notified through EMAIL","User was not notified ")){
+      echo "<script> location.replace('../php/adminpanel.php')</script> ";
+    }else{
+      echo "<script> location.replace('../php/adminpanel.php')</script> ";
     }
-
-    echo smtp_mailer('poojarryadav@gmail.com','Access Granted','Hi Pooja this is an test emal to inform you that now you can use our complaint Connect Website'); 
-    // Note in this , the mail will be sent to the user not to pooja , it is just a test , replace it to $mail of the user
+    
     
 
   }else {

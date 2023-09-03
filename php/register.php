@@ -22,7 +22,7 @@ if(isset($_POST['save'])){
     echo "<script> alert('You are successfully registered')</script> " ;
     // echo "done" ;
    
-    echo "<script> location.replace('../html/login.html')</script> ";
+    echo "<script> location.replace('../php/login.php')</script> ";
  
     // header('location:login.html');
   }else {
