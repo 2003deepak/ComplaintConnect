@@ -25,9 +25,11 @@ if (isset($_POST['save'])) {
         if ($count == 1) {
 
             $otp = rand(10000, 99999);
+            
 
             // Setting Cookie for the website
             setcookie("emailotp",$otp,time()+300);
+            setcookie("email",$email,time()+300);
 
             include("mail.php");
 
@@ -79,11 +81,40 @@ if (isset($_POST['resend'])){
         
 
 
-}else{
-
 }
 
 
+// Code for resetting the password 
 
+
+if (isset($_POST['submit'])) {
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    // Encryption of Password
+    $str_pass = password_hash($password,PASSWORD_BCRYPT);
+    // $email = mysqli_real_escape_string($conn, $_COOKIE['email']);
+    $sql1 = "update register set password = '$str_pass' where email =  '" . $_COOKIE['email']."' ;
+    $query1 = mysqli_query($conn,$sql1);
+
+    
+    if($query1){
+        echo $password ;
+        echo $str_pass ;
+        setcookie("email", "", time() - 3600, "/");
+        
+        
+    }else{
+        echo '<script>alert("Database Error: ' . mysqli_error($conn) . '")</script>';
+        echo '<script>alert("OOPS something Went wrong ")</script>' ;
+        echo "<script> location.replace('../html/resetPassword.html')</script> ";
+    }
+
+
+
+     // Close the database connection
+     mysqli_close($conn);
+
+}
 
 ?>
