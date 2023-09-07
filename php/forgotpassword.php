@@ -87,34 +87,38 @@ if (isset($_POST['resend'])){
 // Code for resetting the password 
 
 
-if (isset($_POST['submit'])) {
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
 
-    // Encryption of Password
-    $str_pass = password_hash($password,PASSWORD_BCRYPT);
-    // $email = mysqli_real_escape_string($conn, $_COOKIE['email']);
-    $sql1 = "update register set password = '$str_pass' where email =  '" . $_COOKIE['email']."' ;
-    $query1 = mysqli_query($conn,$sql1);
+include('config.php');
 
+if(isset($_POST['submit'])){
+
+    $firstpass = $_POST['password'];
+    $confirmpass = $_POST['cpassword'];
+    $email= $_COOKIE['email'];
+    $str_pass = password_hash($firstpass,PASSWORD_BCRYPT);
     
-    if($query1){
-        echo $password ;
-        echo $str_pass ;
-        setcookie("email", "", time() - 3600, "/");
-        
-        
+    if($firstpass === $confirmpass){
+           
+        $sql1 = "update register set password = '$str_pass' where email = '$email' " ;
+        $query1 = mysqli_query($conn,$sql1);
+        if($query1){
+            echo '<script>alert("Password is Updated , Pls Login Now")</script>' ;
+            echo "<script> location.replace('login.php')</script> ";
+        }else{
+            echo '<script>alert("OOPS something Went wrong ")</script>' ;
+            echo "<script> location.replace('../html/resetPassword.html')</script> ";
+            }
+
     }else{
-        echo '<script>alert("Database Error: ' . mysqli_error($conn) . '")</script>';
-        echo '<script>alert("OOPS something Went wrong ")</script>' ;
+        echo '<script>alert("Passwords are not matching")</script>' ;
         echo "<script> location.replace('../html/resetPassword.html')</script> ";
+    }
+    
+
     }
 
 
 
-     // Close the database connection
-     mysqli_close($conn);
 
-}
 
 ?>
