@@ -9,7 +9,7 @@ include 'config.php' ;
 $folder = "../uploaded_images";
 $filename = $_FILES["file"]["name"];
 $tempname = $_FILES["file"]["tmp_name"];
-$folder = "../uploaded_images/".$filename ;
+$folder = "../uploaded_images/complaint_images/".$filename ;
 
 move_uploaded_file($tempname,$folder);
 

@@ -566,10 +566,12 @@ select{
 .accept{
   color: white;
   width: 117px;
+  
 }
-
 .accept:hover{
   background: none ; 
+  color:white;
+  text-decoration:none;
 }
 
 
@@ -644,8 +646,11 @@ select{
           <th>Email ID</th>
           <th>Building No</th>
           <th>Room No</th>
+          <th>Allotment Letter</th>
           <th>Actions</th>
         </tr>
+
+        
         <?php
 
         include 'config.php' ;
@@ -663,6 +668,7 @@ select{
                   <td> <?php echo $row["email"] ?> </td>
                   <td> <?php echo $row["building"] ?> </td>
                   <td> <?php echo $row["room"] ?> </td>
+                  <td><a href = "<?php echo $row["allotment_letter"]?> " target="blank"><img src="../images/pdf_icon.png" width="40px" height="40px"></a></td>
 
                   <?php 
                   if($row["isAllowed"] == 1){
