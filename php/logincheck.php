@@ -21,6 +21,7 @@ if(isset($_POST['save'])){
 
             $email_pass = mysqli_fetch_assoc($query);
             $db_pass = $email_pass['password'];
+            $db_email = $email_pass['email'];
             $pass_decode = password_verify($password, $db_pass);
 
             if($pass_decode){
@@ -38,12 +39,16 @@ if(isset($_POST['save'])){
                         setcookie("usernamecookie",$username,time()+20); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
                         setcookie("passwordcookie",$password,time()+20); // During Time of deployment , 20 should be replaced to 604800sec
                         $_SESSION['username'] = $username ;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['email']= $email_pass['email'];
                         echo "<script> location.replace('../php/dashboard.php')</script> ";
 
 
                     }else{
                         echo '<script>alert("You are succesfully Logined ")</script>' ;
                         $_SESSION['username'] = $username ;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['email'] = $email_pass['email'];
                         echo "<script> location.replace('../php/dashboard.php')</script> ";
 
                     }

@@ -576,15 +576,25 @@ select{
     cursor: pointer;
     
 }
+.profile{
 
-.accept{
-  color: white;
-  width: 117px;
+  width:95rem;
+  height:80%;
+  margin-left: 100px;
+  margin-top: 70px;
+}
+.profile-photo{
+  width: 150px;
+  height: 150px;
+  margin-left: 600px;
+  border-radius: 50% ; 
+  background-size:auto;
+  
+ 
+  
 }
 
-.accept:hover{
-  background: none ; 
-}
+
 
 
 
@@ -610,10 +620,9 @@ select{
           </a>
         </li>
         <li>
-            <a href="../php/profile.php">
+            <a href="profile.php">
                 <i class="fas fa-user"></i>
                 <span class="links_name">Profile</a></span>
-              
             </a>
         </li>
         <li>
@@ -628,13 +637,6 @@ select{
               <span class="links_name">Complaint Status</span>
             </a>
           </li>
-          <li>
-            <a href="../php/updateCurrentPassword.php">
-                <i class="fas fa-user"></i>
-                <span class="links_name">Update Password</a></span>
-              
-            </a>
-        </li>
 
           
          <li>
@@ -658,7 +660,7 @@ select{
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Home</span>
+        <span class="dashboard">Profile</span>
       </div>
 
       
@@ -667,84 +669,110 @@ select{
 
     <div class="mainform">
 
-    <table class="content-table">
-                <tr>
-                  <th>Complaint ID</th>
-                  <th>Complaint Group</th>
-                  <th>Subject</th>
-                  <th>Description</th>
-                  <th>Image</th>
-                  
-                </tr>
-                <?php
+      <form action="">
 
-                
-                include 'config.php' ;
-                $sql = "select * from complaints where username = '".$_SESSION['username']."' ";
-                $result = $conn->query($sql);
-                $count = 1 ; 
-                
-
-                
-                // Loop through the result set and generate table rows
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-
-                      ?>
-                        <tr class="active-row">
-                          <td> <?php echo $row["complaint_id"] ?>   </td>
-                          <td> <?php echo $row["complaint_type"] ?>  </td>
-                          <td> <?php echo $row["subject"] ?>  </td>
-                          <td> <?php echo $row["description"] ?>  </td>
-                          <td> <img src = '<?php echo $row["folder"] ; ?> ' height = "500px" width="500px" ></td>
-                          
-
-
-                          
-                          
-
-                          
-                          
-                        </tr>
-                        <?php
-                    }
-                }
-
-                $conn->close();
-                ?>
-            </table>
-
-
+        <div class="profile-photo">
+          
+        
+        </div>
+        <br><br>
+        <input type="file" style="position: relative; left: 95px;" id="file" onchange="changeBackgroundImage()" accept="image/*"/>
+          <div class="profile">
+            
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" name = "username"  style = "width:40%;"value="<?php echo $_SESSION['username']; ?>" readonly>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name = "username"  style = "width:40%;"value="<?php echo $_SESSION['password']; ?>" readonly>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" name = "username"  style = "width:40%;"value="<?php echo $_SESSION['email']; ?>" readonly>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Building Number</label>
+              <br><br>
     
+              <?php 
+    
+    
+            
+    
+               
+                $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
+                $query = mysqli_query($conn, $username_search);
+                $username_count = mysqli_num_rows($query);
+                if($username_count){
+    
+                    $query1 = mysqli_fetch_assoc($query);
+                    $building = $query1['building'];
+                    $room = $query1['room'];
+    
+              
+                }
+    
+    
+    
+    
+              ?>
+              
+              <select class="form-control" id="exampleFormControlSelect1" name="building" style = "width:40%; margin-left:-135px"disabled>
+                  <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
+                  <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
+                  <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
+              </select>
+  
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Room No</label>
+              <br><br>
+              <select  class="form-control" name="room" style = "width:40%; margin-left:-135px" disabled>
+                <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
+                <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
+                <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
+                <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
+                <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
+              </select>
+            </div>
+          </div>
 
 
+
+
+      </form>
+      
 
         
-      </form>
-
+     
      
       
 
     </div>
     
   </section>
-    
-      
-      
-     
-
 
   <script>
-   let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function() {
-  sidebar.classList.toggle("active");
-  if(sidebar.classList.contains("active")){
-  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-}else
-  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-}
- </script>
+    function changeBackgroundImage() {
+      const fileInput = document.getElementById('file');
+      const profilePhoto = document.querySelector('.profile-photo');
+      
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+    
+        reader.onload = function(e) {
+          profilePhoto.style.backgroundImage = `url(${e.target.result})`;
+        };
+    
+        reader.readAsDataURL(fileInput.files[0]);
+      }
+    }
+    </script>
 
+
+  
+    
+      
 </body>
 </html>

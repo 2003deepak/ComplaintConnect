@@ -1,21 +1,10 @@
 <?php
 
+include 'config.php' ; 
+
 
 
 session_start();
-
-include 'config.php' ;
-
-$folder = "../uploaded_images";
-$filename = $_FILES["file"]["name"];
-$tempname = $_FILES["file"]["tmp_name"];
-$folder = "../uploaded_images/complaint_images/".$filename ;
-
-move_uploaded_file($tempname,$folder);
-
-        
-
-
 
 
 if(isset($_POST['save'])){
@@ -42,6 +31,16 @@ if(isset($_POST['save'])){
     $random = rand(1000,9999);
     $complaint_id = "C$random";
    
+
+    // Uploading the photo with complaint 
+
+    
+    $folder = "../uploaded_images";
+    $filename = $building." _ " . $room ." _ ".$complaint_id. ".jpg"; // Rename the file to "roomno.pdf"
+    $tempname = $_FILES["file"]["tmp_name"];
+    $folder = "../uploaded_images/complaint_images/".$filename ;
+
+    move_uploaded_file($tempname,$folder);
 
     
 
