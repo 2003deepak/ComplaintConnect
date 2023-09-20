@@ -2,81 +2,70 @@
 session_start();
 include 'config.php' ; 
 
+$otpsent = false; 
+
 ?>
 
 <?php
 
 
 // Step 1: Verify Current Password
-if (isset($_POST['verify'])) {
+
+include('mail.php');
+if (isset($_POST['save'])) {
     $currentPassword = $_POST['current_password'];
-
-    // Check if $currentPassword matches the stored password in your database
-    if ($currentPassword === $_SESSION['password']) {
-
-        // Step 2: Generate and Send OTP
-        $otp = generateRandomOTP();
-
-        // Setting Cookie for the website
-        setcookie("emailotp",$otp,time()+300);
-       
-
-        include("mail.php");
-
-        smtp_mailer('poojarryadav@gmail.com','Password Updation','Hi You have request for Updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only',"OTP is sent succesfully","OTP not send , pls try again later");
-        
-       
-
-       
-        // Show OTP input field
-        $showOtpField = true;
-    } else {
-        $verificationError = "Current password is incorrect.";
-    }
-}
-
-// Step 3: Verify OTP
-if (isset($_POST['verify_otp'])) {
-    
-    $userEnteredOTP = $_POST['otp'];
-    $storedOTP = $_COOKIE['emailotp'];
-
-    if ($userEnteredOTP === $storedOTP) {
-        // OTP is verified, allow password update
-        $showPasswordUpdateField = true;
-    } else {
-        $otpError = "OTP is incorrect.";
-    }
-}
-
-// Step 4: Update Password
-if (isset($_POST['update_password'])) {
     $newPassword = $_POST['new_password'];
 
-    $str_pass = password_hash($newPassword,PASSWORD_BCRYPT);
-  
-    $sql = "";
+    $otp = generateRandomOTP();
+    setcookie("updateotp",$otp,time()+300);
 
-    if ($conn->query($sql) === TRUE) {
-
-        echo "<script> alert('Password is Successfully Updated')</script> " ;
-        // echo "done" ;
-    
-        echo "<script> location.replace('../php/profile.php')</script> ";
-    
-        // header('location:login.html');
-    }else {
-        echo "<script> alert('Password was not Updated')</script>" ;
-        echo "<script> location.replace('../php/profile.php')</script> ";
+    if($currentPassword == $_SESSION['password']){
+      if(smtp_mailer('poojarryadav@gmail.com','Password Updation','Hi You have request for recovery of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only',"OTP is sent succesfully","OTP not send , pls try again later")){
+        $otpsent = true ; 
+       
+      }else{
+        $otpsent = false ; 
+        
+      }
+    }else{
+     
+        echo "<script> alert('Current password is not matching');</script> ";
+     
     }
 
-
-
-    // Password updated successfully
-    $passwordUpdateSuccess = true;
+    
 }
 
-// Function to generate a random OTP
+if (isset($_POST['update'])) {
+  $currentPassword = $_POST['current_password'];
+  $newPassword = $_POST['new_password'];
+
+  $otp = $_POST['otp'];
+ 
+
+  if($otp == $_COOKIE['updateotp']){
+
+    $str_pass = password_hash($newPassword,PASSWORD_BCRYPT);
+    $sql1 = "UPDATE register SET password = '$str_pass' WHERE username = '" . $_SESSION["username"] . "'";
+    $query1 = mysqli_query($conn,$sql1);
+    if($query1){
+      echo '<script>alert("Password is Updated ")</script>' ;
+      $_SESSION['password'] = $newPassword ;
+      echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
+    }else{
+      echo '<script>alert("OOPS something Went wrong ")</script>' ;
+      echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
+    }
+    
+  }else{
+   
+      echo "<script> alert('Invalid OTP');</script> ";
+   
+  }
+
+  
+}
+
 function generateRandomOTP() {
     return rand(100000, 999999);
 }
@@ -751,48 +740,60 @@ select{
     <div class="mainform">
 
     <div class="mainform">
+        
+
+        <?php
+
+        
+
+        if(!$otpsent){
+
+        ?>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="form-group">
+          <div class="form-group">
                 <label>Current Password</label>
                 <input type="password" class="form-control" name="current_password" required>
+                <br>
+                <label>New Password</label>
+                <input type="password" class="form-control" name="new_password" required>
+                <br>
+                <input type="submit" class="form-control" name="save" value="save">
             </div>
 
-            <?php if (isset($verificationError)) { ?>
-                <p><?php echo $verificationError; ?></p>
-            <?php } ?>
-
-            <input type="submit" class="btn btn-primary" value="Verify Current Password" name="verify">
         </form>
 
-        <?php if (isset($showOtpField)) { ?>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                <div class="form-group">
-                    <label>Enter OTP</label>
-                    <input type="number" class="form-control" name="otp" required>
-                </div>
+      
+        <?php
 
-                <?php if (isset($otpError)) { ?>
-                    <p><?php echo $otpError; ?></p>
-                <?php } ?>
+        }else{
 
-                <input type="submit" class="btn btn-primary" value="Verify OTP" name="verify_otp">
-            </form>
-        <?php } ?>
+        ?>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+           <div class="form-group">
+                <label>Current Password</label>
+                <input type="password" class="form-control" name="current_password" value=<?php echo $currentPassword ;?> required readonly>
+                <br>
+                <label>New Password</label>
+                <input type="password" class="form-control" name="new_password" value=<?php echo $newPassword ;?> required readonly>
+                <br>
+                <label>Enter The OTP</label>
+                <input type="number" class="form-control" name="otp" required>
+                <br>
+                <input type="submit" class="form-control" name="update" value="save">
+            </div>
+        </form>
+        <?php
+        }
 
-        <?php if (isset($showPasswordUpdateField)) { ?>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                <div class="form-group">
-                    <label>Updated Password</label>
-                    <input type="password" class="form-control" name="new_password" required>
-                </div>
 
-                <input type="submit" class="btn btn-primary" value="Update Password" name="update_password">
-            </form>
-        <?php } ?>
+        ?>
+            
 
-        <?php if (isset($passwordUpdateSuccess)) { ?>
-            <p>Password updated successfully.</p>
-        <?php } ?>
+            
+
+           
+
+       
     </div>
 
     

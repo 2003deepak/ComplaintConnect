@@ -595,9 +595,8 @@ select{
      </style>
    </head>
 <body>
-    
- 
-  <div class="sidebar">
+  <nav>
+    <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Dashboard</span>
@@ -661,7 +660,9 @@ select{
         <span class="dashboard">Home</span>
       </div>
 
-      
+    
+ 
+  
       
     </nav>   
 
