@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 08:50 PM
+-- Generation Time: Sep 21, 2023 at 11:12 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -44,8 +44,7 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`username`, `building`, `room`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`) VALUES
-('deepak123', 210, 2, 'C2637', 'Water', 'door damaged', 'all the doors are damaged', '../uploaded_images/WhatsApp Image 2023-06-02 at 11.42.01 AM.jpeg', '2023-09-01 23:17:57.97'),
-('deepak123', 210, 2, 'C4453', 'Electricity', 'light not working ', 'my light is not working ', '../uploaded_images/Screenshot 2023-08-31 184439.jpg', '2023-09-01 19:17:51.40');
+('deepak123', 110, 5, 'C7940', 'Water', 'water bad odour', 'water is very bad in odour ', '../uploaded_images/complaint_images/110 _ 5 _ C7940.jpg', '2023-09-20 09:16:39.30');
 
 -- --------------------------------------------------------
 
@@ -60,6 +59,7 @@ CREATE TABLE `register` (
   `email` varchar(50) NOT NULL,
   `building` varchar(5) NOT NULL,
   `room` varchar(5) NOT NULL,
+  `allotment_letter` varchar(300) NOT NULL,
   `isAllowed` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,10 +67,9 @@ CREATE TABLE `register` (
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`sno`, `username`, `password`, `email`, `building`, `room`, `isAllowed`) VALUES
-(10, 'rahul123', '$2y$10$Gc0M2JkZnlV7Op4DH2ZilupTDtSVUKIJmosXtFz.iNzh90slXTKYK', 'rahul@gmail.com', '179', '2', 1),
-(11, 'deepak123', '$2y$10$7jmyNDFwF2TQg9bjABLvgeQ84EIBwIZN77HlyeryQReX0/NtfQwPi', 'deepak@gmail.com', '110', '3', 1),
-(12, 'indar123', '$2y$10$HEJlC/AO6u50MWZxJujL6eFHbD2M64A5LowmLyUuXbwmPz.fIFDXq', 'indar@gmail.com', '179', '4', 1);
+INSERT INTO `register` (`sno`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `isAllowed`) VALUES
+(8, 'deepak123', '$2y$10$Edx/H9c0bu/zltldqTt8veiTTrW5HBQ1G2CRYQpfildo9Bwbo9802', 'deepak@gmail.com', '110', '5', '../uploaded_images/allotment_letter/110_5.pdf', 1),
+(9, 'rahul123', '$2y$10$aHZciYx4s9qtgH9b9.0O.OeTrR2q3ed3o2drge2DbsSeGZuJwEf6.', 'rahul@gmail.com', '210', '5', '../uploaded_images/allotment_letter/210_5.pdf', 1);
 
 --
 -- Indexes for dumped tables
@@ -86,7 +85,9 @@ ALTER TABLE `complaints`
 -- Indexes for table `register`
 --
 ALTER TABLE `register`
-  ADD PRIMARY KEY (`sno`,`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `sno` (`sno`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -96,7 +97,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
