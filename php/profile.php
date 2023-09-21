@@ -588,7 +588,7 @@ select{
   height: 150px;
   margin-left: 600px;
   border-radius: 50% ; 
-  background-size:auto;
+  
   
  
   

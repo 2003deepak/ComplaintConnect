@@ -521,70 +521,7 @@ select{
  
 }
 
-.content-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
 
-.content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-}
-
-.content-table th,
-.content-table td {
-    padding: 12px 15px;
-}
-
-.content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.content-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
-.content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-
-.btn1{
-    background: red;
-    height: 40px;
-    width: 120px;
-    border-radius: 13px;
-    cursor: pointer;
-    
-}
-.btn2{
-    background: green;
-    height: 40px;
-    width: 120px;
-    border-radius: 13px;
-    cursor: pointer;
-    
-}
-
-.accept{
-  color: white;
-  width: 117px;
-}
-
-.accept:hover{
-  background: none ; 
-}
 
 
 
@@ -622,9 +559,9 @@ select{
           </a>
         </li>
         <li>
-            <a href="#">
+            <a href="../php/complaintHistory.php">
                 <i class="fas fa-wallet"></i>
-              <span class="links_name">Complaint Status</span>
+              <span class="links_name">Complaint History</span>
             </a>
           </li>
           <li>
@@ -668,61 +605,7 @@ select{
 
     <div class="mainform">
 
-    <table class="content-table">
-                <tr>
-                  <th>Complaint ID</th>
-                  <th>Complaint Group</th>
-                  <th>Subject</th>
-                  <th>Description</th>
-                  <th>Image</th>
-                  
-                </tr>
-                <?php
-
-                
-                include 'config.php' ;
-                $sql = "select * from complaints where username = '".$_SESSION['username']."' ";
-                $result = $conn->query($sql);
-                $count = 1 ; 
-                
-
-                
-                // Loop through the result set and generate table rows
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-
-                      ?>
-                        <tr class="active-row">
-                          <td> <?php echo $row["complaint_id"] ?>   </td>
-                          <td> <?php echo $row["complaint_type"] ?>  </td>
-                          <td> <?php echo $row["subject"] ?>  </td>
-                          <td> <?php echo $row["description"] ?>  </td>
-                          <td> <img src = '<?php echo $row["folder"] ; ?> ' height = "500px" width="500px" ></td>
-                          
-
-
-                          
-                          
-
-                          
-                          
-                        </tr>
-                        <?php
-                    }
-                }
-
-                $conn->close();
-                ?>
-            </table>
-
-
     
-
-
-
-        
-      </form>
-
      
       
 
@@ -734,18 +617,6 @@ select{
       
      
 
-
-  <script>
-   let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".sidebarBtn");
-sidebarBtn.onclick = function() {
-  sidebar.classList.toggle("active");
-  if(sidebar.classList.contains("active")){
-  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
-}else
-  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-}
- </script>
 
 </body>
 </html>

@@ -1,6 +1,8 @@
-<?php
+<?php 
+
+include 'config.php' ;
 session_start();
-include 'config.php' ; 
+
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -520,6 +522,75 @@ select{
   display: inline-block;
  
 }
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top:0rem;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.btn1{
+    background: red;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+.btn2{
+    background: green;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+
+.accept{
+  color: white;
+  width: 117px;
+  
+}
+.accept:hover{
+  background: none ; 
+  color:white;
+  text-decoration:none;
+}
+
+
 
 
 
@@ -530,9 +601,8 @@ select{
      </style>
    </head>
 <body>
-    
- 
-  <div class="sidebar">
+  <nav>
+    <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Dashboard</span>
@@ -545,30 +615,37 @@ select{
           </a>
         </li>
         <li>
+            <a href="../php/profile.php">
+                <i class="fas fa-user"></i>
+                <span class="links_name">Profile</a></span>
+              
+            </a>
+        </li>
+        <li>
           <a href="../php/filecomplaint.php">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-plus"></i>
             <span class="links_name">File Complaint</span>
           </a>
         </li>
         <li>
-            <a href="#">
+            <a href="../php/complaintHistory.php">
                 <i class="fas fa-wallet"></i>
-              <span class="links_name">Complaint Status</span>
+              <span class="links_name">Complaint History</span>
             </a>
           </li>
+          <li>
+            <a href="../php/updateCurrentPassword.php">
+                <i class="fas fa-user"></i>
+                <span class="links_name">Update Password</a></span>
+              
+            </a>
+        </li>
 
           
          <li>
             <a href="#">
                 <i class="fas fa-chart-bar"></i>
                 <span class="links_name">Close Complaint</a></span>
-            </a>
-        </li>
-        
-        <li>
-            <a href="#">
-                <i class="fas fa-chart-bar"></i>
-                <span class="links_name">Edit Profile</a></span>
             </a>
         </li>
         
@@ -586,108 +663,55 @@ select{
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Home</span>
+        <span class="dashboard">Complaint Details</span>
       </div>
 
-      
+    
+ 
+  
       
     </nav>   
 
     <div class="mainform">
 
-
-  
-
-      
-      <form action = "../php/uploadComplaint.php" method = "post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-control" name = "username" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Building Number</label>
-          <br>
-
-          <?php 
-
-
-        
-
-           
-            $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
-            $query = mysqli_query($conn, $username_search);
-            $username_count = mysqli_num_rows($query);
-            if($username_count){
-
-                $query1 = mysqli_fetch_assoc($query);
-                $building = $query1['building'];
-                $room = $query1['room'];
-
-          
-            }
+    <?php
+    include 'config.php' ;
+    $complaint_id = $_GET['id'];
+    $sql = "select * from complaints where complaint_id = '$complaint_id'";
+    $result = $conn->query($sql);
+    $count = 1 ; 
 
 
 
+            // Loop through the result set and generate table rows
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
 
-          ?>
-          
-          <select class="form-control" id="exampleFormControlSelect1" name="building" disabled>
-              <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
-              <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
-              <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
-          </select>
-
-          
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Room No</label>
-          <br>
-          <select  class="form-control" name="room" disabled>
-            <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
-            <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
-            <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
-            <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
-            <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
-          </select>
-        </div>
-        <br>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
-          <br>
-          <select class="form-control" name="complaint_group">
-            
-            <option value = "Electricity">Electricity</option>
-            <option value = "Water">Water </option>
-            <option value = "Water">Property Damage </option>
-            <option value = "Water">Cleanliness </option>
-            <option value = "Water">Add more </option>
-            <option value = "Water">Others</option>
-          </select>
-        </div>
+    ?>
 
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Subject</label>
-            <input type="text" class="form-control" name="subject" aria-describedby="emailHelp" placeholder="Subject" maxlength="50">
-            <small  class="form-text text-muted">Upto 50 words allowed</small>
-        </div>
+    <h3>Complaint ID :- <?php  echo $row["complaint_id"];?><h3>
+    <h3>Complaint Type :- <?php  echo $row["complaint_type"];?><h3>
+    <h3>Subject :- <?php  echo $row["subject"];?><h3>
+    <h3>Description :- <?php  echo $row["description"];?><h3>
+    <h3>Images :- <a href = "<?php echo $row["folder"]?> " target="blank">View File</a><h3>
+    <h3>Regd Date :- <?php  echo $row["time"];?><h3>
+    <h3>Last Updation :- <?php  echo $row["last_updation"];?><h3>
+    <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
+    
+    
 
-        <div class="form-group">
-          <label for="comment">Description</label>
-          <textarea class="form-control" rows="10" cols="100" name = "desc"></textarea>
-        </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Attach Photo</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file" accept="image/*">
-        </div>
-        <br>
+    <?php
 
-        <input type="submit" class="btn btn-primary" value="Submit" name = "save">
-        
-        
-      </form>
+        }
+    }
 
+    ?>
+    
+     
+
+    
      
       
 
@@ -697,6 +721,8 @@ select{
     
       
       
+     
+
 
 </body>
 </html>
