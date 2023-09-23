@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php 
 
 include 'config.php' ;
@@ -9,9 +23,12 @@ if(isset($_POST['save'])){
     $password = $_POST['password'];
 
     if($username == "admin" & $password == "admin"){
-        echo '<script>alert("You are succesfully Logined ")</script>' ;
+       
         $_SESSION['username'] = $username ;
-        echo "<script> location.replace('../php/adminpanel.php')</script> ";
+        echo '<script>';
+        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/adminpanel.php")';
+        echo '</script>';
+        
     }else{
 
         $username_search = "select * from register where username='$username' " ;
@@ -35,21 +52,25 @@ if(isset($_POST['save'])){
 
                     if(isset($_POST['rememberme'])){
 
-                        echo '<script>alert("You are succesfully Logined ")</script>' ;
+                       
                         setcookie("usernamecookie",$username,time()+20); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
                         setcookie("passwordcookie",$password,time()+20); // During Time of deployment , 20 should be replaced to 604800sec
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
-                        echo "<script> location.replace('../php/dashboard.php')</script> ";
+                        echo '<script>';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
+                        echo '</script>';
 
 
                     }else{
-                        echo '<script>alert("You are succesfully Logined ")</script>' ;
+                        
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $email_pass['email'];
-                        echo "<script> location.replace('../php/dashboard.php')</script> ";
+                        echo '<script>';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
+                        echo '</script>';
 
                     }
            
@@ -57,14 +78,19 @@ if(isset($_POST['save'])){
                 
                 
                 }else{
-                    echo '<script>alert("Permission Not granted by Admin")</script>' ;
-                    echo "<script> location.replace('../php/login.php')</script> ";
+                    echo '<script>';
+                    echo 'ErrorAlert("Failed","Permission not granted by admin","../php/login.php")';
+                    echo '</script>';
+                 
+                    
             }
 
             
         }else{
-            echo '<script>alert("Invalid username or password")</script>' ;
-            echo "<script> location.replace('../php/login.php')</script> ";
+            echo '<script>';
+            echo 'ErrorAlert("Failed","Invalid username or password","../php/login.php")';
+            echo '</script>';
+
         }
 
 

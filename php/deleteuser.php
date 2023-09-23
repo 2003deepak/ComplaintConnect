@@ -1,4 +1,14 @@
 <!-- this is used to delete the user from the table  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src ="../js/sweet.js"></script>
+  <title>Document</title>
+</head>
+<body>
 
 <?php
 
@@ -24,7 +34,9 @@ include 'config.php';
 
       if ($conn->query($sql) === TRUE) {
 
-        echo "<script> alert('User is succesfully removed')</script> " ;
+        echo '<script>';
+        echo 'ConfirmationAlert("Done","User is Successfully Deleted","../php/edituser.php");';
+        echo '</script>';
 
         include("mail.php");
 
@@ -39,8 +51,9 @@ include 'config.php';
     
    
       }else {
-          echo "<script> alert('User is not deleted')</script>" ;
-          echo "<script> location.replace('../php/edituser.php')</script> ";
+        echo '<script>';
+        echo 'ErrorAlert("Failed","User is not deleted","../php/edituser.php");';
+        echo '</script>';
       }
 
 
@@ -48,3 +61,6 @@ include 'config.php';
 $conn->close();
 
 ?>
+  
+</body>
+</html>

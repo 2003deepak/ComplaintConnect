@@ -6,9 +6,10 @@ if (isset($_POST['save'])) {
 
     // Check if the email is not empty
     if (empty($email)) {
-        echo "<script>alert('Email cannot be empty')</script>";
-        echo "<script>location.replace('../html/index.html')</script>";
-        exit;
+        echo '<script>';
+        echo 'NormalAlert("Email Field should not be empty","../html/index.html");';
+        echo '</script>';
+        exit ; 
     }
 
     // Sanitize the email input (use mysqli_real_escape_string or a more robust sanitizer)
@@ -45,12 +46,16 @@ if (isset($_POST['save'])) {
 
             
         } else {
-            echo "<script>alert('Invalid Email ID')</script>";
-            echo "<script>location.replace('../html/index.html')</script>";
+            echo '<script>';
+            echo 'ErrorAlert("Error","Invalid Email ID","../html/index.html");';
+            echo '</script>';
         }
     } else {
         // Handle query execution error
-        echo '<script>alert("Error executing SQL query: ' . mysqli_error($conn) . '")</script>';
+        echo '<script>';
+        echo 'ErrorAlert("Failed","Error executing SQL query: ' . mysqli_error($conn) . '","../html/index.html");';
+        echo '</script>';
+        
     }
 
     // Close the database connection
