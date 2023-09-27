@@ -1,90 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
 
-body{
-  /* background-image: url("images/final.jfif"); */
-  background: linear-gradient(120deg, #2980b9, #8e44ad);
-  background-size: cover;
-  /* font-family: 'DynaPuff', cursive; */
-  /* font-family: "Roboto", sans-serif; */
-}
-.Navigation{
-  color:black;
-  padding: 20px;
-  font-size: larger;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-top: 0px;
-  transition: 0.4s ease-in-out;
-}
-.Navigation:hover{
-  color: white;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
-.Signup{
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 65%;
-  left: 50%;
-  text-align: center;
-  background-color: white;
-  height: 40rem;
-  width: 30rem;
-  border-radius: 15px;
-  
+.main{
+    width: 100vw;
+    height: 100vh;     
+}
+.nav{
+    width: 100vw;
+    height: 100px;
+    padding: 0vw 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #dadada ; 
+    
+}
+.nav2{
+    display: flex;
+    gap: 3vw;
+}
+.nav h2{
+    font-size: 2vw;
+    font-weight: 800;
+}
+.nav2 a{
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: 700;
+    color: black;
+}
+.nav2 i{
+    font-size: 1.4vw ;
+    font-weight: 900;
+    display: none;
+}
+.content{
+    width: 100vw;
+    height: calc(100% - 100px);
+    
+    display: flex;
+    
 
 }
-/* #avatar{
-
-  margin-top: -0.51rem;
-} */
-
-.signupbtn{
-  width: 80%;
-  height: 40px;
-  margin-top: 20px;
-  border: none;
-  background-color: #2691d9;
-  cursor: pointer;
-  color: white;
-  font-size: 18px;
+.left{
+    width: 55%;
+    height: 100% ; 
+    padding: 5vw 4vw;
+    
+    
+}
+.left h1{
+    font-size: 3.8vw;
+    line-height: 4.4vw;
+}
+.left h2{
+    font-size: 3vw ;
+    color : #FF735C;
+}
+.left p{
+    font-size: 1.2vw;
+    font-weight: 600;
+    width: 80%;
+    color: #666;
+    padding: 1.5vw 0vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 
-.text{
-
- 
-  width: 73.5%;
-  padding: 10px;
-  margin-bottom: 17px;
-  font-size: 17px;
-  border: none;
-  border: 2px solid gray;
-  border-radius: 6px;
-  outline: none;
- 
+button{
+    font-size: 1vw;
+    padding: 1vw 1.5vw;
+    background-color: #FF735C;
+    color:#fff;
+    border: none;
+    font-weight: 700;
+    border-radius: 5px;
 }
-.dropdown{
-  width: 78%;
-  padding: 10px;
-  border: none;
-  border: 2px solid gray;
-  border-radius: 6px;
-  margin-left: 0.01rem;
-  outline: none;
-  font-size: 1rem;
-
-}  
-.radio{
-
-  margin-left:5px;
+.left #btr{
+    color: lightseagreen;
+}
+.left #typing{
+    color: black;
+}
+.right{
+    width: 45%;
+    height: 100%;
+    
+    
+    
+   
 }
 
-
-h1{
-  padding: -0.9px;
-  font-weight: 900;
+.nav button a{
+    color: white;
 }
-#learn{
-  font-size: 20px;
+.left #smallh1 h1{
+    font-size: 2vw;
+}
+.right img{
+    height: 40vw;
+}
+.topbtn{
+    height: 2vw;
+    width: 6vw;
+    margin-top: -0.5vw;
+    padding: 0vw 0.2vw;
+    cursor: pointer;
 }
 
-.form-group{
-  margin-left: -121px;
+
+@media (max-width:600px) {
+    .nav{
+        height: 80px;
+        padding: 0px 6vw;
+        
+    }
+    .nav h2{
+        font-size: 5vw;
+        padding: 0vw 0.5vw;
+    }
+    .nav2 a{
+        color: white;
+        display: none;
+    }
+    .nav2 i{
+        display:block;
+        font-size: 5vw;
+    }
+    .content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .left{
+        width: 100%;
+        height: 50%;
+        padding: 10vw 5vw;
+    }
+    .right{
+        width: 95%;
+        height: 50%;
+    }
+    .left h1{
+        font-size: 10vw;
+        line-height: 11vw;
+    }
+    .left p{
+        font-size: 4vw;
+        width: 100%;
+    }
+    .left h2{
+        font-size: 8vw;
+        padding-top: 2vw;
+        width: 100%;
+    }
+    .left button{
+        font-size: 4vw;
+        border-bottom: 8vw;
+        border: none;
+    }
+
+    .right img{
+        height: 100vw;
+        margin-top: 10vw;
+        padding: 10vw 10vw;
+        
+
+    }
 }

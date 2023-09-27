@@ -2,95 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/index.css">
-    <link
-    
-
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Online KC Quiz </title>
 </head>
 <body>
-<header>
 
-<!-- This is for navigation Bar  -->
+    <div class="main">
 
-    <nav>
-        <a href="index.html"  target="_blank" class="Navigation" ><b> Home </b></a>
-        <a href="signup.html"  target="_blank" class="Navigation"><b> SignUp </b> </a>
-        <a href="../php/login.php"  target="_blank" class="Navigation"><b> Login </b></a>
-        <a href="contact.html"  target="_blank" class="Navigation"><b> Contact </b></a>
-    </nav>
-
-</header>
-
-
-<div class="Signup" >
-
-
-   
-        
-
-        
-
-            <form action="../php/register.php" method="post" name = "f1" enctype="multipart/form-data">
-            
-               
-                <h1>Sign Up Now </h1>
-                <br>
-
-
-                <input type="text" placeholder="Enter The Username" class="text" name="username" id = '1' autocomplete="off">
-
-                <input type="password" placeholder="Enter Your Password" class="text" name="password" id = '2' autocomplete="off">
-                <br>
-
-                <input type="email" placeholder="Enter Your Email Id" class="text" name="email" id = '3' autocomplete="off">
-                <br>
+        <div class="nav">
+            <!-- <img src="./download.png" height="80px"> -->
+            <h2>Logo</h2>
+            <div class="nav2">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="../html/signup.html">Sign Up</a>
+                <a href="#">Contact Us</a>
+                <button class="topbtn"> <a href="../php/login.php">Sign In</a></button>
                 
+                <i class="ri-menu-3-fill"></i>
+            </div>
+        </div>
 
-                    
-                <select name = "building" class= "dropdown">
-                    <option value = "null">Please Select Your Building Number</option>
-                    <option value = "210">210</option>
-                    <option value = "110">110</option>
-                    <option value = "179">179</option>
-                </select>
-                <br><br>
-                <select name = "room" class= "dropdown">
-                    <option value = "null">Please Select Your Room Number</option>
-                    <option value = "1">1</option>
-                    <option value = "2">2</option>
-                    <option value = "3">3</option>
-                    <option value = "4">4</option>
-                    <option value = "5">5</option>
-                </select>
+        <div class="content">
+            <div class="left">
+                <h1>Making Communities <span id="btr">Better</span></h1>
+                <h2>Join <span id="typing"></span></h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquam excepturi dolorum asperiores ipsam inventore neque quaerat fugiat quasi laudantium iusto laboriosam atque, tempora aperiam molestias, accusantium amet corporis recusandae.</p>
+                <button>Explore Now</button>
+            </div>
+            <div class="right">
+                <img src="../images/6961769.jpg" height="100%">
+            </div>
+        </div>
+    </div>
 
-                <br>
-                <br>
-                <div class="form-group">
-                   
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" accept="application/pdf">
-                  </div>
-                <br>
-        
-        
 
-               
-                <input type= "submit" value = "Sign Up " name = "save" class="signupbtn"></button>
-                <p id = "learn"><b>Do You Have an Account ? </b><a href="../php/login.php"><b>Login</a></b></p>
-
-                
-            </form>
-                
+    <script>
          
-        </div> 
 
-        
+
+    var typed = new Typed('#typing', {
+      strings: ["Purposefully","With Us","The Movement"],
+      typeSpeed: 150,
+      backSpeed: 150,
+      loop: true
+    });
+
+    </script>
 
     
     
