@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
 
+html{
+    scroll-behavior: smooth;
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     font-family: 'Noto Sans', sans-serif;
+    
 }
 
 .main{
@@ -35,6 +39,10 @@
     font-size: 1vw;
     font-weight: 700;
     color: black;
+}
+.nav2 a:hover{
+    color : #FF735C;
+    transition: 0.5s;
 }
 .nav2 i{
     font-size: 1.4vw ;
@@ -92,10 +100,7 @@ button{
 .right{
     width: 45%;
     height: 100%;
-    
-    
-    
-   
+     
 }
 
 .nav button a{
@@ -115,12 +120,69 @@ button{
     cursor: pointer;
 }
 
+.about{
+    width: 100vw;
+    height: 100vh;
+    padding: 1.5vw 0vw;
+    
+}
+.about h1{
+   
+    font-size: 2.5vw;
+    padding-top: 1.3vw;
+    text-align: center;
+    
+    
+}
+
+/* Style the first <span> tag in lightseagreen */
+/* Style the <span> elements within .about in lightseagreen */
+.about span {
+    color: lightseagreen;
+}
+
+/* Style the <span> elements within .box1 in orange */
+.box1 span:first-child{
+    color: #FF735C;
+}
+
+
+.box1{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.box1 .leftContent{
+    width: 50%;
+}
+.box1 .leftContent img{
+    width: 85%;
+    margin: 5vw 4vw;
+}
+.box1 .rightContent{
+    padding: 2vw 5vw;
+    width: 50%;
+}
+.box1 p{
+    font-size: 1.5vw;
+    font-weight: 600;
+    width: 95%;
+    color: #666;
+    padding: 1.5vw 0vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
 
 @media (max-width:600px) {
     .nav{
         height: 80px;
         padding: 0px 6vw;
         
+    }
+    .topbtn{
+        display: none;
     }
     .nav h2{
         font-size: 5vw;
@@ -169,8 +231,12 @@ button{
     .right img{
         height: 100vw;
         margin-top: 10vw;
-        padding: 10vw 10vw;
+        padding: 15vw 11vw 3vw 6vw;
         
 
     }
+
+    
+    
+
 }
