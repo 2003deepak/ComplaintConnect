@@ -1,7 +1,4 @@
-<?php
-session_start();
-include 'config.php' ; 
-?>
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -9,8 +6,6 @@ include 'config.php' ;
 
     <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
      
      <style>
@@ -91,7 +86,7 @@ include 'config.php' ;
 .home-section{
   position: relative;
   background: #f5f5f5;
-  min-height: 150vh;
+  min-height: 100vh;
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
@@ -461,10 +456,6 @@ nav .profile-details i{
   }
 }
 
-/* h1{
-  margin-top: 7rem;
-  display: inline-block;
-} */
 .registerBox{
     
     height: 500px;
@@ -514,13 +505,6 @@ select{
     top: -30px;
 }
 
-.mainform{
-  height: 90vh;
-  margin-top: 7rem;
-  display: inline-block;
- 
-}
-
 
 
 
@@ -530,55 +514,35 @@ select{
      </style>
    </head>
 <body>
-
-
-<nav>
-    <div class="sidebar">
+    
+ 
+  <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Dashboard</span>
     </div>
       <ul class="nav-links">
         <li>
-          <a href="../php/dashboard.php">
+          <a href="#">
             <i class="fas fa-home"></i>
             <span class="links_name">Home</a></span>
           </a>
         </li>
         <li>
-            <a href="../php/profile.php">
-                <i class="fas fa-user"></i>
-                <span class="links_name">Profile</a></span>
-              
-            </a>
-        </li>
-        <li>
-          <a href="../php/filecomplaint.php">
-            <i class="fas fa-plus"></i>
-            <span class="links_name">File Complaint</span>
+          <a href="cPendingComplaints.php">
+            <i class="fas fa-home"></i>
+            <span class="links_name">Pending Complaints</a></span>
           </a>
         </li>
         <li>
-            <a href="../php/complaintHistory.php">
-                <i class="fas fa-wallet"></i>
-              <span class="links_name">Complaint History</span>
-            </a>
-          </li>
-          <li>
-            <a href="../php/updateCurrentPassword.php">
-                <i class="fas fa-user"></i>
-                <span class="links_name">Update Password</a></span>
-              
-            </a>
+          <a href="cCompletedComplaints.php">
+            <i class="fas fa-home"></i>
+            <span class="links_name">Completed Complaints</a></span>
+          </a>
         </li>
+        
+        
 
-          
-         <li>
-            <a href="#">
-                <i class="fas fa-chart-bar"></i>
-                <span class="links_name">Close Complaint</a></span>
-            </a>
-        </li>
         
       
         <li class="log_out">
@@ -590,125 +554,18 @@ select{
       </ul>
   </div>
   <section class="home-section">
-
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Home</span>
       </div>
+      
+    </nav>
 
-    
- 
+
+
+
+      
   
-      
-    </nav>   
-
-  
-
-    <div class="mainform">
-
-
-  
-
-      
-      <form action = "../php/uploadComplaint.php" method = "post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" class="form-control" name = "username" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Building Number</label>
-          <br>
-
-          <?php 
-
-
-        
-
-           
-            $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
-            $query = mysqli_query($conn, $username_search);
-            $username_count = mysqli_num_rows($query);
-            if($username_count){
-
-                $query1 = mysqli_fetch_assoc($query);
-                $building = $query1['building'];
-                $room = $query1['room'];
-
-          
-            }
-
-
-
-
-          ?>
-          
-          <select class="form-control" id="exampleFormControlSelect1" name="building" disabled>
-              <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
-              <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
-              <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
-          </select>
-
-          
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Room No</label>
-          <br>
-          <select  class="form-control" name="room" disabled>
-            <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
-            <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
-            <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
-            <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
-            <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
-          </select>
-        </div>
-        <br>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
-          <br>
-          <select class="form-control" name="complaint_group">
-            
-            <option value = "Electricity">Electricity</option>
-            <option value = "Water">Water </option>
-            <option value = "Water">Property Damage </option>
-            <option value = "Water">Cleanliness </option>
-            <option value = "Water">Add more </option>
-            <option value = "Water">Others</option>
-          </select>
-        </div>
-
-
-        <div class="form-group">
-            <label for="exampleInputEmail1">Subject</label>
-            <input type="text" class="form-control" name="subject" aria-describedby="emailHelp" placeholder="Subject" maxlength="50">
-            <small  class="form-text text-muted">Upto 50 words allowed</small>
-        </div>
-
-        <div class="form-group">
-          <label for="comment">Description</label>
-          <textarea class="form-control" rows="10" cols="100" name = "desc"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="exampleFormControlFile1">Attach Photo</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file" accept="image/*">
-        </div>
-        <br>
-
-        <input type="submit" class="btn btn-primary" value="Submit" name = "save">
-        
-        
-      </form>
-
-     
-      
-
-    </div>
-    
-  </section>
-    
-      
-      
-
 </body>
 </html>

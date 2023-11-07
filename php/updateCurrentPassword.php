@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
     if($query1){
       echo '<script>alert("Password is Updated ")</script>' ;
       $_SESSION['password'] = $newPassword ;
-      echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
+      echo "<script> location.replace('../php/dashboard.php')</script> ";
     }else{
       echo '<script>alert("OOPS something Went wrong ")</script>' ;
       echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";

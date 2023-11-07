@@ -29,6 +29,12 @@ if(isset($_POST['save'])){
         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/adminpanel.php")';
         echo '</script>';
         
+    }else if($username == "arun123" & $password == "arun123"){
+        $_SESSION['username'] = $username ;
+        echo '<script>';
+        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/cAdminPanel.php")';
+        echo '</script>';
+
     }else{
 
         $username_search = "select * from register where username='$username' " ;

@@ -605,9 +605,9 @@ select{
      </style>
    </head>
 <body>
-    
- 
-  <div class="sidebar">
+
+<nav>
+    <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Dashboard</span>
@@ -620,9 +620,10 @@ select{
           </a>
         </li>
         <li>
-            <a href="profile.php">
+            <a href="../php/profile.php">
                 <i class="fas fa-user"></i>
                 <span class="links_name">Profile</a></span>
+              
             </a>
         </li>
         <li>
@@ -632,11 +633,18 @@ select{
           </a>
         </li>
         <li>
-            <a href="#">
+            <a href="../php/complaintHistory.php">
                 <i class="fas fa-wallet"></i>
-              <span class="links_name">Complaint Status</span>
+              <span class="links_name">Complaint History</span>
             </a>
           </li>
+          <li>
+            <a href="../php/updateCurrentPassword.php">
+                <i class="fas fa-user"></i>
+                <span class="links_name">Update Password</a></span>
+              
+            </a>
+        </li>
 
           
          <li>
@@ -660,13 +668,16 @@ select{
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Profile</span>
+        <span class="dashboard">Home</span>
       </div>
 
-      
+    
+ 
+  
       
     </nav>   
 
+  
     <div class="mainform">
 
       <form action="">

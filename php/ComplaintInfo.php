@@ -589,6 +589,18 @@ select{
   color:white;
   text-decoration:none;
 }
+.photos1{
+  background-color:red ; 
+  width:200px;
+  height:200px;
+
+}
+.photos2{
+  background-color:red ; 
+  width:200px;
+  height:200px;
+  
+}
 
 
 
@@ -708,6 +720,11 @@ select{
     }
 
     ?>
+
+
+<div class="photos1">Photos uploaded from user
+  </div>
+  <div class="photos2"> Photos Uploaded from contractor </div>
     
      
 
@@ -718,6 +735,8 @@ select{
     </div>
     
   </section>
+
+  
     
       
       
