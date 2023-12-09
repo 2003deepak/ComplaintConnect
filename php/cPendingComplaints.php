@@ -6,6 +6,7 @@
 
     <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     
      
      <style>
@@ -505,6 +506,73 @@ select{
     top: -30px;
 }
 
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top:0rem;
+}
+
+.content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.btn1{
+    background: red;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+.btn2{
+    background: green;
+    height: 40px;
+    width: 120px;
+    border-radius: 13px;
+    cursor: pointer;
+    
+}
+
+.accept{
+  color: white;
+  width: 117px;
+  
+}
+.accept:hover{
+  background: none ; 
+  color:white;
+  text-decoration:none;
+}
 
 
 
@@ -519,9 +587,9 @@ select{
   <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">Dashboard</span>
+      <span class="logo_name">Edit User</span>
     </div>
-      <ul class="nav-links">
+    <ul class="nav-links">
         <li>
           <a href="#">
             <i class="fas fa-home"></i>
@@ -529,7 +597,7 @@ select{
           </a>
         </li>
         <li>
-          <a href="ContractorPendingComplaints.php">
+          <a href="cPendingComplaints.php">
             <i class="fas fa-home"></i>
             <span class="links_name">Pending Complaints</a></span>
           </a>
@@ -554,14 +622,84 @@ select{
       </ul>
   </div>
   <section class="home-section">
-    <nav>
-      <div class="sidebar-button">
-        <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Home</span>
-      </div>
-      
-    </nav>
-      
-  
+
+
+    <div class="main">
+
+
+      <table class="content-table">
+        <tr>
+          
+          <th>Complaint ID</th>
+          <th>Complaint Type</th>
+          <th>Address</th>
+          <th>Subject</th>
+          
+          <th>View Details</th>
+        </tr>
+
+        
+        <?php
+
+        include 'config.php' ;
+        $sql = "select * from register";
+        $sql1 = "select * from complaints";
+        
+        $result = $conn->query($sql);
+        $result1 = $conn->query($sql1);
+
+        
+       
+        // Loop through the result set and generate table rows
+        if ($result1->num_rows > 0) {
+            while ($row = $result1->fetch_assoc()) {
+
+              if($result->num_rows>0){
+
+                while ($row = $result->fetch_assoc()) {
+
+                  $address = $row["building"] ;
+
+
+
+
+
+
+              }
+            }
+
+              ?>
+                <tr class="active-row">
+                  <td> <?php echo $row["complaint_id"] ?>   </td>
+                  <td> <?php echo $row["complaint_type"] ?>   </td>
+                  <td><?php echo $address ?></td>
+                  <td> <?php echo $row["subject"] ?>   </td>
+                  <td><a href="#">View Details</a></td>
+
+                  
+
+                  
+                </tr>
+                <?php
+            }
+        }
+
+        // Close the connection
+        $conn->close();
+        ?>
+    
+
+
+   
+
+</table>
+
+    </div>
+
+    </section>
+
+    
+
+
 </body>
 </html>

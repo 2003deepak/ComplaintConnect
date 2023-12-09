@@ -118,6 +118,7 @@ button{
     margin-top: -0.5vw;
     padding: 0vw 0.2vw;
     cursor: pointer;
+    outline: none;
 }
 
 .about{
