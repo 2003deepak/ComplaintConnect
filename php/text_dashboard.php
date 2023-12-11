@@ -1,3 +1,9 @@
+<?php 
+
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +109,7 @@
         }
 
         .nav i{
-            font-size: 25px;
+            font-size: 20px;
             color: #8C8C8C;
         }
 
@@ -115,10 +121,23 @@
             position: absolute;
             top: 20px;
             margin: 1vw 0vw 0vw 0.4vw;
-            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--font-color);
+            font-weight: 800;
+            font-family: 'Biryani', sans-serif;
+            background-color: #FF9F00;
 
             
             }
+            .nav .icon p{
+                margin-top: 5px;
+                font-size: 28px;
+                
+            }
+
             .bars{
                 margin: 0.7vw 0vw 0vw 1.4vw;
                 visibility: hidden;
@@ -127,7 +146,7 @@
             .nav a{
                 text-decoration: none;
                 color: #8C8C8C;
-                font-size: 24px;
+                font-size: 20px;
                 visibility: hidden;
                 font-family: 'Biryani', sans-serif;
                 margin-top: 0.6rem;
@@ -368,6 +387,8 @@
 <body>
 
 
+
+
     <div class="nav">
 
 
@@ -378,7 +399,18 @@
 
        
         <div class="icon">
+
+            <?php
+
            
+                $u = $_SESSION["username"];
+                $capitalizedu = ucfirst($u[0]);
+
+
+
+
+            ?>
+             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
@@ -397,7 +429,7 @@
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="#"> History</a>
+                <a href="#">Complaint History</a>
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
@@ -413,7 +445,7 @@
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="">Log Out</a>
+                <a href="../php/logout.php">Log Out</a>
             </div>
             
 

@@ -65,7 +65,7 @@ if(isset($_POST['save'])){
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
                         echo '<script>';
-                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../test/test_dashboard.php")';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/text_dashboard.php")';
                         echo '</script>';
 
 
@@ -75,7 +75,7 @@ if(isset($_POST['save'])){
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $email_pass['email'];
                         echo '<script>';
-                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../test/test_dashboard.php")';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/text_dashboard.php")';
                         echo '</script>';
 
                     }
