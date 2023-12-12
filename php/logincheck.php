@@ -54,6 +54,7 @@ if(isset($_POST['save'])){
                 $query2 = mysqli_query($conn,$sql2);
                 $row2 = mysqli_num_rows($query2);
 
+                
                 if($row2 == 1){
 
                     if(isset($_POST['rememberme'])){
@@ -65,7 +66,7 @@ if(isset($_POST['save'])){
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
                         echo '<script>';
-                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/text_dashboard.php")';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
                         echo '</script>';
 
 
@@ -75,7 +76,7 @@ if(isset($_POST['save'])){
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $email_pass['email'];
                         echo '<script>';
-                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/text_dashboard.php")';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
                         echo '</script>';
 
                     }
