@@ -1,19 +1,19 @@
 <?php
 
 include 'config.php' ; 
-
-
-
 session_start();
+
+
+
 
 
 if(isset($_POST['save'])){
 
     // Getting Info
-    $username = $_POST['username'];
+    $username = $_SESSION['username'];
     
     // Getting building no and room number 
-    $username_search = "SELECT * FROM register WHERE username = '" . $_SESSION['username'] . "'";
+    $username_search = "SELECT * FROM register WHERE username = '" . $username . "'";
     $query = mysqli_query($conn, $username_search);
     $username_count = mysqli_num_rows($query);
     if($username_count){
@@ -60,7 +60,7 @@ if(isset($_POST['save'])){
         echo "<script> alert('Complaint is not filed')</script>" ;
         // echo "<script> location.replace('../php/dashboard.php')</script> ";
 
-        echo $conn->error ;
+        echo "<script> alert('Error: " . $conn->error . "')</script>";
     
     }
 }

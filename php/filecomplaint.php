@@ -1,11 +1,17 @@
 <?php
 session_start();
-include 'config.php' ; 
+include '../php/config.php' ; 
 ?>
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title>Complaint Connect</title>
+
+    <!-- DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +40,8 @@ include 'config.php' ;
     --font-color:white;
     --boxes-bg-color:#161717;
     --box-count-color: #242424;
+
+
     
 
    
@@ -48,6 +56,9 @@ include 'config.php' ;
     --font-color:black;
     --boxes-bg-color:white;
     --box-count-color:#E3E3EA;
+
+
+    
     
     
     
@@ -199,10 +210,11 @@ include 'config.php' ;
 
 
             
-            .org-content{
+            .content{
                 padding: 1rem 1rem 1rem 3rem;
                 font-family: 'Poppins', sans-serif;
                 width: 100%;
+                
                 
             }
 
@@ -216,6 +228,122 @@ include 'config.php' ;
                font-weight: bolder;
 
                
+            }
+            form{
+                margin-left: 5vw;
+                width: 55%;
+                padding: 1rem 0rem 0rem 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .first{
+                display: flex;
+                gap: 1rem;
+                justify-content: space-between;
+               
+            }
+            .subject input{
+                width: 20vw;
+                height: 40px;
+                border-radius: 11px;
+                border: none;
+                padding: 0.5rem;
+                padding-left: 1rem;
+            }
+            .complaint-type select{
+                width: 284px;
+                height: 40px;
+                color: #6F6C90;
+                font-size: 15px;
+                padding: 0.5rem;
+                border: none;
+                border-radius: 11px;
+            }
+            .complaint-type , .subject , .description{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                
+                
+            }
+
+            .second textarea{
+                width: 98%;
+                height: 8vw;
+                color: #6F6C90;
+                font-size: 15px;
+                padding: 0.5rem;
+                border: none;
+                border-radius: 11px;
+                font-family: 'DM Sans', sans-serif;
+                
+            }
+            .third{
+                
+                border: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                font-family: 'DM Sans', sans-serif;
+            }
+            .image{
+                width: 100%;
+                height: 10vw;
+                border-radius: 11px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                
+                
+               
+                
+            }
+            
+            form p{
+                font-size: 18px;
+                font-weight: 800;
+                font-family: 'DM Sans', sans-serif;
+            }
+            .file-logo {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .file-i{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                justify-content: center;
+                align-items: center;
+                
+            }
+
+            .file-logo input[type="file"] {
+                display: none; /* Hide the default file input */
+            }
+
+            .file-logo label {
+                cursor: pointer;
+            }
+
+            .btn {
+                display: flex;
+                justify-content: center;
+            }
+
+            .btn input[type="submit"] {
+                width: 10vw;
+                height: 45px;
+                background-color: #000000;
+                color: white;
+                font-size: 24px;
+                border-radius: 12px;
+                font-family: 'DM Sans', sans-serif;
             }
 
            
@@ -282,17 +410,8 @@ include 'config.php' ;
        
         <div class="icon">
 
-            <?php
-
-           
-                $u = $_SESSION["username"];
-                $capitalizedu = ucfirst($u[0]);
-
-
-
-
-            ?>
-             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+            
+             <p></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
@@ -345,17 +464,13 @@ include 'config.php' ;
 
     <div class="content">
 
+      
 
       <form action = "../php/uploadComplaint.php" method = "post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name = "username" placeholder="Your username" value="<?php echo $_SESSION['username']; ?>" readonly>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Building Number</label>
-            <br>
+          
+        <h1>Deepak Yadav</h1>
 
-            <?php 
+        <?php 
 
 
           
@@ -377,63 +492,72 @@ include 'config.php' ;
 
 
             ?>
-            
-            <select class="form-control" id="exampleFormControlSelect1" name="building" disabled>
-                <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
-                <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
-                <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
-            </select>
+
+
+        <div class="first">
+
+            <div class="complaint-type">
+                <p>Complaint Type</p>
+                <select name="complaint_group">
+                    <option value = "Electricity">Electricity</option>
+                    <option value = "Water">Water </option>
+                    <option value = "Water">Property Damage </option>
+                    <option value = "Water">Cleanliness </option>
+                    <option value = "Water">Add more </option>
+                    <option value = "Water">Others</option>
+                </select>
+            </div>
+
+            <div class="subject">
+                <p>Subject</p>
+                <input type="text" placeholder="Enter Complaint Subject" name="subject"  required>
+                <p style="color: red; font-size: 15px;">Maximum 50 words allowed</p>
+            </div>
+
+        </div>
+
+        <div class="second">
+            <div class="description">
+                <p>Description</p>
+                <textarea placeholder="Enter Complaint Description" rows="20" cols="100" name = "desc" required></textarea>
+                <p style="color: red; font-size: 15px;">Maximum 250 words allowed</p>
+            </div>
+    
+        </div>
+        <div class="third">
+            <p>Image</p>
+            <div class="image">
+
+                <div class="file-logo">
+
+                    <label for="file-input" class="file-i">
+
+                        <img src="/file-add.png" alt="Custom Image">
+                        <p style="font-size: 15px; color: #6F6C90;">Click to upload</p>
+
+                    </label>
+
+                    <input type="file" name="image" id="file-input" accept="image/*" required>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+
+
+
 
             
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect2">Room No</label>
-            <br>
-            <select  class="form-control" name="room" disabled>
-              <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
-              <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
-              <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
-              <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
-              <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
-            </select>
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Select Your Complaint Group</label>
-            <br>
-            <select class="form-control" name="complaint_group">
-              
-              <option value = "Electricity">Electricity</option>
-              <option value = "Water">Water </option>
-              <option value = "Water">Property Damage </option>
-              <option value = "Water">Cleanliness </option>
-              <option value = "Water">Add more </option>
-              <option value = "Water">Others</option>
-            </select>
-          </div>
+        </style>
+        
+        <div class="btn">
+            <input type="submit" value="Submit" name="save">
+        </div>
 
+        
 
-          <div class="form-group">
-              <label for="exampleInputEmail1">Subject</label>
-              <input type="text" class="form-control" name="subject" aria-describedby="emailHelp" placeholder="Subject" maxlength="50">
-              <small  class="form-text text-muted">Upto 50 words allowed</small>
-          </div>
-
-          <div class="form-group">
-            <label for="comment">Description</label>
-            <textarea class="form-control" rows="10" cols="100" name = "desc"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Attach Photo</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" name = "file" accept="image/*">
-          </div>
-          <br>
-
-          <input type="submit" class="btn btn-primary" value="Submit" name = "save">
           
-          
-        </form>
+      </form>
 
     
 
