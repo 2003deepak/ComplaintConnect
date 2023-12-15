@@ -340,80 +340,55 @@ include 'config.php' ;
 
 
 <div class="content">
-
-
     <table class="content-table">
         <tr>
-          
-          <th>Complaint ID</th>
-          <th>Complaint Type</th>
-          <th>Address</th>
-          <th>Subject</th>
-          
-          <th>View Details</th>
+            <th>Complaint ID</th>
+            <th>Complaint Type</th>
+            <th>Address</th>
+            <th>Subject</th>
+            <th>View Details</th>
         </tr>
 
-        
         <?php
+        include 'config.php';
+        $sql = "select * from register";
+        $sql1 = "select * from complaints";
 
-include 'config.php' ;
-$sql = "select * from register";
-$sql1 = "select * from complaints";
+        $result = $conn->query($sql);  // Fetching address from register table
 
-$result = $conn->query($sql);
-$result1 = $conn->query($sql1);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $building = $row['building'];
+                $room = $row['room'];
+                $address = $building . " " . $room;
+                ?>
 
-
-
-// Loop through the result set and generate table rows
-if ($result1->num_rows > 0) {
-    while ($row = $result1->fetch_assoc()) {
-
-      if($result->num_rows>0){
-
-        while ($row = $result->fetch_assoc()) {
-
-          $address = $row["building"] ;
-
-
-
-
-
-
-      }
-    }
-
-      ?>
-        <tr class="active-row">
-          <td> <?php echo $row["complaint_id"] ?>   </td>
-          <td> <?php echo $row["complaint_type"] ?>   </td>
-          <td><?php echo $address ?></td>
-          <td> <?php echo $row["subject"] ?>   </td>
-          <td><a href="#">View Details</a></td>
-
-          
-
-          
-        </tr>
-        <?php
-    }
-}
-
-// Close the connection
-$conn->close();
-?>
-
-
-
-
-
-</table>
-
-
-
-
-
+                <?php
+                $result1 = $conn->query($sql1); // Fetching complaint info from complaints table
+                if ($result1->num_rows > 0) {
+                    while ($row1 = $result1->fetch_assoc()) {
+                        ?>
+                        <tr class="active-row">
+                            <td><?php echo $row1["complaint_id"] ?></td>
+                            <td><?php echo $row1["complaint_type"] ?></td>
+                            <td><?php echo $address ?></td>
+                            <td><?php echo $row1["subject"] ?></td>
+                            <td><a href="../php/ComplaintInfo.php/id=<?php echo $row1['complaint_id']; ?>">view details </a></td>
+                            
+                            <!-- Add View Details link/button here if needed -->
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+                <?php
+            }
+        }
+        ?>
+    </table>
 </div>
+
+
 
 
 
