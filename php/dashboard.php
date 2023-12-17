@@ -9,6 +9,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
     <title>Document</title>
 
     <!-- Poppins  -->
@@ -22,9 +23,9 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Biryani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <style>
-
-
+        
 :root {
     --background-color: #242424; 
     --nav-background-color : #161717; 
@@ -227,7 +228,7 @@ session_start();
                 font-size: 19px;
             }
             .boxes .box11{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 background-color: var(--boxes-bg-color);
                 padding: 1rem;
@@ -238,7 +239,7 @@ session_start();
             }
 
             .boxes .box13{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 display: flex;
                 flex-direction: column;
@@ -249,7 +250,7 @@ session_start();
             }
 
             .boxes .count{
-                width: 120px;
+                width: 40%;
                 height: 81px;
                 align-self: center;
                 display: flex;
@@ -261,7 +262,7 @@ session_start();
             }
 
             .boxes .box12{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 display: flex;
                 flex-direction: column;
@@ -282,7 +283,7 @@ session_start();
 
             .complaints{
                 width: 90%;
-                height: 530px;
+                height: 50px;
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1rem;
@@ -294,12 +295,12 @@ session_start();
 
             .complaints .box21{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
-                background-color: var(--boxes-bg-color);
+                
                 border-radius: 10px;
                 color: var(--font-color);
 
@@ -307,20 +308,45 @@ session_start();
             }
             .complaints .box22{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
-                background-color: var(--boxes-bg-color);
+               
                 border-radius: 10px;
                 color: var(--font-color);
                 
             }
             .complaints .box23{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+                border-radius: 10px;
+                color: var(--font-color);
+
+                
+            }
+
+            .phpreply{
+                
+                    display: flex;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                    color: var(--font-color);
+                    margin-top: 1.5rem;
+                    font-size: 19px;
+                
+            }
+
+            .phpreply .box4{
+                width: 295px;
+                height: 5vw;
+                display: flex;
+                flex-direction: column;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
@@ -330,13 +356,19 @@ session_start();
 
                 
             }
+           
+           
 
 
-            @media (max-width:600px) {
+             @media (max-width:768px) {
                 .content{
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                }
+                
+                .box11{
+                    margin-left: 5rem;
                 }
                 .preview{
                     display: none ;
@@ -354,16 +386,17 @@ session_start();
                     height: 60px;
                     position: absolute;
                     margin: 8vw 0vw 0vw 1.4vw;
-                    background-color: white;
+                    
 
             
                 }
+                
                 .nav i{
                     font-size: 1.2rem;
                     
                 }
-                
-            }
+             }
+         
 
 
 
@@ -383,19 +416,23 @@ session_start();
 
 
     </style>
+    
 </head>
 <body>
 
+
+
+    
 
 
 
     <div class="nav">
 
 
-        <div class="bars">
-            <i class="fa-solid fa-bars"></i>
-        </div>
         
+        <div class="bars">
+            <i class="fa-solid fa-bars" ></i>
+        </div>
 
        
         <div class="icon">
@@ -498,6 +535,8 @@ session_start();
 
             <div class="line"></div>
 
+            
+
             <div class="complaints">
 
                 <div class="box21">
@@ -520,11 +559,151 @@ session_start();
                     
                     
                 </div>
+                
 
 
             </div>
             
+            <div class="phpreply">
+
+
+            
+    <?php
+    include 'config.php';
+
+    
+        $username = $_SESSION['username'];
+
+        $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL";
+        $result = $conn->query($sql);
+
+        
+            if ($result->num_rows > 0) {
+                ?>
+                <div class="box4">
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                        
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                
+                <?php
+
+            }
+            
+    
+    ?>
+
+
+
+
+            
+
+
+            
+                <div class="box4">
+
+
+                <?php
+    include 'config.php';
+
+    
+        $username = $_SESSION['username'];
+
+        $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL";
+        $result = $conn->query($sql);
+
+        
+            if ($result->num_rows > 0) {
+                ?>
+                <div class="box4">
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                        
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                
+                <?php
+
+            }
+            
+    
+    ?>
+                    
+                        
+                    
+                </div>
+                <div class="box4">
+
+                <?php
+    include 'config.php';
+
+    
+        $username = $_SESSION['username'];
+
+        $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL";
+        $result = $conn->query($sql);
+
+        
+            if ($result->num_rows > 0) {
+                ?>
+                <div class="box4">
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                        
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                
+                <?php
+
+            }
+            
+    
+    ?>
+                    
+                        
+                    
+                </div>
+                    
+                        
+                    
+                </div>
+            </div>
+
+            
+
+            
+
+            
+
+            
+
+            
+            
         </div>
+
+        
 
         
 
@@ -533,6 +712,9 @@ session_start();
             
         
     </div>
+
+
+
     <div class="preview">
 
         <p>Hellow</p>
