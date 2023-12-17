@@ -16,7 +16,7 @@ include 'config.php' ;
 
 
 
-if(isset($_POST['save'])){
+
 
   
   $username=$_POST['username'];
@@ -49,7 +49,7 @@ if(isset($_POST['save'])){
     echo 'ErrorAlert("Failed","Sorry You are not Registered","../html/index.html");';
     echo '</script>';
   }
-}
+
 
 $conn->close();
 

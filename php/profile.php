@@ -78,7 +78,7 @@ include 'config.php' ;
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: 97vw;
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -86,13 +86,6 @@ include 'config.php' ;
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
 
         /* Adjust content margin when nav width changes */
          .nav:hover + .content {
@@ -224,9 +217,7 @@ include 'config.php' ;
                     justify-content: center;
                     width: 100%;
                 }
-                .preview{
-                    display: none ;
-                }
+                
 
                 .bars{
                     margin: 1.5vw 0vw 0vw 4vw;
@@ -343,9 +334,14 @@ include 'config.php' ;
 
     <div class="content">
 
-    <div class="mainform">
 
-<form action="">
+            <div class="profile">
+
+            </div>
+
+    
+
+<!-- <form action="">
 
   
   <input type="file"  accept="image/*"/>
@@ -413,7 +409,7 @@ include 'config.php' ;
 
 
 
-</form>
+</form> -->
 
 
   
@@ -436,10 +432,7 @@ include 'config.php' ;
         
     </div>
 
-    <div class="preview">
-
-        <p>Hellow</p>
-        
+    
     </div>
 
 
