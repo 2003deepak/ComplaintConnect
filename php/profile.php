@@ -7,6 +7,11 @@ include 'config.php' ;
     <meta charset="UTF-8">
     <title>Complaint Connect</title>
 
+     <!-- DM Sans  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
+
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,14 +27,18 @@ include 'config.php' ;
 
 
 :root {
-    --background-color: #242424; 
+     --background-color: #242424; 
     --nav-background-color : #161717; 
     --icon-color:#8C8C8C;
     --preview-background-color:#161717;
     --heading-color:white ; 
     --font-color:white;
     --boxes-bg-color:#161717;
-    --box-count-color: #242424;
+    --box-count-color: #242424; 
+    --input-type-bgColor: #000000;
+
+
+    
     
 
    
@@ -43,7 +52,11 @@ include 'config.php' ;
     --heading-color:black;
     --font-color:black;
     --boxes-bg-color:white;
-    --box-count-color:#E3E3EA;
+    --box-count-color:#E3E3EA; 
+    --input-type-bgColor: #EEEEEE;
+
+
+   
     
     
     
@@ -207,6 +220,107 @@ include 'config.php' ;
                
             }
 
+
+            .profile{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1rem 1rem 3rem;
+                width: 70%;
+                height: 80%;
+                border-radius: 15px;
+                margin-top: 4rem;
+                margin-left: 10rem;
+                background-color: var(--nav-background-color);
+                
+            }
+            .heading{
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .inner{
+                width: 100%;
+                height: 90%;
+                display: flex;
+                gap: 5rem;
+            }
+            .inner .left{
+                width: 45%;
+                height: 95%;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                
+                
+                
+            }
+            .inner .left div{
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                margin-left: 3vw;
+                margin-top: 1vw;
+                /* flex-direction: column; */
+                gap: 1rem;
+            }
+            .inner .left input{
+                width: 75%;
+                height: 5vh;
+                background-color: var(--input-type-bgColor);
+                border: none;
+                color: var(--heading-color);
+                padding-left: 15px;
+                border-radius: 8px;
+            }
+            .inner .left p{
+                color: var(--font-color);
+                font-family: 'DM Sans', sans-serif;
+                font-size: 19px;
+                
+            }
+            
+            .inner .right{
+                width: 40vw;
+                height: 95%;
+                display: flex;
+                flex-direction: column;
+                gap: 4rem;
+                justify-content: space-evenly;
+                
+                align-items: center;
+                
+            }
+            .heading h1{
+                font-size: 48px;
+                color: var(--heading-color);
+                font-family: 'Poppins', sans-serif;
+                
+            }
+            .img-logo{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .upload .input{
+                margin-left: 10rem;
+                
+            }
+
+            .right input[type="submit"]{
+                background-color: #61AD33;
+                width: 13vw;
+                height: 5vh;
+                font-size: 20px;
+                border: none;
+                border-radius: 10px;
+                align-self: center;
+                font-family: 'DM Sans' sans-serif;
+                color: white;
+            }
+
            
 
            
@@ -334,36 +448,35 @@ include 'config.php' ;
 
     <div class="content">
 
+    <form action="">
 
-            <div class="profile">
 
-            </div>
+
+
+
+
+
+
+
+
+
+
+
 
     
+    </form>
+        
 
-<!-- <form action="">
 
-  
-  <input type="file"  accept="image/*"/>
-    <div class="profile">
-      
-      <div class="form-group">
-        <label>Username</label>
-        <input type="text" class="form-control" name = "username"  value="<?php echo $_SESSION['username']; ?>" readonly>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" name = "username"  value="<?php echo $_SESSION['password']; ?>" readonly>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" name = "username"  value="<?php echo $_SESSION['email']; ?>" readonly>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Building Number</label>
-        <br><br>
+            <div class="profile">
+                
+                <div class="heading">
+                    <h1>Profile</h1>
+                </div>
+                <div class="inner">
 
-        <?php 
+
+                    <?php 
 
 
       
@@ -377,6 +490,7 @@ include 'config.php' ;
               $query1 = mysqli_fetch_assoc($query);
               $building = $query1['building'];
               $room = $query1['room'];
+              $address = $building . "/" . $room;
 
         
           }
@@ -385,36 +499,54 @@ include 'config.php' ;
 
 
         ?>
-        
-        <select class="form-control" id="exampleFormControlSelect1" name="building" disabled>
-            <option value="210" <?php if($building == '210') echo 'selected'; ?>>210</option>
-            <option value="110" <?php if($building == '110') echo 'selected'; ?>>110</option>
-            <option value="179" <?php if($building == '179') echo 'selected'; ?>>179</option>
-        </select>
 
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect2">Room No</label>
-        <br><br>
-        <select  class="form-control" name="room"  disabled>
-          <option value = "1" <?php if($room == '1') echo 'selected'; ?>>1</option>
-          <option value = "2" <?php if($room == '2') echo 'selected'; ?> >2</option>
-          <option value = "3" <?php if($room == '3') echo 'selected'; ?>>3</option>
-          <option value = "4" <?php if($room == '4') echo 'selected'; ?>>4</option>
-          <option value = "5" <?php if($room == '5') echo 'selected'; ?>>5</option>
-        </select>
-      </div>
-    </div>
+                    
+                    <div class="left">
+                        
+                       <div>
+                         <p>Name</p>
+                         <input type="text" name="name" placeholder="Enter Your Name" >
+                       </div>
+                       <div>
+                        <p>UserName</p>
+                        <input type="text" name="username" value="<?php echo $_SESSION['username']; ?>" readonly>
+                      </div>
+                      <div>
+                        <p>Email ID</p>
+                        <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>">
+                      </div>
+                      <div>
+                        <p>Address</p>
+                        <input type="text" name="address" value="<?php echo $address; ?>">
+                      </div>
+                    </div>
+                    <div class="right">
 
+                        
 
+                        <div class="img-logo">
+                           
+                            <img src="../images/user_logo.png" alt="logo" id="logoImg" height="300px">
+                            <div class="upload">
+                               
+                                <input type="file" name="image" onchange="changeLogo(event)" >
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="save-changes">
+                            <input type="submit" value="Save Changes">
+                        </div>
+                    
+                    </div>
+                </form>
+                </div>
 
+            </div>
+    </div>   
+    
 
-</form> -->
-
-
-  
-
-
+    
 
 
 </div> 
@@ -430,10 +562,6 @@ include 'config.php' ;
 
             
         
-    </div>
-
-    
-    </div>
 
 
     <script>
@@ -457,6 +585,24 @@ include 'config.php' ;
             
             
         }
+
+
+    
+        function changeLogo(event) {
+            const fileInput = event.target;
+            const logoImg = document.getElementById("logoImg");
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    logoImg.src = e.target.result;
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    
     </script>
 
 
