@@ -448,27 +448,12 @@ include 'config.php' ;
 
     <div class="content">
 
-    <form action="">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </form>
-        
 
 
             <div class="profile">
+
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" method="post">
                 
                 <div class="heading">
                     <h1>Profile</h1>
@@ -488,6 +473,13 @@ include 'config.php' ;
           if($username_count){
 
               $query1 = mysqli_fetch_assoc($query);
+              if($query1['name']){
+                $name = $query1['name'];
+              }
+
+              if($query1['user_profile']){
+                $user_profile = $query1['user_profile'];
+              }
               $building = $query1['building'];
               $room = $query1['room'];
               $address = $building . "/" . $room;
@@ -505,7 +497,7 @@ include 'config.php' ;
                         
                        <div>
                          <p>Name</p>
-                         <input type="text" name="name" placeholder="Enter Your Name" >
+                         <input type="text" name="name" value="<?php echo $name; ?>" placeholder="Enter Your Name" >
                        </div>
                        <div>
                         <p>UserName</p>
@@ -526,7 +518,7 @@ include 'config.php' ;
 
                         <div class="img-logo">
                            
-                            <img src="../images/user_logo.png" alt="logo" id="logoImg" height="300px">
+                            <img src="<?php echo $profile_image ?>" alt="logo" id="logoImg" height="300px">
                             <div class="upload">
                                
                                 <input type="file" name="image" onchange="changeLogo(event)" >
@@ -535,7 +527,7 @@ include 'config.php' ;
                         </div>
                         
                         <div class="save-changes">
-                            <input type="submit" value="Save Changes">
+                            <input type="submit" value="Save Changes" name = "save">
                         </div>
                     
                     </div>
@@ -544,7 +536,48 @@ include 'config.php' ;
 
             </div>
     </div>   
-    
+
+
+
+    <!-- Adding Profile Image and name of user to db  -->
+
+    <?php
+include 'config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
+    $name = $_POST['name'];
+
+    // Check if the file was successfully uploaded
+    if ($_FILES["image"]["error"] == 0) {
+        $folder = "../uploaded_images/profile_image/";
+        $filename = $building . "_" . $room . ".pdf"; // Rename the file to "roomno.pdf"
+        $tempname = $_FILES["image"]["tmp_name"];
+        $folder = "../uploaded_images/profile_image/" . $filename;
+
+        move_uploaded_file($tempname, $folder);
+
+        $sql = "UPDATE register SET `name` = '$name', `user_profile` = '$folder' WHERE `username` = '" . $_SESSION['username'] . "'";
+
+        if ($conn->query($sql) === TRUE) {
+            echo '<script>';
+            echo 'alert("Done! You are Successfully Updated.");';
+            echo 'window.location.href="../php/dashboard.php";';
+            echo '</script>';
+        } else {
+            echo '<script>';
+            echo 'alert("Error! Sorry, the update failed.");';
+            echo '</script>';
+        }
+    } else {
+        echo '<script>';
+        echo 'alert("Error uploading file.");';
+        echo '</script>';
+    }
+}
+?>
+
+
+
 
     
 

@@ -333,29 +333,40 @@ session_start();
 
             .phpreply{
                 
-                    display: flex;
-                    gap: 1rem;
-                    flex-wrap: wrap;
-                    color: var(--font-color);
-                    margin-top: 1.5rem;
-                    font-size: 19px;
-                
-            }
-
-            .phpreply .box4{
-                width: 295px;
-                height: 5vw;
                 display: flex;
-                flex-direction: column;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-                background-color: var(--boxes-bg-color);
-                border-radius: 10px;
+                gap: 1rem;
+                flex-wrap: wrap;
                 color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
+            
+        }
 
-                
-            }
+        .pendingComplaints , .newComplaints , .completedComplaints{
+            width:295px ; 
+            height: 100vh ; 
+            display: flex;
+           
+            flex-direction: column;
+        }
+
+        .phpreply .box4{
+            width: 295px;
+            height: 8vw;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            padding: 1rem;
+            margin-bottom : 1rem;
+            background-color: var(--boxes-bg-color);
+            border-radius: 10px;
+            color: var(--font-color);
+
+            
+        }
+
+            
            
            
 
@@ -420,11 +431,7 @@ session_start();
 </head>
 <body>
 
-
-
-    
-
-
+   
 
     <div class="nav">
 
@@ -563,133 +570,169 @@ session_start();
 
 
             </div>
-            
+
+
+            <script>
+    function displayComplaintDetails(complaintId, complaintType, subject) {
+        // Access JavaScript variables with PHP values
+        console.log("Complaint ID: " + complaintId);
+        console.log("Complaint Type: " + complaintType);
+        console.log("Subject: " + subject);
+
+        // You can use these variables in your JavaScript logic
+    }
+</script>
+
+
+
+
+
+           
+
+
             <div class="phpreply">
 
+                <div class="newComplaint">
 
-            
-    <?php
-    include 'config.php';
-
-    
-        $username = $_SESSION['username'];
-
-        $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL";
-        $result = $conn->query($sql);
-
-        
-            if ($result->num_rows > 0) {
-                ?>
-                <div class="box4">
                     <?php
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                        include 'config.php';
+
                         
+                            $username = $_SESSION['username'];
+
+                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL ";
+                            $result = $conn->query($sql);
+
+                            
+                                if ($result->num_rows > 0) {
+                                    ?>
+                                    
+                                        <?php
+                                        while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                            <div class="box4" >
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
+
+
+
+                                            <button onclick="displayComplaintDetails('<?php echo $row["complaint_id"]; ?>')">View Details</button>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                   
+
+                
                         <?php
-                    }
+
+                     }
+            
+    
                     ?>
+
+                    
+
+                </div>
+
+                <div class= "pendingComplaints">
+
+                <?php
+                        include 'config.php';
+
+                        
+                            $username = $_SESSION['username'];
+
+                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
+                            $result = $conn->query($sql);
+
+                            
+                                if ($result->num_rows > 0) {
+                                    ?>
+                                    
+                                        <?php
+                                        while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                            <div class="box4" onclick="displayComplaintDetails(<?php echo $row['complaint_id']; ?>)">
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
+
+                                            
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    
+
+                                    
+                                    <?php
+
+                                }
+            
+    
+                ?>
+
+
+                </div>
+
+
+                <div class= "completedComplaints">
+
+
+                    <?php
+                            include 'config.php';
+
+                            
+                                $username = $_SESSION['username'];
+
+                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL";
+                                $result = $conn->query($sql);
+
+                                
+                                    if ($result->num_rows > 0) {
+                                        ?>
+                                        
+                                            <?php
+                                            while ($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <div class="box4">
+                                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                                <p>Subject: <?php echo $row["subject"]; ?> </p>
+
+                                                
+                                                
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+
+                                        
+                                        <?php
+
+                                    }
+            
+    
+                        ?>
+
+
                 </div>
 
                 
-                <?php
-
-            }
-            
-    
-    ?>
-
-
-
-
-            
-
-
-            
-                <div class="box4">
-
-
-                <?php
-    include 'config.php';
-
-    
-        $username = $_SESSION['username'];
-
-        $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL";
-        $result = $conn->query($sql);
-
-        
-            if ($result->num_rows > 0) {
-                ?>
-                <div class="box4">
-                    <?php
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                        <p>Subject: <?php echo $row["subject"]; ?> </p>
-                        
-                        <?php
-                    }
-                    ?>
-                </div>
 
                 
-                <?php
-
-            }
-            
-    
-    ?>
-                    
-                        
-                    
-                </div>
-                <div class="box4">
-
-                <?php
-    include 'config.php';
-
-    
-        $username = $_SESSION['username'];
-
-        $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL";
-        $result = $conn->query($sql);
-
-        
-            if ($result->num_rows > 0) {
-                ?>
-                <div class="box4">
-                    <?php
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                        <p>Subject: <?php echo $row["subject"]; ?> </p>
-                        
-                        <?php
-                    }
-                    ?>
-                </div>
-
-                
-                <?php
-
-            }
-            
-    
-    ?>
-                    
-                        
-                    
-                </div>
-                    
-                        
-                    
-                </div>
             </div>
+    
+   
+
+
+
+            
+
+
+
 
             
 
@@ -714,37 +757,45 @@ session_start();
     </div>
 
 
+    <!-- Loading all complaints to display in preview mode -->
+
+  
+
+
 
     <div class="preview">
 
-        <p>Hellow</p>
+        <p style = "color:white;">Hellow</p>
         
     </div>
 
 
+    
+
+
+    
+
+    <!-- JS code starting from here  -->
+
+
     <script>
-        let count = 0 ; 
-const toggle = () =>{
+    let count = 0;
 
-
-    var a = document.querySelector(".dark");
-
-
-    if(count == 0){
-        document.body.classList.add("light-mode");
-        a.innerHTML="Dark Mode";
-        count = 1 ;
-
-    }else{
-        document.body.classList.remove("light-mode");
-        a.innerHTML="Light Mode";
-        count = 0 ; 
+    const toggle = () => {
+        var a = document.querySelector(".dark");
+        if (count == 0) {
+            document.body.classList.add("light-mode");
+            a.innerHTML = "Dark Mode";
+            count = 1;
+        } else {
+            document.body.classList.remove("light-mode");
+            a.innerHTML = "Light Mode";
+            count = 0;
+        }
     }
-    
-    
-}
 
+   
+</script>
 
-    </script>
 </body>
 </html>
