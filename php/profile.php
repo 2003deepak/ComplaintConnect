@@ -304,6 +304,9 @@ include 'config.php' ;
                 flex-direction: column;
                 gap: 1rem;
             }
+            .img-logo img{
+                border-radius : 50% ; 
+            }
             .upload .input{
                 margin-left: 10rem;
                 
@@ -518,7 +521,7 @@ include 'config.php' ;
 
                         <div class="img-logo">
                            
-                            <img src="<?php echo $profile_image ?>" alt="logo" id="logoImg" height="300px">
+                            <img src = "<?php echo $user_profile?> " alt="logo" id="logoImg" height="300px">
                             <div class="upload">
                                
                                 <input type="file" name="image" onchange="changeLogo(event)" >
@@ -550,7 +553,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     // Check if the file was successfully uploaded
     if ($_FILES["image"]["error"] == 0) {
         $folder = "../uploaded_images/profile_image/";
-        $filename = $building . "_" . $room . ".pdf"; // Rename the file to "roomno.pdf"
+        $filename = $building . "_" . $room . ".png"; // Rename the file to "roomno.pdf"
         $tempname = $_FILES["image"]["tmp_name"];
         $folder = "../uploaded_images/profile_image/" . $filename;
 
@@ -559,13 +562,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         $sql = "UPDATE register SET `name` = '$name', `user_profile` = '$folder' WHERE `username` = '" . $_SESSION['username'] . "'";
 
         if ($conn->query($sql) === TRUE) {
+            
             echo '<script>';
-            echo 'alert("Done! You are Successfully Updated.");';
-            echo 'window.location.href="../php/dashboard.php";';
+            echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/profile.php")';
             echo '</script>';
+            
         } else {
             echo '<script>';
-            echo 'alert("Error! Sorry, the update failed.");';
+            echo 'ErrorAlert("Failed","Updation Failed","../php/profile.php")';
             echo '</script>';
         }
     } else {

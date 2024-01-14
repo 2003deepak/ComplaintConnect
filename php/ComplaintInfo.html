@@ -80,7 +80,7 @@ session_start();
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 0vw );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -88,13 +88,7 @@ session_start();
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
+        
 
         /* Adjust content margin when nav width changes */
          .nav:hover + .content {
@@ -330,6 +324,12 @@ session_start();
             }
 
 
+
+
+            
+        
+
+
             @media (max-width:600px) {
                 .content{
                     display: flex;
@@ -446,7 +446,23 @@ session_start();
 <div class="content">
 
 
-<?php
+    <style>
+
+        .complaintInfo{
+
+            height: 80%;
+            width: 80%;
+            background-color: white;
+        }
+    </style>
+
+
+            <div class="complaintInfo">
+                <p>hi</p>
+            </div>
+
+
+<!-- <?php
     include 'config.php' ;
     $complaint_id = $_GET['id'];
     $sql = "select * from complaints where complaint_id = '$complaint_id'";
@@ -479,13 +495,21 @@ session_start();
         }
     }
 
-    ?>
+    ?> -->
 
 
-<div class="photos1">Photos uploaded from user
-  </div>
-  <div class="photos2"> Photos Uploaded from contractor </div>
+<!-- <div class="photos1">Photos uploaded from user</div>
+  <div class="photos2"> Photos Uploaded from contractor </div> -->
 
+
+  
+        
+        
+
+    
+
+      
+    
 
 
     
@@ -499,11 +523,7 @@ session_start();
     
 
 </div>
-<div class="preview">
 
-<p>Hellow</p>
-
-</div>
 
 
 <script>
