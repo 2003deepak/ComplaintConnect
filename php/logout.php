@@ -13,8 +13,8 @@
 session_start();
 session_destroy();
 
-setcookie("usernamecookie", "", time() - 3600, "/");
-setcookie("passwordcookie", "", time() - 3600, "/");
+// setcookie("usernamecookie", "", time() - 100, "/");
+// setcookie("passwordcookie", "", time() - 100, "/");
 
 echo '<script>';
 echo 'ConfirmationAlert("Done","You are successfully Logged Out","../php/login.php");';

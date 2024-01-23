@@ -151,6 +151,9 @@ function generateRandomOTP() {
         .nav:hover {
             width: 250px;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
         
 
         .content {
@@ -170,11 +173,6 @@ function generateRandomOTP() {
                 background-color: var(--preview-background-color);
         }
 
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
 
         .nav:hover .icon {
             margin-left: 5rem;

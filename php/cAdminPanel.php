@@ -80,6 +80,9 @@ include 'config.php' ;
         .nav:hover {
             width: 250px;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
         
 
         .content {
@@ -99,11 +102,7 @@ include 'config.php' ;
                 background-color: var(--preview-background-color);
         }
 
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
+       
 
         .nav:hover .icon {
             margin-left: 5rem;

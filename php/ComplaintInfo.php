@@ -3,7 +3,45 @@
 include 'config.php' ;
 session_start();
 
+// $sendOTP = false ; 
+
+
+if (isset($_POST['save'])) {
+
+
+
+    $otpentered = $_POST['otp'];
+    $otp = $_COOKIE['otpsent'];
+
+    // Check if the OTP entered by the user matches the stored OTP in the cookie
+    if ($otpentered == $otp) {
+
+        echo '<script>';
+        echo 'ConfirmationAlert("Verified","OTP is verified","../php/cAdminPanel.php");';
+        echo '</script>';
+        
+       
+        
+    } else {
+        echo '<script>';
+        echo 'ErrorAlert("Failed","Invalid OTP","../html/forgot2.html");';
+        echo '</script>';
+        echo '<script>alert("Invalid OTP")</script>' ;
+        echo "<script> location.replace('../html/forgot2.html')</script> ";
+       
+    }
+
+
+    
+    
+}
+
+
+
 ?>
+
+
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -77,6 +115,9 @@ session_start();
         .nav:hover {
             width: 250px;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
         
 
         .content {
@@ -87,14 +128,6 @@ session_start();
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
-
-        
-
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -368,7 +401,52 @@ session_start();
    </head>
 <body>
   
+<script>
 
+
+function displayBtn() {
+            var selectedOption = document.getElementById("actions").value;
+            var otpContainer = document.getElementById("otp-container");
+            var submitBtnContainer = document.getElementById("submit-btn-container");
+
+            if (selectedOption === "volvo") {
+                // Show OTP input and submit button
+                // <?php $sendOTP = true ; ?>
+                otpContainer.style.display = "block";
+                submitBtnContainer.style.display = "none";
+                
+                
+            } else {
+                // Hide OTP input and only show submit button
+                otpContainer.style.display = "none";
+                submitBtnContainer.style.display = "block";
+            }
+        }
+
+
+let count = 0 ; 
+const toggle = () =>{
+
+
+var a = document.querySelector(".dark");
+
+
+if(count == 0){
+document.body.classList.add("light-mode");
+a.innerHTML="Dark Mode";
+count = 1 ;
+
+}else{
+document.body.classList.remove("light-mode");
+a.innerHTML="Light Mode";
+count = 0 ; 
+}
+
+
+}
+
+
+</script>
 
 
 <div class="nav">
@@ -392,7 +470,7 @@ session_start();
 
 
     ?>
-     <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+     <!-- <p><?php echo $capitalizedu ;?></p>   Replace it with first letter of Username of user  -->
 </div>
 
 <div class="nav-content">
@@ -446,76 +524,141 @@ session_start();
 <div class="content">
 
 
+
     <style>
 
         .complaintInfo{
-
-            height: 80%;
-            width: 80%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            padding: 1rem;
             background-color: white;
+            border-radius: 10px;
+            color: black;
         }
+
+
+
     </style>
+
+    
 
 
             <div class="complaintInfo">
-                <p>hi</p>
+
+
+
+                <?php
+                    include 'config.php' ;
+                    $complaint_id = $_GET['id'];
+                    $sql = "select * from complaints where complaint_id = '$complaint_id'";
+                    $result = $conn->query($sql);
+                    $count = 1 ; 
+
+
+
+                            // Loop through the result set and generate table rows
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+
+                    ?>
+
+
+                    <h3>Complaint ID :- <?php  echo $row["complaint_id"];?><h3>
+                    <h3>Complaint Type :- <?php  echo $row["complaint_type"];?><h3>
+                    <h3>Subject :- <?php  echo $row["subject"];?><h3>
+                    <h3>Description :- <?php  echo $row["description"];?><h3>
+                    <h3>Images :- <a href = "<?php echo $row["folder"]?> " target="blank">View File</a><h3>
+                    <h3>Regd Date :- <?php  echo $row["time"];?><h3>
+                    <h3>Last Updation :- <?php  echo $row["last_updation"];?><h3>
+                    <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
+
+                    <?php
+
+                        }
+                    }
+                    ?>
+
+
+
+
+
+                    <div class="action">
+
+
+                       
+                        <p>Take Actions</p>
+                        <select id="actions" onchange="displayBtn()">
+                            <option value="volvo">Initial Visit Done</option>
+                            <option value="saab">Complaint Solved</option>
+                        </select>
+
+                       
+                        <!-- OTP Container -->
+                        <div id="otp-container" style="display: none;">
+
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
+                            <label for="otp">Enter OTP:</label>
+                            <input type="number" id="otp" name="otp">
+
+                            <input type="submit" name = "save" value = "submit">
+
+                            </form>
+                        </div>
+
+                        <!-- Submit Button Container -->
+                        <div id="submit-btn-container" style="display: none;">
+                            <button type="button" name = "save">Submit</button>
+                        </div>
+                        
+                    </div>
+                    
+                    
+
+
+                    
+                
+
+
+                <div class="photos1">Photos uploaded from user</div>
+                <div class="photos2"> Photos Uploaded from contractor </div> 
+
             </div>
 
 
-<!-- <?php
-    include 'config.php' ;
-    $complaint_id = $_GET['id'];
-    $sql = "select * from complaints where complaint_id = '$complaint_id'";
-    $result = $conn->query($sql);
-    $count = 1 ; 
 
-
-
-            // Loop through the result set and generate table rows
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-
-    ?>
-
-
-    <h3>Complaint ID :- <?php  echo $row["complaint_id"];?><h3>
-    <h3>Complaint Type :- <?php  echo $row["complaint_type"];?><h3>
-    <h3>Subject :- <?php  echo $row["subject"];?><h3>
-    <h3>Description :- <?php  echo $row["description"];?><h3>
-    <h3>Images :- <a href = "<?php echo $row["folder"]?> " target="blank">View File</a><h3>
-    <h3>Regd Date :- <?php  echo $row["time"];?><h3>
-    <h3>Last Updation :- <?php  echo $row["last_updation"];?><h3>
-    <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
     
-    
+</div>
 
 
-    <?php
+<?php
 
-        }
+// Generate and send OTP when "Initial Visit Done" is selected
+if (false) {
+    function generateRandomOTP() {
+        return rand(100000, 999999);
     }
 
-    ?> -->
+    $otp = generateRandomOTP();
+    setcookie("otpsent", $otp, time() + 300);
 
+    $text = "We hope this email finds you well. You have recently initiated a complaint, and an OTP (One-Time Password) has been generated for the initial visit process.<strong>OTP: $otp </strong></p> Please use the provided OTP during the initial visit of our team. This OTP is valid for a limited time and is crucial for the successful completion of the visit process. If you did not initiate this complaint or have any concerns, please contact our support team immediately.";
 
-<!-- <div class="photos1">Photos uploaded from user</div>
-  <div class="photos2"> Photos Uploaded from contractor </div> -->
-
-
-  
+    include("mail.php");
+    if (smtp_mailer('poojarryadav@gmail.com', 'Initial Visit Verification', $text, "OTP is sent successfully", "OTP not sent, please try again later")) {
+        echo '<script>alert("OTP is sent successfully")</script>';
         
+    } else {
+        echo '<script>alert("OTP not sent, please try again later")</script>';
         
+    }
+}
 
-    
-
-      
-    
-
-
-    
-    
-</div>
-
+?>
 
 
     
@@ -523,34 +666,6 @@ session_start();
     
 
 </div>
-
-
-
-<script>
-let count = 0 ; 
-const toggle = () =>{
-
-
-var a = document.querySelector(".dark");
-
-
-if(count == 0){
-document.body.classList.add("light-mode");
-a.innerHTML="Dark Mode";
-count = 1 ;
-
-}else{
-document.body.classList.remove("light-mode");
-a.innerHTML="Light Mode";
-count = 0 ; 
-}
-
-
-}
-
-
-</script>
-   
       
   
 </body>

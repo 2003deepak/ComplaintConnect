@@ -19,7 +19,7 @@ include 'config.php' ;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    
+    <script src ="../js/sweet.js"></script>
 
    
     <style>
@@ -82,7 +82,7 @@ include 'config.php' ;
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 0vw );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -90,21 +90,16 @@ include 'config.php' ;
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
+
+        /* Adjust content margin when nav width changes */
+         .nav:hover + .content {
+            margin-left: 250px;
         }
+    
 
         .nav:hover .icon {
             margin-left: 5rem;
         }
-        .nav:hover ~ .content {
-            margin-left: 250px;
-        }
-
 
         .nav i{
             font-size: 20px;
@@ -226,9 +221,7 @@ include 'config.php' ;
                     justify-content: center;
                     width: 100%;
                 }
-                .preview{
-                    display: none ;
-                }
+                
 
                 .bars{
                     margin: 1.5vw 0vw 0vw 4vw;
@@ -345,10 +338,121 @@ include 'config.php' ;
     <div class="content">
 
 
+
+        <h2>Add Worker</h2>
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+
+            <label for="aadharCard">Aadhar Card (PDF):</label>
+            <input type="file" id="aadharCard" name="file" accept=".pdf" required><br><br>
+
+            <label for="workArea">Work Area:</label>
+            <select id="workArea" name="workArea" required>
+                <option value="electrician">Electrician</option>
+                <option value="carpenter">Carpenter</option>
+                <option value="plumber">Plumber</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+
+            <input type="submit" value="Submit" name="save">
+        </form>
+
+
      
 
       
     </div>
+
+
+
+    <?php
+
+    include 'config.php' ;
+    if(isset($_POST['save'])){
+
+
+
+      $username=$_POST['username'];
+      $password = $_POST['password'];
+      $email = $_POST['email'];
+      $work_area = $_POST['workArea'];
+      
+    
+      // Used for aadhar card upload 
+      $folder = "../uploaded_images/aadhar_card";
+      $filename = $username.".pdf"; // Rename the file to "roomno.pdf"
+      $tempname = $_FILES["file"]["tmp_name"];
+      $folder = "../uploaded_images/aadhar_card/".$filename ;
+    
+      move_uploaded_file($tempname,$folder);
+
+      $sql1 = "select * from worker where username = '$username' ";
+      $result1 = mysqli_query($conn,$sql1);
+      $row1 = mysqli_num_rows($result1);
+      if($row1 > 0){
+        echo "<script>alert('Username Already Exists')</script>";
+      }else{
+
+            $sql = "INSERT INTO worker (`username`,`password`,`email`,`aadhar_card`, `work_area`) VALUES ('$username','$password' ,'$email','$folder', '$work_area')";
+    
+            if ($conn->query($sql) === TRUE) {
+                
+
+                include("mail.php");
+
+                $message = "
+                            <html>
+                            <head>
+                            <title>Welcome to Our Portal</title>
+                            </head>
+                            <body>
+                            
+                            <p>We hope this message finds you well. We are delighted to inform you that your registration as a worker has been successfully processed. You are now officially a part of our team!</p>
+                            <p>Here are your login details:</p>
+                            <ul>
+                                <li><strong>Username:</strong> $username</li>
+                                <li><strong>Password:</strong> $password</li>
+                            </ul>
+                            <p>Please log in to our portal using the provided credentials. Upon your first login, we highly recommend updating your password for security purposes. You can do this by navigating to your account settings and following the password update instructions.</p>
+                            <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
+                            <p>Thank you for joining us, and we look forward to working together!</p>
+                            <br>
+                            
+                            </body>
+                            </html>
+                            ";
+
+                smtp_mailer($email,'Welcome! Your Registration is Complete',$message,"Worker is added successfully and notified through EMAIL" ,"Worker was not added");
+                
+            
+            }else {
+                echo '<script>';
+                echo 'ErrorAlert("Failed","Sorry You are not Registered","../html/index.html");';
+                echo '</script>';
+            }
+
+
+
+      }
+
+
+    }
+      
+    
+    
+    
+    $conn->close();
+    
+    ?>
 
 
 
@@ -366,11 +470,7 @@ include 'config.php' ;
         
     
 
-    <div class="preview">
-
-        <p>Hellow</p>
-        
-    </div>
+    
 
 
     <script>

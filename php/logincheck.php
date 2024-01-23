@@ -60,8 +60,8 @@ if(isset($_POST['save'])){
                     if(isset($_POST['rememberme'])){
 
                        
-                        setcookie("usernamecookie",$username,time()+20); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
-                        setcookie("passwordcookie",$password,time()+20); // During Time of deployment , 20 should be replaced to 604800sec
+                        setcookie("usernamecookie",$username,time()+200); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
+                        setcookie("passwordcookie",$password,time()+200); // During Time of deployment , 20 should be replaced to 604800sec
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];

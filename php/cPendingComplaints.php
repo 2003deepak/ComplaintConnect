@@ -80,6 +80,9 @@ include 'config.php' ;
         .nav:hover {
             width: 250px;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
         
 
         .content {
@@ -99,11 +102,6 @@ include 'config.php' ;
                 background-color: var(--preview-background-color);
         }
 
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -354,39 +352,30 @@ include 'config.php' ;
         $sql = "select * from register";
         $sql1 = "select * from complaints";
 
-        $result = $conn->query($sql);  // Fetching address from register table
+        $result1 = $conn->query($sql1);
+        $result = $conn->query($sql);
+        
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $building = $row['building'];
-                $room = $row['room'];
-                $address = $building . " " . $room;
-                ?>
+        while (($row = $result->fetch_assoc()) !== null && ($row1 = $result1->fetch_assoc()) !== null) {
+            $building = $row['building'];
+            $room = $row['room'];
+            $address = $building . " " . $room;
 
-                <?php
-                $result1 = $conn->query($sql1); // Fetching complaint info from complaints table
-                if ($result1->num_rows > 0) {
-                    while ($row1 = $result1->fetch_assoc()) {
-                        ?>
-                        <tr class="active-row">
-                            <td><?php echo $row1["complaint_id"] ?></td>
-                            <td><?php echo $row1["complaint_type"] ?></td>
-                            <td><?php echo $address ?></td>
-                            <td><?php echo $row1["subject"] ?></td>
-                            <td><a href="../php/ComplaintInfo.php/id=<?php echo $row1['complaint_id']; ?>">view details </a></td>
-                            
-                            <!-- Add View Details link/button here if needed -->
-                        </tr>
-                        <?php
-                    }
-                }
-                ?>
-                <?php
-            }
+            ?>
+            <tr class="active-row">
+                <td><?php echo $row1["complaint_id"] ?></td>
+                <td><?php echo $row1["complaint_type"] ?></td>
+                <td><?php echo $address ?></td>
+                <td><?php echo $row1["subject"] ?></td>
+                <td><a href="../php/ComplaintInfo.php?id=<?php echo $row1['complaint_id']; ?>">View Details</a></td>
+            </tr>
+            <?php
         }
         ?>
+
     </table>
 </div>
+
 
 
 

@@ -100,14 +100,11 @@ include 'config.php' ;
         }
 
 
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
-
         .nav:hover .icon {
             margin-left: 5rem;
+        }
+        .nav:hover ~ .content {
+            margin-left: 250px;
         }
 
         .nav i{
