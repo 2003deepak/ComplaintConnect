@@ -217,6 +217,152 @@ include 'config.php' ;
 
                
             }
+            .boxes{
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
+            }
+            .boxes .box11{
+                width: 15.5vw;
+                height: 150px;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+                border-top: 10px solid #FF5858;
+            }
+
+            .boxes .box13{
+                width: 15.5vw;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                border-radius: 10px;
+                border-top: 10px solid #05FF00;
+            }
+
+            .boxes .count{
+                width: 40%;
+                height: 81px;
+                align-self: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                border-radius: 5px;
+                background-color: var(--box-count-color);
+            }
+
+            .boxes .box12{
+                width: 15.5vw;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                border-radius: 10px;
+
+                border-top: 10px solid #FF9F00;
+            }
+
+            .line{
+                background-color: var(--boxes-bg-color);
+                width: 79%;
+                margin-top: 1.2rem;
+                margin-bottom: 1.2rem;
+                height: 10px;
+            }
+
+            .complaints{
+                width: 90%;
+                height: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                
+            }
+            .complaints p{
+                color:  var(--text-boxes-color);
+            }
+
+            .complaints .box21{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+                
+                border-radius: 10px;
+                color: var(--font-color);
+
+                
+            }
+            .complaints .box22{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+               
+                border-radius: 10px;
+                color: var(--font-color);
+                
+            }
+            .complaints .box23{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+                border-radius: 10px;
+                color: var(--font-color);
+
+                
+            }
+
+            .phpreply{
+                
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
+            
+        }
+
+        .pendingComplaints , .newComplaints , .completedComplaints{
+            width:295px ; 
+            height: 100vh ; 
+            display: flex;
+           
+            flex-direction: column;
+        }
+
+        .phpreply .box4{
+            width: 295px;
+            height: 8vw;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            padding: 1rem;
+            margin-bottom : 1rem;
+            background-color: var(--boxes-bg-color);
+            border-radius: 10px;
+            color: var(--font-color);
+
+            
+        }
 
            
 
@@ -313,6 +459,10 @@ include 'config.php' ;
         <i class="fa-solid fa-house" ></i>
         <a href="#">Profile</a>
     </div>
+    <div>
+        <i class="fa-solid fa-house" ></i>
+        <a href="addworkers.php">Add Workers</a>
+    </div>
     
 
 </div>
@@ -332,11 +482,95 @@ include 'config.php' ;
 </div>
 
 
+<?php
+
+
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE resolved_time IS NOT NULL";
+$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NOT NULL";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NULL;";
+
+$resultCompleted = $conn->query($completed);
+$resultInProgress = $conn->query($inProgess);
+$resultNewRequest = $conn->query($newRequest);
+
+// Fetch the count values
+$completedCount = ($resultCompleted) ? $resultCompleted->fetch_assoc()['completed_count'] : 0;
+$inProgressCount = ($resultInProgress) ? $resultInProgress->fetch_assoc()['in_progress_count'] : 0;
+$newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_request_count'] : 0;
+
+
+
+
+
+    
+?>
+
 
 
 
 
 <div class="content">
+
+<div class="org-content">
+
+            <div class="inner">
+                <h1>Contractor </h1>
+                <p>Lorem ipsum dolor</p>
+            </div>
+            <div class="boxes">
+                <div class="box11">
+                    <p>New Request</p>
+                        <div class="count">
+                           <p style="color: #FF5858; font-size: 40px;"><?php echo $newRequestCount ; ?></p>
+                        </div>
+
+                </div>
+                <div class="box12">
+                    <p>In Progress</p>
+                        <div class="count">
+                            <p style="color: #FF9F00; font-size: 40px;"><?php echo $inProgressCount ; ?></p>
+                        </div>
+                    
+                </div>
+                <div class="box13">
+                    <p>Completed</p>
+                        <div class="count">
+                           <p style="color: #05FF00; font-size: 40px;"><?php echo $completedCount ; ?></p>
+                        </div>
+                    
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            
+
+            <div class="complaints">
+
+                <div class="box21">
+
+                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>
+
+                    <p style=" font-size: 19px; ">New Request</p>
+                    
+
+                </div>
+                <div class="box22">
+                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>
+                    <p style=" font-size: 19px;">In Progress</p>
+                    
+                    
+                </div>
+                <div class="box23">
+                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
+                    <p style=" font-size: 19px;">Completed</p>
+                    
+                    
+                </div>
+                
+
+
+            </div>
 
 
 

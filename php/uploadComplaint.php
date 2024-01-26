@@ -35,14 +35,12 @@ if(isset($_POST['save'])){
     // Uploading the photo with complaint 
 
     
-    $folder = "../uploaded_images";
-    $filename = $building." _ " . $room ." _ ".$complaint_id. ".jpg"; // Rename the file to "roomno.pdf"
-    $tempname = $_FILES["file"]["tmp_name"];
-    $folder = "../uploaded_images/complaint_images/".$filename ;
+    $folder = "../uploaded_images/complaint_images/";
+    $filename = $building."_" . $room ."_".$complaint_id. ".jpg"; // Rename the file to "roomno.pdf"
+    $tempname = $_FILES["image"]["tmp_name"];
+    $folder = "../uploaded_images/complaint_images/".$filename ; ;
 
     move_uploaded_file($tempname,$folder);
-
-    
 
 
   
@@ -58,9 +56,9 @@ if(isset($_POST['save'])){
    
     }else {
         echo "<script> alert('Complaint is not filed')</script>" ;
-        // echo "<script> location.replace('../php/dashboard.php')</script> ";
+        echo "<script> location.replace('../php/dashboard.php')</script> ";
 
-        echo "<script> alert('Error: " . $conn->error . "')</script>";
+        // echo "<script> alert('Error: " . $conn->error . "')</script>";
     
     }
 }

@@ -29,7 +29,7 @@ if(isset($_POST['save'])){
         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/adminpanel.php")';
         echo '</script>';
         
-    }else if($username == "arun123" & $password == "arun123"){
+    }else if($username == "contractor" & $password == "contractor"){
         $_SESSION['username'] = $username ;
         echo '<script>';
         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/cAdminPanel.php")';
@@ -37,10 +37,11 @@ if(isset($_POST['save'])){
 
     }else{
 
-        $username_search = "select * from register where username='$username' " ;
+        $username_search = "SELECT * FROM register WHERE username='$username' " ;
         $query = mysqli_query($conn, $username_search);
         $username_count = mysqli_num_rows($query);
-        if($username_count){
+
+        if($username_count > 0 ){
 
             $email_pass = mysqli_fetch_assoc($query);
             $db_pass = $email_pass['password'];
@@ -49,26 +50,23 @@ if(isset($_POST['save'])){
 
             if($pass_decode){
 
-                // Checking Whether is the user is Allowed or not 
-                $sql2 = "select isAllowed from register where username = '$username' and isAllowed = 1";
-                $query2 = mysqli_query($conn,$sql2);
+                // Checking Whether the user is Allowed or not 
+                $sql2 = "SELECT isAllowed FROM register WHERE username = '$username' AND isAllowed = 1";
+                $query2 = mysqli_query($conn, $sql2);
                 $row2 = mysqli_num_rows($query2);
 
-                
                 if($row2 == 1){
 
                     if(isset($_POST['rememberme'])){
 
-                       
-                        setcookie("usernamecookie",$username,time()+200); // Note here the time for cookie was 604800sec ( 7 days) but i have dont it manually to 20 sec , for my ease and testing
-                        setcookie("passwordcookie",$password,time()+200); // During Time of deployment , 20 should be replaced to 604800sec
+                        setcookie("usernamecookie",$username,time()+200);
+                        setcookie("passwordcookie",$password,time()+200);
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
                         echo '<script>';
                         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
                         echo '</script>';
-
 
                     }else{
                         
@@ -81,33 +79,23 @@ if(isset($_POST['save'])){
 
                     }
            
-                    
-                
-                
-                }else{
+                } else {
                     echo '<script>';
                     echo 'ErrorAlert("Failed","Permission not granted by admin","../php/login.php")';
                     echo '</script>';
-                 
-                    
-            }
+                }
 
-            
-        }else{
+            } else {
+                echo '<script>';
+                echo 'ErrorAlert("Failed","Invalid username or password","../php/login.php")';
+                echo '</script>';
+            }
+        } else {
+            // Username not found
             echo '<script>';
             echo 'ErrorAlert("Failed","Invalid username or password","../php/login.php")';
             echo '</script>';
-
         }
-
-
-
     }
-
-    
-
 }
-
-}
-
 ?>

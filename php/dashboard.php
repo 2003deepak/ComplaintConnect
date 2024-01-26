@@ -24,6 +24,10 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
     <style>
         
 :root {
@@ -501,6 +505,33 @@ session_start();
 
 
 
+<!-- It is used to display the count of new request and pending as well as completed requests -->
+
+<?php
+
+
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL";
+$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL;";
+
+$resultCompleted = $conn->query($completed);
+$resultInProgress = $conn->query($inProgess);
+$resultNewRequest = $conn->query($newRequest);
+
+// Fetch the count values
+$completedCount = ($resultCompleted) ? $resultCompleted->fetch_assoc()['completed_count'] : 0;
+$inProgressCount = ($resultInProgress) ? $resultInProgress->fetch_assoc()['in_progress_count'] : 0;
+$newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_request_count'] : 0;
+
+
+
+
+
+    
+?>
+
+
+
     
 
 
@@ -519,21 +550,21 @@ session_start();
                 <div class="box11">
                     <p>New Request</p>
                         <div class="count">
-                           <p style="color: #FF5858; font-size: 40px;">12</p>
+                           <p style="color: #FF5858; font-size: 40px;"><?php echo  $newRequestCount ?></p>
                         </div>
 
                 </div>
                 <div class="box12">
                     <p>In Progress</p>
                         <div class="count">
-                            <p style="color: #FF9F00; font-size: 40px;">500</p>
+                            <p style="color: #FF9F00; font-size: 40px;"><?php  echo $inProgressCount ?></p>
                         </div>
                     
                 </div>
                 <div class="box13">
                     <p>Completed</p>
                         <div class="count">
-                           <p style="color: #05FF00; font-size: 40px;">1500</p>
+                           <p style="color: #05FF00; font-size: 40px;"><?php  echo $completedCount ?></p>
                         </div>
                     
                 </div>
@@ -571,106 +602,67 @@ session_start();
             </div>
 
 
-            <script>
-    function displayComplaintDetails(complaintId, complaintType, subject) {
-        // Access JavaScript variables with PHP values
-        console.log("Complaint ID: " + complaintId);
-        console.log("Complaint Type: " + complaintType);
-        console.log("Subject: " + subject);
-
-        // You can use these variables in your JavaScript logic
-    }
-</script>
-
-
-
-
-
            
-
 
             <div class="phpreply">
 
                 <div class="newComplaint">
-
+                    
                     <?php
                         include 'config.php';
 
                         
                             $username = $_SESSION['username'];
 
-                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL ";
+                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL and resolved_time IS NULL";
                             $result = $conn->query($sql);
-
-                            
-                                if ($result->num_rows > 0) {
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
                                     ?>
-                                    
-                                        <?php
-                                        while ($row = $result->fetch_assoc()) {
-                                            ?>
-                                            <div class="box4" >
-                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
-
-
-
-                                            <button onclick="displayComplaintDetails('<?php echo $row["complaint_id"]; ?>')">View Details</button>
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
+                                    <div class="box4">
+                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                        <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                        <br>
+                                    </div>
+                                    <?php
+                                }
+                            }
                                    
-
-                
-                        <?php
-
-                     }
-            
-    
                     ?>
 
                     
 
                 </div>
 
+
+
                 <div class= "pendingComplaints">
 
                 <?php
-                        include 'config.php';
 
-                        
-                            $username = $_SESSION['username'];
 
-                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
-                            $result = $conn->query($sql);
+                    include 'config.php';
 
-                            
-                                if ($result->num_rows > 0) {
-                                    ?>
-                                    
-                                        <?php
-                                        while ($row = $result->fetch_assoc()) {
-                                            ?>
-                                            <div class="box4" onclick="displayComplaintDetails(<?php echo $row['complaint_id']; ?>)">
-                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
+                    $username = $_SESSION['username'];
+                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
+                    $result = $conn->query($sql);
 
-                                            
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
-                                    
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <div class="box4">
+                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                <br>
+                            </div>
+                            <?php
+                        }
+                    }
 
-                                    
-                                    <?php
-
-                                }
-            
-    
                 ?>
 
 
@@ -686,33 +678,24 @@ session_start();
                             
                                 $username = $_SESSION['username'];
 
-                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL";
+                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
                                 $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        ?>
+                                        <div class="box4" style = "margin-left : 2rem ; ">
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                            <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                            <br>
+                                        </div>
+                                        <?php
+                                    }
+                                }
 
                                 
-                                    if ($result->num_rows > 0) {
-                                        ?>
-                                        
-                                            <?php
-                                            while ($row = $result->fetch_assoc()) {
-                                                ?>
-                                                <div class="box4">
-                                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                                <p>Subject: <?php echo $row["subject"]; ?> </p>
-
-                                                
-                                                
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-
-                                        
-                                        <?php
-
-                                    }
-            
+                                    
     
                         ?>
 
@@ -764,7 +747,7 @@ session_start();
 
     <div class="preview">
 
-        <p style = "color:white;">Hellow</p>
+        
         
     </div>
 
@@ -792,6 +775,31 @@ session_start();
             count = 0;
         }
     }
+
+
+
+
+
+    // Used to fetch Complaint Details and display using AJAX 
+
+    $(document).ready(function () {
+            // Attach click event to the "View Full Details" button
+            $('.view-details').click(function () {
+                // Get the complaint ID from the data attribute
+                var complaintId = $(this).data('complaint-id');
+
+                // AJAX request to fetch details
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_complaint_details.php', // Create a separate PHP file to handle this request
+                    data: { complaintId: complaintId },
+                    success: function (response) {
+                        // Display details in the "details" div
+                        $('.preview').html(response);
+                    }
+                });
+            });
+        });
 
    
 </script>

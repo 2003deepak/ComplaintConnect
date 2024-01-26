@@ -314,6 +314,10 @@ include 'config.php' ;
         <i class="fa-solid fa-house" ></i>
         <a href="#">Profile</a>
     </div>
+    <div>
+        <i class="fa-solid fa-house" ></i>
+        <a href="addworkers.php">Add Workers</a>
+    </div>
     
 
 </div>
@@ -344,7 +348,9 @@ include 'config.php' ;
             <th>Complaint Type</th>
             <th>Address</th>
             <th>Subject</th>
+            <th>Worker Assigned</th>
             <th>View Details</th>
+            
         </tr>
 
         <?php
@@ -367,7 +373,8 @@ include 'config.php' ;
                 <td><?php echo $row1["complaint_type"] ?></td>
                 <td><?php echo $address ?></td>
                 <td><?php echo $row1["subject"] ?></td>
-                <td><a href="../php/ComplaintInfo.php?id=<?php echo $row1['complaint_id']; ?>">View Details</a></td>
+                <td><?php echo $row1["worker_assigned"] ?></td>
+                <td><a href="../php/assignWorker.php?id=<?php echo $row1['complaint_id']; ?>">View Details</a></td>
             </tr>
             <?php
         }

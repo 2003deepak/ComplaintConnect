@@ -3,38 +3,7 @@
 include 'config.php' ;
 session_start();
 
-// $sendOTP = false ; 
 
-
-if (isset($_POST['save'])) {
-
-
-
-    $otpentered = $_POST['otp'];
-    $otp = $_COOKIE['otpsent'];
-
-    // Check if the OTP entered by the user matches the stored OTP in the cookie
-    if ($otpentered == $otp) {
-
-        echo '<script>';
-        echo 'ConfirmationAlert("Verified","OTP is verified","../php/cAdminPanel.php");';
-        echo '</script>';
-        
-       
-        
-    } else {
-        echo '<script>';
-        echo 'ErrorAlert("Failed","Invalid OTP","../html/forgot2.html");';
-        echo '</script>';
-        echo '<script>alert("Invalid OTP")</script>' ;
-        echo "<script> location.replace('../html/forgot2.html')</script> ";
-       
-    }
-
-
-    
-    
-}
 
 
 
@@ -46,6 +15,9 @@ if (isset($_POST['save'])) {
   <head>
     <meta charset="UTF-8">
     <title>Complaint Connect</title>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -456,27 +428,24 @@ count = 0 ;
 
     <div>
         <i class="fa-solid fa-house"></i>
-        <a href="../php/dashboard.php">Home</a>
+        <a href="#">Home</a>
     </div>
     <div>
         <i class="fa-solid fa-house" ></i>
-        <a href="../php/profile.php">Profile</a>
+        <a href="../php/cPendingComplaints.php">Pending </a>
     </div>
     <div>
         <i class="fa-solid fa-house"></i>
-        <a href="../php/filecomplaint.php">File Complaint</a>
+        <a href="../php/cCompletedComplaints.php">Completed </a>
+    </div>
+    
+    <div>
+        <i class="fa-solid fa-house" ></i>
+        <a href="#">Profile</a>
     </div>
     <div>
         <i class="fa-solid fa-house" ></i>
-        <a href="../php/complaintHistory.php">Complaint History</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/updateCurrentPassword.php">Update Password</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="#">Close Complaint</a>
+        <a href="addworkers.php">Add Workers</a>
     </div>
 
 </div>
@@ -557,17 +526,45 @@ count = 0 ;
                     <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
                     <h3>Worker Assigned :- <?php  echo $row["worker_assigned"];?><h3>
 
+                    
+
 
                     <?php
 
+                        $complaint_type = $row["complaint_type"];
                         }
                     }
                     ?>
 
+            <div class="assignworker">
+                <form action="<?php echo $_SERVER['PHP_SELF']. '?id=' . $complaint_id ;  ?>" method="post">
+                    <select name="worker_assigned" id="worker_assigned">
+                        <?php
+                        $sql2 = "select * from worker where work_area = 'Electricity'";
+                        $result2 = $conn->query($sql2);
+                        
+                        if ($result2->num_rows > 0) {
+                            while ($row2 = $result2->fetch_assoc()) {
+                                ?>
+                                <option value="<?php echo $row2["username"]; ?>"><?php echo $row2["username"]; ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <!-- Add a submit button here if needed -->
+                    <input type="submit" name = "save" >
+                </form>
+            </div>
+            
 
 
 
-                <div class="photos1">Photos uploaded from user</div>
+
+
+                <div class="photos1">Photos uploaded from user
+                    
+                </div>
                 <div class="photos2"> Photos Uploaded from contractor </div> 
 
             </div>
@@ -581,6 +578,44 @@ count = 0 ;
     
 
 </div>
+
+
+
+
+<!-- This part is used to update the worker assigned to the complaint table  -->
+<?php
+
+
+include 'config.php';
+
+if (isset($_POST['save'])) {
+    $worker_assigned = $_POST['worker_assigned'];
+
+    
+        $sql = "UPDATE complaints SET `worker_assigned` = '$worker_assigned', `last_updation` = NOW() WHERE `complaint_id` = '$complaint_id'";
+
+
+        if ($conn->query($sql) === TRUE) {
+            
+            echo '<script>';
+            echo 'ConfirmationAlert("Updated","Worker is Assigned","../php/cAdminPanel.php")';
+            echo '</script>';
+            
+        } else {
+            echo '<script>';
+            echo 'ErrorAlert("Not Updated","Worker is not Assigned","../php/cAdminPanel.php")';
+            echo '</script>';
+        }
+    
+}
+
+
+
+
+
+
+
+?>
       
   
 </body>

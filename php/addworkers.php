@@ -294,16 +294,13 @@ include 'config.php' ;
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="../php/edituser.php">Edit User</a>
+                <a href="../php/cPendingComplaints.php">Pending </a>
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="#">Complaint Status</a>
+                <a href="../php/cCompletedComplaints.php">Completed </a>
             </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="#">Close Complaint</a>
-            </div>
+            
             <div>
                 <i class="fa-solid fa-house" ></i>
                 <a href="#">Profile</a>
@@ -312,6 +309,8 @@ include 'config.php' ;
                 <i class="fa-solid fa-house" ></i>
                 <a href="addworkers.php">Add Workers</a>
             </div>
+
+           
             
 
         </div>
@@ -357,9 +356,9 @@ include 'config.php' ;
 
             <label for="workArea">Work Area:</label>
             <select id="workArea" name="workArea" required>
-                <option value="electrician">Electrician</option>
-                <option value="carpenter">Carpenter</option>
-                <option value="plumber">Plumber</option>
+                <option value="Electricity">Electrician</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Water">Plumber</option>
                 <!-- Add more options as needed -->
             </select><br><br>
 

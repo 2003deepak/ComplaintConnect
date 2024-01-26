@@ -315,10 +315,7 @@ include 'config.php' ;
                 <i class="fa-solid fa-house" ></i>
                 <a href="#">Profile</a>
             </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="addworkers.php">Add Workers</a>
-            </div>
+            
             
 
         </div>
