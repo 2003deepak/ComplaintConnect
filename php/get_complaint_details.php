@@ -10,20 +10,34 @@ if (isset($_POST['complaintId'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Output the details as desired
 
-        echo "<p>Complaint ID: " . $row['complaint_id'] . "</p>";
-        echo "<p>Complaint Type: " . $row['complaint_type'] . "</p>";
-        echo "<p>Subject: " . $row['subject'] . "</p>";
-
-        // Display the image if the 'photo' column is not empty
-        if (!empty($row['folder'])) {
-            echo "<p>Photo: <img src='".$row['folder']."' alt='Complaint Photo'></p>";
-        }
-
-        echo "<p>Date: " . $row['time'] . "</p>";
-        echo "<p>Worker Assigned: " . $row['worker_assigned'] . "</p>";
-        // Add more details as needed
+        // Display the image if the 'folder' column is not empty
+        echo "
+            <div class='imgComplaint'>
+                <img src='" . $row['folder'] . "' alt='complaint'>
+            </div>
+            <div class='complaintDetails'>
+                <div class='cInfo'>
+                    <div class='cDetails'>
+                        <div class='cHeading'>
+                            <p>Details</p>
+                        </div>
+                        <p>Complaint ID: " . $row['complaint_id'] . "</p>
+                        <p>Complaint Type: " . $row['complaint_type'] . "</p>
+                        <p>Subject: " . $row['subject'] . "</p>
+                        <p>Date: " . $row['time'] . "</p>
+                    </div>
+                </div>
+                <div class='description'>
+                    <div class='desc-data'>
+                        <p>" . $row["description"]. "</p>
+                    </div>
+                </div>
+                <div class='cBtn'>
+                    <button><a href='../php/ComplaintInfo.php?id=" . $row['complaint_id'] . "'>View Complaint</a></button>
+                </div>
+            </div>
+        ";
     }
 }
 ?>

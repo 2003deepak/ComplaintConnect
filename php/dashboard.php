@@ -369,6 +369,72 @@ session_start();
             
         }
 
+
+        /* Css for preview panel  */
+
+        .imgComplaint{
+            width: 100vw;
+            height: 20.5vw;
+
+        }
+        .imgComplaint img{
+            margin-left: 3.9vw;
+            margin-top: 1vw ;
+            height: 80%;
+            /* aspect-ratio: 3 / 2;
+            object-fit: contain; */
+        }
+
+        .complaintDetails{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0f0f0f;
+            height: 100%;
+
+        }
+
+        .complaintDetails p{
+            color: var(--font-color);
+        }
+        .cInfo{
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+        .cDetails{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 24vw;
+            height: 20vh;
+            /* background-color: orange; */
+        }
+        .description{
+            width: 75%;
+            height: 7vw;
+            background-color: #161717;
+            margin-top: 2rem;
+            display: flex;
+            padding : 1rem ;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.7rem;
+        }
+
+        .cBtn button{
+            width: 10vw;
+            height: 3vw;
+            border: none;
+            border-radius: 8px;
+            color: var(--font-color);
+            font-size: 19px;
+            background-color: #05FF00;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
             
            
            
@@ -746,6 +812,12 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 
     <div class="preview">
+
+        
+
+        
+        
+    </div>
 
         
         
