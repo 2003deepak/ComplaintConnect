@@ -108,7 +108,7 @@ session_start();
         }
 
         .nav i{
-            font-size: 20px;
+            font-size: 22px;
             color: #8C8C8C;
         }
 
@@ -152,33 +152,48 @@ session_start();
                 
 
             }
-            .nav-content div , .nav-content-down div{
+            .nav-content{
+                
                 display: flex;
-                margin-left: 0.3rem;
+                flex-direction: column;
+                overflow: hidden;
                 gap: 1rem;
+                position: relative;
+                top: 10rem;
+                
+            }
+
+            .nav-content-down{
+                
                 display: flex;
-                justify-content:flex-start;
+                flex-direction: column;
+                gap: 1rem;
+                position: relative;
+                overflow: hidden;
+                bottom: 2rem;
+            }
+            
+            .nav-content div {
+                width: 250px;
+                padding-left: 25px;
+                display: flex;
+                gap: 1rem;
+                margin-left: 0.3rem;
+                justify-content: flex-start;
                 align-items: center;
-                height: 53px;
-                padding-left: 20px;
-                width: 225px;
                 border-radius: 10px 0px 0px 10px;
             }
 
-
-            .nav-content{
-                position: absolute;
+            .nav-content-down div {
+                width: 250px;
                 display: flex;
-                flex-direction: column;
+                margin-left: 0.3rem;
                 gap: 1rem;
-                top: 10rem;
-            }
-            .nav-content-down{
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                bottom: 2rem;
+                justify-content: flex-start;
+                align-items: center;
+                height: 53px;
+                padding-left: 25px;
+                border-radius: 10px 0px 0px 10px;
             }
 
             .nav:hover .nav-content a , .nav:hover .nav-content-down a {
@@ -273,11 +288,7 @@ session_start();
 <div class="nav">
 
 
-        <div class="bars">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-        
-
+       
        
         <div class="icon">
 

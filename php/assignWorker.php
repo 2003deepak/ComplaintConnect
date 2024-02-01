@@ -106,7 +106,7 @@ session_start();
         }
 
         .nav i{
-            font-size: 20px;
+            font-size: 22px;
             color: #8C8C8C;
         }
 

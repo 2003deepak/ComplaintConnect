@@ -8,34 +8,38 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+
 <?php
 include 'config.php';
 
 if (isset($_POST['save'])) {
-    $otpentered = $_POST['otp'];
-    $otp = $_COOKIE['emailotp'];
+    $otpEntered = $_POST['otp'];
 
-    // Check if the OTP entered by the user matches the stored OTP in the cookie
-    if ($otpentered == $otp) {
+    if(isset($_COOKIE['emailotp'])){
 
+        if($otpEntered == $_COOKIE['emailotp']){
+
+            // Unset the cookie by setting it with an expiration time in the past
+            setcookie("emailotp", "", time() - 3600, "/");
+
+            echo '<script>';
+            echo 'ConfirmationAlert("Verified","OTP is verified","../html/resetPassword.html");';
+            echo '</script>';
+
+        }else{
+            echo '<script>';
+            echo 'ErrorAlert("Failed","Invalid OTP","../html/forgot2.html");';
+            echo '</script>';
+        }
+    }else{
         echo '<script>';
-        echo 'ConfirmationAlert("Verified","OTP is verified","../html/resetPassword.html");';
+        echo 'ErrorAlert("Failed","OTP Expired","../html/forgot2.html");';
         echo '</script>';
-        
-       
-        
-    } else {
-        echo '<script>';
-        echo 'ErrorAlert("Failed","Invalid OTP","../html/forgot2.html");';
-        echo '</script>';
-        echo '<script>alert("Invalid OTP")</script>' ;
-        echo "<script> location.replace('../html/forgot2.html')</script> ";
-       
     }
 }
 ?>
-    
+
 </body>
 </html>
 
