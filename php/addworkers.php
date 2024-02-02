@@ -398,6 +398,9 @@ include 'config.php' ;
       $password = $_POST['password'];
       $email = $_POST['email'];
       $work_area = $_POST['workArea'];
+
+       // Encryption of Password
+      $str_pass = password_hash($password,PASSWORD_BCRYPT);
       
     
       // Used for aadhar card upload 
@@ -415,7 +418,7 @@ include 'config.php' ;
         echo "<script>alert('Username Already Exists')</script>";
       }else{
 
-            $sql = "INSERT INTO worker (`username`,`password`,`email`,`aadhar_card`, `work_area`) VALUES ('$username','$password' ,'$email','$folder', '$work_area')";
+            $sql = "INSERT INTO worker (`username`,`password`,`email`,`aadhar_card`, `work_area`) VALUES ('$username','$str_pass' ,'$email','$folder', '$work_area')";
     
             if ($conn->query($sql) === TRUE) {
                 

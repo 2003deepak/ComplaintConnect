@@ -98,4 +98,70 @@ if(isset($_POST['save'])){
         }
     }
 }
+
+
+
+
+// Temporary for the worker 
+
+if(isset($_POST['worker'])){
+
+    $username=$_POST['username'];
+    $password = $_POST['password'];
+
+    
+    $username_search = "SELECT * FROM worker WHERE username='$username' " ;
+    $query = mysqli_query($conn, $username_search);
+    $username_count = mysqli_num_rows($query);
+
+    if($username_count > 0 ){
+
+        $email_pass = mysqli_fetch_assoc($query);
+        $db_pass = $email_pass['password'];
+        $db_email = $email_pass['email'];
+
+        $pass_decode = password_verify($password, $db_pass);
+        
+
+        if($pass_decode){
+
+               
+
+                    if(isset($_POST['rememberme'])){
+
+                        setcookie("usernamecookie",$username,time()+200);
+                        setcookie("passwordcookie",$password,time()+200);
+                        $_SESSION['username'] = $username ;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['email']= $email_pass['email'];
+                        echo '<script>';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/Wdashboard.php")';
+                        echo '</script>';
+
+                    }else{
+                        
+                        $_SESSION['username'] = $username ;
+                        $_SESSION['password'] = $password;
+                        $_SESSION['email'] = $email_pass['email'];
+                        echo '<script>';
+                        echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/Wdashboard.php")';
+                        echo '</script>';
+
+                    }
+           
+                
+
+        } else {
+                echo '<script>';
+                echo 'ErrorAlert("Failed","Invalid username or password","../php/login.php")';
+                echo '</script>';
+        }
+    } else {
+            // Username not found
+            echo '<script>';
+            echo 'ErrorAlert("Failed","Invalid username or password","../php/login.php")';
+            echo '</script>';
+        }
+}
+
 ?>

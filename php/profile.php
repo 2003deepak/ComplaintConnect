@@ -2,10 +2,16 @@
 session_start();
 include 'config.php' ; 
 ?>
+
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title>Complaint Connect</title>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
+
 
      <!-- DM Sans  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -485,13 +491,15 @@ include 'config.php' ;
           if($username_count){
 
               $query1 = mysqli_fetch_assoc($query);
-              if($query1['name']){
-                $name = $query1['name'];
+              if(!$query1['name']){
+                $name = "";
               }
 
-              if($query1['user_profile']){
-                $user_profile = $query1['user_profile'];
+              if(!$query1['user_profile']){
+                $user_profile = "../images/user_logo.png";
               }
+              $name = $query1['name'];
+              $user_profile = $query1['user_profile'];
               $building = $query1['building'];
               $room = $query1['room'];
               $address = $building . "/" . $room;
@@ -559,8 +567,7 @@ include 'config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     $name = $_POST['name'];
 
-    // Check if the file was successfully uploaded
-    if ($_FILES["image"]["error"] == 0) {
+   
         $folder = "../uploaded_images/profile_image/";
         $filename = $building . "_" . $room . ".png"; // Rename the file to "roomno.pdf"
         $tempname = $_FILES["image"]["tmp_name"];
@@ -573,7 +580,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         if ($conn->query($sql) === TRUE) {
             
             echo '<script>';
-            echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/profile.php")';
+            echo 'ConfirmationAlert("Success","Profile Updated","../php/profile.php")';
             echo '</script>';
             
         } else {
@@ -581,11 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             echo 'ErrorAlert("Failed","Updation Failed","../php/profile.php")';
             echo '</script>';
         }
-    } else {
-        echo '<script>';
-        echo 'alert("Error uploading file.");';
-        echo '</script>';
-    }
+    
 }
 ?>
 

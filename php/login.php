@@ -34,6 +34,8 @@
             <a href="../html/forgot.html" class="forgot">Forgot Password ?</a>
     
             <input type = "submit" value="Login" name = "save" class="btn1">
+            <br>
+            <input type = "submit" value="Login For Worker Temp" name = "worker" class="btn1">
             <div class="line1"></div>
             <p style="display: inline-block;font-size: 14px;">or</p>
             <div class="line2"></div>

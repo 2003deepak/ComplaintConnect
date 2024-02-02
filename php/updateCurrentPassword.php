@@ -20,7 +20,7 @@ if (isset($_POST['save'])) {
     setcookie("updateotp",$otp,time()+300);
 
     if($currentPassword == $_SESSION['password']){
-      if(smtp_mailer('poojarryadav@gmail.com','Password Updation','Hi You have request for recovery of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only',"OTP is sent succesfully","OTP not send , pls try again later")){
+      if(smtp_mailer('poojarryadav@gmail.com','Password Updation','Hi You have request for updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only',"OTP is sent succesfully","OTP not send , pls try again later")){
         $otpsent = true ; 
        
       }else{
@@ -358,11 +358,6 @@ function generateRandomOTP() {
 
 <div class="nav">
 
-
-        <div class="bars">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-        
 
        
         <div class="icon">
