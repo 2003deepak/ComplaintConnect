@@ -638,7 +638,7 @@ if ($result->num_rows > 0) {
           
           <td> <?php echo $row["complaint_id"] ?>   </td>
           <td> <?php echo $row["subject"] ?>   </td>
-          <td><a href="../php/takeAction.php">Take Action</a></td>
+          <td><a href="../php/takeAction.php?id=<?php echo $row['complaint_id']; ?>">Take Action</a></td>
           
         </tr>
         <?php
