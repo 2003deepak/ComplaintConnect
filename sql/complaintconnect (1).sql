@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 08:16 PM
+-- Generation Time: Feb 03, 2024 at 08:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -75,7 +75,7 @@ CREATE TABLE `register` (
 INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
 (8, 'Deepak Kumar Yadav', 'deepak123', '$2y$10$Edx/H9c0bu/zltldqTt8veiTTrW5HBQ1G2CRYQpfildo9Bwbo9802', 'deepak@gmail.com', '110', '5', '../uploaded_images/allotment_letter/110_5.pdf', '../uploaded_images/profile_image/110_5.png', 1),
 (17, NULL, 'krishna123', '$2y$10$yKH1QaibyoVHCOLrb89O2.v4VwPR5pVtHBgnZhyNptO12UhUOKTB2', 'krishna@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', NULL, 0),
-(9, NULL, 'rahul123', '$2y$10$aHZciYx4s9qtgH9b9.0O.OeTrR2q3ed3o2drge2DbsSeGZuJwEf6.', 'rahul@gmail.com', '210', '5', '../uploaded_images/allotment_letter/210_5.pdf', NULL, 1),
+(9, 'Rahul', 'rahul123', '$2y$10$aHZciYx4s9qtgH9b9.0O.OeTrR2q3ed3o2drge2DbsSeGZuJwEf6.', 'rahul@gmail.com', '210', '5', '../uploaded_images/allotment_letter/210_5.pdf', '../uploaded_images/profile_image/210_5.png', 1),
 (15, NULL, 'sita123', '$2y$10$dXf8WppBS4Xw5TYLRnFTIeLlDdp.Qs6cVughhaaukWAaBnRJVDyqu', 'sita@gmail.com', '179', '1', '../uploaded_images/allotment_letter/179_1.pdf', NULL, 0);
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `buildin
 
 CREATE TABLE `worker` (
   `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(60) NOT NULL,
   `aadhar_card` varchar(255) NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -98,9 +98,18 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `work_area`) VALUES
-('rishikesh', 'rishikesh', 'yadavrishikesh5690@gmail.com', '../uploaded_images/aadhar_card/rishikesh.pdf', '', 'Carpenter'),
-('sita123', 'sita123', 'poojarryadav@gmail.com', '../uploaded_images/aadhar_card/sita123.pdf', '', 'Electricity'),
-('suraj', 'suraj', 'yadavsuraj7449@gmail.com', '../uploaded_images/aadhar_card/suraj.pdf', '', 'Electricity');
+('mukesh123', '$2y$10$zEVP02SBQMs25TYqL354V.cC2L3ECNwKycUmN4WmwpxRN00aVRiNa', 'yadavsuraj7449@gmail.com', '../uploaded_images/aadhar_card/mukesh123.pdf', '', 'Water');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worker_action`
+--
+
+CREATE TABLE `worker_action` (
+  `complaint_id` varchar(30) NOT NULL,
+  `actionTaken` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -110,7 +119,8 @@ INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `w
 -- Indexes for table `complaints`
 --
 ALTER TABLE `complaints`
-  ADD PRIMARY KEY (`username`,`complaint_id`);
+  ADD PRIMARY KEY (`username`,`complaint_id`),
+  ADD KEY `complaint_id` (`complaint_id`);
 
 --
 -- Indexes for table `register`
@@ -128,6 +138,12 @@ ALTER TABLE `worker`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `worker_action`
+--
+ALTER TABLE `worker_action`
+  ADD PRIMARY KEY (`complaint_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -136,6 +152,16 @@ ALTER TABLE `worker`
 --
 ALTER TABLE `register`
   MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `complaints`
+--
+ALTER TABLE `complaints`
+  ADD CONSTRAINT `complaints_ibfk_1` FOREIGN KEY (`complaint_id`) REFERENCES `worker_action` (`complaint_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

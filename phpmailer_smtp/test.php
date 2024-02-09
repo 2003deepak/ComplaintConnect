@@ -1,5 +1,5 @@
 <?php
-include('smtp/PHPMailerAutoload.php');
+include('../smtp/PHPMailerAutoload.php');
 
 echo smtp_mailer('to_email','Subject','html');
 function smtp_mailer($to,$subject, $msg){

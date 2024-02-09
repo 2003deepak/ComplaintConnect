@@ -566,7 +566,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/WnewComplaints.php">New Complaints</a>
+                <a href="../php/filecomplaint.php">New Complaints</a>
             </div>
             <div>
                 <i class="fa-solid fa-clock"></i>
@@ -599,30 +599,7 @@ session_start();
 
 
 
-<!-- It is used to display the count of new request and pending as well as completed requests -->
 
-<?php
-
-
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL";
-$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL;";
-
-$resultCompleted = $conn->query($completed);
-$resultInProgress = $conn->query($inProgess);
-$resultNewRequest = $conn->query($newRequest);
-
-// Fetch the count values
-$completedCount = ($resultCompleted) ? $resultCompleted->fetch_assoc()['completed_count'] : 0;
-$inProgressCount = ($resultInProgress) ? $resultInProgress->fetch_assoc()['in_progress_count'] : 0;
-$newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_request_count'] : 0;
-
-
-
-
-
-    
-?>
 
 
 
@@ -632,225 +609,59 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
     <div class="content">
 
 
-
-        <div class="org-content">
-
-            <div class="inner">
-                <h1>Deepak 
-                </h1>
-                <p>Lorem ipsum dolor</p>
-            </div>
-            <div class="boxes">
-                <div class="box11">
-                    <p>New Request</p>
-                        <div class="count">
-                           <p style="color: #FF5858; font-size: 40px;"><?php echo  $newRequestCount ?></p>
-                        </div>
-
-                </div>
-                <div class="box12">
-                    <p>In Progress</p>
-                        <div class="count">
-                            <p style="color: #FF9F00; font-size: 40px;"><?php  echo $inProgressCount ?></p>
-                        </div>
-                    
-                </div>
-                <div class="box13">
-                    <p>Completed</p>
-                        <div class="count">
-                           <p style="color: #05FF00; font-size: 40px;"><?php  echo $completedCount ?></p>
-                        </div>
-                    
-                </div>
-            </div>
-
-            <div class="line"></div>
-
-            
-
-            <div class="complaints">
-
-                <div class="box21">
-
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>
-
-                    <p style=" font-size: 19px; ">New Request</p>
-                    
-
-                </div>
-                <div class="box22">
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>
-                    <p style=" font-size: 19px;">In Progress</p>
-                    
-                    
-                </div>
-                <div class="box23">
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
-                    <p style=" font-size: 19px;">Completed</p>
-                    
-                    
-                </div>
-                
-
-
-            </div>
-
-
-           
-
-            <div class="phpreply">
-
-                <div class="newComplaint">
-                    
-                    <?php
-                        include 'config.php';
-
-                        
-                            $username = $_SESSION['username'];
-
-                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL and resolved_time IS NULL";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    ?>
-                                    <div class="box4">
-                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                        <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                        <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                        <br>
-                                    </div>
-                                    <?php
-                                }
-                            }
-                                   
-                    ?>
-
-                    
-
-                </div>
-
-
-
-                <div class= "pendingComplaints">
-
-                <?php
-
-
-                    include 'config.php';
-
-                    $username = $_SESSION['username'];
-                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <div class="box4">
-                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                <br>
-                            </div>
-                            <?php
-                        }
-                    }
-
-                ?>
-
-
-                </div>
-
-
-                <div class= "completedComplaints">
-
-
-                    <?php
-                            include 'config.php';
-
-                            
-                                $username = $_SESSION['username'];
-
-                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
-                                $result = $conn->query($sql);
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        ?>
-                                        <div class="box4" style = "margin-left : 2rem ; ">
-                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                            <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                            <br>
-                                        </div>
-                                        <?php
-                                    }
-                                }
-
-                                
-                                    
-    
-                        ?>
-
-
-                </div>
-
-                
-
-                
-            </div>
-    
-   
-
-
-
-            
-
-
-
-
-            
-
-            
-
-            
-
-            
-
-            
-            
-        </div>
+    <table class="content-table">
+        <tr>
+          <th>Complaint ID</th>
+          <th>Subject</th>
+          
+        </tr>
 
         
+        <?php
+
+include 'config.php' ;
+$sql = "SELECT 
+complaints.*,
+worker_action.actionTaken
+FROM complaints
+JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id;
+
+";
+$result = $conn->query($sql);
+$count = 1 ; 
+// Loop through the result set and generate table rows
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+
+      ?>
+        <tr class="active-row">
+          
+          <td> <?php echo $row["complaint_id"] ?>   </td>
+          <td> <?php echo $row["subject"] ?>   </td>
+          <td><a href="../php/takeAction.php">Take Action</a></td>
+          
+        </tr>
+        <?php
+    }
+}
+
+// Close the connection
+$conn->close();
+?>
+</table> 
+
+
 
         
-
             
 
             
-        
-    </div>
-
-
-    <!-- Loading all complaints to display in preview mode -->
-
-  
-
-
-
-    <div class="preview">
-
-        
-
-        
-        
+            
     </div>
 
         
-        
-    </div>
 
+        
 
     
 
@@ -880,26 +691,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 
 
-    // Used to fetch Complaint Details and display using AJAX 
-
-    $(document).ready(function () {
-            // Attach click event to the "View Full Details" button
-            $('.view-details').click(function () {
-                // Get the complaint ID from the data attribute
-                var complaintId = $(this).data('complaint-id');
-
-                // AJAX request to fetch details
-                $.ajax({
-                    type: 'POST',
-                    url: 'get_complaint_details.php', // Create a separate PHP file to handle this request
-                    data: { complaintId: complaintId },
-                    success: function (response) {
-                        // Display details in the "details" div
-                        $('.preview').html(response);
-                    }
-                });
-            });
-        });
+    
 
    
 </script>

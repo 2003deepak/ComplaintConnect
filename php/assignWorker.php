@@ -540,7 +540,7 @@ count = 0 ;
                 <form action="<?php echo $_SERVER['PHP_SELF']. '?id=' . $complaint_id ;  ?>" method="post">
                     <select name="worker_assigned" id="worker_assigned">
                         <?php
-                        $sql2 = "select * from worker where work_area = 'Electricity'";
+                        $sql2 = "select * from worker where work_area = '$complaint_type'";
                         $result2 = $conn->query($sql2);
                         
                         if ($result2->num_rows > 0) {
@@ -593,9 +593,10 @@ if (isset($_POST['save'])) {
 
     
         $sql = "UPDATE complaints SET `worker_assigned` = '$worker_assigned', `last_updation` = NOW() WHERE `complaint_id` = '$complaint_id'";
+        $sql2 = "insert into worker_action(`complaint_id`) values('$complaint_id')";
 
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
             
             echo '<script>';
             echo 'ConfirmationAlert("Updated","Worker is Assigned","../php/cAdminPanel.php")';
