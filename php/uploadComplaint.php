@@ -56,7 +56,9 @@ if(isset($_POST['save'])){
    
     }else {
         echo "<script> alert('Complaint is not filed')</script>" ;
-        echo "<script> location.replace('../php/dashboard.php')</script> ";
+
+        echo $conn->error ; 
+        // echo "<script> location.replace('../php/dashboard.php')</script> ";
 
         // echo "<script> alert('Error: " . $conn->error . "')</script>";
     

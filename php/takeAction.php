@@ -3,7 +3,7 @@
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
 
-setcookie("complaint_id",$_GET("id"),time());
+// setcookie("complaint_id",$_GET("id"),time());
 
 ?>
 

@@ -95,7 +95,7 @@ if (isset($_POST['resend'])){
 
 include('config.php');
 
-if(isset($_POST['submit'])){
+if(isset($_POST['change'])){
 
     $firstpass = $_POST['password'];
     $confirmpass = $_POST['cpassword'];

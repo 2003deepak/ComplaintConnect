@@ -36,7 +36,7 @@ session_start();
     --preview-background-color:#161717;
     --heading-color:white ; 
     --font-color:white;
-    --boxes-bg-color:#161717;
+    --boxes-bg-color:#14151B;
     --box-count-color: #242424;
     
 

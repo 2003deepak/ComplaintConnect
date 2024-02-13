@@ -383,7 +383,7 @@ session_start();
                     ?>
                     <tr class="active-row">
                     <td> <?php echo $row["complaint_id"] ?>   </td>
-                    <td> <?php echo $row["time"] ?>  </td>
+                    <td> <?php echo date("d-m-Y", strtotime($row['time'])); ?>  </td>
 
                     <?php 
                         if($row["last_updation"] == null){
@@ -394,7 +394,7 @@ session_start();
                         <?php
                         }else{
                             ?>
-                            <td><?php echo $row["last_updation"]; ?></td>
+                            <td><?php echo date("d-m-Y", strtotime($row["last_updation"]));  ?></td>
                         
                     <?php
                   }
