@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2024 at 08:32 AM
+-- Generation Time: Feb 13, 2024 at 07:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,8 +45,9 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`, `resolved_time`, `last_updation`, `worker_assigned`) VALUES
-('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-01-26 11:14:16.00', NULL),
+('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-02-03 13:18:42.00', 'mukesh123'),
 ('deepak123', 'C4975', 'Electricity', 'Capacitor problem ', 'kharab capacitor', '../uploaded_images/complaint_images/110_5_C4975.jpg', '2024-01-26 11:12:27.06', '2024-01-26 11:14:32.00', '2024-01-26 11:14:32.00', NULL),
+('deepak123', 'C8772', 'Water', 'sffffffffffff', 'fvvvvvvvvvv', '../uploaded_images/complaint_images/110_5_C8772.jpg', '2024-02-13 23:10:01.17', NULL, NULL, NULL),
 ('deepak123', 'C9389', 'Water', 'Bad Odour', 'kharab smell ', '../uploaded_images/complaint_images/110_5_C9389.jpg', '2024-01-26 11:13:41.30', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -73,9 +74,10 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
-(8, 'Deepak Kumar Yadav', 'deepak123', '$2y$10$Edx/H9c0bu/zltldqTt8veiTTrW5HBQ1G2CRYQpfildo9Bwbo9802', 'deepak@gmail.com', '110', '5', '../uploaded_images/allotment_letter/110_5.pdf', '../uploaded_images/profile_image/110_5.png', 1),
+(8, 'Deepak', 'deepak123', '$2y$10$/Onk46YFHCjV.Qt2xxaLP.eOfPpTHHtJBqgvj5RhRUvh6dAmGAplW', 'deepak@gmail.com', '110', '5', '../uploaded_images/allotment_letter/110_5.pdf', '../uploaded_images/profile_image/110_5.png', 1),
 (17, NULL, 'krishna123', '$2y$10$yKH1QaibyoVHCOLrb89O2.v4VwPR5pVtHBgnZhyNptO12UhUOKTB2', 'krishna@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', NULL, 0),
 (9, 'Rahul', 'rahul123', '$2y$10$aHZciYx4s9qtgH9b9.0O.OeTrR2q3ed3o2drge2DbsSeGZuJwEf6.', 'rahul@gmail.com', '210', '5', '../uploaded_images/allotment_letter/210_5.pdf', '../uploaded_images/profile_image/210_5.png', 1),
+(19, NULL, 'rahul1234', '$2y$10$wYLUFTE64HoJU8sqfUGKgOxJzLkrS/CT5788GAj.60p517OVdXo6.', 'yadavsuraj7449@gmail.com', '210', '5', '../uploaded_images/allotment_letter/210_5.pdf', NULL, 1),
 (15, NULL, 'sita123', '$2y$10$dXf8WppBS4Xw5TYLRnFTIeLlDdp.Qs6cVughhaaukWAaBnRJVDyqu', 'sita@gmail.com', '179', '1', '../uploaded_images/allotment_letter/179_1.pdf', NULL, 0);
 
 -- --------------------------------------------------------
@@ -98,6 +100,8 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `work_area`) VALUES
+('indar', '$2y$10$ndVt7Bjf7HTw8xBKMZlU9uRuxyjVo6PgYXfhYpiy4FlikxE8Tkb2G', 'rahulranjankumar6121@gmail.com', '../uploaded_images/aadhar_card/indar.pdf', '', 'Electricity'),
+('indar123', '$2y$10$xCowXgwF/KJHUdnISGguyejYT3/C8f0cXCisuK3QMduIgcZgpO.cq', 'indar@gmail.com', '../uploaded_images/aadhar_card/indar123.pdf', '', 'Electricity'),
 ('mukesh123', '$2y$10$zEVP02SBQMs25TYqL354V.cC2L3ECNwKycUmN4WmwpxRN00aVRiNa', 'yadavsuraj7449@gmail.com', '../uploaded_images/aadhar_card/mukesh123.pdf', '', 'Water');
 
 -- --------------------------------------------------------
@@ -110,6 +114,13 @@ CREATE TABLE `worker_action` (
   `complaint_id` varchar(30) NOT NULL,
   `actionTaken` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `worker_action`
+--
+
+INSERT INTO `worker_action` (`complaint_id`, `actionTaken`) VALUES
+('C3345', 0);
 
 --
 -- Indexes for dumped tables
@@ -151,17 +162,7 @@ ALTER TABLE `worker_action`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `complaints`
---
-ALTER TABLE `complaints`
-  ADD CONSTRAINT `complaints_ibfk_1` FOREIGN KEY (`complaint_id`) REFERENCES `worker_action` (`complaint_id`);
+  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
