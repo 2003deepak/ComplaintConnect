@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2024 at 07:08 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Feb 14, 2024 at 08:12 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,9 +45,9 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`, `resolved_time`, `last_updation`, `worker_assigned`) VALUES
-('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-02-03 13:18:42.00', 'mukesh123'),
+('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-02-03 13:18:42.00', NULL),
 ('deepak123', 'C4975', 'Electricity', 'Capacitor problem ', 'kharab capacitor', '../uploaded_images/complaint_images/110_5_C4975.jpg', '2024-01-26 11:12:27.06', '2024-01-26 11:14:32.00', '2024-01-26 11:14:32.00', NULL),
-('deepak123', 'C8772', 'Water', 'sffffffffffff', 'fvvvvvvvvvv', '../uploaded_images/complaint_images/110_5_C8772.jpg', '2024-02-13 23:10:01.17', NULL, NULL, NULL),
+('deepak123', 'C8772', 'Water', 'sffffffffffff', 'fvvvvvvvvvv', '../uploaded_images/complaint_images/110_5_C8772.jpg', '2024-02-13 23:10:01.17', NULL, '2024-02-14 09:01:09.00', 'mukesh123'),
 ('deepak123', 'C9389', 'Water', 'Bad Odour', 'kharab smell ', '../uploaded_images/complaint_images/110_5_C9389.jpg', '2024-01-26 11:13:41.30', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -120,7 +120,7 @@ CREATE TABLE `worker_action` (
 --
 
 INSERT INTO `worker_action` (`complaint_id`, `actionTaken`) VALUES
-('C3345', 0);
+('C8772', 1);
 
 --
 -- Indexes for dumped tables
