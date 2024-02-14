@@ -24,9 +24,17 @@ if (isset($_POST['complaintId'])) {
         echo "
         <div class='details'>
             <p id='heading'>Complaint Details</p>
-            <div class='details_btn'>
-                <button id='complete'>Complete</button>
-                <button id='raise'>Raise Ticket</button>
+            <div class='details_btn'>";
+
+        if ($row['resolved_time'] == NULL && $row['last_updation'] == NULL) {
+            echo "<button id='complete' style='background-color: #eb1010'>New Request</button>";
+        } elseif ($row['resolved_time'] == NULL && $row['last_updation'] != NULL) {
+            echo "<button id='complete' style='background-color: #f5f242'>Pending</button>";
+        } elseif ($row['resolved_time'] != NULL && $row['last_updation'] != NULL) {
+            echo "<button id='complete' style='background-color: #4ef542'>Completed</button>";
+        }
+
+        echo "<button id='raise'>Raise Ticket</button>
             </div>
         </div>
 
@@ -40,21 +48,35 @@ if (isset($_POST['complaintId'])) {
                     <div class='cHeading'>
                         <p>Details</p>
                     </div>
-                    <p>Complaint ID: " . $row['complaint_id'] . "</p>
-                    <p>Complaint Type: " . $row['complaint_type'] . "</p>
-                    <p>Subject:  ". $row['subject'] ." </p>
-                    <p>Date: " . $row['time'] . "</p>
+                    <div class='values'>
+                        <ul>
+                            <li> Complaint ID : </li>
+                            <li> Complaint Type :</li>
+                            <li> Subject : </li>
+                            <li> Date : </li>
+                        </ul>
+                        <ul>
+                            <li>" . $row['complaint_id'] . "</li>
+                            <li> " . $row['complaint_type'] . "</li>
+                            <li>" . $row['subject'] . "</li>
+                            <li>" . date("d-m-Y", strtotime($row['time'])) . "</li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
             <div class='description'>
                 <div class='desc-data'>
-                    <p>" . $row["description"]. "</p>
+                    <p>" . $row["description"] . "</p>
                 </div>
             </div>
 
-            <button id = 'view'>View Complaint</button>
-        </div>
-    ";
+            <div class='btn'>
+                <button id='view'>View Complaint</button>
+            </div>
+
+            
+        </div>";
     }
 }
 ?>

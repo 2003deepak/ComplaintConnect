@@ -36,7 +36,7 @@ session_start();
     --preview-background-color:#161717;
     --heading-color:white ; 
     --font-color:white;
-    --boxes-bg-color:#14151B;
+    --boxes-bg-color: #0B0b0f;
     --box-count-color: #242424;
     
 
@@ -384,8 +384,11 @@ session_start();
             padding: 1rem;
             margin-bottom : 1rem;
             background-color: var(--boxes-bg-color);
+            /* background-color: linear-gradient(180deg, var(--boxes-bg-color)); */
             border-radius: 10px;
             color: var(--font-color);
+            
+
 
             
         }
@@ -396,11 +399,44 @@ session_start();
         .preview{
             display: flex;
             flex-direction: column;
-            align-items: start;
-            gap: 20px;
+            align-items: center;
+            gap: 30px;
+            margin-left: 4vw ; 
+            background-image: url("/images/rectangle.png");
             
            
             
+        }
+
+        .cDetails{
+            display:flex ; 
+            flex-direction : column ; 
+            align-items : center ;
+            gap: 1.1rem ; 
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .values{
+            display:flex ; 
+            /* flex-direction : column ;  */
+            gap: 8.3rem ; 
+            
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        ul{
+            list-style-type: none;
+            display:flex ;
+            flex-direction: column;
+            gap: 1.1rem ;
+        }
+
+        .details{
+            display : flex ; 
+            flex-direction: column;
+            margin-left: -15rem ; 
+            
+            gap: 15px;
         }
 
         .details_btn{
@@ -409,7 +445,7 @@ session_start();
         }
 
         #complete{
-            background-color: #70FF00;
+            
             height: 29px;
             width: 107px;
             font-size: 13px;
@@ -430,23 +466,31 @@ session_start();
         }
 
         .desc-data{
-            background-color: #AFAFAF;
-            width: 20rem;
+            background-color: #afafaf47;
+            width: 28rem;
             height: 100px;
+            display: flex ; 
+            justify-content: start ; 
+            border-radius: 3px;
+            padding: 1rem ; 
+            color: #FFFFFF;
         }
 
         .imgComplaint img{
-            width: 20rem;
+            width: 30rem;
+            border-radius: 3px;
         }
         #heading{
-            font-size: 18px;
+            font-size: 20px;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
+            color : #DCDEDB ; 
+            margin-top: 1.5vw ;
         }
 
         #view{
             width: 175px;
-            height: 40px;
+            height: 50px;
             background-color: #000000;
             font-size: 15px;
             font-weight: 500;
@@ -456,6 +500,18 @@ session_start();
             color: white;
         }
 
+        .complaintDetails{
+            display:flex ; 
+            flex-direction: column;
+            gap:2rem ; 
+        }
+
+        .btn{
+            display: flex;
+            justify-content : center ; 
+            align-item : center
+            gap: 1.5rem;
+        }
         
             
            

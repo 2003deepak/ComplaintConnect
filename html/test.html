@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+
+    <!-- Plus Jakarta Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+</head>
+<body> 
+
+    <style>
+
+        body{
+            background-color: #1E1E1E;
+            color: white ;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100px;
+            justify-content: space-between;
+            /* background-color: orange; */
+        }
+        .left_nav{
+             width: 400px;
+             height: 100px;
+             padding-left: 8rem;
+             /* background-color: pink; */
+             display: flex;
+             
+        }
+        .right_nav{
+             width: 50vw;
+             height: 100px;
+             /* padding-left: 8rem; */
+             /* background-color: aqua; */
+             display: flex;
+             margin-right: 2rem ;
+             justify-content: flex-end;
+             align-items:center;
+             
+        }
+        ul{
+            list-style-type: none;
+            font-size: 22px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-content ul{
+            display: flex;
+            gap:4.5rem;
+        }
+        .nav-content a{
+            color: white;
+            text-decoration: none;
+        }
+        .left_nav img{
+            width: 70% ; ;
+        }
+
+        .main{
+            width: 65vw;
+            height: 70vh;
+            display: flex;
+            margin-top: 4rem;
+            /* justify-content: center; */
+            align-items: center;
+            background-color: rgba(65, 66, 73, 1);
+            border-radius: 30px;
+        }
+        .login{
+            width: 30vw;
+            height: 85%;
+            margin-left: 4rem;
+            background-color: rgba(196, 197, 204, 1);
+            border-radius: 43px;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            
+            
+        }
+        a{
+            text-decoration: none;
+            /* color: #B4B4B4 ;  This is the og color used , but due to not implementing box shadow changing it to black*/ 
+            color: black;
+        }
+
+        .logo{
+            width: calc(100% - 35vw);
+            height: 85%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: pink; */
+            
+        }
+        .logo img{
+            width: 155%;
+            margin-top: -5rem;
+            margin-left: 5rem;
+        }
+
+        .form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .register{
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .form .forgot{
+            display: flex;
+            justify-content: left;
+            width: 82%;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            
+        }
+
+        .form input[type="text"] {
+            width: 80%;
+            height: 60.97px;
+            padding-left: 1rem;
+            background-color: #B4B4B4;
+            border: 1px solid #EAEAEA;
+        }
+        .form input[type="password"]{
+            width: 80%;
+            height: 60.97px;
+            padding-left: 1rem;
+            background-color: #B4B4B4;
+            border: 1px solid #EAEAEA;
+        }
+        .form input[type="submit"]{
+            width: 83%;
+            height: 60.97px;
+            background-color: #232429;
+            color: #B4B4B4;
+            font-size: 20px;
+        }
+        .content{
+            
+            margin-left: 3rem;
+        
+        }
+    </style>
+
+    <div class="nav">
+        <div class="left_nav">
+            <img src="/images/try.svg" alt="" srcset="">
+
+        </div>
+        <div class="right_nav">
+
+            <div class="nav-content">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                    <li><a href="forgot.php">Forgot Password</a></li>
+                    <li><a href="resetPassword.php">Reset Password</a></li>
+                </ul>
+
+            </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="main">
+
+        <div class="login">
+
+            <div class="content">
+                <h1>Login</h1>
+                <h2>to get started</h2>
+            </div>
+
+            <div class="form">
+                <input type="text" name="" id="" placeholder="Username">
+                <input type="password" name="" id="" placeholder="Password">
+
+                <div class="forgot">
+                    <a href="">Forgot Password</a>
+
+                </div>
+                
+                <input type="submit" name = "" value="Continue">
+            </div>
+
+            <div class="register">
+                <a href="">New User ? Register</a>
+            </div>
+
+
+        </div>
+
+        <div class="logo">
+
+            <img src="/images/big-logo.png" alt="">
+
+
+        </div>
+
+    </div>
+    
+</body>
+</html>
