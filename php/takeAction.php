@@ -3,8 +3,6 @@
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
 
-// setcookie("complaint_id",$_GET("id"),time());
-
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +25,8 @@ session_start();
     <div id="otpContainer" style="display: none;">
         <label for="otp">Enter OTP:</label>
         <input type="text" id="otp" name="otp" required>
-        <input type="submit" id="submitOtp" name="save" value = "Submit OTP">
+        <input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
+        <input type="submit" id="submitOtp" name="save" value="Submit OTP">
     </div>
 </form>
 
@@ -39,27 +38,26 @@ if(isset($_POST['save'])){
     $otpentered = $_POST["otp"];
     $orgotp = $_COOKIE["emailotp"];
 
+    // Sanitize the complaint_id to prevent SQL injection
+    $complaint_id = isset($_POST['id']) ? mysqli_real_escape_string($conn, $_POST['id']) : '';
+
     if($otpentered == $orgotp){
 
-        $sql1 = "UPDATE worker_action SET actionTaken = 1 WHERE complaint_id = $complaint_id ";
+        $sql1 = "UPDATE worker_action SET actionTaken = 1 WHERE complaint_id = '$complaint_id' ";
         $query1 = mysqli_query($conn,$sql1);
         if($query1){
-            echo '<script>alert("Password is Updated ")</script>' ;
+            echo '<script>alert("Action Taken Successfully")</script>' ;
            
-            echo "<script> location.replace('../php/dashboard.php')</script> ";
+            echo "<script> location.replace('../php/Wdashboard.php')</script> ";
         }else{
             echo '<script>alert("OOPS something Went wrong ")</script>' ;
-            echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
+            echo "<script> location.replace('../php/takeAction.php')</script> ";
         }
        
     }else{
-        echo "<script> alert('Sorry for wrong otp ') </script>";
+        echo "<script> alert('Wrong otp ') </script>";
     }
-
-
 }
-
-
 
 ?>
 
