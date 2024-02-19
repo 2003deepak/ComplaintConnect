@@ -44,9 +44,9 @@
                 <br>
 
 
-                <input type="text" placeholder="Enter The Username" class="text" name="username" id = '1' autocomplete="off">
+                <input type="text" placeholder="Enter The Username" class="text" name="username" id = 'username' autocomplete="off">
 
-                <input type="password" placeholder="Enter Your Password" class="text" name="password" id = '2' autocomplete="off">
+                <input type="password" placeholder="Enter Your Password" class="text" name="password" id = 'password' autocomplete="off">
                 <br>
 
                 <input type="email" placeholder="Enter Your Email Id" class="text" name="email" id = 'emailID' autocomplete="off">
@@ -95,27 +95,44 @@
 
         <script>
             async function validate(event) {
-                event.preventDefault(); // Prevent default form submission
+                // event.preventDefault(); // Prevent default form submission
     
-                let email = document.getElementById("emailID").value;
-                let key = "ema_live_m0M86pVGRGvNX5CJgwacnvuXw1j0UhwekVMpzFAA";  // Api key of code with harry not mine personal account 
-                let url = `https://api.emailvalidation.io/v1/info?apikey=${key}&email=${email}`;
+                // let email = document.getElementById("emailID").value;
+                // let key = "ema_live_m0M86pVGRGvNX5CJgwacnvuXw1j0UhwekVMpzFAA";  // Api key of code with harry not mine personal account 
+                // let url = `https://api.emailvalidation.io/v1/info?apikey=${key}&email=${email}`;
     
-                try {
-                    let call = await fetch(url);
-                    let data = await call.json();
+                // try {
+                //     let call = await fetch(url);
+                //     let data = await call.json();
     
-                    if (data["smtp_check"]) {
-                        // Allow form submission
-                        document.forms[0].submit();
-                    } else {
-                        alert("Email validation failed!");
-                    }
-                } catch (error) {
-                    console.error("Error:", error);
-                    alert("An error occurred during email validation.");
+                //     if (data["smtp_check"]) {
+                //         // Allow form submission
+                //         document.forms[0].submit();
+                //     } else {
+                //         alert("Email validation failed!");
+                //     }
+                // } catch (error) {
+                //     console.error("Error:", error);
+                //     alert("An error occurred during email validation.");
+                // }
+
+                var ans = false ; 
+
+                var password = document.getElementById("password");
+                var username = document.getElementById("username");
+                if (password.value.length < 8) {
+                    password.style.border = "2px solid red"; // Set border to red if password length is less than 8
+                    return false
+                } else {
+                    password.style.border = "2px solid green"; // Set border to green if password length is 8 or more
+                    return true;
                 }
+
+
+                return ans ; 
+
             }
+            
         </script>
 
         

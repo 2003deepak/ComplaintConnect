@@ -1,12 +1,16 @@
-<?php
-session_start();
-include 'config.php' ; 
-?>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <title>Complaint Connect</title>
+<?php 
 
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
+session_start();
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Document</title>
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,11 +24,10 @@ include 'config.php' ;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-   
-    <style>
-
+<style>
 
 :root {
     --background-color: #242424; 
@@ -80,7 +83,7 @@ include 'config.php' ;
         .nav:hover {
             width: 250px;
         }
-        .nav:hover ~ .content {
+        .nav:hover + .content {
             margin-left: 250px;
         }
         
@@ -102,15 +105,16 @@ include 'config.php' ;
                 background-color: var(--preview-background-color);
         }
 
-       
+        
 
         .nav:hover .icon {
             margin-left: 5rem;
         }
 
         .nav i{
-            font-size: 20px;
+            font-size: 22px;
             color: #8C8C8C;
+            justify-content: center;
         }
 
 
@@ -138,10 +142,7 @@ include 'config.php' ;
                 
             }
 
-            .bars{
-                margin: 0.7vw 0vw 0vw 1.4vw;
-                visibility: hidden;
-            }
+            
 
             .nav a{
                 text-decoration: none;
@@ -197,6 +198,13 @@ include 'config.php' ;
                 padding-left: 25px;
                 border-radius: 10px 0px 0px 10px;
             }
+
+
+            
+
+
+
+            
             
 
             .nav:hover .nav-content a , .nav:hover .nav-content-down a {
@@ -234,6 +242,7 @@ include 'config.php' ;
 
                
             }
+
             .boxes{
                 display: flex;
                 gap: 1rem;
@@ -381,15 +390,86 @@ include 'config.php' ;
             
         }
 
+
+        /* Css for preview panel  */
+
+        .imgComplaint{
+            width: 100vw;
+            height: 20.5vw;
+
+        }
+        .imgComplaint img{
+            margin-left: 3.9vw;
+            margin-top: 1vw ;
+            height: 80%;
+            /* aspect-ratio: 3 / 2;
+            object-fit: contain; */
+        }
+
+        .complaintDetails{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0f0f0f;
+            height: 100%;
+
+        }
+
+        .complaintDetails p{
+            color: var(--font-color);
+        }
+        .cInfo{
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+        .cDetails{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 24vw;
+            height: 20vh;
+            /* background-color: orange; */
+        }
+        .description{
+            width: 75%;
+            height: 7vw;
+            background-color: #161717;
+            margin-top: 2rem;
+            display: flex;
+            padding : 1rem ;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.7rem;
+        }
+
+        .cBtn button{
+            width: 10vw;
+            height: 3vw;
+            border: none;
+            border-radius: 8px;
+            color: var(--font-color);
+            font-size: 19px;
+            background-color: #05FF00;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+            
+           
            
 
-           
 
-            @media (max-width:600px) {
+             @media (max-width:768px) {
                 .content{
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                }
+                
+                .box11{
+                    margin-left: 5rem;
                 }
                 .preview{
                     display: none ;
@@ -407,16 +487,17 @@ include 'config.php' ;
                     height: 60px;
                     position: absolute;
                     margin: 8vw 0vw 0vw 1.4vw;
-                    background-color: white;
+                    
 
             
                 }
+                
                 .nav i{
                     font-size: 1.2rem;
                     
                 }
-                
-            }
+             }
+         
 
 
 
@@ -424,178 +505,97 @@ include 'config.php' ;
 
 
 
-      
+        
 
-    </style>
+
+
+
+
+
+  
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+  
+
 
     
-     
-   </head>
+</head>
 <body>
-    
-<div class="nav">
-
-
-
-
-
-<div class="icon">
-
-    <?php
 
    
-        $u = $_SESSION["username"];
-        $capitalizedu = ucfirst($u[0]);
+
+    <div class="nav">
+
+
+       
+        <div class="icon">
+
+            <?php
+
+           
+                $u = $_SESSION["username"];
+                $capitalizedu = ucfirst($u[0]);
 
 
 
 
-    ?>
-     <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
-</div>
+            ?>
+             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+        </div>
 
-<div class="nav-content">
+        <div class="nav-content">
 
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="#">Home</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/cPendingComplaints.php">Pending </a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/cCompletedComplaints.php">Completed </a>
-    </div>
-    
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="#">Profile</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="addworkers.php">Add Workers</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="manageWorker.php">Manage Workers</a>
-    </div>
-    
-
-</div>
-<div class="nav-content-down">
-
-    <div onclick="toggle()" >
-        <i class="fa-solid fa-moon" ></i>
-        <a href="#" class="dark">Light Mode</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/logout.php">Log Out</a>
-    </div>
-    
-
-</div>
-</div>
-
-
-<?php
-
-
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE resolved_time IS NOT NULL";
-$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NOT NULL";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NULL;";
-
-$resultCompleted = $conn->query($completed);
-$resultInProgress = $conn->query($inProgess);
-$resultNewRequest = $conn->query($newRequest);
-
-// Fetch the count values
-$completedCount = ($resultCompleted) ? $resultCompleted->fetch_assoc()['completed_count'] : 0;
-$inProgressCount = ($resultInProgress) ? $resultInProgress->fetch_assoc()['in_progress_count'] : 0;
-$newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_request_count'] : 0;
-
-
-
-
-
-    
-?>
-
-
-
-
-
-<div class="content">
-
-<div class="org-content">
-
-            <div class="inner">
-                <h1>Contractor </h1>
-                <p>Lorem ipsum dolor</p>
+            <div>
+                <i class="fa-solid fa-house"></i>
+                <a href="../php/dashboard.php">Home</a>
             </div>
-            <div class="boxes">
-                <div class="box11">
-                    <p>New Request</p>
-                        <div class="count">
-                           <p style="color: #FF5858; font-size: 40px;"><?php echo $newRequestCount ; ?></p>
-                        </div>
-
-                </div>
-                <div class="box12">
-                    <p>In Progress</p>
-                        <div class="count">
-                            <p style="color: #FF9F00; font-size: 40px;"><?php echo $inProgressCount ; ?></p>
-                        </div>
-                    
-                </div>
-                <div class="box13">
-                    <p>Completed</p>
-                        <div class="count">
-                           <p style="color: #05FF00; font-size: 40px;"><?php echo $completedCount ; ?></p>
-                        </div>
-                    
-                </div>
+            <div>
+                <i class="fa-solid fa-user" ></i>
+                <a href="../php/profile.php">Profile</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-house"></i>
+                <a href="../php/WnewComplaints.php">New Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-clock"></i>
+                <a href="../php/complaintHistory.php">Pending Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-key"></i>
+                <a href="../php/updateCurrentPassword.php">Update Password</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-xmark"></i>
+                <a href="#">Close Complaint</a>
             </div>
 
-            <div class="line"></div>
+        </div>
+        <div class="nav-content-down">
 
+            <div onclick="toggle()" >
+                <i class="fa-solid fa-moon" ></i>
+                <a href="#" class="dark">Light Mode</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="../php/logout.php">Log Out</a>
+            </div>
             
 
-            <div class="complaints">
-
-                <div class="box21">
-
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>
-
-                    <p style=" font-size: 19px; ">New Request</p>
-                    
-
-                </div>
-                <div class="box22">
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>
-                    <p style=" font-size: 19px;">In Progress</p>
-                    
-                    
-                </div>
-                <div class="box23">
-                    <div style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
-                    <p style=" font-size: 19px;">Completed</p>
-                    
-                    
-                </div>
-                
-
-
-            </div>
-
-
-
-
-
-</div>
-
+        </div>
+    </div>
 
 
 
@@ -605,47 +605,103 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
     
 
 
-
-    
-
-    
+    <div class="content">
 
 
+    <table class="content-table">
+        <tr>
+          
+          <th>Username</th>
+          <th>Email ID</th>
+          <th>Aadhar Card</th>
+          <th>Work Area</th>
+         
+        </tr>
 
-<div class="preview">
+        
+        <?php
 
-<p>Hellow</p>
+include 'config.php' ;
+$sql = "select * from worker";
+$result = $conn->query($sql);
+ 
+// Loop through the result set and generate table rows
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
 
-</div>
+      ?>
+        <tr class="active-row">
+          
+          
+          <td> <?php echo $row["username"] ?> </td>
+          <td> <?php echo $row["email"] ?> </td>
+          <td><a href = "<?php echo $row["aadhar_card"]?> " target="blank"><img src="../images/pdf_icon.png" width="40px" height="40px"></a></td>
+          <td> <?php echo $row["work_area"] ?> </td>
+          <td> <button class="btn1"> <a class = "accept" href="../php/deleteworker.php?id=<?php echo $row['username']; ?>"> Delete Worker</a>  </button> </td>
 
+          
 
-<script>
-let count = 0 ; 
-const toggle = () =>{
-
-
-    var a = document.querySelector(".dark");
-
-
-    if(count == 0){
-        document.body.classList.add("light-mode");
-        a.innerHTML="Dark Mode";
-        count = 1 ;
-
-    }else{
-        document.body.classList.remove("light-mode");
-        a.innerHTML="Light Mode";
-        count = 0 ; 
+        </tr>
+        <?php
     }
-    
-    
 }
+
+// Close the connection
+$conn->close();
+?>
+</table> 
+
+
+
+        
+        
+    </div>
+
+
+    <!-- Loading all complaints to display in preview mode -->
+
+  
+
+
+
+    
+
+        
+        
+    </div>
+
+
+    
+
+
+    
+
+    <!-- JS code starting from here  -->
+
+
+    <script>
+    let count = 0;
+
+    const toggle = () => {
+        var a = document.querySelector(".dark");
+        if (count == 0) {
+            document.body.classList.add("light-mode");
+            a.innerHTML = "Dark Mode";
+            count = 1;
+        } else {
+            document.body.classList.remove("light-mode");
+            a.innerHTML = "Light Mode";
+            count = 0;
+        }
+    }
+
+
+
+
+
+   
+   
 </script>
 
-
-
-  
-      
-  
 </body>
 </html>

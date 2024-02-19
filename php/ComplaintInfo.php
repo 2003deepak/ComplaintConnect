@@ -554,6 +554,9 @@ count = 0 ;
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
 
+
+                            $complaint_image = $row['folder'];
+
                     ?>
 
 
@@ -577,8 +580,48 @@ count = 0 ;
 
 
 
-                <div class="photos1">Photos uploaded from user</div>
-                <div class="photos2"> Photos Uploaded from contractor </div> 
+                <div class="photos1">Photos uploaded from user : 
+
+                <a href = "<?php echo $complaint_image?> " target="blank">View File</a>
+
+
+                </div>
+
+
+
+
+
+                <!-- Fetching photo from the worker_action table  -->
+
+
+                <?php
+                    include 'config.php' ;
+                    $complaint_id = $_GET['id'];
+                    $sql = "select * from worker_action where complaint_id = '$complaint_id'";
+                    $result = $conn->query($sql);
+                    $count = 1 ; 
+
+
+
+                            // Loop through the result set and generate table rows
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+
+
+                            $final_image = $row['resolved_image'];
+
+
+                           
+                        }
+                    }
+                    
+
+                    ?>
+
+                <div class="photos2"> Photos Uploaded from contractor 
+
+                <a href = "<?php echo $final_image?> " target="blank">View File</a>
+                </div> 
 
             </div>
 

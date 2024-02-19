@@ -407,7 +407,7 @@ include 'config.php' ;
       $folder = "../uploaded_images/aadhar_card";
       $filename = $username.".pdf"; // Rename the file to "roomno.pdf"
       $tempname = $_FILES["file"]["tmp_name"];
-      $folder = "../uploaded_images/aadhar_card/".$filename ;
+      $folder = "C:/xampp/htdocs/ComplaintConnect/uploaded_images/aadhar_card/".$filename ;
     
       move_uploaded_file($tempname,$folder);
 

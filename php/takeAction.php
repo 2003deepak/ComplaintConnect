@@ -18,8 +18,9 @@ session_start();
 <form id="otpForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <label for="action">Select Action:</label>
     <select id="action" name="action">
+        <option value="select">Select</option>
         <option value="initial_visit">Initial Visit Done</option>
-        <option value="complaint_resolved">Complaint Resolved</option>
+        
     </select>
 
     <div id="otpContainer" style="display: none;">
@@ -45,9 +46,13 @@ if(isset($_POST['save'])){
 
         $sql1 = "UPDATE worker_action SET actionTaken = 1 WHERE complaint_id = '$complaint_id' ";
         $query1 = mysqli_query($conn,$sql1);
-        if($query1){
+
+
+        $sql2 = "UPDATE complaints SET `last_updation` = NOW() WHERE `complaint_id` = '$complaint_id'";
+        $query2 = mysqli_query($conn,$sql2);
+        if($query1 && $query2){
+
             echo '<script>alert("Action Taken Successfully")</script>' ;
-           
             echo "<script> location.replace('../php/Wdashboard.php')</script> ";
         }else{
             echo '<script>alert("OOPS something Went wrong ")</script>' ;

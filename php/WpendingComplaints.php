@@ -1,23 +1,16 @@
 <?php 
 
-include 'config.php' ;
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
 
-
-
-
-
 ?>
-
-
-
-<html lang="en" dir="ltr">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Complaint Connect</title>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src ="../js/sweet.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Document</title>
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,8 +23,11 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Biryani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
 
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
 
 :root {
     --background-color: #242424; 
@@ -87,19 +83,29 @@ session_start();
         .nav:hover {
             width: 250px;
         }
-        .nav:hover ~ .content {
+        .nav:hover + .content {
             margin-left: 250px;
         }
         
 
         .content {
-            width: calc(100vw - 0vw );
+            width: calc(100vw - 30vw );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
+
+        .preview{
+                width: 30vw;
+                position: fixed;
+                height: 100vh;
+                right: 0rem;
+                background-color: var(--preview-background-color);
+        }
+
+        
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -108,6 +114,7 @@ session_start();
         .nav i{
             font-size: 22px;
             color: #8C8C8C;
+            justify-content: center;
         }
 
 
@@ -135,10 +142,7 @@ session_start();
                 
             }
 
-            .bars{
-                margin: 0.7vw 0vw 0vw 1.4vw;
-                visibility: hidden;
-            }
+            
 
             .nav a{
                 text-decoration: none;
@@ -150,34 +154,58 @@ session_start();
                 
 
             }
-            .nav-content div , .nav-content-down div{
+
+            .nav-content{
+                
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                gap: 1rem;
+                position: relative;
+                top: 10rem;
+                
+            }
+
+            .nav-content-down{
+                
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: relative;
+                overflow: hidden;
+                bottom: 2rem;
+            }
+            
+            .nav-content div {
+                width: 250px;
+                padding-left: 25px;
+                display: flex;
+                gap: 1rem;
+                margin-left: 0.3rem;
+                justify-content: flex-start;
+                align-items: center;
+                border-radius: 10px 0px 0px 10px;
+            }
+
+            .nav-content-down div {
+                width: 250px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
-                display: flex;
-                justify-content:flex-start;
+                justify-content: flex-start;
                 align-items: center;
                 height: 53px;
-                padding-left: 20px;
-                width: 225px;
+                padding-left: 25px;
                 border-radius: 10px 0px 0px 10px;
             }
 
 
-            .nav-content{
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                top: 10rem;
-            }
-            .nav-content-down{
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                bottom: 2rem;
-            }
+            
+
+
+
+            
+            
 
             .nav:hover .nav-content a , .nav:hover .nav-content-down a {
                 visibility: visible;
@@ -224,7 +252,7 @@ session_start();
                 font-size: 19px;
             }
             .boxes .box11{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 background-color: var(--boxes-bg-color);
                 padding: 1rem;
@@ -235,7 +263,7 @@ session_start();
             }
 
             .boxes .box13{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 display: flex;
                 flex-direction: column;
@@ -246,7 +274,7 @@ session_start();
             }
 
             .boxes .count{
-                width: 120px;
+                width: 40%;
                 height: 81px;
                 align-self: center;
                 display: flex;
@@ -258,7 +286,7 @@ session_start();
             }
 
             .boxes .box12{
-                width: 295px;
+                width: 15.5vw;
                 height: 150px;
                 display: flex;
                 flex-direction: column;
@@ -279,7 +307,7 @@ session_start();
 
             .complaints{
                 width: 90%;
-                height: 530px;
+                height: 50px;
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1rem;
@@ -291,12 +319,12 @@ session_start();
 
             .complaints .box21{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
-                background-color: var(--boxes-bg-color);
+                
                 border-radius: 10px;
                 color: var(--font-color);
 
@@ -304,42 +332,144 @@ session_start();
             }
             .complaints .box22{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
-                background-color: var(--boxes-bg-color);
+               
                 border-radius: 10px;
                 color: var(--font-color);
                 
             }
             .complaints .box23{
                 width: 295px;
-                height: 400px;
+                height: 30px;
                 display: flex;
                 gap: 10px;
                 align-items: baseline;
                 padding: 1rem;
-                background-color: var(--boxes-bg-color);
                 border-radius: 10px;
                 color: var(--font-color);
 
                 
             }
 
+            .phpreply{
+                
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
+            
+        }
 
+        .pendingComplaints , .newComplaints , .completedComplaints{
+            width:295px ; 
+            height: 100vh ; 
+            display: flex;
+           
+            flex-direction: column;
+        }
 
+        .phpreply .box4{
+            width: 295px;
+            height: 8vw;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+            padding: 1rem;
+            margin-bottom : 1rem;
+            background-color: var(--boxes-bg-color);
+            border-radius: 10px;
+            color: var(--font-color);
 
             
-        
+        }
 
 
-            @media (max-width:600px) {
+        /* Css for preview panel  */
+
+        .imgComplaint{
+            width: 100vw;
+            height: 20.5vw;
+
+        }
+        .imgComplaint img{
+            margin-left: 3.9vw;
+            margin-top: 1vw ;
+            height: 80%;
+            /* aspect-ratio: 3 / 2;
+            object-fit: contain; */
+        }
+
+        .complaintDetails{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0f0f0f;
+            height: 100%;
+
+        }
+
+        .complaintDetails p{
+            color: var(--font-color);
+        }
+        .cInfo{
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+        .cDetails{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 24vw;
+            height: 20vh;
+            /* background-color: orange; */
+        }
+        .description{
+            width: 75%;
+            height: 7vw;
+            background-color: #161717;
+            margin-top: 2rem;
+            display: flex;
+            padding : 1rem ;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.7rem;
+        }
+
+        .cBtn button{
+            width: 10vw;
+            height: 3vw;
+            border: none;
+            border-radius: 8px;
+            color: var(--font-color);
+            font-size: 19px;
+            background-color: #05FF00;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+            
+           
+           
+
+
+             @media (max-width:768px) {
                 .content{
                     display: flex;
                     justify-content: center;
                     width: 100%;
+                }
+                
+                .box11{
+                    margin-left: 5rem;
                 }
                 .preview{
                     display: none ;
@@ -357,250 +487,23 @@ session_start();
                     height: 60px;
                     position: absolute;
                     margin: 8vw 0vw 0vw 1.4vw;
-                    background-color: white;
+                    
 
             
                 }
+                
                 .nav i{
                     font-size: 1.2rem;
                     
                 }
-                
-            }
+             }
+         
 
 
-     </style>
-   </head>
-<body>
-  
-<script>
 
-let count = 0 ; 
-const toggle = () =>{
 
 
-var a = document.querySelector(".dark");
 
-
-if(count == 0){
-document.body.classList.add("light-mode");
-a.innerHTML="Dark Mode";
-count = 1 ;
-
-}else{
-document.body.classList.remove("light-mode");
-a.innerHTML="Light Mode";
-count = 0 ; 
-}
-
-
-}
-
-
-</script>
-
-
-<div class="nav">
-
-
-<div class="bars">
-    <i class="fa-solid fa-bars"></i>
-</div>
-
-
-
-<div class="icon">
-
-    <?php
-
-   
-        $u = $_SESSION["username"];
-        $capitalizedu = ucfirst($u[0]);
-
-
-
-
-    ?>
-     <!-- <p><?php echo $capitalizedu ;?></p>   Replace it with first letter of Username of user  -->
-</div>
-
-<div class="nav-content">
-
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="#">Home</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/cPendingComplaints.php">Pending </a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/cCompletedComplaints.php">Completed </a>
-    </div>
-    
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="#">Profile</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="addworkers.php">Add Workers</a>
-    </div>
-
-</div>
-<div class="nav-content-down">
-
-    <div onclick="toggle()" >
-        <i class="fa-solid fa-moon" ></i>
-        <a href="#" class="dark">Light Mode</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/logout.php">Log Out</a>
-    </div>
-    
-
-</div>
-</div>
-
-
-
-
-
-
-<div class="content">
-
-
-
-    <style>
-
-        .complaintInfo{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            
-            padding: 1rem;
-            background-color: white;
-            border-radius: 10px;
-            color: black;
-        }
-
-
-
-    </style>
-
-    
-
-
-            <div class="complaintInfo">
-
-
-
-                <?php
-                    include 'config.php' ;
-                    $complaint_id = $_GET['id'];
-                    $sql = "select * from complaints where complaint_id = '$complaint_id'";
-                    $result = $conn->query($sql);
-                    $count = 1 ; 
-
-
-
-                            // Loop through the result set and generate table rows
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-
-                    ?>
-
-
-                    <h3>Complaint ID :- <?php  echo $row["complaint_id"];?><h3>
-                    <h3>Complaint Type :- <?php  echo $row["complaint_type"];?><h3>
-                    <h3>Subject :- <?php  echo $row["subject"];?><h3>
-                    <h3>Description :- <?php  echo $row["description"];?><h3>
-                    <h3>Images :- <a href = "<?php echo $row["folder"]?> " target="blank">View File</a><h3>
-                    <h3>Regd Date :- <?php  echo $row["time"];?><h3>
-                    <h3>Last Updation :- <?php  echo $row["last_updation"];?><h3>
-                    <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
-                    <h3>Worker Assigned :- <?php  echo $row["worker_assigned"];?><h3>
-
-                    
-
-
-                    <?php
-
-                        $complaint_type = $row["complaint_type"];
-                        }
-                    }
-                    ?>
-
-            <div class="assignworker">
-                <form action="<?php echo $_SERVER['PHP_SELF']. '?id=' . $complaint_id ;  ?>" method="post">
-                    <select name="worker_assigned" id="worker_assigned">
-                        <?php
-                        $sql2 = "select * from worker where work_area = '$complaint_type'";
-                        $result2 = $conn->query($sql2);
-                        
-                        if ($result2->num_rows > 0) {
-                            while ($row2 = $result2->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row2["username"]; ?>"><?php echo $row2["username"]; ?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                    <!-- Add a submit button here if needed -->
-                    <input type="submit" name = "save" >
-                </form>
-            </div>
-            
-
-
-
-
-
-                <div class="photos1">Photos uploaded from user
-                    
-                </div>
-                <div class="photos2"> Photos Uploaded from contractor </div> 
-
-            </div>
-
-
-
-    
-</div>
-
-
-    
-
-</div>
-
-
-
-
-<!-- This part is used to update the worker assigned to the complaint table  -->
-<?php
-
-
-include 'config.php';
-
-if (isset($_POST['save'])) {
-    $worker_assigned = $_POST['worker_assigned'];
-
-    
-        $sql = "UPDATE complaints SET `worker_assigned` = '$worker_assigned', `last_updation` = NOW() WHERE `complaint_id` = '$complaint_id'";
-        $sql2 = "insert into worker_action(`complaint_id`) values('$complaint_id')";
-
-        $aadhar_retreive = "select * from worker where username = '$worker_assigned'";
-        $aadhar_retreive_result = $conn->query($aadhar_retreive);
-        $row = $aadhar_retreive_result->fetch_assoc();
-        $aadhar_retreive_id = $row['aadhar_card'];
-
-        $emailContent = "Dear User,\n\n We hope this message finds you well. We wanted to inform you that your complaint: '$complaint_id' on our Complaint Connect website has been assigned to an assigned worker, '$worker_assigned', who will be visiting your premises to address the issue.\n\nThe visit is scheduled can take place within the next 1-3 days. Please ensure someone is available at the premises during this time to facilitate the visit.\n\nFor your safety and security, we are providing you with the worker's Aadhar card details.\n\n <a href='$aadhar_retreive_id' target='_blank'>View Aadhar Card</a> \n\n You can use this information to verify the identity of the worker when they arrive. It is important to only allow the worker to enter your premises if they can provide you with the Aadhar card details provided here.";
 
         
 
@@ -609,35 +512,189 @@ if (isset($_POST['save'])) {
 
 
 
-
-        include("mail.php");
-
-        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', "'$emailContent'");
+  
 
 
 
-        if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
-            
-            echo '<script>';
-            echo 'ConfirmationAlert("Updated","Worker is Assigned","../php/cAdminPanel.php")';
-            echo '</script>';
-            
-        } else {
-            echo '<script>';
-            echo 'ErrorAlert("Not Updated","Worker is not Assigned","../php/cAdminPanel.php")';
-            echo '</script>';
-        }
+
+
+
+</style>
+
+
+
+
+
+
+  
+
+
     
+</head>
+<body>
+
+   
+
+    <div class="nav">
+
+
+       
+        <div class="icon">
+
+            <?php
+
+           
+                $u = $_SESSION["username"];
+                $capitalizedu = ucfirst($u[0]);
+
+
+
+
+            ?>
+             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+        </div>
+
+        <div class="nav-content">
+
+            <div>
+                <i class="fa-solid fa-house"></i>
+                <a href="../php/dashboard.php">Home</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-user" ></i>
+                <a href="../php/profile.php">Profile</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-house"></i>
+                <a href="">New Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-clock"></i>
+                <a href="">Pending Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-key"></i>
+                <a href="../php/updateCurrentPassword.php">Update Password</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-xmark"></i>
+                <a href="#">Close Complaint</a>
+            </div>
+
+        </div>
+        <div class="nav-content-down">
+
+            <div onclick="toggle()" >
+                <i class="fa-solid fa-moon" ></i>
+                <a href="#" class="dark">Light Mode</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="../php/logout.php">Log Out</a>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    
+
+
+    <div class="content">
+
+
+    <table class="content-table">
+        <tr>
+          <th>Complaint ID</th>
+          <th>Subject</th>
+          
+        </tr>
+
+        
+        <?php
+
+include 'config.php' ;
+$sql = "SELECT 
+complaints.*,
+worker_action.actionTaken
+FROM complaints
+JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 1 and worker_action.complete is null ;
+
+";
+$result = $conn->query($sql);
+$count = 1 ; 
+// Loop through the result set and generate table rows
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+
+      ?>
+        <tr class="active-row">
+          
+          <td> <?php echo $row["complaint_id"] ?>   </td>
+          <td> <?php echo $row["subject"] ?>   </td>
+          <td><a href="../php/close_complaint.php?id=<?php echo $row['complaint_id']; ?>">Take Action</a></td>
+          
+        </tr>
+        <?php
+    }
 }
 
-
-
-
-
-
-
+// Close the connection
+$conn->close();
 ?>
-      
-  
+</table> 
+
+
+
+        
+            
+
+            
+            
+    </div>
+
+        
+
+        
+
+    
+
+
+    
+
+    <!-- JS code starting from here  -->
+
+
+    <script>
+    let count = 0;
+
+    const toggle = () => {
+        var a = document.querySelector(".dark");
+        if (count == 0) {
+            document.body.classList.add("light-mode");
+            a.innerHTML = "Dark Mode";
+            count = 1;
+        } else {
+            document.body.classList.remove("light-mode");
+            a.innerHTML = "Light Mode";
+            count = 0;
+        }
+    }
+
+
+
+
+
+    
+
+   
+</script>
+
 </body>
 </html>

@@ -566,11 +566,11 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/filecomplaint.php">New Complaints</a>
+                <a href="WpendingComplaints.php">New Complaints</a>
             </div>
             <div>
                 <i class="fa-solid fa-clock"></i>
-                <a href="../php/complaintHistory.php">Pending Complaints</a>
+                <a href="../php/wpendingComplaints.php">Pending Complaints</a>
             </div>
             <div>
                 <i class="fa-solid fa-key"></i>
@@ -624,7 +624,7 @@ $sql = "SELECT
 complaints.*,
 worker_action.actionTaken
 FROM complaints
-JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id;
+JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 0 ;
 
 ";
 $result = $conn->query($sql);
