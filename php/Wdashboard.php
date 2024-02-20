@@ -558,7 +558,7 @@ session_start();
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/dashboard.php">Home</a>
+                <a href="../php/Wdashboard.php">Home</a>
             </div>
             <div>
                 <i class="fa-solid fa-user" ></i>
@@ -570,7 +570,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-clock"></i>
-                <a href="../php/complaintHistory.php">Pending Complaints</a>
+                <a href="../php/WpendingComplaints.php">Pending Complaints</a>
             </div>
             <div>
                 <i class="fa-solid fa-key"></i>
@@ -604,19 +604,18 @@ session_start();
 <?php
 
 
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL";
-$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL;";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count  FROM worker_action WHERE worker_assigned = '{$_SESSION['username']}' AND actionTaken = 0";
+$inProgress = "SELECT COUNT(complaint_id) AS in_progress_count FROM worker_action WHERE worker_assigned = '{$_SESSION['username']}' AND actionTaken = 1 AND complete IS NULL";
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM worker_action WHERE worker_assigned = '{$_SESSION['username']}' AND actionTaken = 1 AND complete IS NOT NULL";
 
 $resultCompleted = $conn->query($completed);
-$resultInProgress = $conn->query($inProgess);
+$resultInProgress = $conn->query($inProgress);
 $resultNewRequest = $conn->query($newRequest);
 
 // Fetch the count values
 $completedCount = ($resultCompleted) ? $resultCompleted->fetch_assoc()['completed_count'] : 0;
 $inProgressCount = ($resultInProgress) ? $resultInProgress->fetch_assoc()['in_progress_count'] : 0;
 $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_request_count'] : 0;
-
 
 
 
@@ -644,21 +643,22 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                 <div class="box11">
                     <p>New Request</p>
                         <div class="count">
-                           <p style="color: #FF5858; font-size: 40px;"><?php echo  $newRequestCount ?></p>
+                           <p style="color: #FF5858; font-size: 40px;"><?php echo  $newRequestCount; ?></p>
                         </div>
 
                 </div>
                 <div class="box12">
                     <p>In Progress</p>
                         <div class="count">
-                            <p style="color: #FF9F00; font-size: 40px;"><?php  echo $inProgressCount ?></p>
+                            <p style="color: #FF9F00; font-size: 40px;"><?php  echo $inProgressCount ;?></p>
                         </div>
                     
                 </div>
                 <div class="box13">
                     <p>Completed</p>
                         <div class="count">
-                           <p style="color: #05FF00; font-size: 40px;"><?php  echo $completedCount ?></p>
+                           <p style="color: #05FF00; font-size: 40px;"><?php  echo $completedCount; ?></p>
+                           
                         </div>
                     
                 </div>
@@ -707,8 +707,8 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
                         
                             $username = $_SESSION['username'];
+                            $sql = "SELECT complaints.complaint_id, complaints.complaint_type, complaints.subject, worker_action.* FROM complaints JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id WHERE complaints.worker_assigned = '$username' AND actionTaken = 0";
 
-                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL and resolved_time IS NULL";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -740,7 +740,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                     include 'config.php';
 
                     $username = $_SESSION['username'];
-                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
+                    $sql = "SELECT complaints.complaint_id, complaints.complaint_type, complaints.subject, worker_action.* FROM complaints JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id WHERE complaints.worker_assigned = '$username' AND actionTaken = 1 AND complete IS NULL";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -771,8 +771,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
                             
                                 $username = $_SESSION['username'];
-
-                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
+                                $sql = "SELECT complaints.complaint_id, complaints.complaint_type, complaints.subject, worker_action.* FROM complaints JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id WHERE complaints.worker_assigned = '$username' AND actionTaken = 1 AND complete IS NOT NULL";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {

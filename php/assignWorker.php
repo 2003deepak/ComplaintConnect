@@ -593,7 +593,7 @@ if (isset($_POST['save'])) {
 
     
         $sql = "UPDATE complaints SET `worker_assigned` = '$worker_assigned', `last_updation` = NOW() WHERE `complaint_id` = '$complaint_id'";
-        $sql2 = "insert into worker_action(`complaint_id`) values('$complaint_id')";
+        $sql2 = "insert into worker_action(`worker_assigned`,`complaint_id`) values('$worker_assigned','$complaint_id')";
 
         $aadhar_retreive = "select * from worker where username = '$worker_assigned'";
         $aadhar_retreive_result = $conn->query($aadhar_retreive);

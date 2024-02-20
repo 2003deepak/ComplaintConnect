@@ -624,7 +624,7 @@ $sql = "SELECT
 complaints.*,
 worker_action.actionTaken
 FROM complaints
-JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 0 ;
+JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 0 AND complaints.worker_assigned = '{$_SESSION['username']}';
 
 ";
 $result = $conn->query($sql);

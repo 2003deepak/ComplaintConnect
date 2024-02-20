@@ -88,7 +88,8 @@ include 'config.php' ;
         .content {
             width: calc(100vw - 30vw );
             background-color: var(--background-color);
-            height: 100vh;
+            min-height: 100vh; /* Minimum height of 100vh */
+            height: auto; /* Allow the height to adjust based on content */
             display: flex;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
@@ -588,6 +589,109 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                 
 
 
+            </div>
+
+            <div class="phpreply">
+
+                <div class="newComplaint">
+                    
+                    <?php
+                        include 'config.php';
+
+                        
+                            $username = $_SESSION['username'];
+
+                            $sql = "SELECT * FROM complaints WHERE last_updation IS NULL and resolved_time IS NULL";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                    <div class="box4">
+                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                        <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                        <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                        <br>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                                   
+                    ?>
+
+                    
+
+                </div>
+
+
+
+                <div class= "pendingComplaints">
+
+                <?php
+
+
+                    include 'config.php';
+
+                    $username = $_SESSION['username'];
+                    $sql = "SELECT * FROM complaints WHERE last_updation IS NOT NULL and resolved_time IS NULL ";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <div class="box4">
+                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                <br>
+                            </div>
+                            <?php
+                        }
+                    }
+
+                ?>
+
+
+                </div>
+
+
+                <div class= "completedComplaints">
+
+
+                    <?php
+                            include 'config.php';
+
+                            
+                                $username = $_SESSION['username'];
+
+                                $sql = "SELECT * FROM complaints WHERE resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        ?>
+                                        <div class="box4" style = "margin-left : 2rem ; ">
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                            <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                            <br>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+
+                                
+                                    
+    
+                        ?>
+
+
+                </div>
+
+                
+
+                
             </div>
 
 

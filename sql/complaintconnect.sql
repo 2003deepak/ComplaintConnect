@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2024 at 08:12 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Feb 20, 2024 at 04:35 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,10 +45,10 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`, `resolved_time`, `last_updation`, `worker_assigned`) VALUES
-('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-02-03 13:18:42.00', NULL),
-('deepak123', 'C4975', 'Electricity', 'Capacitor problem ', 'kharab capacitor', '../uploaded_images/complaint_images/110_5_C4975.jpg', '2024-01-26 11:12:27.06', '2024-01-26 11:14:32.00', '2024-01-26 11:14:32.00', NULL),
-('deepak123', 'C8772', 'Water', 'sffffffffffff', 'fvvvvvvvvvv', '../uploaded_images/complaint_images/110_5_C8772.jpg', '2024-02-13 23:10:01.17', NULL, '2024-02-14 09:01:09.00', 'mukesh123'),
-('deepak123', 'C9389', 'Water', 'Bad Odour', 'kharab smell ', '../uploaded_images/complaint_images/110_5_C9389.jpg', '2024-01-26 11:13:41.30', NULL, NULL, NULL);
+('deepak123', 'C3345', 'Water', 'door damaged', 'bad door damage', '../uploaded_images/complaint_images/110_5_C3345.jpg', '2024-01-26 11:14:03.00', NULL, '2024-02-19 23:19:34.00', 'mukesh123'),
+('deepak123', 'C4975', 'Electricity', 'Capacitor problem ', 'kharab capacitor', '../uploaded_images/complaint_images/110_5_C4975.jpg', '2024-01-26 11:12:27.06', NULL, NULL, NULL),
+('deepak123', 'C8772', 'Water', 'sffffffffffff', 'fvvvvvvvvvv', '../uploaded_images/complaint_images/110_5_C8772.jpg', '2024-02-13 23:10:01.17', NULL, '2024-02-19 23:20:43.00', 'mukesh123'),
+('deepak123', 'C9389', 'Water', 'Bad Odour', 'kharab smell ', '../uploaded_images/complaint_images/110_5_C9389.jpg', '2024-01-26 11:13:41.30', NULL, '2024-02-19 23:14:13.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -100,9 +100,7 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `work_area`) VALUES
-('indar', '$2y$10$ndVt7Bjf7HTw8xBKMZlU9uRuxyjVo6PgYXfhYpiy4FlikxE8Tkb2G', 'rahulranjankumar6121@gmail.com', '../uploaded_images/aadhar_card/indar.pdf', '', 'Electricity'),
-('indar123', '$2y$10$xCowXgwF/KJHUdnISGguyejYT3/C8f0cXCisuK3QMduIgcZgpO.cq', 'indar@gmail.com', '../uploaded_images/aadhar_card/indar123.pdf', '', 'Electricity'),
-('mukesh123', '$2y$10$zEVP02SBQMs25TYqL354V.cC2L3ECNwKycUmN4WmwpxRN00aVRiNa', 'yadavsuraj7449@gmail.com', '../uploaded_images/aadhar_card/mukesh123.pdf', '', 'Water');
+('mukesh123', '$2y$10$t.2Yzfl7teyMdG4f23kt9OriOFUt15mkxjkz7v6AtxJmANJYowOX.', 'poojarryadav@gmail.com', 'C:/xampp/htdocs/ComplaintConnect/uploaded_images/aadhar_card/mukesh123.pdf', '', 'Water');
 
 -- --------------------------------------------------------
 
@@ -112,15 +110,18 @@ INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `w
 
 CREATE TABLE `worker_action` (
   `complaint_id` varchar(30) NOT NULL,
-  `actionTaken` int(2) NOT NULL
+  `actionTaken` int(2) NOT NULL,
+  `complete` int(3) DEFAULT NULL,
+  `resolved_image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `worker_action`
 --
 
-INSERT INTO `worker_action` (`complaint_id`, `actionTaken`) VALUES
-('C8772', 1);
+INSERT INTO `worker_action` (`complaint_id`, `actionTaken`, `complete`, `resolved_image`) VALUES
+('C3345', 0, NULL, NULL),
+('C8772', 0, NULL, NULL);
 
 --
 -- Indexes for dumped tables

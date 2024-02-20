@@ -366,26 +366,23 @@ include 'config.php' ;
 
         <?php
         include 'config.php';
-        $sql = "select * from register";
-        $sql1 = "select * from complaints";
 
-        $result1 = $conn->query($sql1);
+
+        $sql = "SELECT complaints.*, register.building, register.room FROM complaints JOIN register ON complaints.username = register.username ";
+
         $result = $conn->query($sql);
         
 
-        while (($row = $result->fetch_assoc()) !== null && ($row1 = $result1->fetch_assoc()) !== null) {
-            $building = $row['building'];
-            $room = $row['room'];
-            $address = $building . " " . $room;
-
+        while ($row = $result->fetch_assoc()){
+            
             ?>
             <tr class="active-row">
-                <td><?php echo $row1["complaint_id"] ?></td>
-                <td><?php echo $row1["complaint_type"] ?></td>
-                <td><?php echo $address ?></td>
-                <td><?php echo $row1["subject"] ?></td>
-                <td><?php echo $row1["worker_assigned"] ?></td>
-                <td><a href="../php/assignWorker.php?id=<?php echo $row1['complaint_id']; ?>">View Details</a></td>
+                <td><?php echo $row["complaint_id"] ?></td>
+                <td><?php echo $row["complaint_type"] ?></td>
+                <td><?php echo $row['building'] . " " . $row['room'] ; ?></td>
+                <td><?php echo $row["subject"] ?></td>
+                <td><?php echo $row["worker_assigned"] ?></td>
+                <td><a href="../php/assignWorker.php?id=<?php echo $row['complaint_id']; ?>">View Details</a></td>
             </tr>
             <?php
         }
