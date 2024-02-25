@@ -91,7 +91,8 @@ session_start();
         .content {
             width: calc(100vw - 30vw );
             background-color: var(--background-color);
-            height: 100vh;
+            min-height: 100vh;
+            height : auto ; 
             display: flex;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
@@ -100,7 +101,8 @@ session_start();
         .preview{
                 width: 30vw;
                 position: fixed;
-                height: 100vh;
+                min-height: 100vh;
+                height: auto;
                 right: 0rem;
                 background-color: var(--preview-background-color);
         }
@@ -393,6 +395,10 @@ session_start();
 
             
         }
+        .blank-area{
+            width: 295px;
+            height: 8vw;
+        }
 
 
         /* Css for preview panel  */
@@ -404,6 +410,7 @@ session_start();
             gap: 30px;
             margin-left: 4vw ; 
             background-image: url("/images/rectangle.png");
+            
             
            
             
@@ -477,10 +484,12 @@ session_start();
             color: #FFFFFF;
         }
 
-        .imgComplaint img{
-            width: 30rem;
-            border-radius: 3px;
-        }
+        .imgComplaint img {
+  width: 25rem;
+  height: auto;
+  border-radius: 3px;
+}
+
         #heading{
             font-size: 20px;
             font-family: 'Poppins', sans-serif;
@@ -780,6 +789,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                     </div>
                                     <?php
                                 }
+                            }else {
+                                // Display a blank area if there are no new complaints
+                                echo '<div class="blank-area">
+                                </div>';
                             }
                                    
                     ?>
@@ -813,6 +826,9 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             </div>
                             <?php
                         }
+                    }else {
+                        // Display a blank area if there are no new complaints
+                        echo '<div class="blank-area"></div>';
                     }
 
                 ?>
@@ -844,6 +860,9 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                         </div>
                                         <?php
                                     }
+                                }else {
+                                    // Display a blank area if there are no new complaints
+                                    echo '<div class="blank-area"></div>';
                                 }
 
                                 

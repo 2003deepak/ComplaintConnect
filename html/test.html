@@ -1,284 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrolling Example</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  .container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
 
-    <!-- Poppins  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  .nav {
+    width: 80px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
 
+  .content {
+    width: calc(100vw - 30vw);
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+  }
 
-    <!-- Plus Jakarta Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  .preview {
+    width: 30vw;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    right: 0;
+    background-color: #f9f9f9;
+}
+</style>
 </head>
-<body> 
+<body>
+<div class="container">
+  <div class="nav">Nav content</div>
+  <div class="content">
+    <!-- Content with lots of complaints -->
+    <!-- Repeat this line as needed -->
+    <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla natus amet expedita iste pariatur sint id molestias quae! Iusto deserunt natus optio saepe debitis ratione asperiores quasi rerum libero eius quis fuga eaque earum tempora quibusdam, eveniet sequi sed placeat. Modi accusantium consequuntur a iste sint natus ex consectetur quaerat illum delectus. Exercitationem ab nulla magnam possimus perspiciatis optio? Nobis amet culpa adipisci iste saepe architecto reiciendis nisi dolores quibusdam? Quas ab molestiae iste, error veritatis eaque iusto delectus itaque nisi excepturi dicta. Laboriosam impedit qui deserunt, obcaecati soluta voluptas veritatis pariatur, dignissimos ratione, porro officia voluptatibus rem nisi quam ab dolorum ea facilis accusamus laudantium. Maxime obcaecati voluptatibus quis. Possimus eos perferendis magni ex expedita, libero quibusdam! Necessitatibus tenetur, cupiditate quos veniam libero officiis eaque autem neque ut mollitia ipsam repellendus, at blanditiis ab minus! Odio, quibusdam rerum. Consectetur laudantium fugit dolore assumenda adipisci suscipit vero eos eligendi tempora, illo aperiam neque maiores ea aspernatur earum facere labore eaque quaerat esse culpa atque, ipsa harum praesentium! Delectus, necessitatibus hic. Porro illum, corrupti dolor tempora vel dolore quae deleniti neque! Iste autem explicabo eius nobis fuga laborum velit quidem error voluptatem, odio similique nesciunt quibusdam repellendus? Aperiam minima magnam fuga nemo aliquid eveniet in sapiente ipsam. Voluptatibus, voluptatum ipsam deleniti quam odit, nihil, laboriosam libero reiciendis provident quae quos omnis quisquam reprehenderit consequuntur dolore? Nihil cupiditate in assumenda illum laudantium praesentium ipsum similique quidem dignissimos qui molestiae nisi harum, quam sunt recusandae doloremque exercitationem sapiente. Animi amet commodi sunt veniam repellendus laboriosam at dignissimos quis! Autem explicabo quam, et qui atque voluptatum nobis consequatur nulla veniam incidunt vitae dolore fuga! Harum mollitia dignissimos tempora nesciunt ipsa sequi molestiae labore, obcaecati laborum nulla molestias blanditiis unde repellendus quae earum consectetur dolores impedit accusamus eligendi quia voluptatibus placeat officiis recusandae cumque! Eum corrupti aut, recusandae architecto harum facere nobis? Excepturi et saepe deleniti officiis eum? Corrupti similique, earum esse quisquam nam numquam tenetur omnis reprehenderit labore hic dolores molestiae minima saepe nihil velit voluptatem soluta nemo iure ipsam laborum ut! Ullam quas quo quasi ex ratione recusandae veniam velit quibusdam nesciunt pariatur non est voluptatibus veritatis quos qui, nostrum laborum sit atque vero, architecto adipisci! Distinctio nobis voluptas voluptates veritatis a ullam nisi! Quidem ullam quis possimus dolor iure, excepturi voluptatem dignissimos illum sequi tempore, velit quisquam nisi iusto necessitatibus, vitae fugit laborum voluptate repudiandae. Cupiditate voluptate distinctio accusamus tempore magni deserunt earum aperiam itaque libero laborum sint, doloremque incidunt sed ducimus harum molestiae dicta delectus atque beatae. Excepturi corrupti sunt placeat assumenda tenetur eum voluptas dicta, alias cupiditate nihil fuga aperiam modi molestias incidunt deserunt odit. Illum ducimus cum fuga, aperiam atque earum quod vitae vero omnis nemo porro tenetur similique nulla eum. Id, magnam reiciendis. Molestiae qui eaque quis nihil dolor a, deserunt dolore ab maxime, totam aliquid consequatur officiis praesentium. Optio aperiam praesentium incidunt assumenda voluptates commodi rerum sed. Explicabo asperiores nam, et voluptates culpa cumque beatae! Non delectus modi dolorum ut quis quae perferendis impedit quas nihil deleniti?</h1>
+  </div>
+  <div class="preview"><h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi, maxime, facilis cum iste tempora sequi blanditiis at tenetur quod culpa, adipisci enim amet sapiente eum ipsam commodi aperiam eos totam accusamus repellendus explicabo magnam. Aliquid, eos quasi quod a sed exercitationem dolorem totam voluptatum cumque id? Itaque aliquam dolorum quas, iure labore libero sed. Numquam iste tempora omnis, id dolor recusandae libero maiores eaque, beatae ex veniam nesciunt. Obcaecati, a. Rem sunt dicta totam quibusdam! Non voluptatibus placeat, cum nisi nam doloremque, aperiam tempora dolorum corrupti autem quod eaque maiores eius ipsum architecto delectus nobis saepe, commodi voluptate veritatis voluptatem unde. Unde perferendis debitis aperiam ab excepturi ipsam! Architecto fugit tenetur ex exercitationem explicabo molestiae, odio nam ipsam ratione temporibus. Corrupti iste provident reprehenderit laborum placeat ducimus sint! Dolores culpa dolorem cum! Voluptates iure quam laudantium eaque ratione cupiditate et sunt vero? Eum unde maxime, quis ab possimus voluptatibus voluptate quia corrupti eaque. Tenetur eaque voluptate optio non architecto ullam repellat, provident eveniet beatae, aperiam quia modi reiciendis pariatur facilis magnam? Corporis, quisquam placeat! Enim, delectus at? Vel, voluptatibus sed tenetur maiores officiis facilis ea cupiditate enim est natus voluptas atque eum, modi eveniet id sequi distinctio libero voluptate nulla ab consequuntur. Est sunt itaque unde deserunt reiciendis eum, similique, quos velit tempora nam aperiam voluptates libero omnis maiores impedit sequi ducimus saepe ipsum, autem corporis quo? Sequi suscipit expedita nisi fugit iure inventore incidunt ex pariatur mollitia molestias voluptatem, consequatur natus enim possimus nesciunt deleniti, veniam deserunt distinctio quibusdam iste assumenda aspernatur earum saepe. Laudantium provident nostrum quia. Rem voluptatem iusto neque laborum, numquam blanditiis ex omnis ab minus dolores repellat quod pariatur sapiente perferendis cumque aliquid voluptate culpa esse non ipsum inventore et. Doloribus neque ut iste ducimus mollitia veniam incidunt, doloremque, nisi quae facere, recusandae nobis?</h1></div>
+</div>
 
-    <style>
+<script>
+  const container = document.querySelector('.container');
+const nav = document.querySelector('.nav');
+const content = document.querySelector('.content');
+const preview = document.querySelector('.preview');
 
-        body{
-            background-color: #1E1E1E;
-            color: white ;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .nav{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100px;
-            justify-content: space-between;
-            /* background-color: orange; */
-        }
-        .left_nav{
-             width: 400px;
-             height: 100px;
-             padding-left: 8rem;
-             /* background-color: pink; */
-             display: flex;
-             
-        }
-        .right_nav{
-             width: 50vw;
-             height: 100px;
-             /* padding-left: 8rem; */
-             /* background-color: aqua; */
-             display: flex;
-             margin-right: 2rem ;
-             justify-content: flex-end;
-             align-items:center;
-             
-        }
-        ul{
-            list-style-type: none;
-            font-size: 22px;
-            font-family: 'Poppins', sans-serif;
-        }
+content.addEventListener('scroll', () => {
+    const scrollPos = content.scrollTop;
+    preview.style.top = `${scrollPos}px`;
+});
 
-        .nav-content ul{
-            display: flex;
-            gap:4.5rem;
-        }
-        .nav-content a{
-            color: white;
-            text-decoration: none;
-        }
-        .left_nav img{
-            width: 70% ; ;
-        }
+preview.addEventListener('scroll', () => {
+    const scrollPos = preview.scrollTop;
+    content.style.top = `${scrollPos}px`;
+});
 
-        .main{
-            width: 65vw;
-            height: 70vh;
-            display: flex;
-            margin-top: 4rem;
-            /* justify-content: center; */
-            align-items: center;
-            background-color: rgba(65, 66, 73, 1);
-            border-radius: 30px;
-        }
-        .login{
-            width: 30vw;
-            height: 85%;
-            margin-left: 4rem;
-            background-color: rgba(196, 197, 204, 1);
-            border-radius: 43px;
-            font-family: "Plus Jakarta Sans", sans-serif;
-            
-            
-        }
-        a{
-            text-decoration: none;
-            /* color: #B4B4B4 ;  This is the og color used , but due to not implementing box shadow changing it to black*/ 
-            color: black;
-        }
-
-        .logo{
-            width: calc(100% - 35vw);
-            height: 85%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* background-color: pink; */
-            
-        }
-        .logo img{
-            width: 155%;
-            margin-top: -5rem;
-            margin-left: 5rem;
-        }
-
-        .form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.2rem;
-        }
-        .register{
-            display: flex;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-        .form .forgot{
-            display: flex;
-            justify-content: left;
-            width: 82%;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-            
-        }
-
-        .form input[type="text"] {
-            width: 80%;
-            height: 60.97px;
-            padding-left: 1rem;
-            background-color: #B4B4B4;
-            border: none;
-            
-        }
-        .form input[type="password"]{
-            width: 80%;
-            height: 60.97px;
-            padding-left: 1rem;
-            background-color: #B4B4B4;
-            border: none;
-        }
-        .form input[type="submit"]{
-            width: 83%;
-            height: 60.97px;
-            background-color: #232429;
-            color: #B4B4B4;
-            font-size: 20px;
-
-        }
-        .content{
-            
-            margin-left: 3rem;
-        
-        }
-    </style>
-
-    <div class="nav">
-        <div class="left_nav">
-            <img src="/images/try.svg" alt="" srcset="">
-
-        </div>
-        <div class="right_nav">
-
-            <div class="nav-content">
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="login.php">Login</a></li>
-                    <li><a href="register.php">Register</a></li>
-                    <li><a href="forgot.php">Forgot Password</a></li>
-                    <li><a href="resetPassword.php">Reset Password</a></li>
-                </ul>
-
-            </div>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="main">
-
-        <div class="login">
-
-            <div class="content">
-                <h1>Login</h1>
-                <h2>to get started</h2>
-            </div>
-
-            
-
-                <form class="form" onsubmit="return validate()" action="../php/logincheck.php" method="post">
-                    <input type="text" name="" id="username" placeholder="Username">
-                    <!-- <i class="fa-solid fa-check fa-beat-fade fa-rotate-90" style="color: #50c3a1;"></i>
-                    <i class="fa-solid fa-circle-xmark fa-shake" style="color: #e62828;"></i> -->
-
-                    
-
-                    <input type="password" name="" id="password" placeholder="Password" onchange="validatePassword()">
-
-                        <!-- <i class="fa-solid fa-check fa-beat-fade fa-rotate-90" style="color: #50c3a1;"> -->
-                        <!-- <i class="fa-solid fa-eye"></i> -->
-
-                   
-                    
-
-                    <div class="forgot">
-                        <a href="">Forgot Password</a>
-
-                    </div>
-                    
-                    <input type="submit" name = "" value="Continue">
-
-                </form>
-            
-
-            <div class="register">
-                <a href="">New User ? Register</a>
-            </div>
-
-
-        </div>
-
-        <div class="logo">
-
-            <img src="/images/big-logo.png" alt="">
-
-
-        </div>
-
-    </div>
-
-    <script>
-
-        function validatePassword() {
-            var password = document.getElementById("password");
-            if (password.value.length === 0) {
-                password.style.border = "none"; // Set border to none if password length is 0
-            } else if (password.value.length < 8) {
-                password.style.border = "2px solid red"; // Set border to red if password length is less than 8
-            } else {
-                password.style.border = "2px solid green"; // Set border to green if password length is 8 or more
-            }
-        }
-
-
-
-        // const validate=() =>{
-
-        //     var ans = false ; 
-        //     var username = document.getElementById("username").value;
-        //     var password = document.getElementById("password").value;
-
-        //     if(username.length == 0 && password.length == 0){
-        //         alert("Please fill in all the fields");
-        //         return false;
-        //     }
-
-        //     if(password.length < 8){
-        //         alert("Password must be at least 8 characters");
-        //         return false;
-        //     }
-
-        //     return ans ; 
-
-        // }
-        
-    </script>
-    
+</script>
 </body>
 </html>
