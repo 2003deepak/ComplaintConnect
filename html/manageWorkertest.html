@@ -598,31 +598,81 @@ session_start();
 
     <div class="content">
 
-        <style>
-
-            .content{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .main{
-                width: 90%;
-                height: 90%;
-                background-color: #FF5858;
-                display: flex;
-                
-            }
-            .worker{
-                height: 200px;
-                width: 200px;
-                background-color: #05FF00;
-            }
-
-        </style>
+        
         <div class="main">
+
+            <style>
+
+                .content{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .main{
+                    width: 90%;
+                    height: 90%;
+                    background-color: #FF5858;
+                    display: flex;
+                    
+                }
+                .worker{
+                    height: 200px;
+                    width: 300px;
+                    background-color: rgb(15, 159, 15);
+                    display: flex;
+                    border-radius: 25px;
+                    flex-direction: column;
+                }
+                .worker .top{
+                    display: flex;
+                    width: 90%;
+                    height: 50%;
+                    margin-top: 20px;
+                    
+
+
+                }
+
+                .top .worker_details{
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 10px;
+                    
+                }
+                
+                .contact_details div{
+                    display: flex;
+                    gap: 1rem;
+                    margin-left: 50px;
+
+                }
+    
+            </style>
+
 
             <div class="worker">
 
+                <div class="top">
+                    <img src="/images/image_user-removebg-preview.png" alt="">
+                    <div class="worker_details">
+                        <h2>mukesh </h2>
+                        <p>username</p>
+                        <p>Area</p>
+                    </div>
+                </div>
+                <div class="contact_details">
+                    <div>
+                        <i class="fa-solid fa-phone"></i>
+                        <p>9821293536</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>user@gmail.com</p>
+
+                    </div>
+                        
+
+                </div>
 
 
             </div>
