@@ -16,7 +16,7 @@ if (isset($_POST['save'])) {
     $complaint_id = isset($_POST['id']) ? mysqli_real_escape_string($conn, $_POST['id']) : '';
 
     $folder = "../resolved_complaint";
-    $filename = $_GET['id'] . ".png"; // Rename the file to "roomno.pdf"
+    $filename = $complaint_id . ".png"; // Use $complaint_id here instead of $_GET['id']
     $tempname = $_FILES["file"]["tmp_name"];
     $folder = "../uploaded_images/resolved_complaint/" . $filename;
 
@@ -30,7 +30,7 @@ if (isset($_POST['save'])) {
 
     if ($query1 && $query2) {
         echo '<script>alert("Complaint is successfully closed")</script>';
-        echo "<script> location.replace('../php/Wdashboard.php')</script>";
+         echo "<script> location.replace('../php/Wdashboard.php')</script>";
     } else {
         echo '<script>alert("Complaint Closing Failed")</script>';
         echo "<script> location.replace('../php/takeAction.php')</script>";

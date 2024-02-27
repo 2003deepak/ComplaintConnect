@@ -459,7 +459,7 @@ include 'config.php' ;
 
     <div>
         <i class="fa-solid fa-house"></i>
-        <a href="#">Home</a>
+        <a href="../php/cAdminPanel.php">Home</a>
     </div>
     <div>
         <i class="fa-solid fa-house" ></i>

@@ -609,6 +609,7 @@ count = 0 ;
 
 
                             $final_image = $row['resolved_image'];
+                            
 
 
                            

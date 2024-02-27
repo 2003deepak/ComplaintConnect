@@ -304,7 +304,7 @@ include 'config.php' ;
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="#">Home</a>
+                <a href="../php/cAdminPanel.php">Home</a>
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
@@ -322,6 +322,10 @@ include 'config.php' ;
             <div>
                 <i class="fa-solid fa-house" ></i>
                 <a href="addworkers.php">Add Workers</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-house" ></i>
+                <a href="manageWorker.php">Manage Workers</a>
             </div>
 
            

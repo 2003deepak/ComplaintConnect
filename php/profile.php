@@ -423,7 +423,7 @@ include 'config.php' ;
                 <a href="../php/dashboard.php">Home</a>
             </div>
             <div>
-                <i class="fa-solid fa-house" ></i>
+                <i class="fa-solid fa-user" ></i>
                 <a href="../php/profile.php">Profile</a>
             </div>
             <div>
@@ -431,18 +431,17 @@ include 'config.php' ;
                 <a href="../php/filecomplaint.php">File Complaint</a>
             </div>
             <div>
-                <i class="fa-solid fa-house" ></i>
+                <i class="fa-solid fa-clock"></i>
                 <a href="../php/complaintHistory.php">Complaint History</a>
             </div>
             <div>
-                <i class="fa-solid fa-house" ></i>
+                <i class="fa-solid fa-key"></i>
                 <a href="../php/updateCurrentPassword.php">Update Password</a>
             </div>
             <div>
-                <i class="fa-solid fa-house" ></i>
+                <i class="fa-solid fa-xmark"></i>
                 <a href="#">Close Complaint</a>
             </div>
-
         </div>
         <div class="nav-content-down">
 
@@ -490,22 +489,25 @@ include 'config.php' ;
           $username_count = mysqli_num_rows($query);
           if($username_count){
 
-              $query1 = mysqli_fetch_assoc($query);
-              if(!$query1['name']){
+            $query1 = mysqli_fetch_assoc($query);
+            $name = $query1['name'];
+            $user_profile = $query1['user_profile'];
+            $building = $query1['building'];
+            $room = $query1['room'];
+            $address = $building . "/" . $room;
+            if(!$query1['name']){
                 $name = "";
-              }
-
-              if(!$query1['user_profile']){
-                $user_profile = "../images/user_logo.png";
-              }
-              $name = $query1['name'];
-              $user_profile = $query1['user_profile'];
-              $building = $query1['building'];
-              $room = $query1['room'];
-              $address = $building . "/" . $room;
-
+            }
         
-          }
+            if(!$query1['user_profile']){
+                $user_profile = "../images/user_logo.png";
+            }
+        
+            if($query1['user_profile']){
+                $user_profile = $query1['user_profile']; // Use the fetched profile image if available
+            }
+        
+        }
 
 
 
@@ -538,7 +540,7 @@ include 'config.php' ;
 
                         <div class="img-logo">
                            
-                            <img src = "<?php echo $user_profile?> " alt="logo" id="logoImg" height="300px">
+                            <img src = "<?php echo $user_profile ;?> " alt="logo" id="logoImg" height="300px">
                             <div class="upload">
                                
                                 <input type="file" name="image" onchange="changeLogo(event)" >
@@ -561,36 +563,51 @@ include 'config.php' ;
 
     <!-- Adding Profile Image and name of user to db  -->
 
+
     <?php
-include 'config.php';
+
+    include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     $name = $_POST['name'];
-
-   
-        $folder = "../uploaded_images/profile_image/";
-        $filename = $building . "_" . $room . ".png"; // Rename the file to "roomno.pdf"
-        $tempname = $_FILES["image"]["tmp_name"];
-        $folder = "../uploaded_images/profile_image/" . $filename;
-
-        move_uploaded_file($tempname, $folder);
-
-        $sql = "UPDATE register SET `name` = '$name', `user_profile` = '$folder' WHERE `username` = '" . $_SESSION['username'] . "'";
-
-        if ($conn->query($sql) === TRUE) {
-            
-            echo '<script>';
-            echo 'ConfirmationAlert("Success","Profile Updated","../php/profile.php")';
-            echo '</script>';
-            
-        } else {
-            echo '<script>';
-            echo 'ErrorAlert("Failed","Updation Failed","../php/profile.php")';
-            echo '</script>';
-        }
+    $folder = "../uploaded_images/profile_image/";
     
+    // Check if a file was uploaded
+    if ($_FILES["image"]["error"] === UPLOAD_ERR_OK) {
+        $filename = $building . "_" . $room . ".". pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION); // Rename the file to "roomno.png"
+        $tempname = $_FILES["image"]["tmp_name"];
+        $folder = $folder . $filename;
+
+        // Move the uploaded file to the target folder
+        if (!move_uploaded_file($tempname, $folder)) {
+            echo '<script>';
+            echo 'ErrorAlert("Failed","Image Upload Failed","../php/profile.php")';
+            echo '</script>';
+            exit; // Stop further execution if image upload failed
+        }
+    }
+
+    // Update the user's profile
+    $sql = "UPDATE register SET `name` = '$name', `user_profile` = '$folder' WHERE `username` = '" . $_SESSION['username'] . "'";
+
+    // If no file was uploaded, update only the name
+    if ($_FILES["image"]["error"] !== UPLOAD_ERR_OK) {
+        $sql = "UPDATE register SET `name` = '$name' WHERE `username` = '" . $_SESSION['username'] . "'";
+    }
+
+    if ($conn->query($sql) === TRUE) {
+        echo '<script>';
+        echo 'ConfirmationAlert("Success","Profile Updated","../php/profile.php")';
+        echo '</script>';
+    } else {
+        echo '<script>';
+        echo 'ErrorAlert("Failed","Updation Failed","../php/profile.php")';
+        echo '</script>';
+    }
 }
+
 ?>
+
 
 
 

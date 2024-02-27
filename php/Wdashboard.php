@@ -388,73 +388,135 @@ session_start();
             color: var(--font-color);
 
             
+        }.blank-area{
+            width: 295px;
+            height: 8vw;
+            margin-left:35px;
         }
 
 
         /* Css for preview panel  */
 
-        .imgComplaint{
-            width: 100vw;
-            height: 20.5vw;
-
+        .preview{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-left: 4vw ; 
+            background-image: url("/images/rectangle.png");
+            
+            
+           
+            
         }
-        .imgComplaint img{
-            margin-left: 3.9vw;
-            margin-top: 1vw ;
-            height: 80%;
-            /* aspect-ratio: 3 / 2;
-            object-fit: contain; */
+
+        .cDetails{
+            display:flex ; 
+            flex-direction : column ; 
+            align-items : center ;
+            gap: 1.1rem ; 
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .values{
+            display:flex ; 
+            /* flex-direction : column ;  */
+            gap: 8.3rem ; 
+            
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        ul{
+            list-style-type: none;
+            display:flex ;
+            flex-direction: column;
+            gap: 1.1rem ;
+        }
+
+        .details{
+            display : flex ; 
+            flex-direction: column;
+            margin-left: -15rem ; 
+            
+            gap: 15px;
+        }
+
+        .details_btn{
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        #complete{
+            
+            height: 29px;
+            width: 107px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+        }
+        #raise{
+            background-color: #DCDEDB;
+            height: 29px;
+            width: 107px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+        }
+
+        .desc-data{
+            background-color: #afafaf47;
+            width: 28rem;
+            height: 100px;
+            display: flex ; 
+            justify-content: start ; 
+            border-radius: 3px;
+            padding: 1rem ; 
+            color: #FFFFFF;
+        }
+
+        .imgComplaint img {
+            width: 25rem;
+            height: auto;
+            border-radius: 3px;
+        }
+
+        #heading{
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color : #DCDEDB ; 
+            margin-top: 1.5vw ;
+        }
+
+        #view{
+            width: 175px;
+            height: 50px;
+            background-color: #000000;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+            color: white;
         }
 
         .complaintDetails{
-            display: flex;
+            display:flex ; 
             flex-direction: column;
-            align-items: center;
-            background-color: #0f0f0f;
-            height: 100%;
-
+            gap:2rem ; 
         }
 
-        .complaintDetails p{
-            color: var(--font-color);
-        }
-        .cInfo{
+        .btn{
             display: flex;
-            flex-direction: column;
-            margin-top: 1.5rem;
+            justify-content : center ; 
+            align-item : center
+            gap: 1.5rem;
         }
-        .cDetails{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 24vw;
-            height: 20vh;
-            /* background-color: orange; */
-        }
-        .description{
-            width: 75%;
-            height: 7vw;
-            background-color: #161717;
-            margin-top: 2rem;
-            display: flex;
-            padding : 1rem ;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.7rem;
-        }
-
-        .cBtn button{
-            width: 10vw;
-            height: 3vw;
-            border: none;
-            border-radius: 8px;
-            color: var(--font-color);
-            font-size: 19px;
-            background-color: #05FF00;
-            cursor: pointer;
-            margin-top: 25px;
-        }
+        
 
             
            
@@ -722,6 +784,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                     </div>
                                     <?php
                                 }
+                            }else {
+                                // Display a blank area if there are no new complaints
+                                echo '<div class="blank-area">
+                                </div>';
                             }
                                    
                     ?>
@@ -755,6 +821,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             </div>
                             <?php
                         }
+                    }else {
+                        // Display a blank area if there are no new complaints
+                        echo '<div class="blank-area">
+                        </div>';
                     }
 
                 ?>
@@ -785,6 +855,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                         </div>
                                         <?php
                                     }
+                                }else {
+                                    // Display a blank area if there are no new complaints
+                                    echo '<div class="blank-area">
+                                    </div>';
                                 }
 
                                 

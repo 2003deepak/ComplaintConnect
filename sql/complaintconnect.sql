@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2024 at 07:20 PM
+-- Generation Time: Feb 27, 2024 at 04:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,10 +45,10 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`, `resolved_time`, `last_updation`, `worker_assigned`) VALUES
-('deepak123', 'C1148', 'Electricity', 'Fan not working', 'No supply in fan ', '../uploaded_images/complaint_images/210_1_C1148.jpg', '2024-02-20 21:23:05.49', '2024-02-21 00:39:36.00', '2024-02-21 00:16:22.00', 'mukesh123'),
-('deepak123', 'C5879', 'Water', 'Contaminated Water ', 'Water is dirty ', '../uploaded_images/complaint_images/210_1_C5879.jpg', '2024-02-20 21:24:38.13', NULL, '2024-02-21 00:29:37.00', 'manoj123'),
+('deepak123', 'C1148', 'Electricity', 'Fan not working', 'No supply in fan ', '../uploaded_images/complaint_images/210_1_C1148.jpg', '2024-02-20 21:23:05.49', '2024-02-27 19:25:08.00', '2024-02-21 00:16:22.00', 'mukesh123'),
+('deepak123', 'C5879', 'Water', 'Contaminated Water ', 'Water is dirty ', '../uploaded_images/complaint_images/210_1_C5879.jpg', '2024-02-20 21:24:38.13', '2024-02-27 19:30:04.00', '2024-02-21 00:29:37.00', 'manoj123'),
 ('deepak123', 'C7676', 'Water', 'Chair Broken ', 'One leg of chair is broken ', '../uploaded_images/complaint_images/210_1_C7676.jpg', '2024-02-20 21:26:43.97', NULL, '2024-02-21 00:22:43.00', 'manoj123'),
-('rahul123', 'C7802', 'Electricity', 'Tubelight not working', 'Tubelight Got Fused ', '../uploaded_images/complaint_images/210_2_C7802.jpg', '2024-02-20 21:33:50.66', NULL, '2024-02-21 21:59:54.00', 'mukesh123');
+('rahul123', 'C7802', 'Electricity', 'Tubelight not working', 'Tubelight Got Fused ', '../uploaded_images/complaint_images/210_2_C7802.jpg', '2024-02-20 21:33:50.66', '2024-02-27 19:38:42.00', '2024-02-21 21:59:54.00', 'mukesh123');
 
 -- --------------------------------------------------------
 
@@ -74,8 +74,8 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
-(21, NULL, 'deepak123', '$2y$10$IFUInFsLFtBPYwGUWmI9zO0CIJIeitYcsdEJtUgcVKi./GJrXWQqa', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', NULL, 1),
-(22, NULL, 'rahul123', '$2y$10$dKnzgzVnupv9rF9KiI79IunXv3DVcfl.TUuZMtkOWagYAy/kF9r9G', 'rahul@gmail.com', '210', '2', '../uploaded_images/allotment_letter/210_2.pdf', NULL, 1);
+(21, 'Deepak Yadav', 'deepak123', '$2y$10$IFUInFsLFtBPYwGUWmI9zO0CIJIeitYcsdEJtUgcVKi./GJrXWQqa', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1),
+(22, 'Rahul Ranjan', 'rahul123', '$2y$10$dKnzgzVnupv9rF9KiI79IunXv3DVcfl.TUuZMtkOWagYAy/kF9r9G', 'rahul@gmail.com', '210', '2', '../uploaded_images/allotment_letter/210_2.pdf', '../uploaded_images/profile_image/210_2.svg', 1);
 
 -- --------------------------------------------------------
 
@@ -120,10 +120,10 @@ CREATE TABLE `worker_action` (
 --
 
 INSERT INTO `worker_action` (`worker_assigned`, `complaint_id`, `actionTaken`, `complete`, `resolved_image`) VALUES
-('mukesh123', 'C1148', 1, 1, '../uploaded_images/resolved_complaint/.png'),
-('manoj123', 'C5879', 1, NULL, NULL),
+('mukesh123', 'C1148', 1, 1, '../uploaded_images/resolved_complaint/C1148.png'),
+('manoj123', 'C5879', 1, 1, '../uploaded_images/resolved_complaint/C5879.png'),
 ('manoj123', 'C7676', 0, NULL, NULL),
-('mukesh123', 'C7802', 1, NULL, NULL);
+('mukesh123', 'C7802', 1, 1, '../uploaded_images/resolved_complaint/C7802.png');
 
 --
 -- Indexes for dumped tables

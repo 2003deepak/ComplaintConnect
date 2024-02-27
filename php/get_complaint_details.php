@@ -1,3 +1,7 @@
+<?php
+session_start();
+include 'config.php' ; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +29,15 @@ if (isset($_POST['complaintId'])) {
         <div class='details'>
             <p id='heading'>Complaint Details</p>
             <div class='details_btn'>";
+
+            if(!$_SESSION['username']){
+                if($row['resolved_time'] != NULL && $row['last_updation'] != NULL){
+    
+                    echo "<button id='raise'>Raise Ticket</button>
+                    <div> </div>";
+                     
+                }
+            }
 
         if ($row['resolved_time'] == NULL && $row['last_updation'] == NULL) {
             echo "<button id='complete' style='background-color: #eb1010'>New Request</button>";
@@ -72,7 +85,10 @@ if (isset($_POST['complaintId'])) {
             </div>
 
             <div class='btn'>
-                <button id='view'>View Complaint</button>
+            <button id='view' onclick='redirectToComplaintInfo()'>View Complaint</button>
+
+
+
             </div>
 
             
@@ -80,6 +96,12 @@ if (isset($_POST['complaintId'])) {
     }
 }
 ?>
+
+<script>
+    function redirectToComplaintInfo() {
+        window.location.href = '../php/ComplaintInfo.php?id=<?php echo $row['complaint_id'] ?>';
+    }
+</script>
 
 </body>
 </html>

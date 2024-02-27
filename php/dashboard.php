@@ -85,7 +85,9 @@ session_start();
         }
         .nav:hover + .content {
             margin-left: 250px;
+            
         }
+        
         
 
         .content {
@@ -398,6 +400,7 @@ session_start();
         .blank-area{
             width: 295px;
             height: 8vw;
+            margin-left:38px;
         }
 
 

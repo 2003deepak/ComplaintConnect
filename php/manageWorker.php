@@ -89,23 +89,15 @@ session_start();
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 80px );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
-
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
-
-        
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -243,222 +235,121 @@ session_start();
                
             }
 
-            .boxes{
+
+
+
+
+
+        /* Code for table of worker  */
+
+        .main{
+                width: 90%;
+                height: 90%;
                 display: flex;
-                gap: 1rem;
+                flex-direction: column;
+                font-family: 'Poppins', sans-serif;
+            }
+            .top{
+                width: 100%;
+                height: 70px;
+                display: flex;
+                justify-content:space-between;
+                align-items: flex-start;
+            }
+            .top-search{
+                display: flex;
+                align-items: center;
+            }
+           
+            .top-search input{
+                background-color: #202020;
+                border: none;
+                font-size: 18px;
+                padding-left: 20px;
+                color: white;
+                height: 45px;
+                width: 20vw;
+                border-radius: 10px;
+            }
+            .top-search i{
+                font-size: 25px;
+                position: relative;
+                right: 35px;
+            }
+            .top button{
+                width: 12rem;
+                height: 45px;
+                border-radius: 20px;
+                background-color: #3984F3;
+                border: none;
+                color: white;
+                font-weight: 600;
+                margin-right: 40px;
+                font-size: 17px;
+                cursor: pointer;
+            }
+            .middle{
+                display: flex;
+                height: calc(100% - 70px);
+                gap: 2rem; /* For equal gap in Y-axis */
+                gap: 2rem; /* For equal gap in X-axis */
                 flex-wrap: wrap;
-                color: var(--font-color);
-                margin-top: 1.5rem;
-                font-size: 19px;
+                
             }
-            .boxes .box11{
-                width: 15.5vw;
-                height: 150px;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
+            .boxes{
+                width: 18vw;
+                height: 26vh;
                 display: flex;
                 flex-direction: column;
+                gap: 0px;
+                align-items: center;
+                background-color: #202020;
+                color : white ; 
                 border-radius: 10px;
-                border-top: 10px solid #FF5858;
-            }
 
-            .boxes .box13{
-                width: 15.5vw;
-                height: 150px;
+            }
+            
+            .topBoxes{
+                width: 95%;
+                height: 60%;
                 display: flex;
-                flex-direction: column;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
-                border-radius: 10px;
-                border-top: 10px solid #05FF00;
+                gap: 0px;
+                justify-content: space-around;
+                align-items: center;
             }
-
-            .boxes .count{
-                width: 40%;
-                height: 81px;
-                align-self: center;
+            .downBoxes{
+                width: 95%;
+                height: 30%;
+                display: flex;
+                gap: 10px;
+                margin-left: 20px;
+                flex-direction: column;
+            }
+            .phone{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .topBoxes img{
+                width: 110px;
+            }
+            .topBoxes p , .phone p{
+               
+                font-size: 15px;
+            }
+            .work_field{
+                margin-right: 80px;
+            }
+            .icondiv{
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: #2B2B2B;
+                border: 1px solid #2A2A2A;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-top: 10px;
-                border-radius: 5px;
-                background-color: var(--box-count-color);
             }
-
-            .boxes .box12{
-                width: 15.5vw;
-                height: 150px;
-                display: flex;
-                flex-direction: column;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
-                border-radius: 10px;
-
-                border-top: 10px solid #FF9F00;
-            }
-
-            .line{
-                background-color: var(--boxes-bg-color);
-                width: 79%;
-                margin-top: 1.2rem;
-                margin-bottom: 1.2rem;
-                height: 10px;
-            }
-
-            .complaints{
-                width: 90%;
-                height: 50px;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                
-            }
-            .complaints p{
-                color:  var(--text-boxes-color);
-            }
-
-            .complaints .box21{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-                
-                border-radius: 10px;
-                color: var(--font-color);
-
-                
-            }
-            .complaints .box22{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-               
-                border-radius: 10px;
-                color: var(--font-color);
-                
-            }
-            .complaints .box23{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-                border-radius: 10px;
-                color: var(--font-color);
-
-                
-            }
-
-            .phpreply{
-                
-                display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
-                color: var(--font-color);
-                margin-top: 1.5rem;
-                font-size: 19px;
-            
-        }
-
-        .pendingComplaints , .newComplaints , .completedComplaints{
-            width:295px ; 
-            height: 100vh ; 
-            display: flex;
-           
-            flex-direction: column;
-        }
-
-        .phpreply .box4{
-            width: 295px;
-            height: 8vw;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
-            padding: 1rem;
-            margin-bottom : 1rem;
-            background-color: var(--boxes-bg-color);
-            border-radius: 10px;
-            color: var(--font-color);
-
-            
-        }
-
-
-        /* Css for preview panel  */
-
-        .imgComplaint{
-            width: 100vw;
-            height: 20.5vw;
-
-        }
-        .imgComplaint img{
-            margin-left: 3.9vw;
-            margin-top: 1vw ;
-            height: 80%;
-            /* aspect-ratio: 3 / 2;
-            object-fit: contain; */
-        }
-
-        .complaintDetails{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0f0f0f;
-            height: 100%;
-
-        }
-
-        .complaintDetails p{
-            color: var(--font-color);
-        }
-        .cInfo{
-            display: flex;
-            flex-direction: column;
-            margin-top: 1.5rem;
-        }
-        .cDetails{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 24vw;
-            height: 20vh;
-            /* background-color: orange; */
-        }
-        .description{
-            width: 75%;
-            height: 7vw;
-            background-color: #161717;
-            margin-top: 2rem;
-            display: flex;
-            padding : 1rem ;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.7rem;
-        }
-
-        .cBtn button{
-            width: 10vw;
-            height: 3vw;
-            border: none;
-            border-radius: 8px;
-            color: var(--font-color);
-            font-size: 19px;
-            background-color: #05FF00;
-            cursor: pointer;
-            margin-top: 25px;
-        }
-
-            
-           
-           
 
 
              @media (max-width:768px) {
@@ -470,9 +361,6 @@ session_start();
                 
                 .box11{
                     margin-left: 5rem;
-                }
-                .preview{
-                    display: none ;
                 }
 
                 .bars{
@@ -540,48 +428,47 @@ session_start();
 
        
         <div class="icon">
+        <?php
 
-            <?php
-
-           
-                $u = $_SESSION["username"];
-                $capitalizedu = ucfirst($u[0]);
-
+   
+            $u = $_SESSION["username"];
+            $capitalizedu = ucfirst($u[0]);
 
 
-
-            ?>
-             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+        ?>
+        <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/dashboard.php">Home</a>
+                <a href="../php/cAdminPanel.php">Home</a>
             </div>
             <div>
-                <i class="fa-solid fa-user" ></i>
-                <a href="../php/profile.php">Profile</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="../php/cPendingComplaints.php">Pending </a>
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/WnewComplaints.php">New Complaints</a>
+                <a href="../php/cCompletedComplaints.php">Completed </a>
+            </div>
+            
+            <div>
+                <i class="fa-solid fa-house" ></i>
+                <a href="#">Profile</a>
             </div>
             <div>
-                <i class="fa-solid fa-clock"></i>
-                <a href="../php/complaintHistory.php">Pending Complaints</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="addworkers.php">Add Workers</a>
             </div>
             <div>
-                <i class="fa-solid fa-key"></i>
-                <a href="../php/updateCurrentPassword.php">Update Password</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-xmark"></i>
-                <a href="#">Close Complaint</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="manageWorker.php">Manage Workers</a>
             </div>
 
         </div>
+
         <div class="nav-content-down">
 
             <div onclick="toggle()" >
@@ -607,66 +494,115 @@ session_start();
 
     <div class="content">
 
+        <style>
+            
+            
+            
+            
+            
 
-    <table class="content-table">
-        <tr>
-          
-          <th>Username</th>
-          <th>Email ID</th>
-          <th>Aadhar Card</th>
-          <th>Work Area</th>
-         
-        </tr>
-
+        </style>
         
-        <?php
+        <div class="main">
 
-include 'config.php' ;
-$sql = "select * from worker";
-$result = $conn->query($sql);
- 
-// Loop through the result set and generate table rows
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+            <div class="top">
 
-      ?>
-        <tr class="active-row">
-          
-          
-          <td> <?php echo $row["username"] ?> </td>
-          <td> <?php echo $row["email"] ?> </td>
-          <td><a href = "<?php echo $row["aadhar_card"]?> " target="blank"><img src="../images/pdf_icon.png" width="40px" height="40px"></a></td>
-          <td> <?php echo $row["work_area"] ?> </td>
-          <td> <button class="btn1"> <a class = "accept" href="../php/deleteworker.php?id=<?php echo $row['username']; ?>"> Delete Worker</a>  </button> </td>
+                <div class="top-search">
+                    <input type="text" placeholder="Search here ...">
 
-          
+                    <i class="fa-solid fa-magnifying-glass" style="color: #717579;"></i>
 
-        </tr>
-        <?php
-    }
-}
+                </div>
+                <button onclick="window.location.href='../php/addworkers.php'">+ New Worker</button>
 
-// Close the connection
-$conn->close();
-?>
-</table> 
+                
+
+            </div>
+            <div class="middle">
+
+            <?php
+
+                include 'config.php' ;
+                $sql = "select * from worker";
+                $result = $conn->query($sql);
+                
+                // Loop through the result set and generate table rows
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
 
 
+                        ?>
 
-        
-        
-    </div>
+                        <div class="boxes">
+
+                            <div class="topBoxes">
+                                <div>
+                                    <img src="../images/placeholder.svg" alt="">
+                                </div>
+                                
+                                <div class="work_field">
+                                    <h3>Name</h3>
+                                    <p>@<?php echo $row["username"] ?> </p>
+                                    <p style="color: #3984F3;"><?php echo $row["work_area"] ?></p>
+                                </div>
+
+                            </div>
+
+                            <div class="downBoxes">
+                                <div class="phone">
+                                    <div class="icondiv">
+                                        <i class="fa-solid fa-phone" style="color: #3984F3;"></i>
+                                    </div>
+                                    <p>9821293536</p>
+                                </div>
+                                <div class="phone">
+                                    <div class="icondiv">
+                                        <i class="fa-solid fa-envelope" style="color: #3984F3;"></i>
+                                    </div>
+                                    <p><?php echo $row["email"] ?></p>
+                                </div>
+
+                            </div>
+
+                    
+
+                        </div>
+
+                    <?php
+                        
+                    }
+                }
+
+                // Close the connection
+                $conn->close();
+            ?>
 
 
-    <!-- Loading all complaints to display in preview mode -->
 
-  
+                
+                
 
+                
+                
+                
+                
+            </div>
+
+
+
+
+            
+
+        </div>
 
 
     
 
         
+        
+   
+
+    
         
     </div>
 
