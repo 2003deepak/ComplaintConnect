@@ -451,15 +451,15 @@ count = 0 ;
 
     <?php
 
-   
-        $u = $_SESSION["username"];
-        $capitalizedu = ucfirst($u[0]);
+            
+    $u = $_SESSION["username"];
+    $capitalizedu = ucfirst($u[0]);
 
 
 
 
     ?>
-     <!-- <p><?php echo $capitalizedu ;?></p>   Replace it with first letter of Username of user  -->
+    <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
 </div>
 
 <div class="nav-content">

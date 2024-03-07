@@ -2,54 +2,60 @@
 session_start();
 include 'config.php' ; 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
     <title>Document</title>
 </head>
 <body>
 
-<?php
-include 'config.php';
+    <?php
+    include 'config.php';
 
-if (isset($_POST['complaintId'])) {
-    $complaintId = $_POST['complaintId'];
+    if (isset($_POST['complaintId'])) {
+        $complaintId = $_POST['complaintId'];
 
-    // Fetch details based on the complaint ID
-    $sql = "SELECT * FROM complaints WHERE complaint_id = '$complaintId'";
-    $result = $conn->query($sql);
+        // Fetch details based on the complaint ID
+        $sql = "SELECT * FROM complaints WHERE complaint_id = '$complaintId'";
+        $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
 
-        // Display the image if the 'folder' column is not empty
-        echo "
-        <div class='details'>
+
+            echo "
+            <div class='details'>
             <p id='heading'>Complaint Details</p>
-            <div class='details_btn'>";
+            <div class='details_btn'>" ;
 
-            if(!$_SESSION['username']){
-                if($row['resolved_time'] != NULL && $row['last_updation'] != NULL){
-    
-                    echo "<button id='raise'>Raise Ticket</button>
-                    <div> </div>";
-                     
-                }
+            if ($row['resolved_time'] == NULL && $row['last_updation'] == NULL) {
+                echo "<button id='complete' style='background-color: #eb1010'>New Request</button>";
+            } elseif ($row['resolved_time'] == NULL && $row['last_updation'] != NULL) {
+                echo "<button id='complete' style='background-color: #f5f242'>Pending</button>";
+            } elseif ($row['resolved_time'] != NULL && $row['last_updation'] != NULL) {
+                echo "<button id='complete' style='background-color: #4ef542'>Completed</button>";
             }
 
-        if ($row['resolved_time'] == NULL && $row['last_updation'] == NULL) {
-            echo "<button id='complete' style='background-color: #eb1010'>New Request</button>";
-        } elseif ($row['resolved_time'] == NULL && $row['last_updation'] != NULL) {
-            echo "<button id='complete' style='background-color: #f5f242'>Pending</button>";
-        } elseif ($row['resolved_time'] != NULL && $row['last_updation'] != NULL) {
-            echo "<button id='complete' style='background-color: #4ef542'>Completed</button>";
-        }
+            if ($row['resolved_time'] != NULL && $row['last_updation'] != NULL){
 
-        echo "<button id='raise'>Raise Ticket</button>
+                echo "<button id='raise' onclick='redirectToCloseComplaint()'>Close Complaint</button>";
+                
+            }
+
+
+    
+        echo "
+
+        
             </div>
         </div>
+        
 
         <div class='imgComplaint'>
             <img src='" . $row['folder'] . "' alt='complaint'>
@@ -70,7 +76,7 @@ if (isset($_POST['complaintId'])) {
                         </ul>
                         <ul>
                             <li>" . $row['complaint_id'] . "</li>
-                            <li> " . $row['complaint_type'] . "</li>
+                            <li>" . $row['complaint_type'] . "</li>
                             <li>" . $row['subject'] . "</li>
                             <li>" . date("d-m-Y", strtotime($row['time'])) . "</li>
                         </ul>
@@ -101,7 +107,12 @@ if (isset($_POST['complaintId'])) {
     function redirectToComplaintInfo() {
         window.location.href = '../php/ComplaintInfo.php?id=<?php echo $row['complaint_id'] ?>';
     }
+    function redirectToCloseComplaint(){
+        window.location.href = '../php/closeComplaint.php?id=<?php echo $row['complaint_id'] ?>'; // Update this with the correct path
+    }
 </script>
+
+
 
 </body>
 </html>

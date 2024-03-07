@@ -468,7 +468,7 @@ session_start();
         #raise{
             background-color: #DCDEDB;
             height: 29px;
-            width: 107px;
+            width: 140px;
             font-size: 13px;
             font-weight: 500;
             font-family: 'Poppins', sans-serif;
@@ -648,7 +648,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-xmark"></i>
-                <a href="#">Close Complaint</a>
+                <a href="#">Closed Complaint</a>
             </div>
 
         </div>
