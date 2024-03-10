@@ -77,7 +77,7 @@ include 'config.php' ;
         
 
         .nav:hover {
-            width: 250px;
+            width: 280px;
         }
         
 
@@ -319,7 +319,7 @@ include 'config.php' ;
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="#">Complaint Status</a>
+                <a href="approveComplaint.php">Approve Complaint</a>
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>

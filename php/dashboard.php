@@ -674,9 +674,9 @@ session_start();
 <?php
 
 
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL";
-$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL;";
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL and isApproved = 1";
+$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL and isApproved = 1";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL and isApproved = 1;";
 
 $resultCompleted = $conn->query($completed);
 $resultInProgress = $conn->query($inProgess);
@@ -778,7 +778,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                         
                             $username = $_SESSION['username'];
 
-                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL and resolved_time IS NULL";
+                            $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NULL and resolved_time IS NULL and isApproved = 1";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -814,7 +814,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                     include 'config.php';
 
                     $username = $_SESSION['username'];
-                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL ";
+                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL and isApproved = 1 ";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -849,7 +849,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             
                                 $username = $_SESSION['username'];
 
-                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
+                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL and isApproved = 1";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {

@@ -600,7 +600,21 @@ if (isset($_POST['save'])) {
         $row = $aadhar_retreive_result->fetch_assoc();
         $aadhar_retreive_id = $row['aadhar_card'];
 
-        $emailContent = "Dear User,\n\n We hope this message finds you well. We wanted to inform you that your complaint: '$complaint_id' on our Complaint Connect website has been assigned to an assigned worker, '$worker_assigned', who will be visiting your premises to address the issue.\n\nThe visit is scheduled can take place within the next 1-3 days. Please ensure someone is available at the premises during this time to facilitate the visit.\n\nFor your safety and security, we are providing you with the worker's Aadhar card details.\n\n <a href='$aadhar_retreive_id' target='_blank'>View Aadhar Card</a> \n\n You can use this information to verify the identity of the worker when they arrive. It is important to only allow the worker to enter your premises if they can provide you with the Aadhar card details provided here.";
+        $emailContent = "
+        <html>
+        <body>
+            <p>Dear User,</p>
+            <p>We trust this message finds you in good health. We wish to notify you that your complaint, identified as <b>'$complaint_id'</b> on our Complaint Connect platform, has been assigned to a designated worker, <b>'$worker_assigned'</b>. This individual will be visiting your location to resolve the issue.</p>
+            <p>The visit is scheduled to take place within the next 1-3 days. Please ensure that someone is present at the premises during this period to facilitate the visit.</p>
+            <p>For your safety and security, we are providing you with the worker's Aadhar card details. You can verify the worker's identity by accessing their Aadhar card details here:</p>
+            <a href='$aadhar_retreive_id' target='_blank'>View Aadhar Card</a>
+            <p>It is imperative to verify the worker's identity using the provided Aadhar card details before allowing them access to your premises.</p>
+            <p>Best regards,<br>[Your Name]<br>[Your Position]<br>[Your Contact Information]</p>
+        </body>
+        </html>
+        ";
+        
+        
 
         
 
@@ -612,7 +626,7 @@ if (isset($_POST['save'])) {
 
         include("mail.php");
 
-        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', "'$emailContent'");
+        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', $emailContent,"User is Notified","User is not notified");
 
 
 

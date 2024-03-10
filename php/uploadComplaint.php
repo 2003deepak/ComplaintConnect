@@ -44,7 +44,7 @@ if(isset($_POST['save'])){
 
 
   
-    $sql = "INSERT INTO complaints(username,complaint_id,complaint_type,subject,description,folder) VALUES ('$username','$complaint_id','$complaint_type','$subject','$desc','$folder')";
+    $sql = "INSERT INTO complaints(username,complaint_id,complaint_type,subject,description,folder,isApproved) VALUES ('$username','$complaint_id','$complaint_type','$subject','$desc','$folder',0)";
 
     if ($conn->query($sql) === TRUE) {
 

@@ -4,8 +4,8 @@ include 'config.php';
 session_start();
 
 if (isset($_GET['satisfied'])) {
-    $rating = isset($_GET['rating']) ? $_GET['rating'] : null;
-    $complaint_id = isset($_GET['id']) ? $_GET['id'] : null;
+    $rating = $_GET['rating'] ;
+    $complaint_id = $_GET['id'] ;
 
     if ($rating !== null && $complaint_id !== null) {
         $query = "SELECT * FROM complaint WHERE complaint_id = $complaint_id";

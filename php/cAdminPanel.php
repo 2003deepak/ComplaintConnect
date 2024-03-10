@@ -20,6 +20,9 @@ include 'config.php' ;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     
 
    
@@ -381,6 +384,133 @@ include 'config.php' ;
 
             
         }
+        .blank-area{
+            width: 295px;
+            height: 8vw;
+            margin-left:38px;
+        }
+
+        /* Css for preview panel  */
+
+        .preview{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-left: 4vw ; 
+            background-image: url("/images/rectangle.png");
+            
+            
+           
+            
+        }
+
+        .cDetails{
+            display:flex ; 
+            flex-direction : column ; 
+            align-items : center ;
+            gap: 1.1rem ; 
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .values{
+            display:flex ; 
+            /* flex-direction : column ;  */
+            gap: 8.3rem ; 
+            
+            color : white;
+            font-family: 'Poppins', sans-serif;
+        }
+        ul{
+            list-style-type: none;
+            display:flex ;
+            flex-direction: column;
+            gap: 1.1rem ;
+        }
+
+        .details{
+            display : flex ; 
+            flex-direction: column;
+            margin-left: -15rem ; 
+            
+            gap: 15px;
+        }
+
+        .details_btn{
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        #complete{
+            
+            height: 29px;
+            width: 107px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+        }
+        #raise{
+            background-color: #DCDEDB;
+            height: 29px;
+            width: 140px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+        }
+
+        .desc-data{
+            background-color: #afafaf47;
+            width: 28rem;
+            height: 100px;
+            display: flex ; 
+            justify-content: start ; 
+            border-radius: 3px;
+            padding: 1rem ; 
+            color: #FFFFFF;
+        }
+
+        .imgComplaint img {
+  width: 25rem;
+  height: auto;
+  border-radius: 3px;
+}
+
+        #heading{
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color : #DCDEDB ; 
+            margin-top: 1.5vw ;
+        }
+
+        #view{
+            width: 175px;
+            height: 50px;
+            background-color: #000000;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            border:none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .complaintDetails{
+            display:flex ; 
+            flex-direction: column;
+            gap:2rem ; 
+        }
+
+        .btn{
+            display: flex;
+            justify-content : center ; 
+            align-item : center
+            gap: 1.5rem;
+        }
 
            
 
@@ -504,9 +634,9 @@ include 'config.php' ;
 <?php
 
 
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE resolved_time IS NOT NULL";
-$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NOT NULL";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NULL;";
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE resolved_time IS NOT NULL and isApproved = 1 ";
+$inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NOT NULL and isApproved = 1";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE resolved_time IS NULL AND last_updation IS NULL and isApproved = 1 ;";
 
 $resultCompleted = $conn->query($completed);
 $resultInProgress = $conn->query($inProgess);
@@ -601,7 +731,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                         
                             $username = $_SESSION['username'];
 
-                            $sql = "SELECT * FROM complaints WHERE last_updation IS NULL and resolved_time IS NULL";
+                            $sql = "SELECT * FROM complaints WHERE last_updation IS NULL and resolved_time IS NULL and isApproved = 1";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -615,6 +745,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                     </div>
                                     <?php
                                 }
+                            }else {
+                                // Display a blank area if there are no new complaints
+                                echo '<div class="blank-area">
+                                </div>';
                             }
                                    
                     ?>
@@ -633,7 +767,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                     include 'config.php';
 
                     $username = $_SESSION['username'];
-                    $sql = "SELECT * FROM complaints WHERE last_updation IS NOT NULL and resolved_time IS NULL ";
+                    $sql = "SELECT * FROM complaints WHERE last_updation IS NOT NULL and resolved_time IS NULL and isApproved = 1";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -648,6 +782,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             </div>
                             <?php
                         }
+                    }else {
+                        // Display a blank area if there are no new complaints
+                        echo '<div class="blank-area">
+                        </div>';
                     }
 
                 ?>
@@ -665,7 +803,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             
                                 $username = $_SESSION['username'];
 
-                                $sql = "SELECT * FROM complaints WHERE resolved_time IS NOT NULL AND resolved_time IS NOT NULL";
+                                $sql = "SELECT * FROM complaints WHERE resolved_time IS NOT NULL AND resolved_time IS NOT NULL and isApproved = 1";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
@@ -679,6 +817,10 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                         </div>
                                         <?php
                                     }
+                                }else {
+                                    // Display a blank area if there are no new complaints
+                                    echo '<div class="blank-area">
+                                    </div>';
                                 }
 
                                 
@@ -718,7 +860,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 <div class="preview">
 
-<p>Hellow</p>
+
 
 </div>
 
@@ -744,6 +886,28 @@ const toggle = () =>{
     
     
 }
+
+// Used to fetch Complaint Details and display using AJAX 
+
+$(document).ready(function () {
+            // Attach click event to the "View Full Details" button
+            $('.view-details').click(function () {
+                // Get the complaint ID from the data attribute
+                var complaintId = $(this).data('complaint-id');
+
+                // AJAX request to fetch details
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_complaint_details.php', // Create a separate PHP file to handle this request
+                    data: { complaintId: complaintId },
+                    success: function (response) {
+                        // Display details in the "details" div
+                        $('.preview').html(response);
+                    }
+                });
+            });
+        });
+
 </script>
 
 

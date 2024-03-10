@@ -1,16 +1,15 @@
-<?php 
-
-include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
+<?php
 session_start();
-
+include 'config.php' ; 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.css">
-    <title>Document</title>
+    <title>Complaint Connect</title>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,10 +23,11 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <!-- Include jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
 
-<style>
+   
+    <style>
+
 
 :root {
     --background-color: #242424; 
@@ -36,7 +36,7 @@ session_start();
     --preview-background-color:#161717;
     --heading-color:white ; 
     --font-color:white;
-    --boxes-bg-color: #0B0b0f;
+    --boxes-bg-color:#161717;
     --box-count-color: #242424;
     
 
@@ -81,20 +81,14 @@ session_start();
         
 
         .nav:hover {
-            width: 250px;
+            width: 280px;
         }
-        .nav:hover + .content {
-            margin-left: 250px;
-            
-        }
-        
         
 
         .content {
             width: calc(100vw - 30vw );
             background-color: var(--background-color);
-            min-height: 100vh;
-            height : auto ; 
+            height: 100vh;
             display: flex;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
@@ -103,22 +97,22 @@ session_start();
         .preview{
                 width: 30vw;
                 position: fixed;
-                min-height: 100vh;
-                height: auto;
+                height: 100vh;
                 right: 0rem;
                 background-color: var(--preview-background-color);
         }
 
-        
-
         .nav:hover .icon {
             margin-left: 5rem;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
+
 
         .nav i{
             font-size: 22px;
             color: #8C8C8C;
-            justify-content: center;
         }
 
 
@@ -146,7 +140,10 @@ session_start();
                 
             }
 
-            
+            .bars{
+                margin: 0.7vw 0vw 0vw 1.4vw;
+                visibility: hidden;
+            }
 
             .nav a{
                 text-decoration: none;
@@ -158,7 +155,7 @@ session_start();
                 
 
             }
-
+            
             .nav-content{
                 
                 display: flex;
@@ -203,14 +200,6 @@ session_start();
                 border-radius: 10px 0px 0px 10px;
             }
 
-
-            
-
-
-
-            
-            
-
             .nav:hover .nav-content a , .nav:hover .nav-content-down a {
                 visibility: visible;
                 transition: 0.2s;
@@ -228,29 +217,34 @@ session_start();
 
 
             
-            .org_content{
-                padding: 2rem 2rem 2rem 3rem;
+            .org-content{
+                padding: 1rem 1rem 1rem 3rem;
                 font-family: 'Poppins', sans-serif;
                 width: 100%;
                 
             }
 
-            .checked {
-            color: orange;
-        }
+            .inner{
+                
+                color: var(--heading-color);
+                
+            }
+            .inner h1{
+               font-size: 40px;
+               font-weight: bolder;
 
+               
+            }
 
+           
 
+           
 
-             @media (max-width:768px) {
+            @media (max-width:600px) {
                 .content{
                     display: flex;
                     justify-content: center;
                     width: 100%;
-                }
-                
-                .box11{
-                    margin-left: 5rem;
                 }
                 .preview{
                     display: none ;
@@ -268,17 +262,16 @@ session_start();
                     height: 60px;
                     position: absolute;
                     margin: 8vw 0vw 0vw 1.4vw;
-                    
+                    background-color: white;
 
             
                 }
-                
                 .nav i{
                     font-size: 1.2rem;
                     
                 }
-             }
-         
+                
+            }
 
 
 
@@ -286,38 +279,21 @@ session_start();
 
 
 
-        
+      
+
+    </style>
 
 
-
-
-
-
-  
-
-
-
-
-
-
-</style>
-
-
-
-
-
-
-  
-
-
-    
-</head>
+   </head>
 <body>
 
-   
 
-    <div class="nav">
 
+<div class="nav">
+
+
+       
+        
 
        
         <div class="icon">
@@ -339,28 +315,26 @@ session_start();
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/dashboard.php">Home</a>
+                <a href="#">Home</a>
             </div>
             <div>
-                <i class="fa-solid fa-user" ></i>
-                <a href="../php/profile.php">Profile</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="../php/edituser.php">Edit User</a>
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/filecomplaint.php">File Complaint</a>
+                <a href="approveComplaint.php">Approve Complaint</a>
             </div>
             <div>
-                <i class="fa-solid fa-clock"></i>
-                <a href="../php/complaintHistory.php">Complaint History</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="#">Close Complaint</a>
             </div>
             <div>
-                <i class="fa-solid fa-key"></i>
-                <a href="../php/updateCurrentPassword.php">Update Password</a>
+                <i class="fa-solid fa-house" ></i>
+                <a href="#">Profile</a>
             </div>
-            <div>
-                <i class="fa-solid fa-xmark"></i>
-                <a href="#">Closed Complaint</a>
-            </div>
+            
+            
 
         </div>
         <div class="nav-content-down">
@@ -370,7 +344,7 @@ session_start();
                 <a href="#" class="dark">Light Mode</a>
             </div>
             <div>
-                <i class="fa-solid fa-right-from-bracket"></i>
+                <i class="fa-solid fa-house"></i>
                 <a href="../php/logout.php">Log Out</a>
             </div>
             
@@ -380,85 +354,78 @@ session_start();
 
 
 
-
-
-
     
 
-
     <div class="content">
+    <table class="content-table">
+        <tr>
+            <th>Username</th>
+            <th>Complaint ID</th>
+            <th>View Complaint</th>
+            <th>Approve</th>
+            <th>Disapprove</th>
+        </tr>
 
-<div class="org_content">
+        <?php
+        include 'config.php';
+        $sql = "SELECT * FROM complaints WHERE isApproved = 0";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                ?>
+                <tr class="active-row">
+                    <td><?php echo $row["username"]; ?></td>
+                    <td><?php echo $row["complaint_id"]; ?></td>
+                    <td><a href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Complaint</a></td>
+                    <td><a class="approve" href="../php/adminApproveComplaint.php?action=approve&id=<?php echo $row['complaint_id']; ?>">Approve</a></td>
+                    <td><a class="approve" href="../php/adminApproveComplaint.php?action=disapprove&id=<?php echo $row['complaint_id']; ?>">Disapprove</a></td>
 
-    <select id="action">
-        <option value="satisfied">Satisfied</option>
-        <option value="not_satisfied">Not Satisfied</option>
-    </select>
+                </tr>
+                <?php
+            }
+        } else {
+            echo "<tr><td colspan='4'>No complaints found.</td></tr>";
+        }
+        $conn->close();
+        ?>
+    </table>
+</div>
 
-    <div id="satisfiedForm" style="display: none;">
 
-        <form id="satisfiedForm" action="../php/endComplaint.php?id=C3465&rating=4" method="post">
-            <br><br>
-            <h4>Star Rating</h4>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <br>
-            <input type="submit" id="submitRating" value="Close Complaint" name="satisfied">
-        </form>
+
+ 
+
+    <div class="preview">
+
+        <p>Hellow</p>
+        
     </div>
 
-    <div id="notSatisfiedForm" style="display: none;">
-        <form id="notSatisfiedForm" action="../php/endComplaint.php?id=<?php echo $_GET['id']; ?>" method="get" enctype="multipart/form-data">
-            <label for="dissatisfaction_cause">Cause for Dissatisfaction:</label>
-            <textarea id="dissatisfaction_cause" name="dissatisfaction_cause"></textarea>
-            <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied">
-        </form>
-    </div>
 
-</div>
-</div>
+    <script>
+        let count = 0 ; 
+        const toggle = () =>{
+
+
+            var a = document.querySelector(".dark");
+
+
+            if(count == 0){
+                document.body.classList.add("light-mode");
+                a.innerHTML="Dark Mode";
+                count = 1 ;
+
+            }else{
+                document.body.classList.remove("light-mode");
+                a.innerHTML="Light Mode";
+                count = 0 ; 
+            }
+            
+            
+      }
+    </script>
+
+
 
 </body>
-
-
-<!-- Other HTML and CSS code -->
-
-<script>
-document.getElementById('action').addEventListener('change', function() {
-    var selectedAction = this.value;
-    var satisfiedForm = document.getElementById('satisfiedForm');
-    var notSatisfiedForm = document.getElementById('notSatisfiedForm');
-
-    if (selectedAction === 'satisfied') {
-        satisfiedForm.style.display = 'block';
-        notSatisfiedForm.style.display = 'none';
-    } else if (selectedAction === 'not_satisfied') {
-        satisfiedForm.style.display = 'none';
-        notSatisfiedForm.style.display = 'block';
-    }
-});
-
-const stars = document.querySelectorAll('.fa-star');
-
-stars.forEach((star, index) => {
-    star.addEventListener('click', () => {
-        for (let i = 0; i < stars.length; i++) {
-            if (i <= index) {
-                stars[i].classList.add('checked');
-            } else {
-                stars[i].classList.remove('checked');
-            }
-        }
-        console.log('Rating:', index + 1);
-    });
-});
-
-
-
-</script>
-
 </html>
-
