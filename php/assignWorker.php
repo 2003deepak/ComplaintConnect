@@ -626,7 +626,7 @@ if (isset($_POST['save'])) {
 
         include("mail.php");
 
-        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', $emailContent,"User is Notified","User is not notified");
+        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', $emailContent);
 
 
 

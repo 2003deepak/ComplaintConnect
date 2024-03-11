@@ -558,7 +558,7 @@ session_start();
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/dashboard.php">Home</a>
+                <a href="../php/Wdashboard.php">Home</a>
             </div>
             <div>
                 <i class="fa-solid fa-user" ></i>
@@ -566,7 +566,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="">New Complaints</a>
+                <a href="../php/wnewComplaint.php">New Complaints</a>
             </div>
             <div>
                 <i class="fa-solid fa-clock"></i>

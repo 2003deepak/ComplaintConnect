@@ -1,6 +1,7 @@
+
 <?php 
 
-include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php';
 session_start();
 
 ?>
@@ -28,6 +29,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <style>
+/* Your CSS styles here */
 
 :root {
     --background-color: #242424; 
@@ -279,48 +281,14 @@ session_start();
                 }
              }
          
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-  
-
-
-
-
-
-
 </style>
 
-
-
-
-
-
-  
-
-
-    
 </head>
 <body>
 
-   
-
-    <div class="nav">
-
-
-       
-        <div class="icon">
+<div class="nav">
+    <!-- Your navigation content here -->
+    <div class="icon">
 
             <?php
 
@@ -376,68 +344,52 @@ session_start();
             
 
         </div>
-    </div>
-
-
-
-
-
-
-    
-
-
-    <div class="content">
-
-<div class="org_content">
-
-    <select id="action">
-        <option value="satisfied">Satisfied</option>
-        <option value="not_satisfied">Not Satisfied</option>
-    </select>
-
-    <div id="satisfiedForm" style="display: none;">
-
-        <form id="satisfiedForm" action="../php/endComplaint.php?id=C3465&rating=4" method="post">
-            <br><br>
-            <h4>Star Rating</h4>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <br>
-            <input type="submit" id="submitRating" value="Close Complaint" name="satisfied">
-        </form>
-    </div>
-
-    <div id="notSatisfiedForm" style="display: none;">
-        <form id="notSatisfiedForm" action="../php/endComplaint.php?id=<?php echo $_GET['id']; ?>" method="get" enctype="multipart/form-data">
-            <label for="dissatisfaction_cause">Cause for Dissatisfaction:</label>
-            <textarea id="dissatisfaction_cause" name="dissatisfaction_cause"></textarea>
-            <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied">
-        </form>
-    </div>
 
 </div>
+
+<div class="content">
+    <div class="org_content">
+        <select id="action">
+            <option value="satisfied">Satisfied</option>
+            <option value="not_satisfied">Not Satisfied</option>
+        </select>
+
+        <div id="satisfiedFormContent" style="display: none;">
+            <form id="satisfiedForm" action="../php/endComplaint.php?id=C3465&rating=4" method="post">
+                <br><br>
+                <h4>Star Rating</h4>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <br>
+                <input type="submit" id="submitRating" value="Close Complaint" name="satisfied" onclick="updateSatisfiedFormAction()">
+            </form>
+        </div>
+
+        <div id="notSatisfiedFormContent" style="display: none;">
+            <form id="notSatisfiedForm" action="../php/endComplaint.php?id=<?php echo $_GET['id']; ?>" method="get" enctype="multipart/form-data">
+                <label for="dissatisfaction_cause">Cause for Dissatisfaction:</label>
+                <textarea id="dissatisfaction_cause" name="dissatisfaction_cause"></textarea>
+                <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied" onclick="updateNotSatisfiedFormAction()">
+            </form>
+        </div>
+    </div>
 </div>
-
-</body>
-
-
-<!-- Other HTML and CSS code -->
 
 <script>
 document.getElementById('action').addEventListener('change', function() {
     var selectedAction = this.value;
-    var satisfiedForm = document.getElementById('satisfiedForm');
-    var notSatisfiedForm = document.getElementById('notSatisfiedForm');
+    var satisfiedFormContent = document.getElementById('satisfiedFormContent');
+    var notSatisfiedFormContent = document.getElementById('notSatisfiedFormContent');
 
     if (selectedAction === 'satisfied') {
-        satisfiedForm.style.display = 'block';
-        notSatisfiedForm.style.display = 'none';
+        satisfiedFormContent.style.display = 'block';
+        notSatisfiedFormContent.style.display = 'none';
     } else if (selectedAction === 'not_satisfied') {
-        satisfiedForm.style.display = 'none';
-        notSatisfiedForm.style.display = 'block';
+        satisfiedFormContent.style.display = 'none';
+        notSatisfiedFormContent.style.display = 'block';
     }
 });
 
@@ -456,9 +408,16 @@ stars.forEach((star, index) => {
     });
 });
 
+function updateSatisfiedFormAction() {
+    const rating = document.querySelectorAll('.checked').length;
+    document.getElementById('satisfiedForm').action = `../php/endComplaint.php?id=<?php echo $_GET['id']; ?>&rating=${rating}`;
+}
 
-
+function updateNotSatisfiedFormAction() {
+    document.getElementById('notSatisfiedForm').action = `../php/endComplaint.php?id=<?php echo $_GET['id']; ?>`;
+}
 </script>
 
+</body>
 </html>
 

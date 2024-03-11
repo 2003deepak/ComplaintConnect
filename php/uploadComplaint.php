@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
 <?php
 
 include 'config.php' ; 
@@ -11,19 +26,6 @@ if(isset($_POST['save'])){
 
     // Getting Info
     $username = $_SESSION['username'];
-    
-    // Getting building no and room number 
-    $username_search = "SELECT * FROM register WHERE username = '" . $username . "'";
-    $query = mysqli_query($conn, $username_search);
-    $username_count = mysqli_num_rows($query);
-    if($username_count){
-
-        $query1 = mysqli_fetch_assoc($query);
-        $building = $query1['building'];
-        $room = $query1['room'];
-
-          
-    }
     $complaint_type = $_POST['complaint_group'];
     $subject = $_POST['subject'];
     $desc = $_POST['desc'];
@@ -36,7 +38,7 @@ if(isset($_POST['save'])){
 
     
     $folder = "../uploaded_images/complaint_images/";
-    $filename = $building."_" . $room ."_".$complaint_id. ".jpg"; // Rename the file to "roomno.pdf"
+    $filename = $complaint_id . ".jpg"; // Rename the file to "roomno.pdf"
     $tempname = $_FILES["image"]["tmp_name"];
     $folder = "../uploaded_images/complaint_images/".$filename ; ;
 
@@ -48,19 +50,22 @@ if(isset($_POST['save'])){
 
     if ($conn->query($sql) === TRUE) {
 
-        echo "<script> alert('Complaint is filed successfully')</script> " ;
-
-        echo "<script> location.replace('../php/dashboard.php')</script> ";
+        
+        echo '<script>';
+        echo 'ConfirmationAlert("Successfull","Complaint is filed successfully","../php/dashboard.php")';
+        echo '</script>';
     
  
    
     }else {
-        echo "<script> alert('Complaint is not filed')</script>" ;
+        
+
+        echo '<script>';
+        echo 'FailedAlert("Failed","Complaint is not filed","../php/dashboard.php")';
+        echo '</script>';
 
         echo $conn->error ; 
-        // echo "<script> location.replace('../php/dashboard.php')</script> ";
-
-        // echo "<script> alert('Error: " . $conn->error . "')</script>";
+        
     
     }
 }
