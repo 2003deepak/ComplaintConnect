@@ -213,7 +213,7 @@ include 'config.php' ;
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -290,12 +290,13 @@ include 'config.php' ;
             }
             .inner .left input{
                 width: 75%;
-                height: 5vh;
+                height: 67px;
                 background-color: var(--input-type-bgColor);
                 border: none;
-                color: var(--heading-color);
+                color: #FF9F00;
                 padding-left: 15px;
                 border-radius: 8px;
+                font-size:16px;
             }
             .inner .left p{
                 color: var(--font-color);
@@ -335,7 +336,7 @@ include 'config.php' ;
             }
 
             .right input[type="submit"]{
-                background-color: #61AD33;
+                background-color: #FF9F00;
                 width: 13vw;
                 height: 5vh;
                 font-size: 20px;

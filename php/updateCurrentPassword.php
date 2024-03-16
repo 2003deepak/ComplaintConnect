@@ -1,78 +1,71 @@
 <?php
 session_start();
-include 'config.php' ; 
+include 'config.php';
 
-$otpsent = false; 
+$otpsent = false;
 
-?>
 
-<?php
-
+// Function to generate random otp 
+function generateRandomOTP() {
+    return rand(100000, 999999);
+}
 
 // Step 1: Verify Current Password
-
 include('mail.php');
+
 if (isset($_POST['save'])) {
     $currentPassword = $_POST['current_password'];
     $newPassword = $_POST['new_password'];
 
     $otp = generateRandomOTP();
-    setcookie("updateotp",$otp,time()+300);
+    setcookie("updateotp", $otp, time()+200);
 
-    if($currentPassword == $_SESSION['password']){
-      if(smtp_mailer('poojarryadav@gmail.com','Password Updation','Hi You have request for updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only',"OTP is sent succesfully","OTP not send , pls try again later")){
-        $otpsent = true ; 
-       
-      }else{
-        $otpsent = false ; 
+    if($currentPassword == $_SESSION['password']) {
+        if(smtp_mailer('poojarryadav@gmail.com', 'Password Updation', 'Hi You have request for updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only', "OTP is sent succesfully", "OTP not send , pls try again later")) {
+            $otpsent = true; 
+            setcookie("temppass", $newPassword, time()+200);
+        } else {
+            $otpsent = false; 
+        }
+    } else {
         
-      }
-    }else{
-     
         echo "<script> alert('Current password is not matching');</script> ";
-     
     }
-
-    
 }
 
 if (isset($_POST['update'])) {
-  $currentPassword = $_POST['current_password'];
-  $newPassword = $_POST['new_password'];
-
-  $otp = $_POST['otp'];
- 
-
-  if($otp == $_COOKIE['updateotp']){
-
-    $str_pass = password_hash($newPassword,PASSWORD_BCRYPT);
-    $sql1 = "UPDATE register SET password = '$str_pass' WHERE username = '" . $_SESSION["username"] . "'";
-    $query1 = mysqli_query($conn,$sql1);
-    if($query1){
-      echo '<script>alert("Password is Updated ")</script>' ;
-      $_SESSION['password'] = $newPassword ;
-      echo "<script> location.replace('../php/dashboard.php')</script> ";
-    }else{
-      echo '<script>alert("OOPS something Went wrong ")</script>' ;
-      echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
-    }
-    
-  }else{
-   
-      echo "<script> alert('Invalid OTP');</script> ";
-   
-  }
-
+    $currentPassword = $_SESSION['password'];
+    $new = $_COOKIE['temppass'];
   
-}
-
-function generateRandomOTP() {
-    return rand(100000, 999999);
-}
-
+    $otp = $_POST['otp'];
+   
+  
+    if($otp == $_COOKIE['updateotp']){
+  
+      $str_pass = password_hash($new,PASSWORD_BCRYPT);
+      $sql1 = "UPDATE register SET password = '$str_pass' WHERE username = '" . $_SESSION["username"] . "'";
+      $query1 = mysqli_query($conn,$sql1);
+      if($query1){
+        echo '<script>alert("Password is Updated ")</script>' ;
+        $_SESSION['password'] = $new;
+        // echo "<script> location.replace('../php/dashboard.php')</script> ";
+      }else{
+        echo '<script>alert("OOPS something Went wrong ")</script>' ;
+        echo "<script> location.replace('../php/updateCurrentPassword.php')</script> ";
+      }
+      
+    }else{
+     
+        echo "<script> alert('Invalid OTP');</script> ";
+     
+    }
+  
+    
+  }
 
 ?>
 
+    
 
 <html lang="en" dir="ltr">
   <head>
@@ -157,7 +150,7 @@ function generateRandomOTP() {
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 80px );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -165,13 +158,7 @@ function generateRandomOTP() {
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
+        
 
 
         .nav:hover .icon {
@@ -274,7 +261,7 @@ function generateRandomOTP() {
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -425,59 +412,124 @@ function generateRandomOTP() {
 
     <div class="content">
 
+        <style>
+            .innerContent{
+                width: 90%;
+                height: 95%;
+                background-color: orange;
+                display: flex;
+                
+            }
+            .left{
+                width: 48%;
+                height: 100%;
+                background-color: pink;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding-left: 5rem;
+            }
+            .right{
+                width: 50%;
+                height: 100%;
+                background-color: lightblue;
+                
+            }
+        </style>
 
-    <?php
+        <div class="innerContent">
 
-        
-
-        if(!$otpsent){
-
-          ?>
-          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="form-group">
-                  <label>Current Password</label>
-                  <input type="password" class="form-control" name="current_password" required>
-                  <br>
-                  <label>New Password</label>
-                  <input type="password" class="form-control" name="new_password" required>
-                  <br>
-                  <input type="submit" class="form-control" name="save" value="save">
-              </div>
-
-          </form>
-
-
-          <?php
-
-          }else{
-
-          ?>
-          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <div class="form-group">
-                  <label>Current Password</label>
-                  <input type="password" class="form-control" name="current_password" value=<?php echo $currentPassword ;?> required readonly>
-                  <br>
-                  <label>New Password</label>
-                  <input type="password" class="form-control" name="new_password" value=<?php echo $newPassword ;?> required readonly>
-                  <br>
-                  <label>Enter The OTP</label>
-                  <input type="number" class="form-control" name="otp" required>
-                  <br>
-                  <input type="submit" class="form-control" name="update" value="save">
-              </div>
-          </form>
-          <?php
-          }
+        <div class="left">
 
 
-    ?>
+            <?php if(isset($otpsent) && $otpsent): ?>
+
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            
+                <h1>Deepak Kumar Yadav</h1>
+                <h2>Lets reset it</h2>
+                <p>Current Password</p>
+                <input type="password" class="form-control" name="current_password" value = <?php echo $_SESSION['password'] ; ?>>
+                <br>
+                <p>New Password</p>
+                <input type="text" class="form-control" id="pass" name="new_password" required value = <?php echo $newPassword ; ?> >
+                <p id="minimum" style="color: red; display: none;">Minimum 8 Characters required</p>
+                <br>
+                <p>Confirm New Password</p>
+                <input type="password" class="form-control" name="confirm_password" id="con_pass" required value = <?php echo $newPassword ; ?> >
+                <p id="not_matching" style="color: red; display: none;">Both Passwords Not Matching</p>
+                <br>
+                <input type="submit" class="form-control" name="save" value="Get OTP">
+            </form>
+            
+
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <p>A verification code has been sent to you on your <br>
+                        e-mail id vis*****@gmail.com.
+                    </p>
+                    
+                    <p>Enter The OTP</p>
+                    <input type="number" class="form-control" name="otp" required>
+                    <br>
+                    <input type="submit" class="form-control" name="update" value="Reset">
+                </form>
+            <?php else: ?>
+
+                
+
+                
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+                <h1>Deepak Kumar Yadav</h1>
+                <h2>Lets reset it</h2>
+                <p>Current Password</p>
+                <input type="password" class="form-control" name="current_password" required>
+                <br>
+                <p>New Password</p>
+                <input type="text" class="form-control" id="pass" name="new_password" required>
+                <p id="minimum" style="color: red; display: none;">Minimum 8 Characters required</p>
+                <br>
+                <p>Confirm New Password</p>
+                <input type="password" class="form-control" name="confirm_password" id="con_pass" required>
+                <p id="not_matching" style="color: red; display: none;">Both Passwords Not Matching</p>
+                <br>
+                <input type="submit" class="form-control" name="save" value="Get OTP">
+            </form>
 
 
-      
+            <?php endif; ?>
+
+    <script>
+        var pass = document.querySelector('#pass');
+        var con_pass = document.querySelector('#con_pass');
+        var min = document.querySelector('#minimum');
+        var not = document.querySelector('#not_matching');
+
+        pass.addEventListener('input', function() {
+            min.style.display = 'block';
+            if (pass.value.length >= 8) {
+                min.style.display = 'none';
+            }
+        });
+
+        con_pass.addEventListener('input', function() {
+            not.style.display = 'block';
+            if (pass.value.length === con_pass.value.length) {
+                not.style.display = 'none';
+            }
+        });
+    </script>
+</div>
+
+
+            
+
+            
+
+        </div>
+
 
     
-
-      
     </div>
 
 
@@ -496,67 +548,7 @@ function generateRandomOTP() {
         
     </div>
 
-    <div class="preview">
-
-        <p>Hellow</p>
-        
-    </div>
-    
- 
-
-
-    
-
-    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-            
-
-           
-
-       
-  
-
-    
-  
-
-    
-
-
-    
-      
+   
       
      
             <script>

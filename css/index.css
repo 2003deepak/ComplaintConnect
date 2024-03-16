@@ -11,6 +11,9 @@ html{
     font-family: 'Noto Sans', sans-serif;
     
 }
+body{
+    background-color: #202122;
+}
 
 .main{
     width: 100vw;
@@ -38,10 +41,10 @@ html{
     text-decoration: none;
     font-size: 1vw;
     font-weight: 700;
-    color: black;
+    color: #FFFFFF;
 }
 .nav2 a:hover{
-    color : #FF735C;
+    color: #FFB219;
     transition: 0.5s;
 }
 .nav2 i{
@@ -67,16 +70,17 @@ html{
 .left h1{
     font-size: 3.8vw;
     line-height: 4.4vw;
+    color: #E0E0E0;
 }
 .left h2{
     font-size: 3vw ;
-    color : #FF735C;
+    color : #FFB219;
 }
 .left p{
     font-size: 1.2vw;
     font-weight: 600;
     width: 80%;
-    color: #666;
+    color: #E0E0E0;
     padding: 1.5vw 0vw;
     margin-top: 1vw;
     margin-bottom: 1vw;
@@ -85,17 +89,17 @@ html{
 button{
     font-size: 1vw;
     padding: 1vw 1.5vw;
-    background-color: #FF735C;
-    color:#fff;
+    background-color: #FFB219;
+    color: black;
     border: none;
     font-weight: 700;
     border-radius: 5px;
 }
 .left #btr{
-    color: lightseagreen;
+    color: #FFB219;
 }
 .left #typing{
-    color: black;
+    color: #E0E0E0;
 }
 .right{
     width: 45%;
@@ -104,14 +108,12 @@ button{
 }
 
 .nav button a{
-    color: white;
+    color: black;
 }
 .left #smallh1 h1{
     font-size: 2vw;
 }
-.right img{
-    height: 40vw;
-}
+
 .topbtn{
     height: 2vw;
     width: 6vw;
@@ -121,62 +123,191 @@ button{
     outline: none;
 }
 
-.about{
-    width: 100vw;
-    height: 100vh;
-    padding: 1.5vw 0vw;
-    
-}
-.about h1{
+
+/* css for the second div  */
+.second{
+    width: 100%;
+    height: 85vh;
    
-    font-size: 2.5vw;
-    padding-top: 0.5vw;
-    padding-bottom: 1vw;
-    border-bottom: 2px solid #dadada ; 
-    text-align: center;
-    
     
 }
-
-/* Style the first <span> tag in lightseagreen */
-/* Style the <span> elements within .about in lightseagreen */
-.about span {
-    color: lightseagreen;
+.second img{
+    width: 100%;
 }
 
-/* Style the <span> elements within .box1 in orange */
-.box1 span:first-child{
-    color: #FF735C;
-}
+/* css for third content  */
 
-
-.box1{
-    width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&display=swap');
+                    
+.about{
+    width: 100%;
+    height: 100vh;
+    /* background-color: aqua; */
     display: flex;
-    justify-content: space-between;
+}
+
+.rightContent{
+    width: 50%;
+    height: 120vh;
+    /* background-color: lightblue; */
+    font-family: "Akshar", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 38px;
     
 }
-.box1 .leftContent{
+#star{
+    margin-left: -36rem;
+}
+.rightContent div{
+    margin-top: 5rem;
+    color: white;
+}
+.leftContent{
     width: 50%;
+    height: 120vh;
+    /* background-color: rgb(207, 11, 28); */
+    /* display: flex;
+    flex-direction: column;    */
+    align-items: center;             
+    
+
 }
-.box1 .leftContent img{
-    width: 85%;
-    margin: 5vw 4vw;
-    scale: 1;
+
+.leftContent img{
+    margin-top: -19.3rem;
+    z-index: -1;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure the image is behind the text */
+
 }
-.box1 .rightContent{
-    padding: 2vw 5vw;
-    width: 50%;
+
+.leftContent .insideimg {
+    position: relative; /* Ensure the text stays on top of the image */
+    bottom: 60vw;
+    display: flex;
+    flex-direction: column;
+    left: 20rem;
+
+    
 }
-.box1 p{
-    font-size: 1.5vw;
-    font-weight: 600;
-    width: 95%;
-    color: #666;
-    padding: 1.5vw 0vw;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
+
+.insideimg h1{
+    font-size: 5rem;
+    color: white;
+    font-weight: 800;
 }
+
+.insideimg .insidetxt{
+    background-color: #FFB219;
+    width: 10rem;
+    padding-top: 1rem;
+    
+
+}
+
+.highlight_txt{
+    background-color: #FFB219;
+    width: 14rem;
+    padding-top: 1rem;
+    
+    
+}
+
+
+.insideimg div h1{
+    color: black;
+}
+
+.insideimg .wedo{
+        width: 90%;
+        position: absolute;
+        top: 45rem;
+        left: -16rem;
+        font-size: 40px;
+        color: white;
+    }
+
+
+.btm_div h1{
+    font-weight: 800;
+}
+.rightContent .btm-text{
+    margin-top: 10rem;
+    margin-left: 10rem;
+    /* background-color: blue; */
+
+
+}
+.btm-text img{
+    margin-left: 10rem;
+}
+
+
+
+/* Css for Having Issue Part */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Css for Footer Part  */
+
+.footer{
+    width: 100%;
+    height: 40%;
+    background-color: #FFB219;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+.footer .top{
+    width: 90%;
+    height: 50%;
+    margin-top: 1rem;
+    display: flex;
+
+}
+
+.top div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    font-weight: 700;
+}
+.footer .middle{
+    width: 70%;
+    height: 2px;
+    background-color: #3E4550;
+}
+.footer .last{
+    width: 90%;
+    height: 10%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
 
 
 @media (max-width:600px) {

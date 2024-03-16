@@ -8,14 +8,25 @@
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <title>Document</title>
     <link rel="stylesheet" href="../css/index.css">
+
+
+    <!-- Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
     <div class="main">
 
         <div class="nav">
-            <!-- <img src="./download.png" height="80px"> -->
-            <h2>Logo</h2>
+            <img src="../images/logo.svg" height="115px">
+            <!-- <h2>Logo</h2> -->
             <div class="nav2">
                 <a href="#">Home</a>
                 <a href="#about">About</a>
@@ -35,33 +46,337 @@
                 <button>Explore Now</button>
             </div>
             <div class="right">
-                <img src="../images/6961769.jpg" height="100%">
+                
             </div>
         </div>
 
-        <div class="about" id="about">
-            <h1>About <span>Us</span></h1>
 
-            <div class="box1">
+        <div class="second">
 
-                <div class="rightContent">
+            <img src="../images/yellow tap.svg" alt="" width="50vw">
 
-                    <p>Our goal is to make it <span>easy</span> for people in your neighborhood to report and fix problems. We want to help communities work together by providing a simple way to share concerns and find solutions. We believe that by making it easier for neighbors to talk and help each other, we can make your community a better place to live. Join us in this mission to build stronger and more connected neighborhoods.<br><br>
-                    We started because we saw that in many communities, it's <span>hard to report problems</span>, and sometimes it feels like nobody is listening. We wanted to change that. We know how frustrating it can be when things go wrong and no one seems to care.</p>
-                    <button>Explore Now</button>
-                </div>
+        </div>
+        <div class="about">
 
-                <div class="leftContent">
-                   <img src="/images/about-us.png" alt="">
-                </div>
-
-                
+            <div class="leftContent">
                
+               
+                    <img src="../images/Shapes.svg" alt="">
+
+                    <div class="insideimg" >
+                        <h1>Who</h1>
+                        <div class="insidetxt">
+                            <h1>We </h1> 
+                        </div>
+                        
+                        <h1>Are ?</h1>
+
+                        <div class="wedo">
+                            <p>Complain Connect streamlines the complaint <br> process by offering a user-friendly interface for <br> residents to lodge their concerns efficiently.</p>
+                        </div>
+
+                    </div>
+
                 
+                
+
+            </div>
+
+            <div class="rightContent">
+
+                <div id="star">
+                    <img src="../images/star.svg" alt="" height="100px">
+
+                </div>
+
+                <div>
+                    <p>Complain Connect specializes in managing <br> complaint portals for societies. Our business <br> revolves around providing a platform where <br> residents can submit complaints related to <br> various issues within their society, such as <br> maintenance, security, or facilities. </p>
+                </div>
+
+                <div class="btm-text">
+
+                    <img src="../images/star.svg" alt="" height="100px">
+
+                    <div class="btm_div" >
+                        
+                        <div class="highlight_txt">
+                            <h1 style="color: black;">What </h1> 
+                        </div>
+
+                        <h1>We</h1>
+                        
+                        <h1>Do ?</h1>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+            
+
+               
+                       
+
+                        
+                    
+                
+            
+
+        </div>
+
+        <style>
+            .issue{
+                width: 100%;
+                height: 150vh;
+                /* background-color: pink; */
+                margin-top: 20rem;
+                padding-top: 3rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+            }
+            .issue .heading{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                height: 15%;
+                
+                
+            }
+
+            .heading img{
+                position: relative;
+                right: 15rem;
+                bottom: 3rem;
+            }
+            .issue h1{
+                font-size: 40px;
+                color: white;
+                float: center;
+            }
+            .bgissue{
+                width: 100%;
+                height: 150vh;
+                background-image: url("/map_bg.svg");
+                
+            }
+            .slider{
+                width: 100%;
+                height: 50vh;
+                display: flex;
+                gap: 3rem;
+                justify-content: center;
+                align-items: center;
+            }
+            .box{
+                width: 417px;
+                height: 417px;
+                background-color: #242424;
+                border-radius: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-left: 1rem;
+                gap: 1.5rem;
+            }
+            .boximg img{
+                border-radius: 10px;
+            }
+            .boxtop p{
+                color: white;
+                font-size: 30px;
+                font-family: 'Poppins', sans-serif;
+            }
+            .boxdesc p{
+                color: white;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .contactform{
+                width: 100%;
+                height: 80vh;
+                /* background-color: blue; */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 3rem;
+            }
+            .contactform img{
+                margin-left: 8rem;
+            }
+            .contactform h1{
+                font-size: 45px;
+                color: white;
+                
+            }
+            .contacttxt {
+                height: 10vh;
+                display: flex;
+                align-items: center;
+                color: white;
+                font-family: "Actor", sans-serif;
+               
+            }
+            .form form{
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                width: 576px;
+                margin-top: 3rem;
+               
+            }
+            form input , form textarea{
+                font-size: 18px;
+                border: none;
+                background-color: transparent;
+                border-bottom: 2px solid #ffffff;
+                padding-bottom: 10px;
+                color: white;
+                
+            }
+            form textarea{
+                height: 10vh;
+            }
+            
+        </style>
+
+
+       
+        <div class="issue">
+
+            <div class="heading">
+                <img src="../images/star.svg" alt="" height="100px">
+                <h1>Having An Issue? </h1>
+
+            </div>
+
+            
+
+            <div class="bgissue">
+
+                <div class="slider">
+                    <div class="box">
+
+                        <div class="boxtop">
+                            <p>Light</p>
+                        </div>
+                        <div class="boximg">
+                            <img src="../images/light.svg" alt="">
+                        </div>
+                        <div class="boxdesc">
+                            <p>Light Not Working ? </p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+
+                        <div class="boxtop">
+                            <p>Plumbing</p>
+                        </div>
+                        <div class="boximg">
+                            <img src="../images/plumber.svg" alt="">
+                        </div>
+                        <div class="boxdesc">
+                            <p>Pipes got Stuck ? </p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+
+                        <div class="boxtop">
+                            <p>Society Problems</p>
+                        </div>
+                        <div class="boximg">
+                            <img src="../images/swimmimg.svg" alt="">
+                        </div>
+                        <div class="boxdesc">
+                            <p>Wants to swim in clean pool? </p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+
+                        <div class="boxtop">
+                            <p>Carpenter</p>
+                        </div>
+                        <div class="boximg">
+                            <img src="../images/carpenter.svg" alt="" width="95%">
+                        </div>
+                        <div class="boxdesc">
+                            <p>Carpenter Work ? </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="contactform">
+                    <h1>Have a Question ? </h1>
+
+                    <img src="../images/Vector 131.svg" alt="" width="180px">
+
+                    <div class="contacttxt">
+
+                        <p style="font-size: 20px;">Feel free to contact us on hello@complainconnect.com or <br>write your message down below</p>
+
+                    </div>
+
+                   
+
+
+
+                    <div class="form">
+
+                        <form action="">
+                            <input type="text" placeholder="FULL NAME">
+                            <input type="email" placeholder="EMAIL">
+                            <!-- <input type="textarea" placeholder="MESSAGE" rows="4" > -->
+                            <textarea cols="25" placeholder="MESSAGE"></textarea>
+                        </form>
+                    </div>
+
+                </div>
             </div>
             
 
         </div>
+
+        <style>
+
+            
+        </style>
+        <div class="footer">
+
+            <div class="top">
+
+                <div>
+                    <img src="../images/word mark.svg" alt="">
+                    <p>Products</p>
+                    <p>Features</p>
+                    <p>Pricing</p>
+                    <p>Resources</p>
+
+                    <div class="logo">
+                        <img src="../images/Group.svg" alt="" srcset="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="middle">
+
+            </div>
+            <div class="last">
+
+                <p>© Copyright 2024, All Rights Reserved by Complain Connect</p>
+                
+
+            </div>
+
+        </div>
+
+        
     </div>
 
 
