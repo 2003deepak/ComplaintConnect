@@ -981,6 +981,19 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
             });
         });
 
+
+    // Used to check closed compalints which exceeds time limit of 7 days 
+
+    $(document).ready(function(){
+            // Send Ajax request to check for complaints exceeding 7 days
+            $.ajax({
+                url: 'check_complaints.php',
+                type: 'GET',
+                success: function(response){
+                    
+                }
+            });
+        });
    
 </script>
 

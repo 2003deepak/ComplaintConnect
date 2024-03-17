@@ -12,6 +12,12 @@ session_start();
     <link rel="stylesheet" href="/index.css">
     <title>Document</title>
 
+
+    <!-- Lexend  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +32,10 @@ session_start();
 
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <!-- bootstrap CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <style>
 
@@ -236,120 +246,43 @@ session_start();
             }
 
 
+            /* Table Code For CSS  */
 
-
-
-
-        /* Code for table of worker  */
-
-        .main{
-                width: 90%;
-                height: 90%;
-                display: flex;
-                flex-direction: column;
-                font-family: 'Poppins', sans-serif;
-            }
-            .top{
-                width: 100%;
-                height: 70px;
-                display: flex;
-                justify-content:space-between;
-                align-items: flex-start;
-            }
-            .top-search{
-                display: flex;
-                align-items: center;
-            }
-           
-            .top-search input{
-                background-color: #202020;
-                border: none;
-                font-size: 18px;
-                padding-left: 20px;
-                color: white;
-                height: 45px;
-                width: 20vw;
-                border-radius: 10px;
-            }
-            .top-search i{
-                font-size: 25px;
+            table{
+                font-family: "Lexend", sans-serif;
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
                 position: relative;
-                right: 35px;
+                bottom: 24rem;
             }
-            .top button{
-                width: 12rem;
-                height: 45px;
-                border-radius: 20px;
-                background-color: #3984F3;
-                border: none;
-                color: white;
-                font-weight: 600;
-                margin-right: 40px;
-                font-size: 17px;
-                cursor: pointer;
+            tbody{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
             }
-            .middle{
-                display: flex;
-                height: calc(100% - 70px);
-                gap: 2rem; /* For equal gap in Y-axis */
-                gap: 2rem; /* For equal gap in X-axis */
-                flex-wrap: wrap;
-                
+            tr{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
             }
-            .boxes{
-                width: 18vw;
-                height: 26vh;
-                display: flex;
-                flex-direction: column;
-                gap: 0px;
-                align-items: center;
-                background-color: #202020;
-                color : white ; 
-                border-radius: 10px;
 
-            }
             
-            .topBoxes{
-                width: 95%;
-                height: 60%;
-                display: flex;
-                gap: 0px;
-                justify-content: space-around;
-                align-items: center;
+            
+            table thead{
+            color: #999999;
             }
-            .downBoxes{
-                width: 95%;
-                height: 30%;
-                display: flex;
-                gap: 10px;
-                margin-left: 20px;
-                flex-direction: column;
-            }
-            .phone{
-                display: flex;
-                align-items: center;
-                gap: 20px;
-            }
-            .topBoxes img{
-                width: 110px;
-            }
-            .topBoxes p , .phone p{
-               
-                font-size: 15px;
-            }
-            .work_field{
-                margin-right: 80px;
-            }
-            .icondiv{
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                background-color: #2B2B2B;
-                border: 1px solid #2A2A2A;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+
+        table a {
+            text-decoration: none ;
+        }
+
+        table button{
+            background-color:  #FF9F00;
+            width: 69px;
+            height: 27px;
+            border: none;
+            border-radius: 3px;
+        }
+
+
 
 
              @media (max-width:768px) {
@@ -490,35 +423,25 @@ session_start();
 
 
     
+    
 
 
     <div class="content">
 
-        <style>
-            
-            
-            
-            
-            
-
-        </style>
         
-        <div class="main">
 
-            <div class="top">
 
-                <div class="top-search">
-                    <input type="text" placeholder="Search here ...">
-
-                    <i class="fa-solid fa-magnifying-glass" style="color: #717579;"></i>
-
-                </div>
-                <button onclick="window.location.href='../php/addworkers.php'">+ New Worker</button>
-
-                
-
-            </div>
-            <div class="middle">
+        <table class="table bg-transparent text-white ">
+            <thead class="bg-transparent">
+              <tr>
+                <th>Username</th>
+                <th>Email ID</th>
+                <th>Aadhar Card</th>
+                <th>Work Area</th>
+                <th>Delete Worker</th>
+              </tr>
+            </thead>
+            <tbody>
 
             <?php
 
@@ -532,43 +455,41 @@ session_start();
 
 
                         ?>
+              <tr>
+                <td class=" col-3">
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3 d-flex ml-3 ">
+                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["username"] ?></p>
+                      
+                    </div>
+                  </div>
+                </td>
+                <td class="col-2">
+                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["email"] ?></p>
+                  
+                </td>
+                <td class=" col-3 " style="margin-right: 30px;">
+                    <div class="ms-3 d-flex ml-3 align-item-center" >
+                        
+                        <a href="<?php echo $row["aadhar_card"]?>" target = "_blank"class="fw-bold mb-1 ml-3 text-white"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
+                        
+                        
+                      </div>
+                </td>
+                <td class=" col-2 "><?php echo $row["work_area"] ?></td>
+                <td class=" col-3">
+                    <button type="button"> <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;"href="../php/deleteworker.php?id=<?php echo $row['username']; ?>"> Delete</a>  </button>
+                  
+                </td>
+              </tr>
 
-                        <div class="boxes">
-
-                            <div class="topBoxes">
-                                <div>
-                                    <img src="../images/placeholder.svg" alt="">
-                                </div>
-                                
-                                <div class="work_field">
-                                    <h3>Name</h3>
-                                    <p>@<?php echo $row["username"] ?> </p>
-                                    <p style="color: #3984F3;"><?php echo $row["work_area"] ?></p>
-                                </div>
-
-                            </div>
-
-                            <div class="downBoxes">
-                                <div class="phone">
-                                    <div class="icondiv">
-                                        <i class="fa-solid fa-phone" style="color: #3984F3;"></i>
-                                    </div>
-                                    <p>9821293536</p>
-                                </div>
-                                <div class="phone">
-                                    <div class="icondiv">
-                                        <i class="fa-solid fa-envelope" style="color: #3984F3;"></i>
-                                    </div>
-                                    <p><?php echo $row["email"] ?></p>
-                                </div>
-
-                            </div>
-
-                    
-
-                        </div>
-
-                    <?php
+              <?php
                         
                     }
                 }
@@ -577,23 +498,13 @@ session_start();
                 $conn->close();
             ?>
 
+   
+              
+            </tbody>
+          </table>
 
-
-                
-                
-
-                
-                
-                
-                
-            </div>
-
-
-
-
-            
-
-        </div>
+        
+        
 
 
     

@@ -355,7 +355,7 @@ session_start();
         </select>
 
         <div id="satisfiedFormContent" style="display: none;">
-            <form id="satisfiedForm" action="../php/endComplaint.php?id=C3465&rating=4" method="post">
+            <form id="satisfiedForm" action="../php/endComplaint.php?" method="post">
                 <br><br>
                 <h4>Star Rating</h4>
                 <span class="fa fa-star"></span>
@@ -369,10 +369,11 @@ session_start();
         </div>
 
         <div id="notSatisfiedFormContent" style="display: none;">
-            <form id="notSatisfiedForm" action="../php/endComplaint.php?id=<?php echo $_GET['id']; ?>" method="get" enctype="multipart/form-data">
+            <form id="notSatisfiedForm" action="../php/notSatisfied.php?id=<?php echo $_GET['id']; ?>" method="post">
+
                 <label for="dissatisfaction_cause">Cause for Dissatisfaction:</label>
                 <textarea id="dissatisfaction_cause" name="dissatisfaction_cause"></textarea>
-                <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied" onclick="updateNotSatisfiedFormAction()">
+                <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied" >
             </form>
         </div>
     </div>
@@ -413,9 +414,25 @@ function updateSatisfiedFormAction() {
     document.getElementById('satisfiedForm').action = `../php/endComplaint.php?id=<?php echo $_GET['id']; ?>&rating=${rating}`;
 }
 
-function updateNotSatisfiedFormAction() {
-    document.getElementById('notSatisfiedForm').action = `../php/endComplaint.php?id=<?php echo $_GET['id']; ?>`;
-}
+// function updateNotSatisfiedFormAction() {
+//     document.getElementById('notSatisfiedForm').action = `../php/notSatisfied.php?id=<?php echo $_GET['id']; ?>`;
+// }
+
+
+let count = 0;
+
+    const toggle = () => {
+        var a = document.querySelector(".dark");
+        if (count == 0) {
+            document.body.classList.add("light-mode");
+            a.innerHTML = "Dark Mode";
+            count = 1;
+        } else {
+            document.body.classList.remove("light-mode");
+            a.innerHTML = "Light Mode";
+            count = 0;
+        }
+    }
 </script>
 
 </body>
