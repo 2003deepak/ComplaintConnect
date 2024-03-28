@@ -190,6 +190,7 @@ session_start();
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ;
                 border-radius: 10px 0px 0px 10px;
             }
 
@@ -220,7 +221,7 @@ session_start();
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -419,20 +420,35 @@ function updateSatisfiedFormAction() {
 // }
 
 
-let count = 0;
+const toggle = () => {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
 
-    const toggle = () => {
-        var a = document.querySelector(".dark");
-        if (count == 0) {
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
             document.body.classList.add("light-mode");
-            a.innerHTML = "Dark Mode";
-            count = 1;
+            document.querySelector(".dark").innerHTML = "Dark Mode";
         } else {
             document.body.classList.remove("light-mode");
-            a.innerHTML = "Light Mode";
-            count = 0;
+            document.querySelector(".dark").innerHTML = "Light Mode";
         }
     }
+
+    // Apply mode when page loads
+    applyMode();
 </script>
 
 </body>

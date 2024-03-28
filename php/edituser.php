@@ -1,15 +1,25 @@
-<?php
+<?php 
+
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
-include 'config.php' ; 
+
 ?>
-<html lang="en" dir="ltr">
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Complaint Connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Document</title>
 
 
-       <!-- Poppins  -->
-       <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Lexend  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
@@ -20,11 +30,14 @@ include 'config.php' ;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-   
-    <style>
 
+    <!-- bootstrap CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
 
 :root {
     --background-color: #242424; 
@@ -80,29 +93,22 @@ include 'config.php' ;
         .nav:hover {
             width: 250px;
         }
-        .nav:hover ~ .content {
+        .nav:hover + .content {
             margin-left: 250px;
         }
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 80px );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
-
-        
         .nav:hover .icon {
             margin-left: 5rem;
         }
@@ -110,6 +116,7 @@ include 'config.php' ;
         .nav i{
             font-size: 22px;
             color: #8C8C8C;
+            justify-content: center;
         }
 
 
@@ -132,15 +139,12 @@ include 'config.php' ;
             
             }
             .nav .icon p{
-                margin-top: 5px;
+                margin-top: 25px;
                 font-size: 28px;
                 
             }
 
-            .bars{
-                margin: 0.7vw 0vw 0vw 1.4vw;
-                visibility: hidden;
-            }
+            
 
             .nav a{
                 text-decoration: none;
@@ -152,6 +156,7 @@ include 'config.php' ;
                 
 
             }
+
             .nav-content{
                 
                 display: flex;
@@ -174,18 +179,19 @@ include 'config.php' ;
             }
             
             .nav-content div {
-                width: 250px;
-                padding-left: 25px;
+                width: 225px;
+                padding-left: 20px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height: 53px;
                 border-radius: 10px 0px 0px 10px;
             }
 
             .nav-content-down div {
-                width: 250px;
+                width: 220px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
@@ -196,6 +202,14 @@ include 'config.php' ;
                 border-radius: 10px 0px 0px 10px;
             }
 
+
+            
+
+
+
+            
+            
+
             .nav:hover .nav-content a , .nav:hover .nav-content-down a {
                 visibility: visible;
                 transition: 0.2s;
@@ -203,7 +217,7 @@ include 'config.php' ;
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -232,18 +246,55 @@ include 'config.php' ;
                
             }
 
-           
 
-           
+            /* Table Code For CSS  */
 
-            @media (max-width:600px) {
+            table{
+                font-family: "Lexend", sans-serif;
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
+                position: relative;
+                bottom: 22rem;
+            }
+            tbody{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
+            }
+            tr{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
+            }
+
+            
+            
+            table thead{
+            color: #999999;
+            }
+
+        table a {
+            text-decoration: none ;
+        }
+
+        table button{
+            background-color:  #FF9F00;
+            width: 69px;
+            height: 27px;
+            border: none;
+            border-radius: 3px;
+        }
+
+
+
+
+             @media (max-width:768px) {
                 .content{
                     display: flex;
                     justify-content: center;
                     width: 100%;
                 }
-                .preview{
-                    display: none ;
+                
+                .box11{
+                    margin-left: 5rem;
                 }
 
                 .bars{
@@ -258,16 +309,17 @@ include 'config.php' ;
                     height: 60px;
                     position: absolute;
                     margin: 8vw 0vw 0vw 1.4vw;
-                    background-color: white;
+                    
 
             
                 }
+                
                 .nav i{
                     font-size: 1.2rem;
                     
                 }
-                
-            }
+             }
+         
 
 
 
@@ -275,43 +327,57 @@ include 'config.php' ;
 
 
 
-      
+        
 
-    </style>
 
-   </head>
+
+
+
+
+  
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+  
+
+
+    
+</head>
 <body>
 
+   
 
     <div class="nav">
 
 
        
-        
-
-       
         <div class="icon">
+        <?php
 
-            
-            <?php
-
-           
-                $u = $_SESSION["username"];
-                $capitalizedu = ucfirst($u[0]);
+   
+            $u = $_SESSION["username"];
+            $capitalizedu = ucfirst($u[0]);
 
 
-
-
-            ?>
-            
-             <p><?php echo $capitalizedu ;?></p>   <!-- Replace it with first letter of Username of user  -->
+        ?>
+        <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
 
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="#">Home</a>
+                <a href="../php/adminpanel.php">Home</a>
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
@@ -319,19 +385,15 @@ include 'config.php' ;
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="#">Complaint Status</a>
+                <a href="approveComplaint.php">Approve Complaint</a>
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="#">Close Complaint</a>
+                <a href="#">Closed Complaint</a>
             </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="#">Profile</a>
-            </div>
-            
 
         </div>
+
         <div class="nav-content-down">
 
             <div onclick="toggle()" >
@@ -339,7 +401,7 @@ include 'config.php' ;
                 <a href="#" class="dark">Light Mode</a>
             </div>
             <div>
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
                 <a href="../php/logout.php">Log Out</a>
             </div>
             
@@ -349,167 +411,178 @@ include 'config.php' ;
 
 
 
+
+
+
+    
     
 
 
     <div class="content">
 
-
-      <table class="content-table">
-        <tr>
-          <th>Sno</th>
-          <th>Username</th>
-          <th>Email ID</th>
-          <th>Building No</th>
-          <th>Room No</th>
-          <th>Allotment Letter</th>
-          <th>Actions</th>
-        </tr>
-
         
-        <?php
 
-include 'config.php' ;
-$sql = "select * from register";
-$result = $conn->query($sql);
-$count = 1 ; 
-// Loop through the result set and generate table rows
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
 
-      ?>
-        <tr class="active-row">
-          <td><?php echo $count++ ; ?></td>
-          <td> <?php echo $row["username"] ?>   </td>
-          <td> <?php echo $row["email"] ?> </td>
-          <td> <?php echo $row["building"] ?> </td>
-          <td> <?php echo $row["room"] ?> </td>
-          <td><a href = "<?php echo $row["allotment_letter"]?> " target="blank"><img src="../images/pdf_icon.png" width="40px" height="40px"></a></td>
+        <table class="table bg-transparent text-white ">
+            <thead class="bg-transparent">
+              <tr>
+                <th>Sno</th>
+                <th>Username</th>
+                <th>Email ID</th>
+                <th>Building No</th>
+                <th>Room No</th>
+                <th>Allotment Letter</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
 
-          <?php 
-          if($row["isAllowed"] == 1){
-            ?>
-            <td> <button class="btn1"> <a class = "accept" href="../php/deleteuser.php?id=<?php echo $row['sno']; ?>"> Delete User</a>  </button> </td>
-           
-
-          <?php
-          }else{
-            ?>
-            <td> <button class="btn2"> <a class = "accept" href="../php/acceptuser.php?id=<?php echo $row['sno']; ?>"> Accept User </a>  </button> </td>
-           
             <?php
-          }
-          ?>
 
-        </tr>
-        <?php
-    }
-}
-
-// Close the connection
-$conn->close();
-?>
-</table> 
+                include 'config.php' ;
+                $sql = "select * from register";
+                $result = $conn->query($sql);
+                $count = 1 ; 
+                
+                // Loop through the result set and generate table rows
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
 
 
-     
+                        ?>
+              <tr>
+                <td><?php echo $count++ ; ?></td>
+                <td class=" col-3">
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3 d-flex ml-3 ">
+                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["username"] ?></p>
+                      
+                    </div>
+                  </div>
+                </td>
+                
+                <td class="col-2">
+                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["email"] ?></p>
+                  
+                </td>
+                <td class=" col-1 "><?php echo $row["building"] ?></td>
+                <td class=" col-1 "><?php echo $row["room"] ?></td>
+                <td class=" col-2 " style="margin-right: 10px;">
+                   
 
-      
+                        <a class=" col-5 " href = "<?php echo $row["allotment_letter"]?> " target="blank"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
+                        
+                        
+                        
+                        
+                      
+                </td>
+                <?php 
+                if($row["isAllowed"] == 1){
+                    ?>
+                    <td class=" col-3"> 
+                        <button type="button"><a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer; " href="../php/deleteuser.php?id=<?php echo $row['sno']; ?>"> Delete</a> </button>
+                        
+                    </td>
+                
+
+                <?php
+                }else{
+                    ?>
+                    <td>
+                        <button type="button"> <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;" href="../php/acceptuser.php?id=<?php echo $row['sno']; ?>"> Accept</a>  </button>
+                        
+                    </td>
+                
+                    <?php
+                }
+                ?>
+                
+              </tr>
+
+              <?php
+                        
+                    }
+                }
+
+                // Close the connection
+                $conn->close();
+            ?>
+
+   
+              
+            </tbody>
+          </table>
+
+        
+        
+
+
+    
+
+        
+        
+   
+
+    
+        
     </div>
 
 
-
-
-
-
-       
-            
-       
-        
-
-            
-
-            
-        
-    
-
-    <div class="preview">
-
-        <p>Hellow</p>
-        
-    </div>
     
 
 
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
+    <!-- JS code starting from here  -->
 
 
     <script>
-        let count = 0 ; 
-        const toggle = () =>{
-
-
-            var a = document.querySelector(".dark");
-
-
-            if(count == 0){
-                document.body.classList.add("light-mode");
-                a.innerHTML="Dark Mode";
-                count = 1 ;
-
-            }else{
-                document.body.classList.remove("light-mode");
-                a.innerHTML="Light Mode";
-                count = 0 ; 
-            }
-            
-            
-      }
-    </script>
-
-  
-
     
 
+    const toggle = () => {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
+
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
+            document.body.classList.add("light-mode");
+            document.querySelector(".dark").innerHTML = "Dark Mode";
+        } else {
+            document.body.classList.remove("light-mode");
+            document.querySelector(".dark").innerHTML = "Light Mode";
+        }
+    }
+
+    // Apply mode when page loads
+    applyMode();
+
+
+
+
+
+   
+   
+</script>
 
 </body>
 </html>

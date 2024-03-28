@@ -12,6 +12,12 @@ session_start();
     <link rel="stylesheet" href="/index.css">
     <title>Document</title>
 
+
+    <!-- Lexend  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +32,10 @@ session_start();
 
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <!-- bootstrap CSS  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <style>
 
@@ -89,23 +99,15 @@ session_start();
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 80px );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
-
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
-
-        
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -137,7 +139,7 @@ session_start();
             
             }
             .nav .icon p{
-                margin-top: 5px;
+                margin-top: 25px;
                 font-size: 28px;
                 
             }
@@ -177,18 +179,19 @@ session_start();
             }
             
             .nav-content div {
-                width: 250px;
-                padding-left: 25px;
+                width: 225px;
+                padding-left: 20px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height: 53px;
                 border-radius: 10px 0px 0px 10px;
             }
 
             .nav-content-down div {
-                width: 250px;
+                width: 220px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
@@ -214,7 +217,7 @@ session_start();
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -243,222 +246,44 @@ session_start();
                
             }
 
-            .boxes{
-                display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
-                color: var(--font-color);
-                margin-top: 1.5rem;
-                font-size: 19px;
+
+            /* Table Code For CSS  */
+
+            table{
+                font-family: "Lexend", sans-serif;
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
+                position: relative;
+                bottom: 24rem;
             }
-            .boxes .box11{
-                width: 15.5vw;
-                height: 150px;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-                border-radius: 10px;
-                border-top: 10px solid #FF5858;
+            tbody{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
             }
-
-            .boxes .box13{
-                width: 15.5vw;
-                height: 150px;
-                display: flex;
-                flex-direction: column;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
-                border-radius: 10px;
-                border-top: 10px solid #05FF00;
+            tr{
+                border-bottom: 3px solid #4d4d4d;
+                border-top: 3px solid #4d4d4d;
             }
-
-            .boxes .count{
-                width: 40%;
-                height: 81px;
-                align-self: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 10px;
-                border-radius: 5px;
-                background-color: var(--box-count-color);
-            }
-
-            .boxes .box12{
-                width: 15.5vw;
-                height: 150px;
-                display: flex;
-                flex-direction: column;
-                background-color: var(--boxes-bg-color);
-                padding: 1rem;
-                border-radius: 10px;
-
-                border-top: 10px solid #FF9F00;
-            }
-
-            .line{
-                background-color: var(--boxes-bg-color);
-                width: 79%;
-                margin-top: 1.2rem;
-                margin-bottom: 1.2rem;
-                height: 10px;
-            }
-
-            .complaints{
-                width: 90%;
-                height: 50px;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                
-            }
-            .complaints p{
-                color:  var(--text-boxes-color);
-            }
-
-            .complaints .box21{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-                
-                border-radius: 10px;
-                color: var(--font-color);
-
-                
-            }
-            .complaints .box22{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-               
-                border-radius: 10px;
-                color: var(--font-color);
-                
-            }
-            .complaints .box23{
-                width: 295px;
-                height: 30px;
-                display: flex;
-                gap: 10px;
-                align-items: baseline;
-                padding: 1rem;
-                border-radius: 10px;
-                color: var(--font-color);
-
-                
-            }
-
-            .phpreply{
-                
-                display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
-                color: var(--font-color);
-                margin-top: 1.5rem;
-                font-size: 19px;
-            
-        }
-
-        .pendingComplaints , .newComplaints , .completedComplaints{
-            width:295px ; 
-            height: 100vh ; 
-            display: flex;
-           
-            flex-direction: column;
-        }
-
-        .phpreply .box4{
-            width: 295px;
-            height: 8vw;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
-            padding: 1rem;
-            margin-bottom : 1rem;
-            background-color: var(--boxes-bg-color);
-            border-radius: 10px;
-            color: var(--font-color);
 
             
+            
+            table thead{
+            color: #999999;
+            }
+
+        table a {
+            text-decoration: none ;
         }
 
-
-        /* Css for preview panel  */
-
-        .imgComplaint{
-            width: 100vw;
-            height: 20.5vw;
-
-        }
-        .imgComplaint img{
-            margin-left: 3.9vw;
-            margin-top: 1vw ;
-            height: 80%;
-            /* aspect-ratio: 3 / 2;
-            object-fit: contain; */
-        }
-
-        .complaintDetails{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0f0f0f;
-            height: 100%;
-
-        }
-
-        .complaintDetails p{
-            color: var(--font-color);
-        }
-        .cInfo{
-            display: flex;
-            flex-direction: column;
-            margin-top: 1.5rem;
-        }
-        .cDetails{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 24vw;
-            height: 20vh;
-            /* background-color: orange; */
-        }
-        .description{
-            width: 75%;
-            height: 7vw;
-            background-color: #161717;
-            margin-top: 2rem;
-            display: flex;
-            padding : 1rem ;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.7rem;
-        }
-
-        .cBtn button{
-            width: 10vw;
-            height: 3vw;
+        table button{
+            background-color:  #FF9F00;
+            width: 69px;
+            height: 27px;
             border: none;
-            border-radius: 8px;
-            color: var(--font-color);
-            font-size: 19px;
-            background-color: #05FF00;
-            cursor: pointer;
-            margin-top: 25px;
+            border-radius: 3px;
         }
 
-            
-           
-           
+
 
 
              @media (max-width:768px) {
@@ -470,9 +295,6 @@ session_start();
                 
                 .box11{
                     margin-left: 5rem;
-                }
-                .preview{
-                    display: none ;
                 }
 
                 .bars{
@@ -540,18 +362,15 @@ session_start();
 
        
         <div class="icon">
+        <?php
 
-            <?php
-
-           
-                $u = $_SESSION["username"];
-                $capitalizedu = ucfirst($u[0]);
-
+   
+            $u = $_SESSION["username"];
+            $capitalizedu = ucfirst($u[0]);
 
 
-
-            ?>
-             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+        ?>
+        <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
@@ -566,22 +385,19 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
-                <a href="../php/wnewComplaint.php">New Complaints</a>
+                <a href="../php/WnewComplaints.php">New Complaint</a>
             </div>
             <div>
                 <i class="fa-solid fa-clock"></i>
-                <a href="">Pending Complaints</a>
+                <a href="../php/WpendingComplaints.php">Pending Complaint</a>
             </div>
             <div>
                 <i class="fa-solid fa-key"></i>
                 <a href="../php/updateCurrentPassword.php">Update Password</a>
             </div>
-            <div>
-                <i class="fa-solid fa-xmark"></i>
-                <a href="#">Close Complaint</a>
-            </div>
 
         </div>
+
         <div class="nav-content-down">
 
             <div onclick="toggle()" >
@@ -602,66 +418,91 @@ session_start();
 
 
 
-
+    
     
 
 
     <div class="content">
 
+        
 
-    <table class="content-table">
-        <tr>
-          <th>Complaint ID</th>
-          <th>Subject</th>
-          
-        </tr>
+
+        <table class="table bg-transparent text-white ">
+            <thead class="bg-transparent">
+              <tr>
+                <th>Complaint ID</th>
+                <th>Subject</th>
+                <th>Time</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <?php
+
+                include 'config.php' ;
+                $sql = "SELECT 
+                complaints.*,
+                worker_action.actionTaken
+                FROM complaints
+                JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 1 and worker_action.complete is null";
+                $result = $conn->query($sql);
+                
+                // Loop through the result set and generate table rows
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+
+
+                        ?>
+              <tr>
+                <td class=" col-3">
+                  
+                    <div class="ms-3 d-flex ml-3 ">
+                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"] ?></p>
+                      
+                    </div>
+                  </div>
+                </td>
+                <td class="col-2">
+                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" > <?php echo $row["subject"] ?></p>
+                  
+                </td>
+                <td class=" col-2 " style="margin-right: 30px;">
+                    <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" > <?php echo date("d-m-Y", strtotime($row['time'])) ?></p>
+                </td>
+                
+                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color:black;" href="../php/close_complaint.php?id=<?php echo $row['complaint_id']; ?>">Close Complaint</a></td>
+
+              </tr>
+
+              <?php
+                        
+                    }
+                }
+
+                // Close the connection
+                $conn->close();
+            ?>
+
+   
+              
+            </tbody>
+          </table>
 
         
-        <?php
-
-include 'config.php' ;
-$sql = "SELECT 
-complaints.*,
-worker_action.actionTaken
-FROM complaints
-JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 1 and worker_action.complete is null ;
-
-";
-$result = $conn->query($sql);
-$count = 1 ; 
-// Loop through the result set and generate table rows
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-
-      ?>
-        <tr class="active-row">
-          
-          <td> <?php echo $row["complaint_id"] ?>   </td>
-          <td> <?php echo $row["subject"] ?>   </td>
-          <td><a href="../php/close_complaint.php?id=<?php echo $row['complaint_id']; ?>">Take Action</a></td>
-          
-        </tr>
-        <?php
-    }
-}
-
-// Close the connection
-$conn->close();
-?>
-</table> 
+        
 
 
+    
 
         
-            
+        
+   
 
-            
-            
+    
+        
     </div>
 
-        
-
-        
 
     
 
@@ -672,27 +513,43 @@ $conn->close();
 
 
     <script>
-    let count = 0;
+    
 
     const toggle = () => {
-        var a = document.querySelector(".dark");
-        if (count == 0) {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
+
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
             document.body.classList.add("light-mode");
-            a.innerHTML = "Dark Mode";
-            count = 1;
+            document.querySelector(".dark").innerHTML = "Dark Mode";
         } else {
             document.body.classList.remove("light-mode");
-            a.innerHTML = "Light Mode";
-            count = 0;
+            document.querySelector(".dark").innerHTML = "Light Mode";
         }
     }
 
+    // Apply mode when page loads
+    applyMode();
 
 
 
 
-    
 
+   
    
 </script>
 

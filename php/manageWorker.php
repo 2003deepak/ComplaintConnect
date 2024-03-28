@@ -139,7 +139,7 @@ session_start();
             
             }
             .nav .icon p{
-                margin-top: 5px;
+                margin-top: 25px;
                 font-size: 28px;
                 
             }
@@ -179,18 +179,19 @@ session_start();
             }
             
             .nav-content div {
-                width: 250px;
-                padding-left: 25px;
+                width: 225px;
+                padding-left: 20px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height: 53px;
                 border-radius: 10px 0px 0px 10px;
             }
 
             .nav-content-down div {
-                width: 250px;
+                width: 220px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
@@ -216,7 +217,7 @@ session_start();
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -253,7 +254,7 @@ session_start();
                 border-bottom: 3px solid #4d4d4d;
                 border-top: 3px solid #4d4d4d;
                 position: relative;
-                bottom: 24rem;
+                bottom: 22rem;
             }
             tbody{
                 border-bottom: 3px solid #4d4d4d;
@@ -527,20 +528,37 @@ session_start();
 
 
     <script>
-    let count = 0;
+    
 
     const toggle = () => {
-        var a = document.querySelector(".dark");
-        if (count == 0) {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
+
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
             document.body.classList.add("light-mode");
-            a.innerHTML = "Dark Mode";
-            count = 1;
+            document.querySelector(".dark").innerHTML = "Dark Mode";
         } else {
             document.body.classList.remove("light-mode");
-            a.innerHTML = "Light Mode";
-            count = 0;
+            document.querySelector(".dark").innerHTML = "Light Mode";
         }
     }
+
+    // Apply mode when page loads
+    applyMode();
 
 
 

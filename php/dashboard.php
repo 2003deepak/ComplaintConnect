@@ -188,6 +188,7 @@ session_start();
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
@@ -377,6 +378,7 @@ session_start();
            
             flex-direction: column;
         }
+        
 
         .phpreply .box4{
             width: 295px;
@@ -397,6 +399,10 @@ session_start();
 
             
         }
+         .phpreply .box4:hover {
+                animation: none !important;
+        } 
+
         .blank-area{
             width: 295px;
             height: 8vw;
@@ -525,6 +531,12 @@ session_start();
             align-item : center
             gap: 1.5rem;
         }
+
+        @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
         
             
            
@@ -674,9 +686,9 @@ session_start();
 <?php
 
 
-$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL and isApproved = 1";
+$completed = "SELECT COUNT(complaint_id) AS completed_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NOT NULL and isApproved = 1 ";
 $inProgess = "SELECT COUNT(complaint_id) AS in_progress_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NOT NULL and isApproved = 1";
-$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL and isApproved = 1;";
+$newRequest = "SELECT COUNT(complaint_id) AS new_request_count FROM complaints WHERE username = '" . $_SESSION["username"] . "' AND resolved_time IS NULL AND last_updation IS NULL and isApproved = 1 and isPriority = 0;";
 
 $resultCompleted = $conn->query($completed);
 $resultInProgress = $conn->query($inProgess);
@@ -806,36 +818,36 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 
 
-                <div class= "pendingComplaints">
+                <div class="pendingComplaints">
 
-                <?php
+                        <?php
 
+                        include 'config.php';
 
-                    include 'config.php';
+                        $username = $_SESSION['username'];
+                        $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL AND resolved_time IS NULL and isApproved = 1";
+                        $result = $conn->query($sql);
 
-                    $username = $_SESSION['username'];
-                    $sql = "SELECT * FROM complaints WHERE username = '$username' AND last_updation IS NOT NULL and resolved_time IS NULL and isApproved = 1 ";
-                    $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <div class="box4">
-                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                <br>
-                            </div>
-                            <?php
+                                ?>
+                                <div class="box4" style="<?php echo $priorityStyle; ?>">
+                                    <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                    <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                    <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                    <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                    <br>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            // Display a blank area if there are no new complaints
+                            echo '<div class="blank-area"></div>';
                         }
-                    }else {
-                        // Display a blank area if there are no new complaints
-                        echo '<div class="blank-area"></div>';
-                    }
 
-                ?>
-
+                        ?>
 
                 </div>
 
@@ -849,7 +861,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             
                                 $username = $_SESSION['username'];
 
-                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL and isApproved = 1";
+                                $sql = "SELECT * FROM complaints WHERE username = '$username' AND resolved_time IS NOT NULL AND resolved_time IS NOT NULL and isApproved = 1 ";
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
@@ -941,20 +953,35 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 
     <script>
-    let count = 0;
-
-    const toggle = () => {
-        var a = document.querySelector(".dark");
-        if (count == 0) {
-            document.body.classList.add("light-mode");
-            a.innerHTML = "Dark Mode";
-            count = 1;
-        } else {
-            document.body.classList.remove("light-mode");
-            a.innerHTML = "Light Mode";
-            count = 0;
+        const toggle = () => {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
         }
-    }
+
+        // Function to apply mode when page loads
+        const applyMode = () => {
+            let mode = sessionStorage.getItem('mode');
+            if (mode === 'light') {
+                document.body.classList.add("light-mode");
+                document.querySelector(".dark").innerHTML = "Dark Mode";
+            } else {
+                document.body.classList.remove("light-mode");
+                document.querySelector(".dark").innerHTML = "Light Mode";
+            }
+        }
+
+        // Apply mode when page loads
+        applyMode();
 
 
 

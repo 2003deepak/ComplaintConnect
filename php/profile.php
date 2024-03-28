@@ -188,6 +188,7 @@ include 'config.php' ;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
@@ -632,27 +633,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
 
     <script>
-        let count = 0 ; 
-        const toggle = () =>{
-
-
+        
+        const toggle = () => {
+            let mode = 'dark';
             var a = document.querySelector(".dark");
-
-
-            if(count == 0){
-                document.body.classList.add("light-mode");
-                a.innerHTML="Dark Mode";
-                count = 1 ;
-
-            }else{
+            if (document.body.classList.contains('light-mode')) {
                 document.body.classList.remove("light-mode");
-                a.innerHTML="Light Mode";
-                count = 0 ; 
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
             }
-            
-            
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
         }
 
+        // Function to apply mode when page loads
+        const applyMode = () => {
+            let mode = sessionStorage.getItem('mode');
+            if (mode === 'light') {
+                document.body.classList.add("light-mode");
+                document.querySelector(".dark").innerHTML = "Dark Mode";
+            } else {
+                document.body.classList.remove("light-mode");
+                document.querySelector(".dark").innerHTML = "Light Mode";
+            }
+        }
+
+        // Apply mode when page loads
+        applyMode();
 
     
         function changeLogo(event) {

@@ -28,7 +28,10 @@ if (isset($_POST['save'])) {
     $sql2 = "UPDATE complaints SET `resolved_time` = NOW() WHERE `complaint_id` = '$complaint_id'";
     $query2 = mysqli_query($conn, $sql2);
 
-    if ($query1 && $query2) {
+    $sql3 = "delere from worker_action where `complaint_id` = '$complaint_id'";
+    $query3 = mysqli_query($conn, $sql3);
+
+    if ($query1 && $query2 && $query3) {
         echo '<script>alert("Complaint is successfully closed")</script>';
          echo "<script> location.replace('../php/Wdashboard.php')</script>";
     } else {

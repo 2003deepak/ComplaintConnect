@@ -81,10 +81,10 @@ session_start();
         
 
         .nav:hover {
-            width: 250px;
+            width: 260px;
         }
         .nav:hover + .content {
-            margin-left: 250px;
+            margin-left: 260px;
         }
         
 
@@ -177,13 +177,14 @@ session_start();
             }
             
             .nav-content div {
-                width: 250px;
+                width: 280px;
                 padding-left: 25px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
@@ -214,7 +215,7 @@ session_start();
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -516,6 +517,14 @@ session_start();
             align-item : center
             gap: 1.5rem;
         }
+        .phpreply .box4:hover {
+                animation: none !important;
+        } 
+        @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
         
 
             
@@ -638,10 +647,7 @@ session_start();
                 <i class="fa-solid fa-key"></i>
                 <a href="../php/updateCurrentPassword.php">Update Password</a>
             </div>
-            <div>
-                <i class="fa-solid fa-xmark"></i>
-                <a href="#">Close Complaint</a>
-            </div>
+            
 
         </div>
         <div class="nav-content-down">
@@ -797,40 +803,32 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                 </div>
 
 
-
-                <div class= "pendingComplaints">
-
-                <?php
-
-
-                    include 'config.php';
-
-                    $username = $_SESSION['username'];
-                    $sql = "SELECT complaints.complaint_id, complaints.complaint_type, complaints.subject, worker_action.* FROM complaints JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id WHERE complaints.worker_assigned = '$username' AND actionTaken = 1 AND complete IS NULL";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
-                            <div class="box4">
-                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                <br>
-                            </div>
-                            <?php
+                <div class="pendingComplaints">
+                        <?php
+                        include 'config.php';
+                        $username = $_SESSION['username'];
+                        $sql = "SELECT complaints.complaint_id, complaints.complaint_type, complaints.isPriority, complaints.subject, worker_action.* FROM complaints JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id WHERE complaints.worker_assigned = '$username' AND actionTaken = 1 AND complete IS NULL";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
+                                ?>
+                                <div class="box4" style="<?php echo $priorityStyle; ?>">
+                                    <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                    <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                    <p>Subject: <?php echo $row["subject"]; ?> </p>
+                                    <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
+                                    <br>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            // Display a blank area if there are no new complaints
+                            echo '<div class="blank-area"></div>';
                         }
-                    }else {
-                        // Display a blank area if there are no new complaints
-                        echo '<div class="blank-area">
-                        </div>';
-                    }
+                        ?>
+                    </div>
 
-                ?>
-
-
-                </div>
 
 
                 <div class= "completedComplaints">
@@ -934,23 +932,36 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
 
     <script>
-    let count = 0;
-
+    
     const toggle = () => {
-        var a = document.querySelector(".dark");
-        if (count == 0) {
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
+            }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
+
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
             document.body.classList.add("light-mode");
-            a.innerHTML = "Dark Mode";
-            count = 1;
+            document.querySelector(".dark").innerHTML = "Dark Mode";
         } else {
             document.body.classList.remove("light-mode");
-            a.innerHTML = "Light Mode";
-            count = 0;
+            document.querySelector(".dark").innerHTML = "Light Mode";
         }
     }
 
-
-
+    // Apply mode when page loads
+    applyMode();
 
 
     // Used to fetch Complaint Details and display using AJAX 

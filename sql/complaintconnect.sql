@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2024 at 08:21 PM
+-- Generation Time: Mar 28, 2024 at 09:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -42,6 +42,13 @@ CREATE TABLE `closed_complaints` (
   `rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `closed_complaints`
+--
+
+INSERT INTO `closed_complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `uploaded_time`, `resolved_time`, `closed_time`, `last_updation`, `worker_assigned`, `rating`) VALUES
+('deepak123', 'C9718', 'Electricity', 'Fan not working', 'Fan not Working properly', '../uploaded_images/complaint_images/C9718.jpg', '2024-03-27 12:38:21.84', '2024-03-27 18:20:01.00', '2024-03-27 18:20:32', '2024-03-27 18:17:29.00', 'arjun123', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -59,15 +66,9 @@ CREATE TABLE `complaints` (
   `resolved_time` datetime(2) DEFAULT NULL,
   `last_updation` datetime(2) DEFAULT NULL,
   `worker_assigned` varchar(50) DEFAULT NULL,
-  `isApproved` int(2) NOT NULL
+  `isApproved` int(2) NOT NULL,
+  `isPriority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `complaints`
---
-
-INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `time`, `resolved_time`, `last_updation`, `worker_assigned`, `isApproved`) VALUES
-('deepak123', 'C5937', 'Electricity', 'Fan not working', 'fan prb ', '../uploaded_images/complaint_images/C5937.jpg', '2024-03-17 23:13:31.63', '2024-03-17 23:15:58.00', '2024-03-17 23:15:41.00', 'arjun123', 1);
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE `priority_complaints` (
 --
 
 INSERT INTO `priority_complaints` (`complaint_id`, `desc`) VALUES
-('C5937', 'Not Satisfied');
+('C9718', 'I am not satisfied');
 
 -- --------------------------------------------------------
 
@@ -111,8 +112,7 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
-(21, 'Deepak Yadav', 'deepak123', '$2y$10$F9dT/QIDblvCny6fGRdC6ueCEy2SayDgKEzsDnCQH4IA8LZJyZH/i', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1),
-(22, 'Rahul Ranjan', 'rahul123', '$2y$10$dKnzgzVnupv9rF9KiI79IunXv3DVcfl.TUuZMtkOWagYAy/kF9r9G', 'rahul@gmail.com', '210', '2', '../uploaded_images/allotment_letter/210_2.pdf', '../uploaded_images/profile_image/210_2.svg', 1);
+(21, 'Deepak Yadav', 'deepak123', '$2y$10$kTcjCWjIrQnQqcvV8zGjye6y4ZVCTgl7IdIMkPww9oXOwjmfJrori', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,8 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `work_area`) VALUES
-('arjun123', '$2y$10$wekBhGsa2447wpscRNfs0u0fTFXNqZTzFs7kibdeqSXvYstEwE.ae', 'rrpgyadav@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', '', 'Electricity');
+('ajay123', '$2y$10$o7bozrnKDkCkEgEURpDtteRGEbToTh5ZUjouEzYGMjJmyvXe34QhG', 'ajay@gmail.com', '../uploaded_images/aadhar_card/ajay123.pdf', '', 'Electricity'),
+('arjun123', '$2y$10$OGLUo9cJ4npbDEwUQmrGfulMzditbEn8q/vMARI7NywAedXV74RTK', 'rrpgyadav@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', '', 'Electricity');
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,7 @@ CREATE TABLE `worker_action` (
 --
 
 INSERT INTO `worker_action` (`worker_assigned`, `complaint_id`, `actionTaken`, `complete`, `resolved_image`) VALUES
-('arjun123', 'C5937', 1, 1, '../uploaded_images/resolved_complaint/C5937.png');
+('arjun123', 'C9718', 1, 1, '../uploaded_images/resolved_complaint/C9718.png');
 
 --
 -- Indexes for dumped tables
@@ -209,3 +210,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/* Change */

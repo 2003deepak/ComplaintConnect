@@ -24,10 +24,14 @@ if(isset($_POST['not_satisfied'])){
 
     // Insert data into priority_complaints table
     $insert_query = "INSERT INTO `priority_complaints` VALUES ('$complaint_id', '$desc')";
+    $insert_query2 = "UPDATE complaints SET isPriority = 1, resolved_time = NULL WHERE complaint_id = '$complaint_id'";
+    $insert_query3 = "UPDATE worker_action SET complete = NULL where complaint_id = '$complaint_id' " ; 
     $insert_result = mysqli_query($conn, $insert_query);
+    $insert_result2 = mysqli_query($conn, $insert_query2);
+    $insert_result3 = mysqli_query($conn, $insert_query3);
 
     // Check if insertion was successful
-    if ($insert_result) {
+    if ($insert_result2) {
         // Insertion successful
         echo '<script>';
         echo 'ConfirmationAlert("Done","Complaint Relodged","../php/dashboard.php")';

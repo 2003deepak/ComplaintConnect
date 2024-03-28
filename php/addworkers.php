@@ -7,8 +7,14 @@ include 'config.php' ;
     <meta charset="UTF-8">
     <title>Complaint Connect</title>
 
-    <!-- Poppins  -->
+    <!-- DM Sans  -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+        <!-- Poppins  -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
@@ -18,8 +24,9 @@ include 'config.php' ;
     <link href="https://fonts.googleapis.com/css2?family=Biryani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src ="../js/sweet.js"></script>
+    
 
    
     <style>
@@ -79,10 +86,13 @@ include 'config.php' ;
         .nav:hover {
             width: 250px;
         }
+        .nav:hover ~ .content {
+            margin-left: 250px;
+        }
         
 
         .content {
-            width: calc(100vw - 0vw );
+            width: calc(100vw - 80px );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -90,12 +100,8 @@ include 'config.php' ;
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
+        
 
-        /* Adjust content margin when nav width changes */
-         .nav:hover + .content {
-            margin-left: 250px;
-        }
-    
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -146,7 +152,6 @@ include 'config.php' ;
                 
 
             }
-            
             .nav-content{
                 
                 display: flex;
@@ -176,6 +181,7 @@ include 'config.php' ;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
@@ -198,7 +204,7 @@ include 'config.php' ;
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -207,82 +213,17 @@ include 'config.php' ;
             }
 
 
-            
-            .org-content{
-                padding: 1rem 1rem 1rem 3rem;
-                font-family: 'Poppins', sans-serif;
-                width: 100%;
-                
-            }
-
-            .inner{
-                
-                color: var(--heading-color);
-                
-            }
-            .inner h1{
-               font-size: 40px;
-               font-weight: bolder;
-
-               
-            }
-
-           
-
-           
-
-            @media (max-width:600px) {
-                .content{
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                }
-                
-
-                .bars{
-                    margin: 1.5vw 0vw 0vw 4vw;
-                    visibility: visible;
-                }
-                .nav a{
-                    font-size: 3vw;
-                }
-                .nav .icon{
-                    width: 60px;
-                    height: 60px;
-                    position: absolute;
-                    margin: 8vw 0vw 0vw 1.4vw;
-                    background-color: white;
-
-            
-                }
-                .nav i{
-                    font-size: 1.2rem;
-                    
-                }
-                
-            }
-
-
-
-
-
-
-
-      
 
     </style>
 
 
+   
    </head>
 <body>
 
 
-
 <div class="nav">
 
-
-        
-        
 
        
         <div class="icon">
@@ -301,6 +242,8 @@ include 'config.php' ;
         </div>
 
         <div class="nav-content">
+
+          
 
             <div>
                 <i class="fa-solid fa-house"></i>
@@ -328,8 +271,8 @@ include 'config.php' ;
                 <a href="manageWorker.php">Manage Workers</a>
             </div>
 
-           
-            
+              
+
 
         </div>
         <div class="nav-content-down">
@@ -350,43 +293,143 @@ include 'config.php' ;
 
 
     
+<style>
+    .content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .innerContent{
+        width: 90%;
+        height: 90%;
+        display: flex;
+    }
+    .left{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .right{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        
+    }
+    .left h1{
+        font-family: "Poppins", sans-serif;
+        font-size: 40px;
+        color: white;
+    }
+
+    .form_input form{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    form div{
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        width: 80%;
+        
+    }
+    form div p{
+        font-size: 20px;
+        font-family: "DM Sans", sans-serif;
+        color: white;
+    }
+    
+    form input[type = "text"] , input[type ="password"] , input[type ="email"] {
+        width: 400px;
+        height: 55px;
+        background: #FFFFFF;
+        border: 1px solid #EFF0F6;
+        border-radius: 11px;
+        padding-left: 10px;
+    }
+    form select {
+        width: 284px;
+        height: 55px;
+        background: #FFFFFF;
+        border: 1px solid #EFF0F6;
+        border-radius: 11px;
+        padding-left: 10px;
+    }
+   
+    form input[type="submit"] {
+        width: 180px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #FFB219;
+        color: black;
+        border: none;
+        margin-left: 5rem;
+        margin-top: 3rem;
+    }
+</style>
 
 
     <div class="content">
 
+        <div class="innerContent">
+            <div class="left">
 
+                <div>
+                    <h1>Add Worker</h1>
+                </div>
+        
+                <div class="form_input">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" method="post">
+        
+                        <div>
+                            <p>Username</p>
+                            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                        </div>
+                        <div>
+                            <p for="password">Password:</p>
+                            <input type="password" id="password" name="password" placeholder="Enter Password">
+                            <p id="minimum" style="color: red; display: none;">Minimum 8 Characters required</p>
 
-        <h2>Add Worker</h2>
+                        </div>
+                        <div>
+                            <p for="email">Email ID:</p>
+                            <input type="email" id="email" name="email" placeholder="Enter Email"required>
+                        </div>
+                        <div>
+                            <p for="aadharCard">Aadhar Card (PDF):</p>
+                            <input type="file" id="aadharCard" name="file" accept=".pdf" required>
+                        </div>
+                        <div>
+                            <p for="workArea">Work Area:</p>
+                            <select id="workArea" name="workArea" required>
+                                <option value="Electricity">Electrician</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Water">Plumber</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <div>
+                            <input type="submit" value="Submit" name="save">
+                        </div>
+        
+        
+        
+        
+        
+                    </form>
+                </div>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
+            </div>
+            <div class="right">
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+                <img src="../images/worker.svg" alt="" >
 
-            <label for="email">Email ID:</label>
-            <input type="email" id="email" name="email" required><br><br>
-
-
-            <label for="aadharCard">Aadhar Card (PDF):</label>
-            <input type="file" id="aadharCard" name="file" accept=".pdf" required><br><br>
-
-            <label for="workArea">Work Area:</label>
-            <select id="workArea" name="workArea" required>
-                <option value="Electricity">Electrician</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Water">Plumber</option>
-                <!-- Add more options as needed -->
-            </select><br><br>
-
-            <input type="submit" value="Submit" name="save">
-        </form>
-
-
-     
-
-      
+            </div>
+        </div>
+        
     </div>
 
 
@@ -477,45 +520,87 @@ include 'config.php' ;
 
 
 
-
-
-       
-            
-       
         
 
-            
 
-            
-        
-    
-
-    
-
-
+               
     <script>
-        let count = 0 ; 
-        const toggle = () =>{
+        var pass = document.querySelector('#password');  
+        var min = document.querySelector('#minimum');
 
-
-            var a = document.querySelector(".dark");
-
-
-            if(count == 0){
-                document.body.classList.add("light-mode");
-                a.innerHTML="Dark Mode";
-                count = 1 ;
-
-            }else{
-                document.body.classList.remove("light-mode");
-                a.innerHTML="Light Mode";
-                count = 0 ; 
+        pass.addEventListener('input', function() {
+            min.style.display = 'block';
+            if (pass.value.length >= 8) {
+                min.style.display = 'none';
             }
-            
-            
-      }
-    </script>
+        });
 
+       
+    </script>
+</div>
+
+
+            
+
+            
+
+        </div>
+
+
+    
+    </div>
+
+
+</div> 
+
+
+
+       
+            
+       
+        
+
+            
+
+            
+        
+    </div>
+
+   
+      
+     
+            <script>
+                    const toggle = () => {
+                        let mode = 'dark';
+                        var a = document.querySelector(".dark");
+                        if (document.body.classList.contains('light-mode')) {
+                            document.body.classList.remove("light-mode");
+                            a.innerHTML = "Light Mode";
+                        } else {
+                            document.body.classList.add("light-mode");
+                            a.innerHTML = "Dark Mode";
+                            mode = 'light';
+                        }
+                        // Store the mode in session storage
+                        sessionStorage.setItem('mode', mode);
+                    }
+
+                    // Function to apply mode when page loads
+                    const applyMode = () => {
+                        let mode = sessionStorage.getItem('mode');
+                        if (mode === 'light') {
+                            document.body.classList.add("light-mode");
+                            document.querySelector(".dark").innerHTML = "Dark Mode";
+                        } else {
+                            document.body.classList.remove("light-mode");
+                            document.querySelector(".dark").innerHTML = "Light Mode";
+                        }
+                    }
+
+                    // Apply mode when page loads
+                    applyMode();
+                    
+            </script>
 
 
 </body>

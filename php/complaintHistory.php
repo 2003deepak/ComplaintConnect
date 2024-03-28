@@ -20,11 +20,11 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Biryani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+     <!-- bootstrap CSS  -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
     <style>
-
-
 :root {
     --background-color: #242424; 
     --nav-background-color : #161717; 
@@ -85,7 +85,7 @@ session_start();
         
 
         .content {
-            width: calc(100vw - 30vw );
+            width: calc(100vw - 80px);
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
@@ -93,13 +93,7 @@ session_start();
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
 
-        .preview{
-                width: 30vw;
-                position: fixed;
-                height: 100vh;
-                right: 0rem;
-                background-color: var(--preview-background-color);
-        }
+   
 
         
 
@@ -132,7 +126,7 @@ session_start();
             
             }
             .nav .icon p{
-                margin-top: 5px;
+                margin-top: 24px;
                 font-size: 28px;
                 
             }
@@ -174,18 +168,19 @@ session_start();
             }
             
             .nav-content div {
-                width: 250px;
+                width: 220px;
                 padding-left: 25px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
             .nav-content-down div {
-                width: 250px;
+                width: 220px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
@@ -203,7 +198,7 @@ session_start();
             }
 
             .nav-content div:hover , .nav-content-down div:hover{
-                background-color: black;
+                background-color: #FF9F00;
                 
             }
 
@@ -231,6 +226,17 @@ session_start();
 
                
             }
+
+            /* Table Code For CSS  */
+
+            table{
+                font-family: "Lexend", sans-serif;
+                position: relative;
+                top: 0.1rem;
+            }
+            
+          
+       
 
            
 
@@ -275,6 +281,7 @@ session_start();
 
 
 
+      
       
 
     </style>
@@ -348,115 +355,117 @@ session_start();
         </div>
     </div>
 
-
-
-    
-
-
     <div class="content">
+   
 
 
-          <table class="content-table">
-            <tr>
-            <th>Complaint ID</th>
-            <th>Regd Date</th>
-            <th>Last Updation</th>
-            <th>Status</th>
-            <th>Actions</th>
-            
-            </tr>
+    <table class="table bg-transparent text-white ">
+            <thead class="bg-transparent">
+              <tr>
+                <th>Complaint ID</th>
+                <th>Regd Date</th>
+                <th>Last Updation</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
 
             <?php
 
+                include 'config.php' ;
+                $sql = "SELECT * FROM complaints WHERE username = '".$_SESSION['username']."'";
+                $result = $conn->query($sql);
+                
+                // Loop through the result set and generate table rows
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
 
-            include 'config.php' ;
-            $sql = "select * from complaints where username = '".$_SESSION['username']."' ";
-            $result = $conn->query($sql);
-            $count = 1 ; 
 
-
-
-            // Loop through the result set and generate table rows
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-
-                    ?>
-                    <tr class="active-row">
-                    <td> <?php echo $row["complaint_id"] ?>   </td>
-                    <td> <?php echo date("d-m-Y", strtotime($row['time'])); ?>  </td>
-
-                    <?php 
-                        if($row["last_updation"] == null){
+                        ?>
+              <tr>
+                <td class=" col-3">
+                  
+                    <div class="ms-3 d-flex ml-3 ">
+                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"] ?></p>
+                      
+                    </div>
+                  </div>
+                </td>
+                <td class="col-2">
+                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo date("d-m-Y", strtotime($row['time'])); ?></p>
+                  
+                </td>
+                <td class=" col-2 " style="margin-right: 30px;">
+                        <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;">
+                            <?php
+                            if ($row["last_updation"] == null) {
+                                echo "No Updates Received";
+                            } else {
+                                echo date("d-m-Y", strtotime($row["last_updation"]));
+                            }
                             ?>
-                            <td>No Updates Recieved</td>
+                        </p>
+                        </td>
+                
+                
+                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color:black;" href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Complaint</a></td>
+
+              </tr>
+
+              <?php
                         
-
-                        <?php
-                        }else{
-                            ?>
-                            <td><?php echo date("d-m-Y", strtotime($row["last_updation"]));  ?></td>
-                        
-                    <?php
-                  }
-                  ?>
-                    <td>--</td>
-                    <td> <button class="btn2"> <a class = "accept" href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Details</a>  </button> </td>
-                   
-                    
-
-
-                    
-                    
-
-                    
-                    
-                    </tr>
-                    <?php
+                    }
                 }
-            }
 
-            $conn->close();
+                // Close the connection
+                $conn->close();
             ?>
+
+   
+              
+            </tbody>
           </table>
+</div>
 
 
-      
-          
+
+
     
 
-      
-    </div>
+
+    
 
 
-
-    <div class="preview">
-
-        <p>Hellow</p>
-        
-    </div>
-
-     
       <script>
-        let count = 0 ; 
-        const toggle = () =>{
-
-
+            const toggle = () => {
+            let mode = 'dark';
             var a = document.querySelector(".dark");
-
-
-            if(count == 0){
-                document.body.classList.add("light-mode");
-                a.innerHTML="Dark Mode";
-                count = 1 ;
-
-            }else{
+            if (document.body.classList.contains('light-mode')) {
                 document.body.classList.remove("light-mode");
-                a.innerHTML="Light Mode";
-                count = 0 ; 
+                a.innerHTML = "Light Mode";
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                mode = 'light';
             }
-            
-            
-      }
+            // Store the mode in session storage
+            sessionStorage.setItem('mode', mode);
+        }
+
+    // Function to apply mode when page loads
+    const applyMode = () => {
+        let mode = sessionStorage.getItem('mode');
+        if (mode === 'light') {
+            document.body.classList.add("light-mode");
+            document.querySelector(".dark").innerHTML = "Dark Mode";
+        } else {
+            document.body.classList.remove("light-mode");
+            document.querySelector(".dark").innerHTML = "Light Mode";
+        }
+    }
+
+    // Apply mode when page loads
+    applyMode();
     </script>
 
 </body>

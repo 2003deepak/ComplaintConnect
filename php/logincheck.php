@@ -25,12 +25,14 @@ if(isset($_POST['save'])){
     if($username == "admin" & $password == "admin"){
        
         $_SESSION['username'] = $username ;
+        $_SESSION['user_type'] = "admin";
         echo '<script>';
         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/adminpanel.php")';
         echo '</script>';
         
     }else if($username == "contractor" & $password == "contractor"){
         $_SESSION['username'] = $username ;
+        $_SESSION['user_type'] = "contractor";
         echo '<script>';
         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/cAdminPanel.php")';
         echo '</script>';
@@ -64,6 +66,7 @@ if(isset($_POST['save'])){
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
+                        $_SESSION['user_type'] = "user";
                         echo '<script>';
                         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
                         echo '</script>';
@@ -73,6 +76,7 @@ if(isset($_POST['save'])){
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $email_pass['email'];
+                        $_SESSION['user_type'] = "user";
                         echo '<script>';
                         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/dashboard.php")';
                         echo '</script>';
@@ -134,6 +138,7 @@ if(isset($_POST['worker'])){
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email']= $email_pass['email'];
+                        $_SESSION['user_type'] = "worker";
                         echo '<script>';
                         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/Wdashboard.php")';
                         echo '</script>';
@@ -143,6 +148,7 @@ if(isset($_POST['worker'])){
                         $_SESSION['username'] = $username ;
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $email_pass['email'];
+                        $_SESSION['user_type'] = "worker";
                         echo '<script>';
                         echo 'ConfirmationAlert("Verified","You are successfully Logined","../php/Wdashboard.php")';
                         echo '</script>';
