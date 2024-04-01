@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2024 at 09:51 AM
+-- Generation Time: Apr 01, 2024 at 05:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -34,9 +34,10 @@ CREATE TABLE `closed_complaints` (
   `subject` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `folder` varchar(300) NOT NULL,
+  `resolved_image` varchar(255) NOT NULL,
   `uploaded_time` timestamp(2) NOT NULL DEFAULT current_timestamp(2) ON UPDATE current_timestamp(2),
   `resolved_time` datetime(2) DEFAULT NULL,
-  `closed_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updation` datetime(2) DEFAULT NULL,
   `worker_assigned` varchar(50) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL
@@ -46,8 +47,8 @@ CREATE TABLE `closed_complaints` (
 -- Dumping data for table `closed_complaints`
 --
 
-INSERT INTO `closed_complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `uploaded_time`, `resolved_time`, `closed_time`, `last_updation`, `worker_assigned`, `rating`) VALUES
-('deepak123', 'C9718', 'Electricity', 'Fan not working', 'Fan not Working properly', '../uploaded_images/complaint_images/C9718.jpg', '2024-03-27 12:38:21.84', '2024-03-27 18:20:01.00', '2024-03-27 18:20:32', '2024-03-27 18:17:29.00', 'arjun123', 5);
+INSERT INTO `closed_complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `resolved_image`, `uploaded_time`, `resolved_time`, `time`, `last_updation`, `worker_assigned`, `rating`) VALUES
+('deepak123', 'C7808', 'Electricity', 'Fan not working', 'My fan is not working ', '../uploaded_images/closed_complaint/C7808(user).jpg', '../uploaded_images/closed_complaint/C7808(worker).png', '2024-03-30 20:07:26.87', '2024-03-31 01:38:35.00', '2024-03-30 20:09:31', '2024-03-31 01:38:16.00', 'ajay123', 5);
 
 -- --------------------------------------------------------
 
@@ -62,6 +63,7 @@ CREATE TABLE `complaints` (
   `subject` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `folder` varchar(300) NOT NULL,
+  `resolved_image` varchar(255) DEFAULT NULL,
   `time` datetime(2) NOT NULL DEFAULT current_timestamp(2),
   `resolved_time` datetime(2) DEFAULT NULL,
   `last_updation` datetime(2) DEFAULT NULL,
@@ -80,13 +82,6 @@ CREATE TABLE `priority_complaints` (
   `complaint_id` varchar(30) NOT NULL,
   `desc` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `priority_complaints`
---
-
-INSERT INTO `priority_complaints` (`complaint_id`, `desc`) VALUES
-('C9718', 'I am not satisfied');
 
 -- --------------------------------------------------------
 
@@ -112,7 +107,7 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
-(21, 'Deepak Yadav', 'deepak123', '$2y$10$kTcjCWjIrQnQqcvV8zGjye6y4ZVCTgl7IdIMkPww9oXOwjmfJrori', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1);
+(21, 'Deepak Yadav', 'deepak123', '$2y$10$2xj0asAM81loJdYvQbRBfOEcdlKwC8lxU7MWoi.90dRnTNwZpwN5C', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -147,20 +142,18 @@ CREATE TABLE `worker_action` (
   `worker_assigned` varchar(50) NOT NULL,
   `complaint_id` varchar(30) NOT NULL,
   `actionTaken` int(2) NOT NULL,
-  `complete` int(3) DEFAULT NULL,
-  `resolved_image` varchar(255) DEFAULT NULL
+  `complete` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `worker_action`
---
-
-INSERT INTO `worker_action` (`worker_assigned`, `complaint_id`, `actionTaken`, `complete`, `resolved_image`) VALUES
-('arjun123', 'C9718', 1, 1, '../uploaded_images/resolved_complaint/C9718.png');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `closed_complaints`
+--
+ALTER TABLE `closed_complaints`
+  ADD PRIMARY KEY (`complaint_id`);
 
 --
 -- Indexes for table `complaints`
@@ -210,5 +203,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/* Change */

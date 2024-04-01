@@ -22,16 +22,16 @@ if (isset($_POST['save'])) {
 
     move_uploaded_file($tempname, $folder);
 
-    $sql1 = "UPDATE worker_action SET complete = 1, resolved_image = '$folder' WHERE complaint_id = '$complaint_id'";
+    $sql1 = "UPDATE worker_action SET complete = 1  WHERE complaint_id = '$complaint_id'";
     $query1 = mysqli_query($conn, $sql1);
 
-    $sql2 = "UPDATE complaints SET `resolved_time` = NOW() WHERE `complaint_id` = '$complaint_id'";
+    $sql2 = "UPDATE complaints SET `resolved_time` = NOW() , resolved_image = '$folder' WHERE `complaint_id` = '$complaint_id'";
     $query2 = mysqli_query($conn, $sql2);
 
-    $sql3 = "delere from worker_action where `complaint_id` = '$complaint_id'";
-    $query3 = mysqli_query($conn, $sql3);
+    // $sql3 = "delete from worker_action where `complaint_id` = '$complaint_id'";
+    // $query3 = mysqli_query($conn, $sql3);
 
-    if ($query1 && $query2 && $query3) {
+    if ($query1 && $query2) {
         echo '<script>alert("Complaint is successfully closed")</script>';
          echo "<script> location.replace('../php/Wdashboard.php')</script>";
     } else {

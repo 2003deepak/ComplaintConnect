@@ -1,47 +1,9 @@
 <?php 
 
-include 'config.php' ;
+include 'C:\xampp\htdocs\ComplaintConnect\php\config.php';
 session_start();
 
-// $sendOTP = false ; 
-
-
-if (isset($_POST['save'])) {
-
-
-
-    $otpentered = $_POST['otp'];
-    $otp = $_COOKIE['otpsent'];
-
-    // Check if the OTP entered by the user matches the stored OTP in the cookie
-    if ($otpentered == $otp) {
-
-        echo '<script>';
-        echo 'ConfirmationAlert("Verified","OTP is verified","../php/cAdminPanel.php");';
-        echo '</script>';
-        
-       
-        
-    } else {
-        echo '<script>';
-        echo 'ErrorAlert("Failed","Invalid OTP","../html/forgot2.html");';
-        echo '</script>';
-        echo '<script>alert("Invalid OTP")</script>' ;
-        echo "<script> location.replace('../html/forgot2.html')</script> ";
-       
-    }
-
-
-    
-    
-}
-
-
-
 ?>
-
-
-
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -58,6 +20,19 @@ if (isset($_POST['save'])) {
     <link href="https://fonts.googleapis.com/css2?family=Biryani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+    <!-- Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Dm Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
 
 
@@ -417,31 +392,7 @@ if (isset($_POST['save'])) {
    </head>
 <body>
   
-<script>
 
-let count = 0 ; 
-const toggle = () =>{
-
-
-var a = document.querySelector(".dark");
-
-
-if(count == 0){
-document.body.classList.add("light-mode");
-a.innerHTML="Dark Mode";
-count = 1 ;
-
-}else{
-document.body.classList.remove("light-mode");
-a.innerHTML="Light Mode";
-count = 0 ; 
-}
-
-
-}
-
-
-</script>
 
 
 <div class="nav">
@@ -450,17 +401,7 @@ count = 0 ;
 
 <div class="icon">
 
-    <?php
-
-            
-    $u = $_SESSION["username"];
-    $capitalizedu = ucfirst($u[0]);
-
-
-
-
-    ?>
-    <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+    <p>D</p>   <!--Replace it with first letter of Username of user  -->
 </div>
 
 <div class="nav-content">
@@ -513,41 +454,123 @@ count = 0 ;
 
 <div class="content">
 
-
-
     <style>
-
         .complaintInfo{
-            width: 100%;
+            width: 80%;
+            height: 90%;
+            /* background-color: pink; */
+            margin-left: 5rem;
+            display: flex;
+            
+        }
+        .content{
+            display: flex;
+            align-items: center;
+        }
+        .left{
+            width: 50%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            
-            padding: 1rem;
-            background-color: white;
-            border-radius: 10px;
-            color: black;
+            /* background-color: #05FF00; */
+            gap: 3.2rem;
         }
+        .left .top{
+            width: 50%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+           
+        }
+        .top .top-box{
+            width: 7%;
+            height : 100%;
+            background-color: #FFB219;
+            border-radius: 6px;
+        }
+        .top .top-text{
+            font-size: 23px;
+            color: #FFB219;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+        .middle{
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .middle h2{
+            color: var(--font-color);
+            font-size: 20px;
+            font-family: "DM Sans", sans-serif;
+            
+        }
+        .middle h1{
+            color: var(--font-color);
+            font-size: 40px;
+            font-family: "Inter", sans-serif;
+        }
+        .bottom{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            
+        }
+        .bottom div{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
 
-
-
+        }
+        .bottom div img{
+            width: 33px;
+        }
+        .bottom div h2{
+            color: var(--font-color);
+            font-size: 20px;
+            font-family: "Inter", sans-serif;
+        }
+        .bottom div h2:nth-last-of-type(1){
+            color: var(--font-color);
+            font-size: 20px;
+            font-weight: 400;
+            align-self: center;
+            font-family: "Inter", sans-serif;
+        }
     </style>
-
     
 
 
             <div class="complaintInfo">
 
+                <div class="left">
 
+                    <div class="top">
+                        <div class="top-box">
 
-                <?php
+                        </div>
+                        <div class="top-text">
+                            <p>Complaint Information</p>
+                        </div>
+                        
+                    </div>
+                    <?php
                     include 'config.php' ;
                     $complaint_id = $_GET['id'];
-                    $sql = "select * from complaints where complaint_id = '$complaint_id'";
+
+                    $sql1 = "select complaint_id from complaints where complaint_id = '$complaint_id'";
+                    $result1 = $conn->query($sql1);
+                    if ($result1->num_rows === 0) {
+
+                            $sql = "select * from closed_complaints where complaint_id = '$complaint_id'";
+                    }else{
+                        $sql = "select * from complaints where complaint_id = '$complaint_id'";
+                    }
+                    
                     $result = $conn->query($sql);
-                    $count = 1 ; 
+                    $count = 1 ;
 
 
 
@@ -560,72 +583,184 @@ count = 0 ;
 
                     ?>
 
+                    <div class="middle">
+                        <h1>Complaint : <?php  echo $row["complaint_id"];?></h1>
+                        <h2>The door of the emergency exit has .....</h2>
+                        <div></div>
+                    </div>
 
-                    <h3>Complaint ID :- <?php  echo $row["complaint_id"];?><h3>
-                    <h3>Complaint Type :- <?php  echo $row["complaint_type"];?><h3>
-                    <h3>Subject :- <?php  echo $row["subject"];?><h3>
-                    <h3>Description :- <?php  echo $row["description"];?><h3>
-                    <h3>Images :- <a href = "<?php echo $row["folder"]?> " target="blank">View File</a><h3>
-                    <h3>Regd Date :- <?php  echo $row["time"];?><h3>
-                    <h3>Last Updation :- <?php  echo $row["last_updation"];?><h3>
-                    <h3>Resolved Date :- <?php  echo $row["resolved_time"];?><h3>
-                    <h3>Worker Assigned :- <?php  echo $row["worker_assigned"];?><h3>
-
-
-                    <?php
-
-                        }
-                    }
-                    ?>
-
-
-
-
-                <div class="photos1">Photos uploaded from user : 
-
-                <a href = "<?php echo $complaint_image?> " target="blank">View File</a>
-
+                    <div class="bottom">
+                        
+                            <div>
+                                <img src="../images/icons8-history-90 1.svg" alt="">
+                                <h2>Complaint Type : </h2>
+                                <h2> <?php  echo $row["complaint_type"];?></h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-pen-100 1.svg" alt="">
+                                <h2>Subject : </h2>
+                                <h2> <?php  echo $row["subject"];?> </h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-date-96 1.svg" alt="" >
+                                <h2>Registration Date : </h2>
+                                <h2><?php  echo $row["time"];?></h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-history-90 1.svg" alt="">
+                                <h2>Last Update : </h2>
+                                <h2><?php  echo ($row["last_updation"]) ? date("d-m-Y", strtotime($row["last_updation"])) : "No Status"; ?></h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-tick-96 1.svg" alt="">
+                                <h2>Resolved Date : </h2>
+                                <h2> <?php   echo ($row["resolved_time"]) ? date("d-m-Y", strtotime($row["resolved_time"])) : "No Status";?></h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-worker-100 1.svg" alt="">
+                                <h2>Worker Assigned : </h2>
+                                <h2><?php  echo ($row["worker_assigned"]) ? $row["worker_assigned"] : "No Worket yet assigned";?></h2>
+                            </div>
+                            <div>
+                                <img src="../images/icons8-writing-90 1.svg" alt="">
+                                <h2>Description :  </h2>
+                                <h2><?php  echo $row["description"];?></h2>
+                            </div>
+                            
+                        
+                    </div>
 
                 </div>
 
+                <style>
+                    .right{
+                        display: flex;
+                        flex-direction: column;
+                        width: 50%;
+                        height: 100%;
+                        gap: 1.5rem;
+                        color: var(--font-color);
+                        
+                    }
+                    
+                    .right .img{
+                        width: 100%;
+                        height: 85%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .right .img img{
+                        
+                        width: 400px;
+                    }
+                    .right .btn{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                    .right .btn button{
+                        width: 200px;
+                        height: 50px;
+                        background-color: #FFB219;
+                        border: none ;
+                        font-size: 18px;
+                        font-weight: 600;
+                        border-radius: 10px;
+                        cursor: pointer;
 
+                    }
 
-
-
-                <!-- Fetching photo from the worker_action table  -->
-
+                </style>
 
                 <?php
-                    include 'config.php' ;
+                    include 'config.php';
                     $complaint_id = $_GET['id'];
-                    $sql = "select * from worker_action where complaint_id = '$complaint_id'";
-                    $result = $conn->query($sql);
-                    $count = 1 ; 
+                    $sql1 = "select * from complaints where complaint_id = '$complaint_id'";
+                    $result1 = $conn->query($sql1);
+                   
 
-
-
-                            // Loop through the result set and generate table rows
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-
-
-                            $final_image = $row['resolved_image'];
+                    // Loop through the result set and generate table rows
+                    if ($result1->num_rows > 0) {
+                        while ($row1 = $result1->fetch_assoc()) {
+                            if(!is_null($row1['resolved_image'])){
+                                $final_image = $row1['resolved_image'];
+                            }else{
+                                $final_image = false ; 
+                            }
                             
-
-
-                           
                         }
                     }
+                    else{
+                        $sql1 = "select * from closed_complaints where complaint_id = '$complaint_id'";
+                        $result1 = $conn->query($sql1);
+                        while ($row1 = $result1->fetch_assoc()) {
+                            if(!is_null($row1['resolved_image'])){
+                                $final_image = $row1['resolved_image'];
+                            }else{
+                                $final_image = false ; 
+                            }
+                            
+                        }
+                    }
+                ?>
+
+
+                    
                     
 
                     ?>
+                <div class="right">
 
-                <div class="photos2"> Photos Uploaded from contractor 
+                    <div class="img">
+                        
+                        <img id = "img" src="<?php echo $complaint_image;?>" alt=""> 
+                    </div>
 
-                <a href = "<?php echo $final_image?> " target="blank">View File</a>
-                </div> 
+                    <div class="btn">
+                        <button id = "complaint">Complaint Image</button>
+                        <?php 
+                         if($final_image){
+                            echo "<button id = 'complaintWorker'>Worker Image</button>";
+                         }
+                         ?>
+                        
+
+                    </div>
+
+                    
+
+                    
+                    
+
+<script>
+    
+    document.getElementById("complaintWorker").addEventListener("click", function(){
+       var img = document.getElementById("img");
+        img.src = "<?php echo $final_image; ?>";
+        
+    });
+    document.getElementById("complaint").addEventListener("click", function(){
+       var img = document.getElementById("img");
+        img.src = "<?php echo $complaint_image; ?>";
+        
+    });
+</script>
+
+
+                    
+                </div>
+
 
             </div>
+
+            <?php
+             }
+            }
+            
+
+            ?>
 
 
 

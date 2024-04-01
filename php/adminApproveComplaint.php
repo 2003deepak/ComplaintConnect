@@ -29,7 +29,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             echo '</script>';
         }
     } elseif ($_GET['action'] == 'disapprove') {
-        $sql = "UPDATE complaints SET isApproved = 2 WHERE complaint_id = '$complaint_id'";
+        $sql = "delete from complaints WHERE complaint_id = '$complaint_id'";
         if ($conn->query($sql) === TRUE) {
             include("mail.php");
             $emailContent = "

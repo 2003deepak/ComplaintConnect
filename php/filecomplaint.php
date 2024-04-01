@@ -523,15 +523,14 @@ include '../php/config.php' ;
                     <option value = "Water">Water </option>
                     <option value = "Water">Property Damage </option>
                     <option value = "Water">Cleanliness </option>
-                    <option value = "Water">Add more </option>
-                    <option value = "Water">Others</option>
+                    
                 </select>
             </div>
 
             <div class="subject">
                 <p>Subject</p>
-                <input type="text" placeholder="Enter Complaint Subject" name="subject"  required>
-                <p style="color: red; font-size: 15px;">Maximum 50 words allowed</p>
+                <input type="text" placeholder="Enter Complaint Subject" name="subject" id = "subject" required>
+                <p id = "err1" style="color: red; font-size: 15px; visibility:hidden;">Maximum 50 words allowed</p>
             </div>
 
         </div>
@@ -539,8 +538,8 @@ include '../php/config.php' ;
         <div class="second">
             <div class="description">
                 <p>Description</p>
-                <textarea placeholder="Enter Complaint Description" rows="20" cols="100" name = "desc" required></textarea>
-                <p style="color: red; font-size: 15px;">Maximum 250 words allowed</p>
+                <textarea placeholder="Enter Complaint Description" rows="20" cols="100" name = "desc" id = "desc" required></textarea>
+                <p id = "err2" style="color: red; font-size: 15px;visibility:hidden;">Maximum 250 words allowed</p>
             </div>
     
         </div>
@@ -571,7 +570,7 @@ include '../php/config.php' ;
         </style>
         
         <div class="btn">
-            <input type="submit" value="Submit" name="save">
+            <input type="submit" value="Submit" name="save" id = "btn">
         </div>
 
         
@@ -600,14 +599,39 @@ include '../php/config.php' ;
         
     </div>
 
-    <div class="preview">
-
-        <p>Hellow</p>
-        
-    </div>
-
-
+    
     <script>
+
+        var btn = document.getElementById("btn");
+        var subject = document.getElementById("subject");
+        var desc = document.getElementById("desc");
+        var err1 = document.getElementById("err1");
+        var err2 = document.getElementById("err2");
+        var form = docu
+
+        subject.addEventListener('input', ()=>{
+
+            if(subject.value.length>=50){
+                err1.style.visibility = "visible";
+                btn.disabled = true;
+                
+
+            }
+            
+        }
+        );
+
+        desc.addEventListener('input', ()=>{
+
+            if(desc.value.length>=255){
+                err2.style.visibility = "visible";
+                btn.disabled = true;
+                
+            }
+
+            }
+        );
+
             const toggle = () => {
             let mode = 'dark';
             var a = document.querySelector(".dark");

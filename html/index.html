@@ -25,7 +25,7 @@
     <div class="main">
 
         <div class="nav">
-            <img src="../images/logo.svg" height="115px">
+            <img src="/images/word mark(orange).svg" height="100px" style="padding-top: 15px;">
             <!-- <h2>Logo</h2> -->
             <div class="nav2">
                 <a href="#">Home</a>
@@ -46,6 +46,8 @@
                 <button>Explore Now</button>
             </div>
             <div class="right">
+
+            <img src="/images/bulb.svg" alt="" style="height: 600px;" id="bulb">
                 
             </div>
         </div>
@@ -100,7 +102,7 @@
                     <div class="btm_div" >
                         
                         <div class="highlight_txt">
-                            <h1 style="color: black;">What </h1> 
+                            <h1 id="what">What </h1> 
                         </div>
 
                         <h1>We</h1>
@@ -126,124 +128,6 @@
             
 
         </div>
-
-        <style>
-            .issue{
-                width: 100%;
-                height: 150vh;
-                /* background-color: pink; */
-                margin-top: 20rem;
-                padding-top: 3rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                
-            }
-            .issue .heading{
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                height: 15%;
-                
-                
-            }
-
-            .heading img{
-                position: relative;
-                right: 15rem;
-                bottom: 3rem;
-            }
-            .issue h1{
-                font-size: 40px;
-                color: white;
-                float: center;
-            }
-            .bgissue{
-                width: 100%;
-                height: 150vh;
-                background-image: url("/map_bg.svg");
-                
-            }
-            .slider{
-                width: 100%;
-                height: 50vh;
-                display: flex;
-                gap: 3rem;
-                justify-content: center;
-                align-items: center;
-            }
-            .box{
-                width: 417px;
-                height: 417px;
-                background-color: #242424;
-                border-radius: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-left: 1rem;
-                gap: 1.5rem;
-            }
-            .boximg img{
-                border-radius: 10px;
-            }
-            .boxtop p{
-                color: white;
-                font-size: 30px;
-                font-family: 'Poppins', sans-serif;
-            }
-            .boxdesc p{
-                color: white;
-                font-family: 'Poppins', sans-serif;
-            }
-
-            .contactform{
-                width: 100%;
-                height: 80vh;
-                /* background-color: blue; */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding-top: 3rem;
-            }
-            .contactform img{
-                margin-left: 8rem;
-            }
-            .contactform h1{
-                font-size: 45px;
-                color: white;
-                
-            }
-            .contacttxt {
-                height: 10vh;
-                display: flex;
-                align-items: center;
-                color: white;
-                font-family: "Actor", sans-serif;
-               
-            }
-            .form form{
-                display: flex;
-                flex-direction: column;
-                gap: 3rem;
-                width: 576px;
-                margin-top: 3rem;
-               
-            }
-            form input , form textarea{
-                font-size: 18px;
-                border: none;
-                background-color: transparent;
-                border-bottom: 2px solid #ffffff;
-                padding-bottom: 10px;
-                color: white;
-                
-            }
-            form textarea{
-                height: 10vh;
-            }
-            
-        </style>
-
 
        
         <div class="issue">
@@ -381,8 +265,22 @@
 
 
     <script>
-         
 
+        document.getElementById("bulb").addEventListener("click",()=>{
+
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+               
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                
+            }
+
+
+        });
 
     var typed = new Typed('#typing', {
       strings: ["Purposefully","With Us","The Movement"],

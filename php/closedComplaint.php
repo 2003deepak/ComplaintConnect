@@ -435,12 +435,15 @@ session_start();
         <table class="table bg-transparent text-white ">
             <thead class="bg-transparent">
               <tr>
+                <th>Username</th>
                 <th>Complaint ID</th>
                 <th>Complaint Type</th>
-                <th>Address</th>
                 <th>Subject</th>
+                <th>Registered Time</th>
+                <th>Closed Time</th>
                 <th>Worker Assigned</th>
-                <th>View Details</th>
+                <th>Rating</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -448,7 +451,7 @@ session_start();
             <?php
 
                 include 'config.php' ;
-                $sql = "SELECT complaints.*, register.building, register.room FROM complaints JOIN register ON complaints.username = register.username where complaints.isApproved = 1";
+                $sql = "SELECT * from closed_complaints";
                 $result = $conn->query($sql);
                 
                 // Loop through the result set and generate table rows
@@ -458,28 +461,29 @@ session_start();
 
                         ?>
               <tr>
+              <td class=" col-2 " >
+                    <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row['username'] ; ?></p>
+                </td>
                 <td class=" col-3">
                   
                     <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"] ?></p>
+                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"] ; ?></p>
                       
                     </div>
                   </div>
                 </td>
                 <td class="col-2">
-                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["complaint_type"] ?></p>
+                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["complaint_type"] ; ?></p>
                   
                 </td>
-                <td class=" col-2 " style="margin-right: 30px;">
-                    <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row['building'] . "/" . $row['room'] ; ?></p>
-                </td>
-                <td class=" col-2 "><?php echo $row["subject"] ?></td>
-                <td class=" col-2 "><?php echo $row["worker_assigned"] ?></td>
-                <!-- <td class=" col-3">
-                    <button type="button" > <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;" href="../php/assignWorker.php?id=<?php echo $row['complaint_id']; ?>"> View Details</a>  </button>
-                  
-                </td> -->
-                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color:black;" href="../php/assignWorker.php?id=<?php echo $row['complaint_id']; ?>">View Details</a></td>
+                
+                <td class=" col-2 "><?php echo $row["subject"] ;  ?></td>
+                <td class=" col-2 "><?php echo date("d-m-Y", strtotime($row["time"])) ; ?></td>
+                <td class=" col-2 "><?php echo date("d-m-Y", strtotime($row["resolved_time"])) ; ?></td>
+                <td class=" col-2 "><?php echo $row["worker_assigned"];  ?></td>
+                <td class=" col-2 "><?php echo $row["rating"] ; ?></td>
+            
+                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color:black;" href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Complaint</a></td>
 
               </tr>
 
