@@ -2,6 +2,7 @@
 
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
+include 'authsession.php';
 
 ?>
 <!DOCTYPE html>
@@ -381,7 +382,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-user" ></i>
-                <a href="../php/profile.php">Profile</a>
+                <a href="../php/profileWorker.php">Profile</a>
             </div>
             <div>
                 <i class="fa-solid fa-house"></i>
@@ -480,6 +481,8 @@ session_start();
               <?php
                         
                     }
+                }else {
+                    echo "<td colspan='4'>No complaints found.</td>";
                 }
 
                 // Close the connection

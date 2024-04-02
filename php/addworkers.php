@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'authsession.php';
 include 'config.php' ; 
 ?>
 <html lang="en" dir="ltr">

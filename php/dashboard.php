@@ -2,6 +2,7 @@
 
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
+include 'authsession.php';
 
 ?>
 <!DOCTYPE html>
@@ -381,23 +382,50 @@ session_start();
         
 
         .phpreply .box4{
-            width: 295px;
-            height: 8vw;
-            display: flex;
+                        width: 295px;
+                        height: 6vw;
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0.4rem;
+                        margin-bottom : 1rem;
+                        background-color: var(--boxes-bg-color);
+                        /* background-color: linear-gradient(180deg, var(--boxes-bg-color)); */
+                        border-radius: 10px;
+                        color: var(--font-color);
+            
+            
+
+
+            
+        }
+
+        .box4 .left{
+            width: 5%;
+            height: 100%;
+            padding-left: 0.2rem;
+
+        }
+        
+        .box4 .middle{
+            width: 80%;
+            height: 100%;
+            font-size: 16px;
+            padding-top: 0.4rem;
+            padding-left: 0.2rem;
+            display:flex ; 
             flex-direction: column;
-            gap: 10px;
+            gap:0.4rem;
+            font-family: 'Poppins', sans-serif;
+
+        }
+        .box4 .view-details{
+            width: 10%;
+            height: 100%;
+            display: flex;
             justify-content: center;
-            padding: 1rem;
-            margin-bottom : 1rem;
-            background-color: var(--boxes-bg-color);
-            /* background-color: linear-gradient(180deg, var(--boxes-bg-color)); */
-            border-radius: 10px;
-            color: var(--font-color);
-            
-            
+            align-items: center;
+            cursor: pointer;
 
-
-            
         }
          .phpreply .box4:hover {
                 animation: none !important;
@@ -660,7 +688,7 @@ session_start();
             </div>
             <div>
                 <i class="fa-solid fa-xmark"></i>
-                <a href="#">Closed Complaint</a>
+                <a href="closedComplaint.php">Closed Complaint</a>
             </div>
 
         </div>
@@ -796,11 +824,25 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
                                     <div class="box4">
-                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                        <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                        <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                        <br>
+
+                                        <div class="left" >
+                                            <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>
+
+                                        </div>
+                                        <div class="middle">
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                        </div>
+                                        <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                            <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                        </div>
+
                                     </div>
                                     <?php
                                 }
@@ -833,12 +875,26 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
 
                                 ?>
-                                <div class="box4" style="<?php echo $priorityStyle; ?>">
-                                    <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                    <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                    <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                    <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                    <br>
+                                <div class="box4">
+
+                                    <div class="left" >
+                                        <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>
+
+                                    </div>
+                                    <div class="middle">
+                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                        <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                    </div>
+                                    <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                        <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                    </div>
+
                                 </div>
                                 <?php
                             }
@@ -866,12 +922,26 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         ?>
-                                        <div class="box4" style = "margin-left : 2rem ; ">
-                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                            <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                            <br>
+                                        <div class="box4">
+
+                                            <div class="left" >
+                                                <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
+
+                                            </div>
+                                            <div class="middle">
+                                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                                <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                            </div>
+                                            <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                                <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                            </div>
+
                                         </div>
                                         <?php
                                     }

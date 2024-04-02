@@ -15,6 +15,7 @@
 <?php
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php';
 session_start();
+include 'authsession.php';
 
 // Check if form is submitted
 if(isset($_POST['not_satisfied'])){

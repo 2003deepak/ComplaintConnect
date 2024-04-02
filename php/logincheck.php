@@ -17,10 +17,11 @@
 include 'config.php' ;
 session_start();
 
+
 if(isset($_POST['save'])){
 
-    $username=$_POST['username'];
-    $password = $_POST['password'];
+    $username=mysqli_real_escape_string($conn,$_POST['username']);
+    $password = mysqli_real_escape_string($conn,$_POST['password']);
 
     if($username == "admin" & $password == "admin"){
        
@@ -110,8 +111,8 @@ if(isset($_POST['save'])){
 
 if(isset($_POST['worker'])){
 
-    $username=$_POST['username'];
-    $password = $_POST['password'];
+    $username=mysqli_real_escape_string($conn,$_POST['username']);
+    $password = mysqli_real_escape_string($conn,$_POST['password']);
 
     
     $username_search = "SELECT * FROM worker WHERE username='$username' " ;

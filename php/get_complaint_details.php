@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php' ; 
+include 'authsession.php';
 ?>
 
 
@@ -42,11 +43,17 @@ include 'config.php' ;
                 echo "<button id='complete' style='background-color: #4ef542'>Completed</button>";
             }
 
-            if ($row['resolved_time'] != NULL && $row['last_updation'] != NULL){
+            if($_SESSION['user_type'] == 'user'){
 
-                echo "<button id='raise' onclick='redirectToCloseComplaint()'>Close Complaint</button>";
-                
+                if ($row['resolved_time'] != NULL && $row['last_updation'] != NULL){
+
+                    echo "<button id='raise' onclick='redirectToCloseComplaint()'>Close Complaint</button>";
+                    
+                }
+
+
             }
+            
 
 
     

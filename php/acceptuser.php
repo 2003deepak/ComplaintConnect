@@ -13,6 +13,7 @@
 
 
 include 'config.php' ;
+include 'authsession.php';
 
 
   $id = $_GET["id"];

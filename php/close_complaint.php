@@ -11,6 +11,7 @@
 <?php
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php';
 session_start();
+include 'authsession.php';
 
 if (isset($_POST['save'])) {
     $complaint_id = isset($_POST['id']) ? mysqli_real_escape_string($conn, $_POST['id']) : '';

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php';
+include 'authsession.php';
 
 $otpsent = false;
 

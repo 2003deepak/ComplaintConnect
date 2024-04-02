@@ -2,6 +2,7 @@
 
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
+include 'authsession.php';
 
 ?>
 <!DOCTYPE html>
@@ -509,6 +510,8 @@ session_start();
               <?php
                         
                     }
+                }else {
+                    echo "<td colspan='4'>No Users found.</td>";
                 }
 
                 // Close the connection

@@ -2,6 +2,7 @@
 
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
+include 'authsession.php';
 
 ?>
 <!DOCTYPE html>

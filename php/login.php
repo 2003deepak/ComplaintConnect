@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <title>Document</title>
-    <link rel="stylesheet" href="../css/index.css">
-
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +14,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet">
 
+    <!-- Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <!-- noto Sans -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,32 +28,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-
+</head>
+<body>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
 
-html{
-    scroll-behavior: smooth;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Noto Sans', sans-serif;
-    
-}
-body{
-    background-image: url("/images/Marble\ 5.svg");
-}
-
-.main{
-    width: 100vw;
-    height: 100vh;     
-}
-.nav{
-    width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
+        body{
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("Marble\ 5.svg");
+            background-color: rgb(24, 23, 23);
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav{
+    width: 90vw;
     height: 100px;
     padding: 0vw 4vw;
     display: flex;
@@ -76,6 +66,7 @@ body{
     font-size: 1vw;
     font-weight: 700;
     color: #FFFFFF;
+    font-family: 'Noto Sans', sans-serif;
 }
 .nav2 a:hover{
     color: #FFB219;
@@ -86,75 +77,65 @@ body{
     font-weight: 900;
     display: none;
 }
+
+.topbtn{
+    width: 140px;
+    height: 45px;
+    background-color: #FF9F00;
+    margin-top: -11px;
+    font-weight: 600;
+    border: none;
+}
+.topbtn a{
+    color: black;
+}
+
+.topbtn a:hover{
+    color: #ffffff;
+    transition: 0.5s;
+}
+
 .content{
-    width: 100vw;
-    height: calc(100% - 100px);
+    width: 100%;
+    height: calc(98vh - 100px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1.5rem;
-    gap: 2rem;
-    
-
+    padding-top: 1rem;
 }
 
 .heading{
+    display: flex;
+    width: 80%;
+    justify-content: center;
     font-family: "Noto Sans", sans-serif;
     font-size: 38px;
     font-weight: 600;
+    margin-top: -20px;
     color: white;
 }
+
 span{
     color: #FFB219;
 }
 .box{
     width: 1205px;
     height: 80%;
+    /* background-image : url("../images/Rectangle.svg"); */
     background-color: #2a2a2d;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    transition: 4s ease-in;
+    border-radius: 15px;
     
    
-    
-    
-
-}
-
-.login{
-    height: 90%;
-    width: 50%;
-    margin-left: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* transition: transform 3s; Add transition here */
-
-}
-.logo{
-    height: 90%;
-    width: 43%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* transition: transform 3s; Add transition here */
-    
-}
-
-.logo img{
-    width: 45vw;
-    margin-bottom: 6rem;
     
 }
 
 .innerBox{
-    width: 90%;
-    height: 90%;
-    background-color: rgba(112, 112, 112, 1);
-    border-radius: 18px;
-    padding-left: 3rem;
-    padding-top: 1rem;
+    width: 60%;
+    height: 95%;
+    margin-left: 1rem;
 }
 .innerBox .top{
     display: flex;
@@ -162,12 +143,49 @@ span{
     font-family: "Plus Jakarta Sans", sans-serif;
     color: white;
 }
+.logo{
+    width: 50%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerBox .top{
+    display: flex;
+    flex-direction: column;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: white;
+    padding-left: 5rem;
+    width: 25vw;
+}
+
+.toggle{
+    width: 50%;
+    display: flex;
+    gap: 2rem;
+    height: 3vw;
+    padding-left: 5rem;
+}
+
+.toggle button{
+    width: 121px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #fdfdfc;
+    border-radius: 8px;
+}
+
 
 .innerBox form{
     display: flex;
     flex-direction: column;
+    font-family: "Inter", sans-serif;
     gap: 1rem;
     margin-top: 1.5rem;
+    padding-left: 5rem;
 }
 
 form input[type="text"] , form input[type="password"]{
@@ -183,15 +201,16 @@ form input[type="text"] , form input[type="password"]{
 
 form .forgot{
     display: flex;
-    width: 90%;
+    width: 77%;
     justify-content: space-between;
     margin-top: 1rem;
+    color: rgb(255, 255, 255);
 }
 
 .forgot a{
     text-decoration: none;
     font-size: 17px;
-    color: black;
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 form input[type="submit"]{
@@ -208,21 +227,14 @@ label{
     font-size: 18px;
     margin-left: 0.5rem;
 }
-
-
-
-
-
     </style>
-
-</head>
-<body>
-
     <div class="main">
+
+        <!-- Navbar Starts from here  -->
 
         <div class="nav">
             <img src="../images/word mark(orange).svg" height="100px" style="margin-top: 30px;">
-            <!-- <h2>Logo</h2> -->
+           
             <div class="nav2">
                 <a href="../html/index.html">Home</a>
                 <a href="#about">About</a>
@@ -242,56 +254,52 @@ label{
 
             <div class="box">
 
-                <div class="login">
+                <div class="innerBox">
 
-                    <div class="innerBox">
+                    <div class="top">
+                        <h1 style="font-size: 48px;" id="heading">Login <span>now</span></h1>
+                    </div>
+                    <div class="toggle">
+                        <button id="user" style="background-color: #FF9F00;">User</button>
+                        <button id="worker">Worker</button>
+                        
+                    </div>
 
-                        <div class="top">
-                            <h1 style="font-size: 48px;" id="heading">Login</h1>
-                            <p style="font-size: 20px; font-weight: 400;">to get started</p>
-                        </div>
-
-                        <form class="form"  action="../php/logincheck.php" method="POST"  >
+                    <form class="form"  action="../php/logincheck.php" method="POST"  >
 
                     
 
-                            <input type="text" name="username" id="username" placeholder="Username" value = "<?php if(isset($_COOKIE['usernamecookie'])){ echo ' ' . $_COOKIE['usernamecookie'] ;}?>"  required>
+                        <input type="text" name="username" id="username" placeholder="Username" value = "<?php if(isset($_COOKIE['usernamecookie'])){ echo ' ' . $_COOKIE['usernamecookie'] ;}?>" required>
 
-                            <input type="password" id="password" placeholder="Password" name = "password" value = "<?php if(isset($_COOKIE['passwordcookie'])){ echo ' ' . $_COOKIE['passwordcookie'] ;}?>"  required>
+                        <input type="password" id="password" placeholder="Password" name = "password" value = "<?php if(isset($_COOKIE['passwordcookie'])){ echo ' ' . $_COOKIE['passwordcookie'] ;}?>" required>
 
+
+                        <div class="forgot">
     
-                            <div class="forgot">
-        
-                                <div>
-                                    <input  type="checkbox" name="rememberme" id="flexCheckDefault">
-                                    <label > Remember for 7 days </label>
-        
-                                </div>
-                                
-                                <a href="../html/forgot.html">Forgot Password ?</a>
-
-        
+                            <div>
+                                <input  type="checkbox" name="rememberme" id="flexCheckDefault">
+                                <label > Remember for 7 days </label>
+    
                             </div>
-                        
-                        <input type="submit" name = "save" value="Continue" id="btn">
+                            
+                            <a href="../html/forgot.html">Forgot Password ?</a>
 
-                        <button href="#" id="change">Change</button>
-                        <!-- <input type="submit" name = "worker" value="Continue For Worker Temp"> -->
     
-                    </form>
+                        </div>
+                    
+                    <input type="submit" name = "save" value="Continue" id="btn">    
 
-                    </div>
+                </form>
+
+
+                </div>
+                <div class="logo">
+
+                    <img src="../images/Artboard 2@4x 1.svg" alt="" width="400px" >
+
+                </div>
 
                 
-        
-                </div>
-        
-                <div class="logo">
-        
-                    <img src="../images/big-logo.png" alt="">
-        
-        
-                </div>
 
             </div>
 
@@ -300,48 +308,29 @@ label{
         </div>
 
 
-        
-
-            
-
-            
-
-
-
-      
-        
     </div>
 
 
     <script>
-         
-         var a = document.getElementById("change");
-            var b = document.querySelector(".box");
-            var c = document.getElementById("heading");
-            var d = document.getElementById("btn");
+       var worker = document.querySelector("#worker");
+    var user = document.querySelector("#user");
+    var btn = document.querySelector("#btn");
 
-a.addEventListener("click", () => {
-    if(c.innerHTML == "Login"){
-        b.style.flexDirection = "row-reverse";
-        c.innerHTML = "Worker Login";
-        d.name = "worker";
-        
-    } else {
-        b.style.flexDirection = "row";
-        c.innerHTML = "Login";
-        d.name = "save";
-        
-    }
-});
+    // Set default background color for user
+    user.style.backgroundColor = "#FF9F00";
 
+    worker.addEventListener("click", function() {
+        worker.style.backgroundColor = "#FF9F00";
+        user.style.backgroundColor = "#ffffff";
+        btn.name = "worker";
+    });
 
-
-
-    
-
+    user.addEventListener("click", function() {
+        user.style.backgroundColor = "#FF9F00";
+        worker.style.backgroundColor = "#ffffff";
+        btn.name = "save";
+    });
     </script>
-
-    
     
 </body>
 </html>

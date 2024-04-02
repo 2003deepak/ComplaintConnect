@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+include 'authsession.php';
 
 if (isset($_POST['save'])) {
     $email = $_POST['email'];

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php' ; 
+include 'authsession.php';
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -91,8 +92,8 @@ include 'config.php' ;
         .content {
             width: calc(100vw - 30vw );
             background-color: var(--background-color);
-            min-height: 100vh; /* Minimum height of 100vh */
-            height: auto; /* Allow the height to adjust based on content */
+            min-height: 100vh;
+            height : auto ; 
             display: flex;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
@@ -371,19 +372,50 @@ include 'config.php' ;
         }
 
         .phpreply .box4{
-            width: 295px;
-            height: 8vw;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
-            padding: 1rem;
-            margin-bottom : 1rem;
-            background-color: var(--boxes-bg-color);
-            border-radius: 10px;
-            color: var(--font-color);
+                        width: 295px;
+                        height: 6vw;
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0.4rem;
+                        margin-bottom : 1rem;
+                        background-color: var(--boxes-bg-color);
+                        /* background-color: linear-gradient(180deg, var(--boxes-bg-color)); */
+                        border-radius: 10px;
+                        color: var(--font-color);
+            
+            
+
 
             
+        }
+
+        .box4 .left{
+            width: 5%;
+            height: 100%;
+            padding-left: 0.2rem;
+
+        }
+        
+        .box4 .middle{
+            width: 80%;
+            height: 100%;
+            font-size: 16px;
+            padding-top: 0.4rem;
+            padding-left: 0.2rem;
+            display:flex ; 
+            flex-direction: column;
+            gap:0.4rem;
+            font-family: 'Poppins', sans-serif;
+
+        }
+        .box4 .view-details{
+            width: 10%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
         }
         .blank-area{
             width: 295px;
@@ -600,6 +632,10 @@ include 'config.php' ;
         <i class="fa-solid fa-house"></i>
         <a href="../php/cCompletedComplaints.php">Completed </a>
     </div>
+    <div>
+        <i class="fa-solid fa-house"></i>
+        <a href="closedComplaint.php">Closed Complaints</a>
+    </div>
     
     <div>
         <i class="fa-solid fa-house" ></i>
@@ -738,12 +774,26 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
                                     <div class="box4">
-                                        <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                        <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                        <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                        <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                        <br>
-                                    </div>
+
+                                        <div class="left" >
+                                            <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>
+
+                                        </div>
+                                        <div class="middle">
+                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                            <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                        </div>
+                                        <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                            <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                        </div>
+
+                                        </div>
                                     <?php
                                 }
                             }else {
@@ -775,11 +825,25 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                         while ($row = $result->fetch_assoc()) {
                             ?>
                             <div class="box4">
-                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                <br>
+
+                                <div class="left" >
+                                    <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>
+
+                                </div>
+                                <div class="middle">
+                                    <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                    <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                    <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                </div>
+                                <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                    <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                </div>
+
                             </div>
                             <?php
                         }
@@ -809,12 +873,26 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         ?>
-                                        <div class="box4" style = "margin-left : 2rem ; ">
-                                            <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
-                                            <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
-                                            <p>Subject: <?php echo $row["subject"]; ?> </p>
-                                            <button class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">View Full Details</button>
-                                            <br>
+                                        <div class="box4">
+
+                                            <div class="left" >
+                                                <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
+
+                                            </div>
+                                            <div class="middle">
+                                                <p>Complaint ID: <?php echo $row["complaint_id"]; ?> </p>
+                                                <p>Complaint Type: <?php echo $row["complaint_type"]; ?> </p>
+                                                <p>Subject: <?php echo $row["subject"]; ?></p>
+
+                                            </div>
+                                            <div class="view-details" data-complaint-id="<?php echo $row["complaint_id"]; ?>">
+
+                                                <i class="fa-solid fa-greater-than fa-fade" style="color: #ffbc39;"></i>
+
+
+
+                                            </div>
+
                                         </div>
                                         <?php
                                     }

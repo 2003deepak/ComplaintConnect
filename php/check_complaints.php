@@ -1,6 +1,7 @@
 <?php
 
 include 'config.php';
+include 'authsession.php';
 
 
 // Get the current time

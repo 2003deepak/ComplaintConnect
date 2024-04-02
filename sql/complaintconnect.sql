@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2024 at 05:47 AM
+-- Generation Time: Apr 02, 2024 at 10:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -48,7 +48,7 @@ CREATE TABLE `closed_complaints` (
 --
 
 INSERT INTO `closed_complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `resolved_image`, `uploaded_time`, `resolved_time`, `time`, `last_updation`, `worker_assigned`, `rating`) VALUES
-('deepak123', 'C7808', 'Electricity', 'Fan not working', 'My fan is not working ', '../uploaded_images/closed_complaint/C7808(user).jpg', '../uploaded_images/closed_complaint/C7808(worker).png', '2024-03-30 20:07:26.87', '2024-03-31 01:38:35.00', '2024-03-30 20:09:31', '2024-03-31 01:38:16.00', 'ajay123', 5);
+('deepak123', 'C3205', 'Electricity', 'Fan not working', 'my fan is not working ', '../uploaded_images/closed_complaint/C3205(user).jpg', '../uploaded_images/closed_complaint/C3205(worker).png', '2024-04-02 18:13:16.53', '2024-04-02 23:31:20.00', '2024-04-01 17:23:57', '2024-04-02 01:06:59.00', 'ajay123', 5);
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,13 @@ CREATE TABLE `complaints` (
   `isPriority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `complaints`
+--
+
+INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `resolved_image`, `time`, `resolved_time`, `last_updation`, `worker_assigned`, `isApproved`, `isPriority`) VALUES
+('deepak123', 'C2626', 'Electricity', 'Capacitor problem ', 'Capacitor Problem ', '../uploaded_images/complaint_images/C2626.jpg', NULL, '2024-04-02 23:43:43.80', NULL, NULL, NULL, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -82,6 +89,13 @@ CREATE TABLE `priority_complaints` (
   `complaint_id` varchar(30) NOT NULL,
   `desc` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `priority_complaints`
+--
+
+INSERT INTO `priority_complaints` (`complaint_id`, `desc`) VALUES
+('C3205', 'I am not yet satisfied');
 
 -- --------------------------------------------------------
 
@@ -120,7 +134,11 @@ CREATE TABLE `worker` (
   `password` varchar(255) NOT NULL,
   `email` varchar(60) NOT NULL,
   `aadhar_card` varchar(255) NOT NULL,
+  `mobile_number` bigint(10) DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `pincode` int(7) DEFAULT NULL,
   `name` varchar(40) NOT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
   `work_area` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -128,9 +146,9 @@ CREATE TABLE `worker` (
 -- Dumping data for table `worker`
 --
 
-INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `name`, `work_area`) VALUES
-('ajay123', '$2y$10$o7bozrnKDkCkEgEURpDtteRGEbToTh5ZUjouEzYGMjJmyvXe34QhG', 'ajay@gmail.com', '../uploaded_images/aadhar_card/ajay123.pdf', '', 'Electricity'),
-('arjun123', '$2y$10$OGLUo9cJ4npbDEwUQmrGfulMzditbEn8q/vMARI7NywAedXV74RTK', 'rrpgyadav@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', '', 'Electricity');
+INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `mobile_number`, `Address`, `pincode`, `name`, `last_name`, `work_area`) VALUES
+('ajay123', '$2y$10$o7bozrnKDkCkEgEURpDtteRGEbToTh5ZUjouEzYGMjJmyvXe34QhG', 'ajay@gmail.com', '../uploaded_images/aadhar_card/ajay123.pdf', 9821293536, '   210/14 NCH COLONY', 400078, 'Ajay Kumar', 'Predefined text here', 'Electricity'),
+('arjun123', '$2y$10$OGLUo9cJ4npbDEwUQmrGfulMzditbEn8q/vMARI7NywAedXV74RTK', 'rrpgyadav@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', NULL, NULL, NULL, '', NULL, 'Electricity');
 
 -- --------------------------------------------------------
 

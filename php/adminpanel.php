@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php' ; 
+include 'authsession.php';
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -324,7 +325,7 @@ include 'config.php' ;
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="#">Closed Complaint</a>
+                <a href="closedComplaint.php">Closed Complaint</a>
             </div>
             
             
