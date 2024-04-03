@@ -407,7 +407,7 @@ include 'authsession.php';
 
 <div class="icon">
 
-    <p>D</p>   <!--Replace it with first letter of Username of user  -->
+    <p>C</p>   <!--Replace it with first letter of Username of user  -->
 </div>
 
 <div class="nav-content">
@@ -627,13 +627,13 @@ include 'authsession.php';
                             </div>
                             <div>
                                 <img src="../images/icons8-worker-100 1.svg" alt="">
-                                <h2>Worker Assigned : </h2>
+                                <h2>Worker Assigned </h2>
 
                                 <style>
 
                                     select{
                                                 width:252px;
-                                                height : 50px;
+                                                height : 40px;
                                                 padding-left : 10px ; 
                                                 border:2px soild black ; 
                                                 border-radius : 8px ; 
@@ -652,7 +652,7 @@ include 'authsession.php';
                                                 border-radius: 10px;
                                                 cursor: pointer;
                                                 position:relative;
-                                                bottom:-170px;
+                                                bottom:-160px;
                                                 left : -300px ; 
 
 
@@ -849,6 +849,28 @@ if (isset($_POST['save'])) {
         $row = $aadhar_retreive_result->fetch_assoc();
         $aadhar_retreive_id = $row['aadhar_card'];
 
+        //  Code to retrive username related to compplaint and email associated with it 
+
+        $id_search = "select * from complaints where complaint_id = '$complaint_id' ";
+        $query2 = mysqli_query($conn, $id_search);
+        $id_count = mysqli_num_rows($query2);
+        if ($id_count) {
+
+            $details = mysqli_fetch_assoc($query2);
+            $username = $details['username'];
+
+        }
+
+        $email_search = "select * from register where username = '$username' ";
+        $query3 = mysqli_query($conn, $email_search);
+        $id_count3 = mysqli_num_rows($query3);
+        if ($id_count3) {
+
+            $details2 = mysqli_fetch_assoc($query3);
+            $email = $details2['email'];
+
+        }
+
         $emailContent = "
         <html>
         <body>
@@ -866,7 +888,7 @@ if (isset($_POST['save'])) {
 
         include("mail.php");
 
-        smtp_mailer('poojarryadav@gmail.com', 'Assigned Worker for Your Complaint', $emailContent);
+        smtp_mailer($email, 'Assigned Worker for Your Complaint', $emailContent);
 
 
 

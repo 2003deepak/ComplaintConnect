@@ -554,6 +554,7 @@ include 'authsession.php';
         .phpreply .box4:hover {
                 animation: none !important;
         } 
+
         @keyframes blink {
         0% { opacity: 1; }
         50% { opacity: 0; }
@@ -742,8 +743,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
         <div class="org-content">
 
             <div class="inner">
-                <h1>Deepak 
-                </h1>
+                <h1><?php echo $_SESSION['username']; ?></h1>
                 <p>Lorem ipsum dolor</p>
             </div>
             <div class="boxes">
@@ -866,7 +866,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             while ($row = $result->fetch_assoc()) {
                                 $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
                                 ?>
-                                <div class="box4">
+                                <div class="box4" style="<?php echo $priorityStyle; ?>">
 
                                     <div class="left" >
                                         <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>

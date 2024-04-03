@@ -6,6 +6,7 @@
     --h1-font-color: #E0E0E0; 
     --typing-font-color : #E0E0E0; 
     --h1-color : black ; 
+    --main-color : white ; 
     
     
 
@@ -17,7 +18,8 @@
     --font-color : #000000; 
     --h1-font-color: #000000; 
     --typing-font-color : #000000;
-    --h1-color : white ; 
+    --h1-color : white ;
+    --main-color : black ;  
     
     
     
@@ -189,7 +191,7 @@ button{
 }
 .rightContent div{
     margin-top: 5rem;
-    color: white;
+    color: var(--main-color);
 }
 .leftContent{
     width: 50%;
@@ -245,7 +247,7 @@ button{
 }
 
 #what{
-    color: var(--h1-font-color);
+    color: var(--h1-color);
 }
 
 
@@ -262,9 +264,15 @@ button{
         
     }
 
+    .insideimg .wedo p {
+        
+        color: var(--font-color);
+        
+    }
+
 .btm_div h1{
     font-weight: 800;
-    color: var(--h1-color); 
+    color: var(--main-color); 
 }
 .rightContent .btm-text{
     margin-top: 10rem;
@@ -281,7 +289,7 @@ button{
 
 /* Css for Having Issue Part */
 
-
+/* #what : black , white  */
 
 
 

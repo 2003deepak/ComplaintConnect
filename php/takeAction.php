@@ -3,8 +3,32 @@
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
 
+$complaint_id = $_GET['id'];
+
 if (!isset($_SESSION['otp_sent'])) {
     $_SESSION['otp_sent'] = false;
+}
+
+//  Code to retrive username related to compplaint and email associated with it 
+
+$id_search = "select * from complaints where complaint_id = '" . $_GET['id'] . "'";
+$query2 = mysqli_query($conn, $id_search);
+$id_count = mysqli_num_rows($query2);
+if ($id_count) {
+
+    $details = mysqli_fetch_assoc($query2);
+    $username = $details['username'];
+
+}
+
+$email_search = "select * from register where username = '$username' ";
+$query3 = mysqli_query($conn, $email_search);
+$id_count3 = mysqli_num_rows($query3);
+if ($id_count3) {
+
+    $details2 = mysqli_fetch_assoc($query3);
+    $email = $details2['email'];
+
 }
 
 ?>
@@ -19,6 +43,9 @@ if (!isset($_SESSION['otp_sent'])) {
  
 
     <title>OTP Example</title>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="../js/sweet.js"></script>
   
 
     <!-- Dm Sans  -->
@@ -387,7 +414,7 @@ if (!isset($_SESSION['otp_sent'])) {
 
     <div class="content">
 
-        <h1>Worker Name</h1>
+        <h1><?php $_SESSION['username'] ; ?></h1>
 
         <style>
             .innerContent{
@@ -505,7 +532,7 @@ if (!isset($_SESSION['otp_sent'])) {
 
         <div class="innerContent">
 
-            <form id="otpForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <form id="otpForm" action="<?php echo $_SERVER['PHP_SELF'] . '?id=' . $complaint_id; ?>" method="post">
                 <select id="action" name="action">
                     <option value="initial_visit" selected>Initial Visit Done</option>
                     
@@ -515,9 +542,9 @@ if (!isset($_SESSION['otp_sent'])) {
 
                             <?php
 
-                                $visiblePart = substr($_SESSION["email"], 0, 3); // Get the first two characters
-                                $hiddenPart = str_repeat('*', strlen($_SESSION["email"]) - 5); // Replace middle characters with stars
-                                $lastPart = substr($_SESSION["email"], -3); // Get the last three characters
+                                $visiblePart = substr($email, 0, 3); // Get the first two characters
+                                $hiddenPart = str_repeat('*', strlen($email) - 5); // Replace middle characters with stars
+                                $lastPart = substr($email, -3); // Get the last three characters
                                 $maskedEmail = $visiblePart . $hiddenPart . $lastPart; // Concatenate the parts
 
 
@@ -584,11 +611,18 @@ if(isset($_POST['save'])){
         $query2 = mysqli_query($conn,$sql2);
         if($query1 && $query2){
 
-            echo '<script>alert("Action Taken Successfully")</script>' ;
-            echo "<script> location.replace('../php/Wdashboard.php')</script> ";
+            echo '<script>';
+            echo 'ConfirmationAlert("Done","Action Taken Successfully","../php/Wdashboard.php")';
+            echo '</script>';
+
+           
         }else{
-            echo '<script>alert("OOPS something Went wrong ")</script>' ;
-            echo "<script> location.replace('../php/takeAction.php')</script> ";
+
+            echo '<script>';
+            echo 'ErrorAlert("Failed","OOPS something Went wrong ","../php/takeAction.php")';
+            echo '</script>';
+
+           
         }
        
     }else{
@@ -642,24 +676,22 @@ if(isset($_POST['save'])){
         // Apply mode when page loads
         applyMode();
 
+        
+
         $(document).ready(function() {
 
-            // var otpSent = <?php echo $_SESSION['otp_sent'] ? 'true' : 'false'; ?>;
-            
-            // if (!otpSent) {
-                // Send OTP to the email address
-                $.ajax({
-                    type: 'POST',
-                    url: 'send_otp.php', // Replace with your server-side script to send OTP
-                    success: function(response) {
-                        console.log('OTP sent successfully:', response);
-                        <?php $_SESSION['otp_sent'] = true; ?> // Set OTP sent flag in session
-                    },
-                    error: function(error) {
-                        console.error('Error sending OTP:', error);
-                    }
-                });
-            // }
+            $.ajax({
+                type: 'GET',
+                url: 'send_otp.php?email=<?php echo $email; ?>',
+                success: function(response) {
+                    console.log('OTP sent successfully:', response);
+                    // Handle success response
+                },
+                error: function(error) {
+                    console.error('Error sending OTP:', error);
+                    // Handle error response
+                }
+            });
 
             $('#submitOtp').click(function() {
                 var enteredOtp = $('#otp').val();
@@ -668,6 +700,7 @@ if(isset($_POST['save'])){
             });
 
 });
+
 
        
 

@@ -389,6 +389,12 @@ include 'authsession.php';
             
         }
 
+        @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
         .box4 .left{
             width: 5%;
             height: 100%;
@@ -823,8 +829,9 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
                             ?>
-                            <div class="box4">
+                            <div class="box4" style="<?php echo $priorityStyle; ?>">
 
                                 <div class="left" >
                                     <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>

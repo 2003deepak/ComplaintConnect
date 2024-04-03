@@ -390,7 +390,7 @@ include 'authsession.php';
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="#">Closed Complaint</a>
+                <a href="closedComplaint.php">Closed Complaint</a>
             </div>
 
         </div>
@@ -452,7 +452,7 @@ include 'authsession.php';
 
                         ?>
               <tr>
-                <td><?php echo $count++ ; ?></td>
+                <td><p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo $count++ ; ?></p></td>
                 <td class=" col-3">
                   <div class="d-flex align-items-center">
                     <img
@@ -462,22 +462,27 @@ include 'authsession.php';
                         class="rounded-circle"
                         />
                     <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["username"] ?></p>
+                      <p class="fw-bold mb-1" style="color: var(--font-color);"><?php echo $row["username"] ?></p>
                       
                     </div>
                   </div>
                 </td>
                 
                 <td class="col-2">
-                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["email"] ?></p>
+                  <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo $row["email"] ?></p>
                   
                 </td>
-                <td class=" col-1 "><?php echo $row["building"] ?></td>
-                <td class=" col-1 "><?php echo $row["room"] ?></td>
-                <td class=" col-2 " style="margin-right: 10px;">
+                <td class=" col-1 " >
+                    <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo $row["building"] ; ?></p>
+                </td>
+                <td class=" col-1 " >
+                    <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo $row["room"]; ?></p>
+                    
+                </td>
+                <td class=" col-2 " >
                    
 
-                        <a class=" col-5 " href = "<?php echo $row["allotment_letter"]?> " target="blank"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
+                        <a class=" col-5 " href = "<?php echo $row["allotment_letter"]?> " style="color: var(--font-color);" target="blank"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
                         
                         
                         
@@ -488,7 +493,7 @@ include 'authsession.php';
                 if($row["isAllowed"] == 1){
                     ?>
                     <td class=" col-3"> 
-                        <button type="button"><a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer; " href="../php/deleteuser.php?id=<?php echo $row['sno']; ?>"> Delete</a> </button>
+                        <button type="button"><a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;color: var(--font-color);"  href="../php/deleteuser.php?id=<?php echo $row['sno']; ?>"> Delete</a> </button>
                         
                     </td>
                 
@@ -497,7 +502,7 @@ include 'authsession.php';
                 }else{
                     ?>
                     <td>
-                        <button type="button"> <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;" href="../php/acceptuser.php?id=<?php echo $row['sno']; ?>"> Accept</a>  </button>
+                        <button type="button"> <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer; color: var(--font-color);" href="../php/acceptuser.php?id=<?php echo $row['sno']; ?>"> Accept</a>  </button>
                         
                     </td>
                 
@@ -511,7 +516,7 @@ include 'authsession.php';
                         
                     }
                 }else {
-                    echo "<td colspan='4'>No Users found.</td>";
+                    echo "<td colspan='4' style='color: var(--font-color);'>No Users found.</td>";
                 }
 
                 // Close the connection

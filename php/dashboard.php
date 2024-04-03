@@ -746,8 +746,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
         <div class="org-content">
 
             <div class="inner">
-                <h1>Deepak 
-                </h1>
+                <h1><?php echo $_SESSION['username']; ?></h1>
                 <p>Lorem ipsum dolor</p>
             </div>
             <div class="boxes">
@@ -875,7 +874,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 $priorityStyle = ($row["isPriority"] == 1) ? 'border: 1px solid red; animation: blink 1s infinite;' : '';
 
                                 ?>
-                                <div class="box4">
+                                <div class="box4" style="<?php echo $priorityStyle; ?>">
 
                                     <div class="left" >
                                         <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #F4DD0E;"></div>

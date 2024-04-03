@@ -467,26 +467,26 @@ include 'authsession.php';
                         class="rounded-circle"
                         />
                     <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["username"] ?></p>
+                      <p class="fw-bold mb-1" style="color: var(--font-color);"><?php echo $row["username"] ?></p>
                       
                     </div>
                   </div>
                 </td>
                 <td class="col-2">
-                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo $row["email"] ?></p>
+                  <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo $row["email"] ?></p>
                   
                 </td>
                 <td class=" col-3 " style="margin-right: 30px;">
                     <div class="ms-3 d-flex ml-3 align-item-center" >
                         
-                        <a href="<?php echo $row["aadhar_card"]?>" target = "_blank"class="fw-bold mb-1 ml-3 text-white"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
+                        <a href="<?php echo $row["aadhar_card"]?>" style = "color: var(--font-color);"  target = "_blank"class="fw-bold mb-1 ml-3 text-white"><img src="../images/Filetype Icon.svg"  alt="" height="28px"></a>
                         
                         
                       </div>
                 </td>
                 <td class=" col-2 "><?php echo $row["work_area"] ?></td>
                 <td class=" col-3">
-                    <button type="button"> <a class = "accept" style = "color : black ; text-decoration : none ; cursor:pointer;"href="../php/deleteworker.php?id=<?php echo $row['username']; ?>"> Delete</a>  </button>
+                    <button type="button"> <a class = "accept" style = "color: var(--font-color); ; text-decoration : none ; cursor:pointer;"href="../php/deleteworker.php?id=<?php echo $row['username']; ?>"> Delete</a>  </button>
                   
                 </td>
               </tr>
@@ -494,6 +494,8 @@ include 'authsession.php';
               <?php
                         
                     }
+                }else {
+                    echo "<td colspan='4' style='color: var(--font-color);'>No Worker found.</td>";
                 }
 
                 // Close the connection

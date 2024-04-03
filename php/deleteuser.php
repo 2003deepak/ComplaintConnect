@@ -1,68 +1,39 @@
-<!-- this is used to delete the user from the table  -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src ="../js/sweet.js"></script>
-  <title>Document</title>
-</head>
-<body>
-
 <?php
-
 include 'config.php';
 session_start();
 include 'authsession.php';
 
+$id = $_GET['id'];
 
+$id_search = "SELECT * FROM register WHERE sno='$id'";
+$query = mysqli_query($conn, $id_search);
+$id_count = mysqli_num_rows($query);
+if ($id_count) {
+    $query1 = mysqli_fetch_assoc($query);
+    $email = $query1['email'];
+    $name = $query1['username'];
+}
 
-
-    $id = $_GET['id'];
-
-    $id_search = "select * from register where sno='$id' " ;
-    $query = mysqli_query($conn, $id_search);
-    $id_count = mysqli_num_rows($query);
-    if($id_count){
-
-        $query1 = mysqli_fetch_assoc($query);
-        $name = $query1['username'];
-        
-
-    }
-
-    $sql = "delete from register where sno = $id" ; 
-
-      if ($conn->query($sql) === TRUE) {
-
+$sql = "DELETE FROM register WHERE sno = $id";
+$sql2 = "DELETE FROM complaints WHERE username = '$name'";
+if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
+    include("mail.php");
+    if (smtp_mailer($email, 'Account Deleted', 'Hi ' . $name . ', this is a test email to inform you that your account has been deleted by the admin.', "User was notified through EMAIL", "User was not notified ")) {
         echo '<script>';
         echo 'ConfirmationAlert("Done","User is Successfully Deleted","../php/edituser.php");';
         echo '</script>';
-
-        include("mail.php");
-
-        if(smtp_mailer('yadavsuraj7449@gmail.com','Account Deleted','Hi ' . $name . ', this an test email to inform you that your account is been deleted by the admin',"User was notified through EMAIL","User was not notified ")){
-          echo "<script> location.replace('../php/adminpanel.php')</script> ";
-        }else{
-          echo "<script> location.replace('../php/adminpanel.php')</script> ";
-        }
-
-          
-
-    
-   
-      }else {
+        echo "<script> location.replace('../php/adminpanel.php')</script> ";
+    } else {
         echo '<script>';
         echo 'ErrorAlert("Failed","User is not deleted","../php/edituser.php");';
         echo '</script>';
-      }
-
-
+        echo "<script> location.replace('../php/adminpanel.php')</script> ";
+    }
+} else {
+    echo '<script>';
+    echo 'ErrorAlert("Failed","User is not deleted","../php/edituser.php");';
+    echo '</script>';
+}
 
 $conn->close();
-
 ?>
-  
-</body>
-</html>

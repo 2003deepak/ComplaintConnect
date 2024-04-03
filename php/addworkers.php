@@ -321,7 +321,7 @@ include 'config.php' ;
     .left h1{
         font-family: "Poppins", sans-serif;
         font-size: 40px;
-        color: white;
+        color: var(--font-color);
     }
 
     .form_input form{
@@ -339,7 +339,7 @@ include 'config.php' ;
     form div p{
         font-size: 20px;
         font-family: "DM Sans", sans-serif;
-        color: white;
+        color: var(--font-color);
     }
     
     form input[type = "text"] , input[type ="password"] , input[type ="email"] {

@@ -31,7 +31,7 @@
                 <a href="#">Home</a>
                 <a href="#about">About</a>
                 <a href="../html/signup.html">Sign Up</a>
-                <a href="#">Contact Us</a>
+                <a href="#contact">Contact Us</a>
                 <button class="topbtn"> <a href="../php/login.php">Sign In</a></button>
                 
                 <i class="ri-menu-3-fill"></i>
@@ -47,7 +47,7 @@
             </div>
             <div class="right">
 
-            <img src="../images/bulb.svg" alt="" style="height: 600px;" id="bulb">
+                <img id="bulb" src="../images/offbulb.png"  style="height: 600px;">
                 
             </div>
         </div>
@@ -58,7 +58,7 @@
             <img src="../images/yellow tap.svg" alt="" width="50vw">
 
         </div>
-        <div class="about">
+        <div class="about" id="about">
 
             <div class="leftContent">
                
@@ -196,7 +196,7 @@
 
                     </div>
                 </div>
-                <div class="contactform">
+                <div class="contactform" id="contact">
                     <h1>Have a Question ? </h1>
 
                     <img src="../images/Vector 131.svg" alt="" width="180px">
@@ -218,6 +218,7 @@
                             <input type="email" placeholder="EMAIL">
                             <!-- <input type="textarea" placeholder="MESSAGE" rows="4" > -->
                             <textarea cols="25" placeholder="MESSAGE"></textarea>
+                            <button class="submitbtn" style="width: 40%; margin-left:155px;">Send</button>
                         </form>
                     </div>
 
@@ -266,21 +267,20 @@
 
     <script>
 
-        document.getElementById("bulb").addEventListener("click",()=>{
 
-            let mode = 'dark';
-            var a = document.querySelector(".dark");
+        var bulb = document.getElementById("bulb");
+
+        bulb.addEventListener("click", () => {
             if (document.body.classList.contains('light-mode')) {
                 document.body.classList.remove("light-mode");
-               
+                bulb.src = "/images/onbulb.png";
             } else {
                 document.body.classList.add("light-mode");
-                a.innerHTML = "Dark Mode";
-                
+                bulb.src = "/images/offbulb.png";
             }
-
-
         });
+
+    
 
     var typed = new Typed('#typing', {
       strings: ["Purposefully","With Us","The Movement"],

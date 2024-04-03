@@ -1,10 +1,4 @@
-<?php 
 
-include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
-session_start();
-include 'authsession.php';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +6,6 @@ include 'authsession.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
     <title>Document</title>
-
-
-    <!-- Lexend  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Poppins  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,10 +21,6 @@ include 'authsession.php';
 
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
-    <!-- bootstrap CSS  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <style>
 
@@ -92,23 +76,31 @@ include 'authsession.php';
         
 
         .nav:hover {
-            width: 250px;
+            width: 260px;
         }
         .nav:hover + .content {
-            margin-left: 250px;
+            margin-left: 260px;
         }
         
 
         .content {
-            width: calc(100vw - 80px );
+            width: calc(100vw - 30vw );
             background-color: var(--background-color);
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
             margin-left: 80px; /* Initial margin-left to match the nav width */
             transition: margin-left 0.3s; /* Add transition for a smooth effect */
         }
+
+        .preview{
+                width: 30vw;
+                position: fixed;
+                height: 100vh;
+                right: 0rem;
+                background-color: var(--preview-background-color);
+        }
+
+        
 
         .nav:hover .icon {
             margin-left: 5rem;
@@ -140,7 +132,7 @@ include 'authsession.php';
             
             }
             .nav .icon p{
-                margin-top: 25px;
+                margin-top: 5px;
                 font-size: 28px;
                 
             }
@@ -180,19 +172,19 @@ include 'authsession.php';
             }
             
             .nav-content div {
-                width: 225px;
-                padding-left: 20px;
+                width: 280px;
+                padding-left: 25px;
                 display: flex;
                 gap: 1rem;
                 margin-left: 0.3rem;
                 justify-content: flex-start;
                 align-items: center;
-                height: 53px;
+                height : 53px ; 
                 border-radius: 10px 0px 0px 10px;
             }
 
             .nav-content-down div {
-                width: 220px;
+                width: 250px;
                 display: flex;
                 margin-left: 0.3rem;
                 gap: 1rem;
@@ -247,44 +239,196 @@ include 'authsession.php';
                
             }
 
-
-            /* Table Code For CSS  */
-
-            table{
-                font-family: "Lexend", sans-serif;
-                border-bottom: 3px solid #4d4d4d;
-                border-top: 3px solid #4d4d4d;
-                position: relative;
-                bottom: 24rem;
+            .boxes{
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
             }
-            tbody{
-                border-bottom: 3px solid #4d4d4d;
-                border-top: 3px solid #4d4d4d;
-            }
-            tr{
-                border-bottom: 3px solid #4d4d4d;
-                border-top: 3px solid #4d4d4d;
+            .boxes .box11{
+                width: 15.5vw;
+                height: 150px;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+                border-top: 10px solid #FF5858;
             }
 
+            .boxes .box13{
+                width: 15.5vw;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                border-radius: 10px;
+                border-top: 10px solid #05FF00;
+            }
+
+            .boxes .count{
+                width: 40%;
+                height: 81px;
+                align-self: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                border-radius: 5px;
+                background-color: var(--box-count-color);
+            }
+
+            .boxes .box12{
+                width: 15.5vw;
+                height: 150px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--boxes-bg-color);
+                padding: 1rem;
+                border-radius: 10px;
+
+                border-top: 10px solid #FF9F00;
+            }
+
+            .line{
+                background-color: var(--boxes-bg-color);
+                width: 79%;
+                margin-top: 1.2rem;
+                margin-bottom: 1.2rem;
+                height: 10px;
+            }
+
+            .complaints{
+                width: 90%;
+                height: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                
+            }
+            .complaints p{
+                color:  var(--text-boxes-color);
+            }
+
+            .complaints .box21{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+                
+                border-radius: 10px;
+                color: var(--font-color);
+
+                
+            }
+            .complaints .box22{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+               
+                border-radius: 10px;
+                color: var(--font-color);
+                
+            }
+            .complaints .box23{
+                width: 295px;
+                height: 30px;
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 1rem;
+                border-radius: 10px;
+                color: var(--font-color);
+
+                
+            }
+
+            .phpreply{
+                
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                color: var(--font-color);
+                margin-top: 1.5rem;
+                font-size: 19px;
             
-            
-            table thead{
-            color: #999999;
-            }
-
-        table a {
-            text-decoration: none ;
         }
 
-        table button{
-            background-color:  #FF9F00;
-            width: 69px;
-            height: 27px;
-            border: none;
-            border-radius: 3px;
+        .pendingComplaints , .newComplaints , .completedComplaints{
+            width:295px ; 
+            height: 100vh ; 
+            display: flex;
+           
+            flex-direction: column;
+        }
+
+        .phpreply .box4{
+                        width: 295px;
+                        height: 6vw;
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0.4rem;
+                        margin-bottom : 1rem;
+                        background-color: var(--boxes-bg-color);
+                        /* background-color: linear-gradient(180deg, var(--boxes-bg-color)); */
+                        border-radius: 10px;
+                        color: var(--font-color);
+            
+            
+
+
+            
+        }
+
+        .box4 .left{
+            width: 5%;
+            height: 100%;
+            padding-left: 0.2rem;
+
+        }
+        
+        .box4 .middle{
+            width: 80%;
+            height: 100%;
+            font-size: 16px;
+            padding-top: 0.4rem;
+            padding-left: 0.2rem;
+            display:flex ; 
+            flex-direction: column;
+            gap:0.4rem;
+            font-family: 'Poppins', sans-serif;
+
+        }
+        .box4 .view-details{
+            width: 10%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+        }
+
+        .blank-area{
+            width: 295px;
+            height: 8vw;
+            margin-left:35px;
         }
 
 
+      
+
+            
+           
+           
 
 
              @media (max-width:768px) {
@@ -296,6 +440,9 @@ include 'authsession.php';
                 
                 .box11{
                     margin-left: 5rem;
+                }
+                .preview{
+                    display: none ;
                 }
 
                 .bars{
@@ -363,15 +510,18 @@ include 'authsession.php';
 
        
         <div class="icon">
-        <?php
 
-   
-            $u = $_SESSION["username"];
-            $capitalizedu = ucfirst($u[0]);
+            <?php
+
+           
+                $u = $_SESSION["username"];
+                $capitalizedu = ucfirst($u[0]);
 
 
-        ?>
-        <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
+
+
+            ?>
+             <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
         </div>
 
         <div class="nav-content">
@@ -385,20 +535,25 @@ include 'authsession.php';
                 <a href="../php/profileWorker.php">Profile</a>
             </div>
             <div>
-                <i class="fa-solid fa-house"></i>
-                <a href="../php/WnewComplaints.php">New Complaint</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-clock"></i>
-                <a href="../php/WpendingComplaints.php">Pending Complaint</a>
-            </div>
-            <div>
                 <i class="fa-solid fa-key"></i>
                 <a href="../php/updateCurrentPassword.php">Update Password</a>
             </div>
+            <div>
+                <i class="fa-solid fa-house"></i>
+                <a href="../php/WnewComplaints.php">New Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-clock"></i>
+                <a href="../php/WpendingComplaints.php">Pending Complaints</a>
+            </div>
+            <div>
+                <i class="fa-solid fa-key"></i>
+                <a href="closedComplaint.php">Closed Complaints</a>
+            </div>
+            
+            
 
         </div>
-
         <div class="nav-content-down">
 
             <div onclick="toggle()" >
@@ -416,95 +571,75 @@ include 'authsession.php';
 
 
 
+?>
 
 
 
-    
     
 
 
     <div class="content">
 
+
+        <form id="otpForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+            <label for="action">Select Action:</label>
+            <select id="action" name="action">
+                <option value="select">Select</option>
+                <option value="complete">Close Complaint</option>
+            </select>
         
-
-
-        <table class="table bg-transparent text-white ">
-            <thead class="bg-transparent">
-              <tr>
-                <th>Complaint ID</th>
-                <th>Subject</th>
-                <th>Time</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-
-            <?php
-
-                include 'config.php' ;
-                $sql = "SELECT 
-                complaints.*,
-                worker_action.actionTaken
-                FROM complaints
-                JOIN worker_action ON complaints.complaint_id = worker_action.complaint_id where worker_action.actionTaken = 0 AND complaints.worker_assigned = '{$_SESSION['username']}';
-                
-                ";
-                $result = $conn->query($sql);
-                
-                // Loop through the result set and generate table rows
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-
-
-                        ?>
-              <tr>
-                <td class=" col-3">
-                  
-                    <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: var(--font-color);"><?php echo $row["complaint_id"] ?></p>
-                      
-                    </div>
-                  </div>
-                </td>
-                <td class="col-2">
-                  <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" > <?php echo $row["subject"] ?></p>
-                  
-                </td>
-                <td class=" col-2 " style="margin-right: 30px;">
-                    <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" > <?php echo date("d-m-Y", strtotime($row['time'])) ?></p>
-                </td>
-                
-                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color: var(--font-color);" href="../php/takeAction.php?id=<?php echo $row['complaint_id']; ?>">Take Actions</a></td>
-
-              </tr>
-
-              <?php
-                        
-                    }
-                }else {
-                    echo "<td colspan='4'> <p style='color: var(--font-color);'>No complaints found.</p></td>";
+            <div id="otpContainer" style="display: none;">
+                <label for="otp">Upload Complaint Completion Image</label>
+                <input type="file" id="otp" name="file" required>
+                <input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
+                <input type="submit" id="submitOtp" name="save" value="Close Complaint">
+            </div>
+        </form>
+        
+        <script>
+        $(document).ready(function() {
+            $('#action').change(function() {
+                var selectedAction = $(this).val();
+                if (selectedAction === 'complete') {
+                    $('#otpContainer').show();
+                } else {
+                    $('#otpContainer').hide();
                 }
+            });
+        });
+        </script>
 
-                // Close the connection
-                $conn->close();
-            ?>
 
-   
-              
-            </tbody>
-          </table>
+
+            
+
+      
+        
+
+        
+
+            
+
+            
+        
+    </div>
+
+
+    <!-- Loading all complaints to display in preview mode -->
+
+  
+
+
+
+    <div class="preview">
+
+        
 
         
         
-
-
-    
+    </div>
 
         
-        
-   
-
-    
         
     </div>
 
@@ -519,7 +654,6 @@ include 'authsession.php';
 
     <script>
     
-
     const toggle = () => {
             let mode = 'dark';
             var a = document.querySelector(".dark");
@@ -551,10 +685,7 @@ include 'authsession.php';
     applyMode();
 
 
-
-
-
-   
+    
    
 </script>
 

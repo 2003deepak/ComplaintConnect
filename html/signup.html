@@ -2,55 +2,303 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/signup.css">
+    <title>Document</title>
 
-    
-
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Online KC Quiz </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet">
+
+    <!-- Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- noto Sans -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Plus Jakarta Font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
 
-<!-- This is for navigation Bar  -->
+    <style>
 
-    <nav>
-        <a href="index.html"  target="_blank" class="Navigation" ><b> Home </b></a>
-        <a href="signup.html"  target="_blank" class="Navigation"><b> SignUp </b> </a>
-        <a href="../php/login.php"  target="_blank" class="Navigation"><b> Login </b></a>
-        <a href="contact.html"  target="_blank" class="Navigation"><b> Contact </b></a>
-    </nav>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
+        body{
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("Marble\ 5.svg");
+            background-color: rgb(24, 23, 23);
+            font-family: 'Poppins', sans-serif;
+        }
+        .nav{
+    width: 90vw;
+    height: 100px;
+    padding: 0vw 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #dadada ; 
+    
+}
+.nav2{
+    display: flex;
+    gap: 3vw;
+}
+.nav h2{
+    font-size: 2vw;
+    font-weight: 800;
+}
+.nav2 a{
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: 'Noto Sans', sans-serif;
+}
+.nav2 a:hover{
+    color: #FFB219;
+    transition: 0.5s;
+}
+.nav2 i{
+    font-size: 1.4vw ;
+    font-weight: 900;
+    display: none;
+}
 
-</header>
+.topbtn{
+    width: 140px;
+    height: 45px;
+    background-color: #FF9F00;
+    margin-top: -11px;
+    font-weight: 600;
+    border: none;
+}
+.topbtn a{
+    color: black;
+}
 
+.topbtn a:hover{
+    color: #ffffff;
+    transition: 0.5s;
+}
 
-<div class="Signup" >
+.content{
+    width: 100%;
+    height: calc(98vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
 
+.heading{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    margin-top: -20px;
+    color: white;
+}
 
+span{
+    color: #FFB219;
+}
+.box{
+    width: 1205px;
+    height: 85%;
+    /* background-image : url("../images/Rectangle.svg"); */
+    background-color: #2a2a2d;
+    border-radius: 8px;
+    display: flex;
+    border-radius: 15px;
+    
    
-        
+    
+}
 
-        
+.innerBox{
+    width: 60%;
+    height: 95%;
+    margin-left: 1rem;
+}
+.innerBox .top{
+    display: flex;
+    flex-direction: column;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: white;
+}
+.logo{
+    width: 50%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-            <form action="../php/register.php" onsubmit="return validate(event)" method="post" name = "f1" enctype="multipart/form-data">
-            
-               
-                <h1>Sign Up Now </h1>
-                <br>
+.innerBox .top{
+    display: flex;
+    flex-direction: column;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: white;
+    padding-left: 5rem;
+    width: 25vw;
+}
+
+.toggle{
+    width: 50%;
+    display: flex;
+    gap: 2rem;
+    height: 3vw;
+    padding-left: 5rem;
+}
+
+.toggle button{
+    width: 121px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #fdfdfc;
+    border-radius: 8px;
+}
 
 
-                <input type="text" placeholder="Enter The Username" class="text" name="username" id = 'username' autocomplete="off">
+.innerBox form{
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-left: 5rem;
+}
 
-                <input type="password" placeholder="Enter Your Password" class="text" name="password" id = 'password' autocomplete="off">
-                <br>
+form input[type="text"] , form input[type="password"] , form input[type="email"]{
+    width: 448.94px ; 
+    height: 50.85px;
+    padding-left: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #B4B4B4;
+    font-size: 17px;
+    color: rgb(7, 7, 7);
+}
 
-                <input type="email" placeholder="Enter Your Email Id" class="text" name="email" id = 'emailID' autocomplete="off">
-                <br>
+select{
+    width: 465.94px ; 
+    height: 50.85px;
+    padding-left: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 17px;
+    background-color: #B4B4B4;
+
+}
+
+form .forgot{
+    display: flex;
+    width: 77%;
+    justify-content: space-between;
+    margin-top: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+.forgot a{
+    text-decoration: none;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+form input[type="submit"]{
+    width: 448.94px ; 
+    height: 60.85px;
+    background-color: #232429;
+    border: none;
+    font-size: 23px;
+    color: #FFB219;
+    border-radius: 10px;
+    cursor: pointer;
+}
+label{
+    font-size: 18px;
+    margin-left: 0.5rem;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.form-group p{
+    color: white;
+    font-size: 18px;
+}
+input[type="file"]{
+    color: white;
+    font-size: 16px;
+}
+#learn{
+    font-size: 20px;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+    </style>
+    <div class="main">
+
+        <!-- Navbar Starts from here  -->
+
+        <div class="nav">
+            <img src="../images/word mark(orange).svg" height="100px" style="margin-top: 30px;">
+           
+            <div class="nav2">
+                <a href="../html/index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="../html/signup.html">Sign Up</a>
+                <a href="#">Contact Us</a>
+                <button class="topbtn"> <a href="../php/login.php">Sign In</a></button>
+                
+                <i class="ri-menu-3-fill"></i>
+            </div>
+        </div>
+
+        <div class="content">
+
+         
+            <div class="box">
+
+                <div class="innerBox">
+
+                    <div class="top">
+                        <h1 style="font-size: 48px;" id="heading">Sign Up <span>now</span></h1>
+                    </div>
+                    
+
+                    <form class="form"  action="../php/register.php" onsubmit="return validate(event)" method="post" name = "f1" enctype="multipart/form-data""  >
+
+                        <input type="text" placeholder="Enter The Username" class="text" name="username" id = 'username' autocomplete="off">
+
+                        <input type="password" placeholder="Enter Your Password" class="text" name="password" id = 'password' autocomplete="off">
+
+
+                        <input type="email" placeholder="Enter Your Email Id" class="text" name="email" id = 'emailID' autocomplete="off">
                 
 
                     
@@ -60,7 +308,7 @@
                     <option value = "110">110</option>
                     <option value = "179">179</option>
                 </select>
-                <br><br>
+
                 <select name = "room" class= "dropdown">
                     <option value = "null">Please Select Your Room Number</option>
                     <option value = "1">1</option>
@@ -69,73 +317,76 @@
                     <option value = "4">4</option>
                     <option value = "5">5</option>
                 </select>
-
-                <br>
-                <br>
                 <div class="form-group">
+                    <p>Upload Allotment Letter : </p>
                    
                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file" accept="application/pdf">
                   </div>
-                <br>
+
         
         
 
                
                 <input type= "submit" value = "Sign Up " name = "save" class="signupbtn"></button>
-                <p id = "learn"><b>Do You Have an Account ? </b><a href="../php/login.php"><b>Login</a></b></p>
+
+
+                </form>
+
+
+                </div>
+                <div class="logo">
+
+                    <img src="../images/Artboard 2@4x 1.svg" alt="" width="400px" >
+
+                </div>
 
                 
-            </form>
-                
-         
-        </div> 
 
-
-
-
-        <script>
-            async function validate(event) {
-                // event.preventDefault(); // Prevent default form submission
-    
-                // let email = document.getElementById("emailID").value;
-                // let key = "ema_live_m0M86pVGRGvNX5CJgwacnvuXw1j0UhwekVMpzFAA";  // Api key of code with harry not mine personal account 
-                // let url = `https://api.emailvalidation.io/v1/info?apikey=${key}&email=${email}`;
-    
-                // try {
-                //     let call = await fetch(url);
-                //     let data = await call.json();
-    
-                //     if (data["smtp_check"]) {
-                //         // Allow form submission
-                //         document.forms[0].submit();
-                //     } else {
-                //         alert("Email validation failed!");
-                //     }
-                // } catch (error) {
-                //     console.error("Error:", error);
-                //     alert("An error occurred during email validation.");
-                // }
-
-                var ans = false ; 
-
-                var password = document.getElementById("password");
-                var username = document.getElementById("username");
-                if (password.value.length < 8) {
-                    password.style.border = "2px solid red"; // Set border to red if password length is less than 8
-                    return false
-                } else {
-                    password.style.border = "2px solid green"; // Set border to green if password length is 8 or more
-                    return true;
-                }
-
-
-                return ans ; 
-
-            }
+            </div>
+            <p id = "learn"><b>Do You Have an Account ? </b><a href="../php/login.php" id="test" style="color:#FFB219;"><b>Login</a></b></p>
             
-        </script>
 
+
+            
+        </div>
         
+
+
+    </div>
+
+    <script>
+        async function validate(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let email = document.getElementById("emailID").value;
+            let key = "ema_live_m0M86pVGRGvNX5CJgwacnvuXw1j0UhwekVMpzFAA";  // Api key of code with harry not mine personal account 
+            let url = `https://api.emailvalidation.io/v1/info?apikey=${key}&email=${email}`;
+
+            try {
+                let call = await fetch(url);
+                let data = await call.json();
+
+                if (data["smtp_check"]) {
+                    // Allow form submission
+                    document.forms[0].submit();
+                } else {
+                    alert("Email validation failed!");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred during email validation.");
+            }
+
+            
+
+
+            return ans ; 
+
+        }
+        
+    </script>
+
+
 
     
     

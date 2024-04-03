@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2024 at 10:26 PM
+-- Generation Time: Apr 03, 2024 at 11:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -48,7 +48,7 @@ CREATE TABLE `closed_complaints` (
 --
 
 INSERT INTO `closed_complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `resolved_image`, `uploaded_time`, `resolved_time`, `time`, `last_updation`, `worker_assigned`, `rating`) VALUES
-('deepak123', 'C3205', 'Electricity', 'Fan not working', 'my fan is not working ', '../uploaded_images/closed_complaint/C3205(user).jpg', '../uploaded_images/closed_complaint/C3205(worker).png', '2024-04-02 18:13:16.53', '2024-04-02 23:31:20.00', '2024-04-01 17:23:57', '2024-04-02 01:06:59.00', 'ajay123', 5);
+('deepak123', 'C2149', 'Electricity', 'Fan not working', 'My Fan is not working ', '../uploaded_images/closed_complaint/C2149(user).jpg', '../uploaded_images/closed_complaint/C2149(worker).png', '2024-04-03 21:24:36.45', '2024-04-04 02:54:11.00', '2024-04-03 20:51:27', '2024-04-04 02:47:10.00', 'ajay123', 5);
 
 -- --------------------------------------------------------
 
@@ -72,13 +72,6 @@ CREATE TABLE `complaints` (
   `isPriority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `complaints`
---
-
-INSERT INTO `complaints` (`username`, `complaint_id`, `complaint_type`, `subject`, `description`, `folder`, `resolved_image`, `time`, `resolved_time`, `last_updation`, `worker_assigned`, `isApproved`, `isPriority`) VALUES
-('deepak123', 'C2626', 'Electricity', 'Capacitor problem ', 'Capacitor Problem ', '../uploaded_images/complaint_images/C2626.jpg', NULL, '2024-04-02 23:43:43.80', NULL, NULL, NULL, 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -95,6 +88,7 @@ CREATE TABLE `priority_complaints` (
 --
 
 INSERT INTO `priority_complaints` (`complaint_id`, `desc`) VALUES
+('C2149', 'I am having issue'),
 ('C3205', 'I am not yet satisfied');
 
 -- --------------------------------------------------------
@@ -106,9 +100,11 @@ INSERT INTO `priority_complaints` (`complaint_id`, `desc`) VALUES
 CREATE TABLE `register` (
   `sno` int(20) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(40) DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `mob_no` int(10) DEFAULT NULL,
   `building` varchar(5) NOT NULL,
   `room` varchar(5) NOT NULL,
   `allotment_letter` varchar(300) NOT NULL,
@@ -120,8 +116,9 @@ CREATE TABLE `register` (
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`sno`, `name`, `username`, `password`, `email`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
-(21, 'Deepak Yadav', 'deepak123', '$2y$10$2xj0asAM81loJdYvQbRBfOEcdlKwC8lxU7MWoi.90dRnTNwZpwN5C', 'deepak@gmail.com', '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1);
+INSERT INTO `register` (`sno`, `name`, `last_name`, `username`, `password`, `email`, `mob_no`, `building`, `room`, `allotment_letter`, `user_profile`, `isAllowed`) VALUES
+(27, 'Deepak', 'Yadav', 'deepak123', '$2y$10$kra.m5ajlLe8MdT35LiqPOXpRwp55UiHTlNqULmJhU57Mk8aE2Fb.', 'poojarryadav@gmail.com', 0, '210', '1', '../uploaded_images/allotment_letter/210_1.pdf', '../uploaded_images/profile_image/210_1.jpeg', 1),
+(28, 'Indar Kumar ', NULL, 'indar123', '$2y$10$fLgaP9yfyy4nr/gMq6rtW.vLpDlsZHLQcYBzr3w4JJVtDVIwxlrtW', 'yadavsuraj7449@gmail.com', 0, '210', '2', '../uploaded_images/allotment_letter/210_2.pdf', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -147,8 +144,8 @@ CREATE TABLE `worker` (
 --
 
 INSERT INTO `worker` (`username`, `password`, `email`, `aadhar_card`, `mobile_number`, `Address`, `pincode`, `name`, `last_name`, `work_area`) VALUES
-('ajay123', '$2y$10$o7bozrnKDkCkEgEURpDtteRGEbToTh5ZUjouEzYGMjJmyvXe34QhG', 'ajay@gmail.com', '../uploaded_images/aadhar_card/ajay123.pdf', 9821293536, '   210/14 NCH COLONY', 400078, 'Ajay Kumar', 'Predefined text here', 'Electricity'),
-('arjun123', '$2y$10$OGLUo9cJ4npbDEwUQmrGfulMzditbEn8q/vMARI7NywAedXV74RTK', 'rrpgyadav@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', NULL, NULL, NULL, '', NULL, 'Electricity');
+('ajay123', '$2y$10$axxV4J7XtCGBYEETRmGEhunuSiEcBsdErBVcrLKijgL.1oCghePXe', 'ajay@gmail.com', '../uploaded_images/aadhar_card/ajay123.pdf', NULL, NULL, NULL, '', NULL, 'Electricity'),
+('arjun123', '$2y$10$/x2olQvqovY.TZxBKDGSYOAkRaKbg3OrcqLmdp1OiHQOdrc0fUoHG', 'arjun@gmail.com', '../uploaded_images/aadhar_card/arjun123.pdf', NULL, NULL, NULL, '', NULL, 'Electricity');
 
 -- --------------------------------------------------------
 
@@ -215,7 +212,7 @@ ALTER TABLE `worker_action`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

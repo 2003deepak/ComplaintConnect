@@ -402,35 +402,150 @@ include 'authsession.php';
 
 <div class="icon">
 
-    <p>D</p>   <!--Replace it with first letter of Username of user  -->
+<?php
+
+           
+                $u = $_SESSION["username"];
+                $capitalizedu = ucfirst($u[0]);
+
+
+
+
+            ?>
+
+    <p><?php echo $capitalizedu ;?></p>   <!--Replace it with first letter of Username of user  -->
 </div>
 
 <div class="nav-content">
 
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/dashboard.php">Home</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/profile.php">Profile</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house"></i>
-        <a href="../php/filecomplaint.php">File Complaint</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/complaintHistory.php">Complaint History</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="../php/updateCurrentPassword.php">Update Password</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="#">Close Complaint</a>
-    </div>
+<?php
+    
+    if($_SESSION['user_type'] == 'user'){
+
+        echo "
+        
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/dashboard.php'>Home</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-user' ></i>
+            <a href='../php/profile.php'>Profile</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/filecomplaint.php'>File Complaint</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-clock'></i>
+            <a href='../php/complaintHistory.php'>Complaint History</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-key'></i>
+            <a href='../php/updateCurrentPassword.php'>Update Password</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-xmark'></i>
+            <a href='closedComplaint.php'>Closed Complaint</a>
+        </div>
+        
+        ";
+
+
+    }else if($_SESSION['user_type'] == 'contractor'){
+
+        echo "
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/cAdminPanel.php'>Home</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='../php/cPendingComplaints.php'>Pending </a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/cCompletedComplaints.php'>Completed </a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='closedComplaint.php'>Closed Complaints</a>
+        </div>
+        
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='#'>Profile</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='addworkers.php'>Add Workers</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='manageWorker.php'>Manage Workers</a>
+        </div>
+        ";
+
+    }else if($_SESSION['user_type'] == 'worker'){
+
+        echo "
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/Wdashboard.php'>Home</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-user' ></i>
+            <a href='../php/profileWorker.php'>Profile</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-key'></i>
+            <a href='../php/updateCurrentPassword.php'>Update Password</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/WnewComplaints.php'>New Complaints</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-clock'></i>
+            <a href='../php/WpendingComplaints.php'>Pending Complaints</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-key'></i>
+            <a href='closedComplaint.php'>Closed Complaints</a>
+        </div>
+        
+        ";
+
+
+
+
+
+    }else{
+
+        echo "
+        
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='../php/adminpanel.php'>Home</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='../php/edituser.php'>Edit User</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house'></i>
+            <a href='approveComplaint.php'>Approve Complaint</a>
+        </div>
+        <div>
+            <i class='fa-solid fa-house' ></i>
+            <a href='closedComplaint.php'>Closed Complaint</a>
+        </div>
+
+        ";
+
+    }
+
+    ?>
 
 </div>
 <div class="nav-content-down">

@@ -3,7 +3,7 @@
 include 'C:\xampp\htdocs\ComplaintConnect\php\config.php' ;
 session_start();
 include 'authsession.php';
-require('../vendor/autoload.php');
+
 
 ?>
 <!DOCTYPE html>

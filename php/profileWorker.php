@@ -660,7 +660,7 @@ include 'authsession.php';
                         <div>
                             
                             <input type="text" name="name" placeholder="First Name" value="<?php echo $name; ?>"> 
-                            <input type="text" name="last_name" placeholder="Last Name" value="Predefined text here" > 
+                            <input type="text" name="last_name" placeholder="Last Name" value="<?php echo $last_name;?>" > 
                         </div>
                     </div>
                     <div class="address">

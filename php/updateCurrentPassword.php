@@ -22,7 +22,7 @@ if (isset($_POST['save'])) {
     setcookie("updateotp", $otp, time()+200);
 
     if($currentPassword == $_SESSION['password']) {
-        if(smtp_mailer('poojarryadav@gmail.com', 'Password Updation', 'Hi You have request for updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only', "OTP is sent succesfully", "OTP not send , pls try again later")) {
+        if(smtp_mailer($_SESSION['email'], 'Password Updation', 'Hi You have request for updation of password <br> OTP is <b>'.$otp.' </b> and it is valid for 5 minutes only', "OTP is sent succesfully", "OTP not send , pls try again later")) {
             $otpsent = true; 
             setcookie("temppass", $newPassword, time()+200);
         } else {

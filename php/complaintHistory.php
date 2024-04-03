@@ -235,6 +235,9 @@ include 'authsession.php';
                 position: relative;
                 top: 0.1rem;
             }
+            thead{
+                color : var(--font-color); 
+            }
             
           
        
@@ -387,17 +390,17 @@ include 'authsession.php';
                 <td class=" col-3">
                   
                     <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"] ?></p>
+                      <p class="fw-bold mb-1" style="color: var(--font-color);"><?php echo $row["complaint_id"] ?></p>
                       
                     </div>
                   </div>
                 </td>
                 <td class="col-2">
-                  <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;" ><?php echo date("d-m-Y", strtotime($row['time'])); ?></p>
+                  <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);" ><?php echo date("d-m-Y", strtotime($row['time'])); ?></p>
                   
                 </td>
                 <td class=" col-2 " style="margin-right: 30px;">
-                        <p class="fw-normal mb-1 ml-0" style="color: #E6E6E6;">
+                        <p class="fw-normal mb-1 ml-0" style="color: var(--font-color);">
                             <?php
                             if ($row["last_updation"] == null) {
                                 echo "No Updates Received";
@@ -409,7 +412,7 @@ include 'authsession.php';
                         </td>
                 
                 
-                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color:black;" href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Complaint</a></td>
+                <td class=" col-2 "><a type="button" class="btn btn-primary" style = "background:#FF9F00 ; border:none; color: var(--font-color);" href="../php/ComplaintInfo.php?id=<?php echo $row['complaint_id']; ?>">View Complaint</a></td>
 
               </tr>
 

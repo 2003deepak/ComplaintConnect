@@ -49,6 +49,7 @@ include 'authsession.php';
     --font-color:white;
     --boxes-bg-color:#161717;
     --box-count-color: #242424;
+    --text-color : black ; 
     
 
    
@@ -63,6 +64,7 @@ include 'authsession.php';
     --font-color:black;
     --boxes-bg-color:white;
     --box-count-color:#E3E3EA;
+    --text-color : white ; 
     
     
     
@@ -390,7 +392,7 @@ include 'authsession.php';
             </div>
             <div>
                 <i class="fa-solid fa-house" ></i>
-                <a href="#">Closed Complaint</a>
+                <a href="closedComplaint.php">Closed Complaint</a>
             </div>
 
         </div>
@@ -452,7 +454,7 @@ include 'authsession.php';
                 <td class=" col-3">
                   
                     <div class="ms-3 d-flex ml-3 ">
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["username"]; ?></p>
+                      <p class="fw-bold mb-1" style="var(--text-color);"><?php echo $row["username"]; ?></p>
                       
                     </div>
                   </div>
@@ -461,7 +463,7 @@ include 'authsession.php';
                 <td class=" col-3">
                   
                     
-                      <p class="fw-bold mb-1" style="color: #E6E6E6;"><?php echo $row["complaint_id"]; ?></p>
+                      <p class="fw-bold mb-1" style="var(--text-color);"><?php echo $row["complaint_id"]; ?></p>
                       
                    
                 </td>

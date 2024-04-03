@@ -29,7 +29,32 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
             echo '</script>';
         }
     } elseif ($_GET['action'] == 'disapprove') {
+
+
         $sql = "delete from complaints WHERE complaint_id = '$complaint_id'";
+
+        $id_search = "select * from complaints where complaint_id = '$complaint_id' ";
+        $query = mysqli_query($conn, $id_search);
+        $id_count = mysqli_num_rows($query);
+        if ($id_count) {
+
+            $details = mysqli_fetch_assoc($query);
+            $username = $details['username'];
+
+        }
+
+        $email_search = "select * from register where username = '$username' ";
+        $query2 = mysqli_query($conn, $email_search);
+        $id_count2 = mysqli_num_rows($query2);
+        if ($id_count2) {
+
+            $details2 = mysqli_fetch_assoc($query2);
+            $email = $details2['email'];
+
+        }
+
+
+
         if ($conn->query($sql) === TRUE) {
             include("mail.php");
             $emailContent = "
@@ -42,7 +67,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
                         </body>
                         </html>
                         ";
-            if (smtp_mailer('poojarryadav@gmail.com', 'Your Complaint Rejection Notification', $emailContent, "User is Notified", "User Not Notified")) {
+            if (smtp_mailer($email, 'Your Complaint Rejection Notification', $emailContent, "User is Notified", "User Not Notified")) {
                 echo '<script>';
                 echo 'ConfirmationAlert("Done","User is Notified","../php/adminpanel.php")';
                 echo '</script>';
