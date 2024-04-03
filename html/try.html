@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+
+
+    <!-- Poppins  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Biryani&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&display=swap" rel="stylesheet">
+
+
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Lilita+One&family=Montserrat:wght@500&family=Poppins:wght@500&display=swap');
+
+:root {
+    --background-color: #202122; 
+    --font-color : #ffffff; 
+    --h1-font-color: #E0E0E0; 
+    --typing-font-color : #E0E0E0; 
+    --h1-color : black ; 
+    
+    
+
+   
+}
+
+.light-mode {
+    --background-color: white;
+    --font-color : #000000; 
+    --h1-font-color: #000000; 
+    --typing-font-color : #000000;
+    --h1-color : white ; 
+    
+    
+    
+    
+    
+    
+  }
+
+html{
+    scroll-behavior: smooth;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    
+}
+body{
+    background-color: var(--background-color);
+}
+
+.main{
+    width: 100vw;
+    height: 100vh;     
+}
+
+.nav{
+    width: 100vw;
+    height: 100px;
+    padding: 0vw 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #dadada ; 
+    
+}
+.nav2{
+    display: flex;
+    gap: 3vw;
+}
+.nav h2{
+    font-size: 2vw;
+    font-weight: 800;
+}
+.nav2 a{
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: 700;
+    color: var(--font-color);
+}
+.nav2 a:hover{
+    color: #FFB219;
+    transition: 0.5s;
+}
+.nav2 i{
+    font-size: 1.4vw ;
+    font-weight: 900;
+    display: none;
+}
+.content{
+    width: 100vw;
+    height: calc(100% - 100px);
+    background-color: red;
+    display: flex;
+    
+
+}
+.left{
+    width: 55%;
+    height: 100% ; 
+    padding: 5vw 4vw;
+    
+    
+}
+.left h1{
+    font-size: 3.8vw;
+    line-height: 4.4vw;
+    color: var(--h1-font-color);
+}
+.left h2{
+    font-size: 3vw ;
+    color : #FFB219;
+}
+.left p{
+    font-size: 1.2vw;
+    font-weight: 600;
+    width: 80%;
+    color: var(--typing-font-color);
+    padding: 1.5vw 0vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+button{
+    font-size: 1vw;
+    padding: 1vw 1.5vw;
+    background-color: #FFB219;
+    color: black;
+    border: none;
+    font-weight: 700;
+    border-radius: 5px;
+}
+.left #btr{
+    color: #FFB219;
+}
+.left #typing{
+    color: var(--typing-font-color);
+}
+.right{
+    width: 45%;
+    height: 100%;
+     
+}
+
+.nav button a{
+    color: black;
+}
+.left #smallh1 h1{
+    font-size: 2vw;
+}
+
+.topbtn{
+    height: 2vw;
+    width: 6vw;
+    margin-top: -0.5vw;
+    padding: 0vw 0.2vw;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="nav">
+            <img src="../images/word mark(orange).svg" height="100px" style="padding-top: 15px;">
+            <!-- <h2>Logo</h2> -->
+            <div class="nav2">
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="../html/signup.html">Sign Up</a>
+                <a href="#">Contact Us</a>
+                <button class="topbtn"> <a href="../php/login.php">Sign In</a></button>
+                
+                <i class="ri-menu-3-fill"></i>
+            </div>
+        </div>
+
+        <div class="content">
+
+
+            <style>
+                .right{
+                    width: 40%;
+                    height: 100%;
+                    background-color: #FFB219;
+                }
+            </style>
+
+            <div class="left">
+
+            </div>
+            <div class="right">
+
+            </div>
+            
+        </div>
+
+
+            
+
+   
+        
+
+        
+    </div>
+
+
+    <script>
+
+        document.getElementById("bulb").addEventListener("click",()=>{
+
+            let mode = 'dark';
+            var a = document.querySelector(".dark");
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove("light-mode");
+               
+            } else {
+                document.body.classList.add("light-mode");
+                a.innerHTML = "Dark Mode";
+                
+            }
+
+
+        });
+
+    var typed = new Typed('#typing', {
+      strings: ["Purposefully","With Us","The Movement"],
+      typeSpeed: 150,
+      backSpeed: 150,
+      loop: true
+    });
+
+    </script>
+
+    
+    
+</body>
+</html>
