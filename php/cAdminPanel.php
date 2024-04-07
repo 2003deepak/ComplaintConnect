@@ -631,7 +631,7 @@ include 'authsession.php';
         <a href="../php/cAdminPanel.php">Home</a>
     </div>
     <div>
-        <i class="fa-solid fa-house" ></i>
+        <i class="fa-solid fa-user" ></i>
         <a href="../php/cPendingComplaints.php">Pending </a>
     </div>
     <div>
@@ -639,20 +639,16 @@ include 'authsession.php';
         <a href="../php/cCompletedComplaints.php">Completed </a>
     </div>
     <div>
-        <i class="fa-solid fa-house"></i>
+        <i class="fa-solid fa-clock"></i>
         <a href="closedComplaint.php">Closed Complaints</a>
     </div>
     
     <div>
-        <i class="fa-solid fa-house" ></i>
-        <a href="#">Profile</a>
-    </div>
-    <div>
-        <i class="fa-solid fa-house" ></i>
+        <i class="fa-solid fa-plus"></i>
         <a href="addworkers.php">Add Workers</a>
     </div>
     <div>
-        <i class="fa-solid fa-house" ></i>
+    <i class="fa-solid fa-list-check"></i>
         <a href="manageWorker.php">Manage Workers</a>
     </div>
     
@@ -779,7 +775,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
-                                    <div class="box4">
+                                    <div class="box4" style = "var(--font-color:white);">
 
                                         <div class="left" >
                                             <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #FF5858;"></div>

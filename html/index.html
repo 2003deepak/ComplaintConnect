@@ -47,7 +47,7 @@
             </div>
             <div class="right">
 
-                <img id="bulb" src="../images/offbulb.png"  style="height: 600px;">
+                <img id="bulb" src="../images/bulb off.svg"  style="height: 600px;margin-left: 10rem;">
                 
             </div>
         </div>
@@ -273,10 +273,12 @@
         bulb.addEventListener("click", () => {
             if (document.body.classList.contains('light-mode')) {
                 document.body.classList.remove("light-mode");
-                bulb.src = "/images/onbulb.png";
+                bulb.src = "../images/bulb off.svg";
+                
             } else {
                 document.body.classList.add("light-mode");
-                bulb.src = "/images/offbulb.png";
+    
+                bulb.src = "../images/onBulb.svg";
             }
         });
 

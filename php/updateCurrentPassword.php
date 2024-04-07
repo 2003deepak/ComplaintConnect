@@ -494,30 +494,30 @@ if (isset($_POST['update'])) {
            
             echo '
 
-                <div>
-                    <i class="fa-solid fa-house"></i>
-                    <a href="../php/dashboard.php">Home</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-house" ></i>
-                    <a href="../php/profile.php">Profile</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-house"></i>
-                    <a href="../php/filecomplaint.php">File Complaint</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-house" ></i>
-                    <a href="../php/complaintHistory.php">Complaint History</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-house" ></i>
-                    <a href="../php/updateCurrentPassword.php">Update Password</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-house" ></i>
-                    <a href="#">Close Complaint</a>
-                </div> 
+            <div>
+            <i class="fa-solid fa-house"></i>
+            <a href="../php/dashboard.php">Home</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-user" ></i>
+            <a href="../php/profile.php">Profile</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-house"></i>
+            <a href="../php/filecomplaint.php">File Complaint</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-clock"></i>
+            <a href="../php/complaintHistory.php">Complaint History</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-key"></i>
+            <a href="../php/updateCurrentPassword.php">Update Password</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-xmark"></i>
+            <a href="closedComplaint.php">Closed Complaint</a>
+        </div>
 
                 ';
 

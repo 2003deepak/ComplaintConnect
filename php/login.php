@@ -196,7 +196,7 @@ form input[type="text"] , form input[type="password"]{
     border: none;
     background-color: #B4B4B4;
     font-size: 17px;
-    color: white;
+    color: black;
 }
 
 form .forgot{

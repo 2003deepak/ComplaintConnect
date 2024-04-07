@@ -347,11 +347,38 @@ include 'authsession.php';
 
         </div>
 
+        <style>
+            p{
+                font-size : 18px ; 
+                font-family: 'Poppins', sans-serif;
+            }
+
+            select{
+                width: 30%;
+                font-size : 20px ; 
+                font-family: 'Poppins', sans-serif;
+            }
+            input[type="submit"]{
+                        width: 157px;
+                        height: 53px;
+                        background-color: #FFB219;
+                        font-size: 18px;
+                        border: none;
+                        color: var(--font-color);
+                        font-weight: 600;
+                        border-radius: 8px;
+                        font-family: "DM Sans", sans-serif;
+                    }
+        </style>
+
 </div>
 
 <div class="content">
     <div class="org_content">
+
+    <p>Your Reviews : </p>
         <select id="action">
+            
             <option value="satisfied">Satisfied</option>
             <option value="not_satisfied">Not Satisfied</option>
         </select>
@@ -370,12 +397,12 @@ include 'authsession.php';
             </form>
         </div>
 
-        <div id="notSatisfiedFormContent" style="display: none;">
+        <div id="notSatisfiedFormContent" style="display: none;display:flex ; flex-direction:column ; gap:2rem;">
             <form id="notSatisfiedForm" action="../php/notSatisfied.php?id=<?php echo $_GET['id']; ?>" method="post">
 
                 <label for="dissatisfaction_cause">Cause for Dissatisfaction:</label>
                 <textarea id="dissatisfaction_cause" name="dissatisfaction_cause"></textarea>
-                <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied" >
+                <input type="submit" id="submitDissatisfaction" value="Re-Lodge Complaint" name="not_satisfied" style = "margin-top:3rem;">
             </form>
         </div>
     </div>
@@ -392,7 +419,8 @@ document.getElementById('action').addEventListener('change', function() {
         notSatisfiedFormContent.style.display = 'none';
     } else if (selectedAction === 'not_satisfied') {
         satisfiedFormContent.style.display = 'none';
-        notSatisfiedFormContent.style.display = 'block';
+        notSatisfiedFormContent.style.display = 'flex';
+        notSatisfiedFormContent.style.flexDirection = 'column';
     }
 });
 

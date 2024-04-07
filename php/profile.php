@@ -544,7 +544,7 @@ include 'authsession.php';
 
         <div class="nav-content">
 
-            <div>
+        <div>
                 <i class="fa-solid fa-house"></i>
                 <a href="../php/dashboard.php">Home</a>
             </div>
@@ -566,7 +566,7 @@ include 'authsession.php';
             </div>
             <div>
                 <i class="fa-solid fa-xmark"></i>
-                <a href="#">Close Complaint</a>
+                <a href="closedComplaint.php">Closed Complaint</a>
             </div>
 
         </div>

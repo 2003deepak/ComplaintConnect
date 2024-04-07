@@ -376,31 +376,31 @@ include 'authsession.php';
 
         <div class="nav-content">
 
-            <div>
-                <i class="fa-solid fa-house"></i>
-                <a href="../php/cAdminPanel.php">Home</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="../php/cPendingComplaints.php">Pending </a>
-            </div>
-            <div>
-                <i class="fa-solid fa-house"></i>
-                <a href="../php/cCompletedComplaints.php">Completed </a>
-            </div>
-            
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="#">Profile</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="addworkers.php">Add Workers</a>
-            </div>
-            <div>
-                <i class="fa-solid fa-house" ></i>
-                <a href="manageWorker.php">Manage Workers</a>
-            </div>
+        <div>
+        <i class="fa-solid fa-house"></i>
+        <a href="../php/cAdminPanel.php">Home</a>
+    </div>
+    <div>
+        <i class="fa-solid fa-user" ></i>
+        <a href="../php/cPendingComplaints.php">Pending </a>
+    </div>
+    <div>
+        <i class="fa-solid fa-house"></i>
+        <a href="../php/cCompletedComplaints.php">Completed </a>
+    </div>
+    <div>
+        <i class="fa-solid fa-clock"></i>
+        <a href="closedComplaint.php">Closed Complaints</a>
+    </div>
+    
+    <div>
+        <i class="fa-solid fa-plus"></i>
+        <a href="addworkers.php">Add Workers</a>
+    </div>
+    <div>
+    <i class="fa-solid fa-list-check"></i>
+        <a href="manageWorker.php">Manage Workers</a>
+    </div>
 
         </div>
 

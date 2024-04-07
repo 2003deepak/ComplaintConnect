@@ -921,7 +921,7 @@ $newRequestCount = ($resultNewRequest) ? $resultNewRequest->fetch_assoc()['new_r
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         ?>
-                                        <div class="box4">
+                                        <div class="box4" style = "margin-left:2rem;">
 
                                             <div class="left" >
                                                 <div class="circle" style="width: 11px; height: 11px; border-radius: 50%; background-color: #05FF00;"></div>
