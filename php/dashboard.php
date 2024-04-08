@@ -438,6 +438,7 @@ include 'authsession.php';
         }
 
 
+
         /* Css for preview panel  */
 
         .preview{
